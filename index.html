@@ -1,9 +1,9 @@
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roma&knzy stor - متابعات إنستجرام</title>
+    <title>Roma&knzy stor - طلباتي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     
@@ -35,7 +35,6 @@
             color: var(--light);
             min-height: 100vh;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
         .container {
@@ -130,146 +129,22 @@
             transform: translateY(-2px);
         }
 
-        .hero {
-            text-align: center;
-            padding: 100px 0;
-            position: relative;
+        /* تصميم صفحة الطلبات */
+        .orders-page {
+            padding: 40px 0;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(233, 30, 99, 0.1) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            background: var(--gradient);
-            color: white;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 80px 0;
-        }
-
-        .feature-card {
-            background: rgba(255,255,255,0.08);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-card i {
-            font-size: 50px;
-            margin-bottom: 20px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .packages {
-            margin: 80px 0;
-        }
-
-        .section-title {
+        .page-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             position: relative;
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
         }
 
-        .section-title::after {
+        .page-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
@@ -280,462 +155,371 @@
             border-radius: 3px;
         }
 
-        .package-grid {
+        .cart-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr 350px;
             gap: 30px;
+            margin-top: 30px;
         }
 
-        .package-card {
-            background: rgba(255,255,255,0.08);
-            padding: 30px;
+        @media (max-width: 768px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* تصميم قائمة الطلبات */
+        .orders-list {
+            background: rgba(255,255,255,0.05);
             border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.12);
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
-            transition: 0.4s;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .order-count {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .order-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .package-card::before {
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .order-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 5px;
+            width: 5px;
+            height: 100%;
             background: var(--gradient);
         }
 
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .package-amount {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .package-price {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 20px 0;
-            color: var(--light);
-        }
-
-        .social-section {
-            margin: 80px 0;
-            text-align: center;
-        }
-
-        .social-cards {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+        .order-info {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
             gap: 20px;
-            margin-top: 30px;
+            align-items: center;
         }
 
-        .social-card {
-            background: rgba(255,255,255,0.08);
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            transition: 0.4s;
-            width: 200px;
-            text-decoration: none;
-            color: inherit;
+        .order-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
         }
 
-        .social-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .order-details {
+            flex: 1;
         }
 
-        .social-card i {
-            font-size: 40px;
-            margin-bottom: 15px;
+        .order-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .meta-item i {
             color: var(--accent);
         }
 
-        .page {
-            display: none;
-            animation: fadeIn 0.5s ease;
+        .order-status {
+            text-align: center;
+            min-width: 120px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .active {
-            display: block;
-        }
-
-        .login-form, .payment-page {
-            background: rgba(255,255,255,0.08);
-            padding: 40px;
+        .status-badge {
+            padding: 8px 16px;
             border-radius: 20px;
-            max-width: 500px;
-            margin: 50px auto;
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.3);
-        }
-
-        .form-control::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-
-        .order-item {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s;
-        }
-
-        .order-item:hover {
-            background: rgba(255,255,255,0.08);
-            transform: translateX(5px);
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
         }
 
         .status-pending {
             background: rgba(255, 199, 95, 0.2);
             color: var(--warning);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
+            border: 1px solid rgba(255, 199, 95, 0.3);
+        }
+
+        .status-processing {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--accent);
+            border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
         .status-completed {
             background: rgba(0, 201, 167, 0.2);
             color: var(--success);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
+            border: 1px solid rgba(0, 201, 167, 0.3);
         }
 
-        .auth-tabs {
+        .status-cancelled {
+            background: rgba(255, 128, 102, 0.2);
+            color: var(--danger);
+            border: 1px solid rgba(255, 128, 102, 0.3);
+        }
+
+        /* شريط التقدم */
+        .progress-tracker {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+        }
+
+        .progress-steps {
             display: flex;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 10px;
         }
 
-        .auth-tab {
-            flex: 1;
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            z-index: 1;
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            height: 3px;
+            background: var(--success);
+            z-index: 2;
+            transition: width 0.3s ease;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-bottom: 8px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .step.active .step-icon {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .step.completed .step-icon {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
             text-align: center;
+        }
+
+        .step.active .step-label {
+            opacity: 1;
+            color: var(--success);
+        }
+
+        /* الشريط الجانبي */
+        .cart-sidebar {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.08);
             padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .action-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .action-btn:hover {
+            background: var(--gradient);
+            transform: translateY(-2px);
+        }
+
+        /* حالة عدم وجود طلبات */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .empty-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
-            border-bottom: 3px solid transparent;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
         }
 
-        .auth-tab.active {
-            border-bottom: 3px solid var(--primary);
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-        }
-
-        /* تحسينات للشعار */
-        .logo-icon {
-            font-size: 24px;
-        }
-
-        /* تأثيرات إضافية */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.6);
         }
 
         /* تحسينات للاستجابة */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            nav ul {
-                gap: 10px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .package-grid {
+            .order-info {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
             
-            .social-cards {
+            .order-status {
+                margin-top: 15px;
+            }
+            
+            .order-meta {
+                justify-content: center;
+            }
+            
+            .progress-steps {
                 flex-direction: column;
-                align-items: center;
+                gap: 20px;
+            }
+            
+            .progress-steps::before {
+                display: none;
+            }
+            
+            .progress-bar {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- الصفحة الرئيسية -->
-        <div id="homePage" class="page active">
-            <header>
-                <div class="logo-container">
-                    <div class="logo floating">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="checkAuthAndShowPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" id="authLink" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <section class="hero">
-                <h1>مصدرك الموثوق لزيادة المتابعين</h1>
-                <p>احصل على متابعين حقيقيين ونشطين لحساب إنستجرامك بأفضل الأسعار</p>
-                <a href="#packages" class="btn">
-                    <i class="fas fa-shopping-cart"></i> ابدأ الآن
-                </a>
-            </section>
-
-            <section class="features">
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>ضمان الجودة</h3>
-                    <p>متابعين حقيقيين بنسبة 100% مع ضمان استرجاع الأموال</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>تسليم فوري</h3>
-                    <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 24-48 ساعة</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-lock"></i>
-                    <h3>آمن تماماً</h3>
-                    <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
-                </div>
-            </section>
-
-            <section class="packages" id="packages">
-                <h2 class="section-title">اختر الباقة المناسبة</h2>
-                
-                <div class="package-grid">
-                    <div class="package-card">
-                        <div class="package-amount">50</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">10 جنيه</div>
-                        <button class="btn" onclick="checkAuthAndSelectPackage(50, 10)">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
-                        </button>
-                    </div>
-                    
-                    <div class="package-card">
-                        <div class="package-amount">100</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">20 جنيه</div>
-                        <button class="btn" onclick="checkAuthAndSelectPackage(100, 20)">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
-                        </button>
-                    </div>
-                    
-                    <div class="package-card">
-                        <div class="package-amount">250</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">45 جنيه</div>
-                        <button class="btn" onclick="checkAuthAndSelectPackage(250, 45)">
-                            <i class="fas fa-bolt"></i> اختر الباقة
-                        </button>
-                    </div>
-
-                    <div class="package-card">
-                        <div class="package-amount">500</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">85 جنيه</div>
-                        <button class="btn" onclick="checkAuthAndSelectPackage(500, 85)">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
-                        </button>
-                    </div>
-
-                    <div class="package-card">
-                        <div class="package-amount">1000</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">150 جنيه</div>
-                        <button class="btn" onclick="checkAuthAndSelectPackage(1000, 150)">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- قسم التواصل -->
-            <section class="social-section">
-                <h2 class="section-title">تواصل معنا</h2>
-                <div class="social-cards">
-                    <a href="https://wa.me/+201122223344" class="social-card" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        <h3>واتساب</h3>
-                        <p>+20 11 2222 3344</p>
-                    </a>
-                </div>
-            </section>
-
-            <!-- قسم قناة الواتساب -->
-            <section class="social-section">
-                <h2 class="section-title">تابع قنواتنا</h2>
-                <div class="social-cards">
-                    <a href="https://whatsapp.com/channel/0029VbB2NsIEawdoGrI0m83J" class="social-card" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        <h3>قناة الواتساب</h3>
-                        <p>Roma&kenzy sore</p>
-                    </a>
-                </div>
-            </section>
-
-            <!-- قسم صفحات الإنستجرام -->
-            <section class="social-section">
-                <h2 class="section-title">تابعنا على الإنستجرام</h2>
-                <div class="social-cards">
-                    <a href="https://www.instagram.com/xx.mariam_roma.x?igsh=Ymxxa2gzaDR3dTl4" class="social-card" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                        <h3>صفحة Roma</h3>
-                        <p>@xx.mariam_roma.x</p>
-                    </a>
-                    <a href="https://www.instagram.com/x._.kenzyy_mohamedx?igsh=NzFyaTN4YXVmNmth" class="social-card" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                        <h3>صفحة Kenzy</h3>
-                        <p>@x._.kenzyy_mohamedx</p>
-                    </a>
-                </div>
-            </section>
-        </div>
-
-        <!-- صفحة تسجيل الدخول -->
-        <div id="loginPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="checkAuthAndShowPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" id="authLink2" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <div class="login-form">
-                <div class="auth-tabs">
-                    <div class="auth-tab active" onclick="switchAuthTab('login')">تسجيل الدخول</div>
-                    <div class="auth-tab" onclick="switchAuthTab('signup')">إنشاء حساب</div>
-                </div>
-
-                <!-- نموذج تسجيل الدخول -->
-                <div id="loginForm" class="auth-form active">
-                    <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">تسجيل الدخول</h2>
-                    <p style="text-align: center; margin-bottom: 30px; opacity: 0.8;">مرحباً بعودتك إلى Roma&knzy stor</p>
-
-                    <div class="form-group">
-                        <input type="email" id="loginEmail" class="form-control" placeholder="البريد الإلكتروني">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" id="loginPassword" class="form-control" placeholder="كلمة المرور">
-                    </div>
-
-                    <button class="btn" style="width: 100%;" onclick="login()">تسجيل الدخول</button>
-                </div>
-
-                <!-- نموذج إنشاء حساب -->
-                <div id="signupForm" class="auth-form">
-                    <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إنشاء حساب جديد</h2>
-                    <p style="text-align: center; margin-bottom: 30px; opacity: 0.8;">انضم إلى Roma&knzy stor اليوم</p>
-
-                    <div class="form-group">
-                        <input type="text" id="signupName" class="form-control" placeholder="الاسم الكامل">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="email" id="signupEmail" class="form-control" placeholder="البريد الإلكتروني">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" id="signupPassword" class="form-control" placeholder="كلمة المرور">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" id="signupConfirmPassword" class="form-control" placeholder="تأكيد كلمة المرور">
-                    </div>
-
-                    <button class="btn" style="width: 100%;" onclick="signup()">إنشاء حساب</button>
-                </div>
-            </div>
-        </div>
-
         <!-- صفحة الطلبات -->
-        <div id="ordersPage" class="page">
+        <div id="ordersPage" class="page active">
             <header>
                 <div class="logo-container">
                     <div class="logo">
@@ -755,69 +539,61 @@
                 </nav>
             </header>
 
-            <h2 class="section-title">طلباتي</h2>
-            <div id="ordersList">
-                <!-- الطلبات تظهر هنا -->
-            </div>
-        </div>
-
-        <!-- صفحة الدفع -->
-        <div id="paymentPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="checkAuthAndShowPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="logout()">تسجيل الخروج</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <div class="payment-page">
-                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
-
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>بيانات الباقة المختارة</h3>
-                    <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 100 متابع - 20 جنيه</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>طريقة الدفع</h3>
-                    <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
-                        <i class="fas fa-mobile-alt" style="font-size: 30px; color: var(--accent);"></i>
-                        <div>
-                            <p style="margin-bottom: 5px;">الدفع عبر فودافون كاش</p>
-                            <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">01031090116</p>
+            <div class="orders-page">
+                <h1 class="page-title">🛒 طلباتي</h1>
+                
+                <div class="cart-container">
+                    <!-- القائمة الرئيسية للطلبات -->
+                    <div class="orders-list">
+                        <div class="order-header">
+                            <h2>📋 قائمة الطلبات</h2>
+                            <div class="order-count" id="ordersCount">0 طلب</div>
+                        </div>
+                        
+                        <div id="ordersList">
+                            <!-- الطلبات تظهر هنا -->
                         </div>
                     </div>
-                    <p style="opacity: 0.8; font-size: 0.9rem;">يرجى إرسال المبلغ إلى الرقم أعلاه ثم إرفاق صورة إيصال الدفع</p>
-                </div>
 
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">اسم المستخدم في إنستجرام</label>
-                    <input type="text" id="username" class="form-control" placeholder="اسم المستخدم بدون @">
-                </div>
+                    <!-- الشريط الجانبي -->
+                    <div class="cart-sidebar">
+                        <h3 class="sidebar-title">📊 إحصائيات الطلبات</h3>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" id="totalOrders">0</div>
+                                <div class="stat-label">إجمالي الطلبات</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="pendingOrders">0</div>
+                                <div class="stat-label">قيد المراجعة</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="completedOrders">0</div>
+                                <div class="stat-label">مكتملة</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="totalFollowers">0</div>
+                                <div class="stat-label">إجمالي المتابعين</div>
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">رقم الهاتف</label>
-                    <input type="tel" id="phone" class="form-control" placeholder="رقم الهاتف للتواصل">
+                        <div class="quick-actions">
+                            <a href="#" onclick="showPage('homePage')" class="action-btn">
+                                <i class="fas fa-plus"></i>
+                                طلب جديد
+                            </a>
+                            <a href="#" onclick="showPage('homePage')" class="action-btn">
+                                <i class="fas fa-shopping-cart"></i>
+                                متابعة التسوق
+                            </a>
+                            <a href="https://wa.me/+201122223344" target="_blank" class="action-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                الدعم الفني
+                            </a>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">صورة إيصال الدفع</label>
-                    <input type="file" id="receipt" class="form-control" accept="image/*">
-                </div>
-
-                <button class="btn" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
             </div>
         </div>
     </div>
@@ -841,265 +617,121 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        let selectedPackage = { amount: 0, price: 0 };
         let currentUser = null;
 
-        // نظام المصادقة المبسط باستخدام localStorage
-        function switchAuthTab(tab) {
-            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-            
-            if (tab === 'login') {
-                document.querySelector('.auth-tab:nth-child(1)').classList.add('active');
-                document.getElementById('loginForm').classList.add('active');
-            } else {
-                document.querySelector('.auth-tab:nth-child(2)').classList.add('active');
-                document.getElementById('signupForm').classList.add('active');
-            }
-        }
-
-        function signup() {
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('signupConfirmPassword').value;
-
-            if (!name || !email || !password || !confirmPassword) {
-                alert('يرجى ملء جميع الحقول');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                alert('كلمات المرور غير متطابقة');
-                return;
-            }
-
-            // التحقق إذا كان المستخدم مسجل مسبقاً
-            const users = JSON.parse(localStorage.getItem('romaKnzyUsers') || '[]');
-            const existingUser = users.find(user => user.email === email);
-            
-            if (existingUser) {
-                alert('هذا البريد الإلكتروني مسجل مسبقاً');
-                return;
-            }
-
-            // إضافة المستخدم الجديد
-            const newUser = {
-                id: Date.now().toString(),
-                name: name,
-                email: email,
-                password: password,
-                createdAt: new Date().toISOString()
-            };
-
-            users.push(newUser);
-            localStorage.setItem('romaKnzyUsers', JSON.stringify(users));
-            
-            // تسجيل الدخول تلقائياً
-            currentUser = newUser;
-            localStorage.setItem('romaKnzyCurrentUser', JSON.stringify(newUser));
-            updateNavigation();
-            
-            alert('تم إنشاء الحساب بنجاح!');
-            showPage('homePage');
-        }
-
-        function login() {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            if (!email || !password) {
-                alert('يرجى ملء جميع الحقول');
-                return;
-            }
-
-            const users = JSON.parse(localStorage.getItem('romaKnzyUsers') || '[]');
-            const user = users.find(u => u.email === email && u.password === password);
-
-            if (!user) {
-                alert('خطأ في البريد الإلكتروني أو كلمة المرور');
-                return;
-            }
-
-            currentUser = user;
-            localStorage.setItem('romaKnzyCurrentUser', JSON.stringify(user));
-            updateNavigation();
-            
-            alert('تم تسجيل الدخول بنجاح!');
-            showPage('homePage');
-        }
-
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('romaKnzyCurrentUser');
-            updateNavigation();
-            alert('تم تسجيل الخروج');
-            showPage('homePage');
-        }
-
-        function updateNavigation() {
-            const authLink = document.getElementById('authLink');
-            const authLink2 = document.getElementById('authLink2');
-            
-            if (currentUser) {
-                authLink.textContent = 'تسجيل الخروج';
-                authLink.setAttribute('onclick', 'logout()');
-                authLink2.textContent = 'تسجيل الخروج';
-                authLink2.setAttribute('onclick', 'logout()');
-            } else {
-                authLink.textContent = 'تسجيل الدخول';
-                authLink.setAttribute('onclick', 'showPage("loginPage")');
-                authLink2.textContent = 'تسجيل الدخول';
-                authLink2.setAttribute('onclick', 'showPage("loginPage")');
-            }
-        }
-
-        // تحميل بيانات المستخدم عند بدء التحميل
+        // تحميل بيانات المستخدم
         function loadCurrentUser() {
             const savedUser = localStorage.getItem('romaKnzyCurrentUser');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
-                updateNavigation();
             }
         }
 
-        function checkAuthAndShowPage(pageId) {
-            if (pageId === 'ordersPage' && !currentUser) {
-                alert('يجب تسجيل الدخول لعرض الطلبات');
-                showPage('loginPage');
-                return;
-            }
-            showPage(pageId);
-        }
-
-        function checkAuthAndSelectPackage(amount, price) {
-            if (!currentUser) {
-                alert('يجب تسجيل الدخول لاختيار باقة');
-                showPage('loginPage');
-                return;
-            }
-            selectPackage(amount, price);
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            
-            if (pageId === 'ordersPage') {
-                loadOrders();
-            }
-        }
-
-        function selectPackage(amount, price) {
-            selectedPackage = { amount, price };
-            document.getElementById('selectedPackageInfo').textContent = `باقة ${amount} متابع - ${price} جنيه`;
-            showPage('paymentPage');
-        }
-
-        async function submitOrder() {
-            if (!currentUser) {
-                alert('يجب تسجيل الدخول أولاً');
-                showPage('loginPage');
-                return;
-            }
-
-            const username = document.getElementById('username').value;
-            const phone = document.getElementById('phone').value;
-            const receipt = document.getElementById('receipt').files[0];
-            
-            if (!username || !phone) {
-                alert('يرجى ملء جميع الحقول');
-                return;
-            }
-            
-            try {
-                const newOrder = {
-                    package: selectedPackage,
-                    username,
-                    phone,
-                    status: 'قيد المراجعة',
-                    date: new Date().toLocaleDateString('ar-EG'),
-                    userId: currentUser.id,
-                    userName: currentUser.name,
-                    userEmail: currentUser.email,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                };
-                
-                await db.collection('orders').add(newOrder);
-                
-                alert('تم تقديم طلبك بنجاح! سيتم مراجعته قريباً.');
-                resetPaymentForm();
-                showPage('ordersPage');
-            } catch (error) {
-                alert('حدث خطأ أثناء إرسال الطلب. تأكد من اتصال الإنترنت.');
-            }
-        }
-
-        function resetPaymentForm() {
-            document.getElementById('username').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('receipt').value = '';
-        }
-
+        // تحميل الطلبات
         async function loadOrders() {
             if (!currentUser) return;
 
             const ordersList = document.getElementById('ordersList');
             
             try {
-                console.log('جاري تحميل الطلبات للمستخدم:', currentUser.id);
-                
-                // الحل: استخدام userEmail بدلاً من userId للتأكد من التطابق
                 const snapshot = await db.collection('orders')
                     .where('userEmail', '==', currentUser.email)
                     .orderBy('timestamp', 'desc')
                     .get();
                 
-                console.log('عدد الطلبات:', snapshot.size);
+                // تحديث الإحصائيات
+                updateStats(snapshot);
                 
                 if (snapshot.empty) {
                     ordersList.innerHTML = `
-                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                            <i class="fas fa-shopping-cart" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <div class="empty-state">
+                            <div class="empty-icon">🛒</div>
                             <h3>لا توجد طلبات حالياً</h3>
-                            <p style="opacity: 0.7;">بمجرد إرسال طلبك، سيظهر هنا</p>
+                            <p style="margin-bottom: 20px; opacity: 0.7;">ابدأ رحلتك لزيادة متابعينك الآن</p>
+                            <a href="#" onclick="showPage('homePage')" class="btn">
+                                <i class="fas fa-shopping-cart"></i> ابدأ التسوق
+                            </a>
                         </div>
                     `;
                     return;
                 }
                 
                 let ordersHTML = '';
+                let totalFollowers = 0;
+                
                 snapshot.forEach(doc => {
                     const order = doc.data();
-                    const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
+                    totalFollowers += order.package.amount;
+                    
+                    const statusConfig = getStatusConfig(order.status);
+                    const progress = getOrderProgress(order.status);
                     
                     ordersHTML += `
-                        <div class="order-item">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <div>
-                                    <strong>طلب #${doc.id.slice(-6)}</strong>
-                                    <p style="margin-top: 5px; opacity: 0.8;">${order.package.amount} متابع - ${order.package.price} جنيه</p>
+                        <div class="order-card">
+                            <div class="order-info">
+                                <div class="order-icon">
+                                    <i class="fas fa-users"></i>
                                 </div>
-                                <span class="${statusClass}">${order.status}</span>
+                                <div class="order-details">
+                                    <h3 style="margin-bottom: 10px; color: var(--accent);">
+                                        ${order.package.amount} متابع إنستجرام
+                                    </h3>
+                                    <div class="order-meta">
+                                        <div class="meta-item">
+                                            <i class="fas fa-user"></i>
+                                            @${order.username}
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-phone"></i>
+                                            ${order.phone}
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-calendar"></i>
+                                            ${order.date}
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-money-bill"></i>
+                                            ${order.package.price} جنيه
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- شريط التقدم -->
+                                    <div class="progress-tracker">
+                                        <div class="progress-steps">
+                                            <div class="progress-bar" style="width: ${progress.barWidth}%"></div>
+                                            ${progress.steps.map(step => `
+                                                <div class="step ${step.class}">
+                                                    <div class="step-icon">${step.icon}</div>
+                                                    <div class="step-label">${step.label}</div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-status">
+                                    <div class="status-badge ${statusConfig.class}">
+                                        ${statusConfig.icon} ${order.status}
+                                    </div>
+                                    <div style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
+                                        ${statusConfig.description}
+                                    </div>
+                                </div>
                             </div>
-                            <p><strong>اسم المستخدم:</strong> @${order.username}</p>
-                            <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
-                            <p><strong>تاريخ الطلب:</strong> ${order.date}</p>
                         </div>
                     `;
                 });
                 
+                document.getElementById('totalFollowers').textContent = totalFollowers;
                 ordersList.innerHTML = ordersHTML;
+                
             } catch (error) {
                 console.error('Error loading orders:', error);
                 ordersList.innerHTML = `
-                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 50px; margin-bottom: 20px; color: var(--danger);"></i>
-                        <h3 style="color: var(--danger);">حدث خطأ في تحميل الطلبات</h3>
-                        <p style="opacity: 0.7;">جاري إعادة المحاولة...</p>
-                        <button class="btn" onclick="loadOrders()" style="margin-top: 15px;">
+                    <div class="empty-state">
+                        <div class="empty-icon">❌</div>
+                        <h3>حدث خطأ في تحميل الطلبات</h3>
+                        <p style="margin-bottom: 20px; opacity: 0.7;">تأكد من اتصال الإنترنت وحاول مرة أخرى</p>
+                        <button class="btn" onclick="loadOrders()">
                             <i class="fas fa-redo"></i> إعادة المحاولة
                         </button>
                     </div>
@@ -1107,15 +739,112 @@
             }
         }
 
-        // Auto-load orders when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Roma&knzy stor Started Successfully!');
-            loadCurrentUser();
+        // تحديث الإحصائيات
+        function updateStats(snapshot) {
+            const totalOrders = snapshot.size;
+            const pendingOrders = snapshot.docs.filter(doc => 
+                doc.data().status === 'قيد المراجعة' || 
+                doc.data().status === 'قيد المعالجة'
+            ).length;
+            const completedOrders = snapshot.docs.filter(doc => 
+                doc.data().status === 'تم الإرسال'
+            ).length;
+
+            document.getElementById('ordersCount').textContent = `${totalOrders} طلب`;
+            document.getElementById('totalOrders').textContent = totalOrders;
+            document.getElementById('pendingOrders').textContent = pendingOrders;
+            document.getElementById('completedOrders').textContent = completedOrders;
+        }
+
+        // إعدادات الحالة
+        function getStatusConfig(status) {
+            const configs = {
+                'قيد المراجعة': {
+                    class: 'status-pending',
+                    icon: '⏳',
+                    description: 'جاري مراجعة الطلب'
+                },
+                'قيد المعالجة': {
+                    class: 'status-processing',
+                    icon: '🔄',
+                    description: 'جاري إرسال المتابعين'
+                },
+                'تم الإرسال': {
+                    class: 'status-completed',
+                    icon: '✅',
+                    description: 'تم إرسال المتابعين'
+                },
+                'ملغي': {
+                    class: 'status-cancelled',
+                    icon: '❌',
+                    description: 'تم إلغاء الطلب'
+                }
+            };
+            return configs[status] || configs['قيد المراجعة'];
+        }
+
+        // شريط التقدم
+        function getOrderProgress(status) {
+            const steps = [
+                { label: 'الطلب', icon: '📝', class: 'completed' },
+                { label: 'المراجعة', icon: '👀', class: '' },
+                { label: 'المعالجة', icon: '⚡', class: '' },
+                { label: 'مكتمل', icon: '✅', class: '' }
+            ];
+
+            let barWidth = 0;
             
-            // إعادة تحميل الطلبات إذا كانت صفحة الطلبات نشطة
-            if (document.getElementById('ordersPage').classList.contains('active')) {
-                loadOrders();
+            switch(status) {
+                case 'قيد المراجعة':
+                    steps[1].class = 'active';
+                    barWidth = 33;
+                    break;
+                case 'قيد المعالجة':
+                    steps[1].class = 'completed';
+                    steps[2].class = 'active';
+                    barWidth = 66;
+                    break;
+                case 'تم الإرسال':
+                    steps[1].class = 'completed';
+                    steps[2].class = 'completed';
+                    steps[3].class = 'active';
+                    barWidth = 100;
+                    break;
+                default:
+                    steps[0].class = 'completed';
+                    barWidth = 25;
             }
+
+            return { steps, barWidth };
+        }
+
+        // وظائف التنقل
+        function showPage(pageId) {
+            // هذه الوظيفة تحتاج إلى التكامل مع باقي الموقع
+            alert('سيتم التوجيه إلى الصفحة المطلوبة');
+        }
+
+        function checkAuthAndShowPage(pageId) {
+            if (!currentUser) {
+                alert('يجب تسجيل الدخول أولاً');
+                return;
+            }
+            showPage(pageId);
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('romaKnzyCurrentUser');
+            alert('تم تسجيل الخروج');
+            showPage('homePage');
+        }
+
+        // تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Orders Page Loaded');
+            loadCurrentUser();
+            loadOrders();
         });
     </script>
 </body>
+</html>
