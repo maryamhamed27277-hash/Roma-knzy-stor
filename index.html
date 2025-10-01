@@ -885,10 +885,10 @@
 
             // إضافة المستخدم الجديد
             const newUser = {
-                id: Date.now(),
+                id: Date.now().toString(),
                 name: name,
                 email: email,
-                password: password, // في الواقع يجب تشفير كلمة المرور
+                password: password,
                 createdAt: new Date().toISOString()
             };
 
