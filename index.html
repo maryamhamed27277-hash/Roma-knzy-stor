@@ -273,6 +273,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 60px;
         }
 
         .package-card {
@@ -501,7 +502,6 @@
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
                     </ul>
                 </nav>
             </header>
@@ -532,15 +532,16 @@
                 </div>
             </section>
 
+            <!-- الباقات البسيطة -->
             <section class="packages" id="packages">
-                <h2 class="section-title">اختر الباقة المناسبة</h2>
+                <h2 class="section-title">الباقات البسيطة</h2>
                 
                 <div class="package-grid">
                     <div class="package-card">
                         <div class="package-amount">50</div>
                         <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">10 جنيه</div>
-                        <button class="btn" onclick="selectPackage(50, 10)">
+                        <div class="package-price">15 جنيه</div>
+                        <button class="btn" onclick="selectPackage(50, 15)">
                             <i class="fas fa-shopping-cart"></i> اختر الباقة
                         </button>
                     </div>
@@ -548,8 +549,8 @@
                     <div class="package-card">
                         <div class="package-amount">100</div>
                         <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">20 جنيه</div>
-                        <button class="btn" onclick="selectPackage(100, 20)">
+                        <div class="package-price">25 جنيه</div>
+                        <button class="btn" onclick="selectPackage(100, 25)">
                             <i class="fas fa-shopping-cart"></i> اختر الباقة
                         </button>
                     </div>
@@ -557,51 +558,91 @@
                     <div class="package-card">
                         <div class="package-amount">150</div>
                         <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">60 جنيه</div>
-                        <button class="btn" onclick="selectPackage(250, 45)">
-                            <i class="fas fa-bolt"></i> اختر الباقة
-                        </button>
-                    </div>
-                   <div class="package-card">
-                        <div class="package-amount">250</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">45 جنيه</div>
-                        <button class="btn" onclick="selectPackage(250, 45)">
-                            <i class="fas fa-bolt"></i> اختر الباقة
-                        </button>
-                    </div> 
-                    <div class="package-card">
-                        <div class="package-amount">250</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">45 جنيه</div>
-                        <button class="btn" onclick="selectPackage(250, 45)">
-                            <i class="fas fa-bolt"></i> اختر الباقة
-                        </button>
-                    </div>
-                   <div class="package-card">
-                        <div class="package-amount">250</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">45 جنيه</div>
-                        <button class="btn" onclick="selectPackage(250, 45)">
-                            <i class="fas fa-bolt"></i> اختر الباقة
-                        </button>
-                    </div> 
-
-                    <div class="package-card">
-                        <div class="package-amount">500</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                        <div class="package-price">85 جنيه</div>
-                        <button class="btn" onclick="selectPackage(500, 85)">
+                        <div class="package-price">30 جنيه</div>
+                        <button class="btn" onclick="selectPackage(150, 30)">
                             <i class="fas fa-shopping-cart"></i> اختر الباقة
                         </button>
                     </div>
+                    
+                    <div class="package-card">
+                        <div class="package-amount">200</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                        <div class="package-price">40 جنيه</div>
+                        <button class="btn" onclick="selectPackage(200, 40)">
+                            <i class="fas fa-shopping-cart"></i> اختر الباقة
+                        </button>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-amount">300</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                        <div class="package-price">60 جنيه</div>
+                        <button class="btn" onclick="selectPackage(300, 60)">
+                            <i class="fas fa-shopping-cart"></i> اختر الباقة
+                        </button>
+                    </div>
+                </div>
 
+                <!-- العروض المميزة -->
+                <h2 class="section-title">العروض المميزة</h2>
+                
+                <div class="package-grid">
+                    <div class="package-card">
+                        <div class="package-amount">400</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                        <div class="package-price">75 جنيه</div>
+                        <button class="btn" onclick="selectPackage(400, 75)">
+                            <i class="fas fa-crown"></i> اختر الباقة
+                        </button>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-amount">500</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                        <div class="package-price">90 جنيه</div>
+                        <button class="btn" onclick="selectPackage(500, 90)">
+                            <i class="fas fa-crown"></i> اختر الباقة
+                        </button>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-amount">600</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                        <div class="package-price">110 جنيه</div>
+                        <button class="btn" onclick="selectPackage(600, 110)">
+                            <i class="fas fa-crown"></i> اختر الباقة
+                        </button>
+                    </div>
+                    
+                    <div class="package-card">
+                        <div class="package-amount">800</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                        <div class="package-price">130 جنيه</div>
+                        <button class="btn" onclick="selectPackage(800, 130)">
+                            <i class="fas fa-crown"></i> اختر الباقة
+                        </button>
+                    </div>
+                    
                     <div class="package-card">
                         <div class="package-amount">1000</div>
                         <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
                         <div class="package-price">150 جنيه</div>
                         <button class="btn" onclick="selectPackage(1000, 150)">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            <i class="fas fa-crown"></i> اختر الباقة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- الباقات الخاصة -->
+                <h2 class="section-title">الباقات الخاصة</h2>
+                
+                <div class="package-grid">
+                    <div class="package-card">
+                        <div class="package-amount">5000</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                        <div class="package-price">750 جنيه</div>
+                        <button class="btn" onclick="selectPackage(5000, 750)">
+                            <i class="fas fa-gem"></i> اختر الباقة
                         </button>
                     </div>
                 </div>
@@ -614,7 +655,7 @@
                     <a href="https://wa.me/+20 11 22223344" class="social-card" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                         <h3>واتساب</h3>
-                        <p>0112223344</p>
+                        <p>01122223344</p>
                     </a>
                     <a href="https://wa.me/+20 11 41346727" class="social-card" target="_blank">
                         <i class="fab fa-whatsapp"></i>
@@ -654,43 +695,6 @@
             </section>
         </div>
 
-        <!-- صفحة تسجيل الدخول -->
-        <div id="loginPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <div class="login-form">
-                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">تسجيل الدخول</h2>
-                <p style="text-align: center; margin-bottom: 30px; opacity: 0.8;">مرحباً بعودتك إلى Roma&knzy stor</p>
-
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="البريد الإلكتروني">
-                </div>
-
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="كلمة المرور">
-                </div>
-
-                <button class="btn" style="width: 100%;">تسجيل الدخول</button>
-            </div>
-        </div>
-
         <!-- صفحة الطلبات -->
         <div id="ordersPage" class="page">
             <header>
@@ -707,7 +711,6 @@
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
                     </ul>
                 </nav>
             </header>
@@ -734,7 +737,6 @@
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
                     </ul>
                 </nav>
             </header>
@@ -744,7 +746,7 @@
 
                 <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
                     <h3>بيانات الباقة المختارة</h3>
-                    <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 100 متابع - 20 جنيه</p>
+                    <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 100 متابع - 25 جنيه</p>
                 </div>
 
                 <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
@@ -784,7 +786,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
     <script>
-        // Firebase Configuration - من اللي بعتتيه
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
             authDomain: "romalshop.firebaseapp.com",
@@ -798,7 +800,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        let selectedPackage = { amount: 0, price: 0 };
+        let selectedPackage = { amount: 100, price: 25 };
 
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
