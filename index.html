@@ -541,7 +541,7 @@
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="checkAuthAndShowPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
+                        <li><a href="#" id="authLink" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
                     </ul>
                 </nav>
             </header>
@@ -681,7 +681,7 @@
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="checkAuthAndShowPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
+                        <li><a href="#" id="authLink2" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
                     </ul>
                 </nav>
             </header>
@@ -825,7 +825,6 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
     <script>
         // Firebase Configuration
@@ -841,12 +840,11 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-        const auth = firebase.auth();
 
         let selectedPackage = { amount: 0, price: 0 };
         let currentUser = null;
 
-        // نظام المصادقة
+        // نظام المصادقة المبسط باستخدام localStorage
         function switchAuthTab(tab) {
             document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
@@ -860,7 +858,7 @@
             }
         }
 
-        async function signup() {
+        function signup() {
             const name = document.getElementById('signupName').value;
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
@@ -876,25 +874,37 @@
                 return;
             }
 
-            try {
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                await userCredential.user.updateProfile({ displayName: name });
-                
-                // حفظ بيانات المستخدم في Firestore
-                await db.collection('users').doc(userCredential.user.uid).set({
-                    name: name,
-                    email: email,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                alert('تم إنشاء الحساب بنجاح!');
-                showPage('homePage');
-            } catch (error) {
-                alert('حدث خطأ: ' + error.message);
+            // التحقق إذا كان المستخدم مسجل مسبقاً
+            const users = JSON.parse(localStorage.getItem('romaKnzyUsers') || '[]');
+            const existingUser = users.find(user => user.email === email);
+            
+            if (existingUser) {
+                alert('هذا البريد الإلكتروني مسجل مسبقاً');
+                return;
             }
+
+            // إضافة المستخدم الجديد
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                password: password, // في الواقع يجب تشفير كلمة المرور
+                createdAt: new Date().toISOString()
+            };
+
+            users.push(newUser);
+            localStorage.setItem('romaKnzyUsers', JSON.stringify(users));
+            
+            // تسجيل الدخول تلقائياً
+            currentUser = newUser;
+            localStorage.setItem('romaKnzyCurrentUser', JSON.stringify(newUser));
+            updateNavigation();
+            
+            alert('تم إنشاء الحساب بنجاح!');
+            showPage('homePage');
         }
 
-        async function login() {
+        function login() {
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
@@ -903,35 +913,53 @@
                 return;
             }
 
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-                alert('تم تسجيل الدخول بنجاح!');
-                showPage('homePage');
-            } catch (error) {
+            const users = JSON.parse(localStorage.getItem('romaKnzyUsers') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (!user) {
                 alert('خطأ في البريد الإلكتروني أو كلمة المرور');
+                return;
             }
+
+            currentUser = user;
+            localStorage.setItem('romaKnzyCurrentUser', JSON.stringify(user));
+            updateNavigation();
+            
+            alert('تم تسجيل الدخول بنجاح!');
+            showPage('homePage');
         }
 
         function logout() {
-            auth.signOut();
+            currentUser = null;
+            localStorage.removeItem('romaKnzyCurrentUser');
+            updateNavigation();
             alert('تم تسجيل الخروج');
             showPage('homePage');
         }
 
-        // مراقبة حالة المستخدم
-        auth.onAuthStateChanged((user) => {
-            currentUser = user;
-            updateNavigation();
-        });
-
         function updateNavigation() {
-            const loginLink = document.querySelector('nav a[onclick*="loginPage"]');
+            const authLink = document.getElementById('authLink');
+            const authLink2 = document.getElementById('authLink2');
+            
             if (currentUser) {
-                loginLink.textContent = 'تسجيل الخروج';
-                loginLink.setAttribute('onclick', 'logout()');
+                authLink.textContent = 'تسجيل الخروج';
+                authLink.setAttribute('onclick', 'logout()');
+                authLink2.textContent = 'تسجيل الخروج';
+                authLink2.setAttribute('onclick', 'logout()');
             } else {
-                loginLink.textContent = 'تسجيل الدخول';
-                loginLink.setAttribute('onclick', 'showPage("loginPage")');
+                authLink.textContent = 'تسجيل الدخول';
+                authLink.setAttribute('onclick', 'showPage("loginPage")');
+                authLink2.textContent = 'تسجيل الدخول';
+                authLink2.setAttribute('onclick', 'showPage("loginPage")');
+            }
+        }
+
+        // تحميل بيانات المستخدم عند بدء التحميل
+        function loadCurrentUser() {
+            const savedUser = localStorage.getItem('romaKnzyCurrentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateNavigation();
             }
         }
 
@@ -993,8 +1021,8 @@
                     phone,
                     status: 'قيد المراجعة',
                     date: new Date().toLocaleDateString('ar-EG'),
-                    userId: currentUser.uid,
-                    userName: currentUser.displayName,
+                    userId: currentUser.id,
+                    userName: currentUser.name,
                     userEmail: currentUser.email,
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
                 };
@@ -1022,7 +1050,7 @@
             
             try {
                 const snapshot = await db.collection('orders')
-                    .where('userId', '==', currentUser.uid)
+                    .where('userId', '==', currentUser.id)
                     .orderBy('timestamp', 'desc')
                     .get();
                 
@@ -1067,6 +1095,7 @@
         // Auto-load orders when page loads
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Roma&knzy stor Started Successfully!');
+            loadCurrentUser();
         });
     </script>
 </body>
