@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roma&knzy stor</title>
+    <title>Roma&knzy stor </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     
@@ -500,7 +500,7 @@
                 <nav>
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">الطلبات </a></li>
+                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
                         <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
                     </ul>
                 </nav>
@@ -508,7 +508,7 @@
 
             <section class="hero">
                 <h1>مصدرك الموثوق لزيادة المتابعين</h1>
-                <p>احصل على متابعين بأفضل الأسعار</p>
+                <p>احصل على متابعين إنستجرامك بأفضل الأسعار</p>
                 <a href="#packages" class="btn">
                     <i class="fas fa-shopping-cart"></i> ابدأ الآن
                 </a>
@@ -518,7 +518,7 @@
                 <div class="feature-card">
                     <i class="fas fa-shield-alt"></i>
                     <h3>ضمان الجودة</h3>
-                    <p>متابعين مع ضمان استرجاع الأموال اذا لم  يصل المتابعين</p>
+                    <p>متابعين مع ضمان استرجاع الأموال اذا لم تصل المتابعين </p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-bolt"></i>
@@ -592,6 +592,11 @@
                         <h3>واتساب</h3>
                         <p>0112223344</p>
                     </a>
+                    <a href="https://wa.me/+20 11 41346727" class="social-card" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <h3>واتساب</h3>
+                        <p>01141346727</p>
+                    </a>
                 </div>
             </section>
 
@@ -640,12 +645,27 @@
                 <nav>
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">الطلبات </a></li>
-                        <li><a href="#" 
+                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
+                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
                     </ul>
                 </nav>
             </header>
 
+            <div class="login-form">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">تسجيل الدخول</h2>
+                <p style="text-align: center; margin-bottom: 30px; opacity: 0.8;">مرحباً بعودتك إلى Roma&knzy stor</p>
+
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="البريد الإلكتروني">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="كلمة المرور">
+                </div>
+
+                <button class="btn" style="width: 100%;">تسجيل الدخول</button>
+            </div>
+        </div>
 
         <!-- صفحة الطلبات -->
         <div id="ordersPage" class="page">
@@ -662,13 +682,13 @@
                 <nav>
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">الطلبات </a></li>
-                        <li><a href="#" 
+                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
+                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
                     </ul>
                 </nav>
             </header>
 
-            <h2 class="section-title">الطلبات </h2>
+            <h2 class="section-title">طلباتي</h2>
             <div id="ordersList">
                 <!-- الطلبات تظهر هنا -->
             </div>
@@ -689,8 +709,8 @@
                 <nav>
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">الطلبات </a></li>
-                        <li><a href="#" 
+                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
+                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
                     </ul>
                 </nav>
             </header>
@@ -721,8 +741,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">رقم الي شحن</label>
-                    <input type="tel" id="phone" class="form-control" placeholder=" رقم الي شحن">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">رقم الهاتف</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="رقم الهاتف للتواصل">
                 </div>
 
                 <div class="form-group">
@@ -843,7 +863,7 @@
                                 <span class="${statusClass}">${order.status}</span>
                             </div>
                             <p><strong>اسم المستخدم:</strong> @${order.username}</p>
-                            <p><strong>رقم الي شحن:</strong> ${order.phone}</p>
+                            <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
                             <p><strong>تاريخ الطلب:</strong> ${order.date}</p>
                         </div>
                     `;
