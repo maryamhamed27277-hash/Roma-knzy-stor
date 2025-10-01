@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -1009,8 +1009,8 @@
             const phone = document.getElementById('phone').value;
             const receipt = document.getElementById('receipt').files[0];
             
-            if (!username || !phone || !receipt) {
-                alert('يرجى ملء جميع الحقول وإرفاق صورة الإيصال');
+            if (!username || !phone) {
+                alert('يرجى ملء جميع الحقول');
                 return;
             }
             
@@ -1049,10 +1049,14 @@
             const ordersList = document.getElementById('ordersList');
             
             try {
+                console.log('جاري تحميل الطلبات للمستخدم:', currentUser.id);
+                
                 const snapshot = await db.collection('orders')
                     .where('userId', '==', currentUser.id)
                     .orderBy('timestamp', 'desc')
                     .get();
+                
+                console.log('عدد الطلبات:', snapshot.size);
                 
                 if (snapshot.empty) {
                     ordersList.innerHTML = `
@@ -1088,7 +1092,17 @@
                 
                 ordersList.innerHTML = ordersHTML;
             } catch (error) {
-                ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
+                console.error('Error loading orders:', error);
+                ordersList.innerHTML = `
+                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 50px; margin-bottom: 20px; color: var(--danger);"></i>
+                        <h3 style="color: var(--danger);">حدث خطأ في تحميل الطلبات</h3>
+                        <p style="opacity: 0.7;">جاري إعادة المحاولة...</p>
+                        <button class="btn" onclick="loadOrders()" style="margin-top: 15px;">
+                            <i class="fas fa-redo"></i> إعادة المحاولة
+                        </button>
+                    </div>
+                `;
             }
         }
 
@@ -1096,6 +1110,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Roma&knzy stor Started Successfully!');
             loadCurrentUser();
+            
+            // إعادة تحميل الطلبات إذا كانت صفحة الطلبات نشطة
+            if (document.getElementById('ordersPage').classList.contains('active')) {
+                loadOrders();
+            }
         });
     </script>
 </body>
+</html>
