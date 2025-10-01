@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roma&knzy stor </title>
+    <title>Roma&knzy stor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     
@@ -244,8 +244,8 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .packages {
-            margin: 80px 0;
+        .packages-section {
+            margin: 100px 0;
         }
 
         .section-title {
@@ -256,14 +256,19 @@
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 20px;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
-            left: 0;
-            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
             height: 3px;
             background: var(--gradient);
             border-radius: 3px;
@@ -273,7 +278,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
         .package-card {
@@ -370,7 +375,7 @@
             display: block;
         }
 
-        .login-form, .payment-page {
+        .payment-page {
             background: rgba(255,255,255,0.08);
             padding: 40px;
             border-radius: 20px;
@@ -481,6 +486,85 @@
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .section-title {
+                font-size: 2rem;
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .package-amount {
+                font-size: 2.5rem;
+            }
+            
+            .package-price {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                padding: 0 10px;
+            }
+            
+            .social-card {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .payment-page {
+                padding: 25px;
+                margin: 30px auto;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+
+        /* هامبرغر مينو للشاشات الصغيرة */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 46, 0.95);
+                padding: 20px;
+                border-radius: 0 0 15px 15px;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
@@ -498,8 +582,11 @@
                         <i class="fas fa-shopping-bag"></i>
                     </div>
                 </div>
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <nav>
-                    <ul>
+                    <ul id="navMenu">
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
                     </ul>
@@ -533,7 +620,7 @@
             </section>
 
             <!-- الباقات البسيطة -->
-            <section class="packages" id="packages">
+            <section class="packages-section" id="packages">
                 <h2 class="section-title">الباقات البسيطة</h2>
                 
                 <div class="package-grid">
@@ -652,12 +739,12 @@
             <section class="social-section">
                 <h2 class="section-title">تواصل معنا</h2>
                 <div class="social-cards">
-                    <a href="https://wa.me/+20 11 22223344" class="social-card" target="_blank">
+                    <a href="https://wa.me/+201122223344" class="social-card" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                         <h3>واتساب</h3>
                         <p>01122223344</p>
                     </a>
-                    <a href="https://wa.me/+20 11 41346727" class="social-card" target="_blank">
+                    <a href="https://wa.me/+201141346727" class="social-card" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                         <h3>واتساب</h3>
                         <p>01141346727</p>
@@ -707,8 +794,11 @@
                         <i class="fas fa-shopping-bag"></i>
                     </div>
                 </div>
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <nav>
-                    <ul>
+                    <ul id="navMenuOrders">
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
                     </ul>
@@ -733,8 +823,11 @@
                         <i class="fas fa-shopping-bag"></i>
                     </div>
                 </div>
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <nav>
-                    <ul>
+                    <ul id="navMenuPayment">
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
                     </ul>
@@ -808,9 +901,20 @@
             });
             document.getElementById(pageId).classList.add('active');
             
+            // إغلاق القائمة في الشاشات الصغيرة
+            document.querySelectorAll('nav ul').forEach(menu => {
+                menu.classList.remove('show');
+            });
+            
             if (pageId === 'ordersPage') {
                 loadOrders();
             }
+        }
+
+        function toggleMenu() {
+            const currentPage = document.querySelector('.page.active').id;
+            const navMenu = document.getElementById(`navMenu${currentPage !== 'homePage' ? currentPage.replace('Page', '') : ''}`);
+            navMenu.classList.toggle('show');
         }
 
         function selectPackage(amount, price) {
