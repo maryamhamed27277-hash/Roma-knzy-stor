@@ -1051,8 +1051,9 @@
             try {
                 console.log('جاري تحميل الطلبات للمستخدم:', currentUser.id);
                 
+                // الحل: استخدام userEmail بدلاً من userId للتأكد من التطابق
                 const snapshot = await db.collection('orders')
-                    .where('userId', '==', currentUser.id)
+                    .where('userEmail', '==', currentUser.email)
                     .orderBy('timestamp', 'desc')
                     .get();
                 
