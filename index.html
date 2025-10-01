@@ -130,6 +130,34 @@
             transform: translateY(-2px);
         }
 
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .user-info i {
+            color: var(--accent);
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            padding: 5px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: var(--danger);
+            color: white;
+        }
+
         .hero {
             text-align: center;
             padding: 100px 0;
@@ -200,6 +228,17 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(233, 30, 99, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
         }
 
         .features {
@@ -405,6 +444,37 @@
             color: rgba(255,255,255,0.5);
         }
 
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 5px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .auth-tab.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
         .order-item {
             background: rgba(255,255,255,0.05);
             padding: 20px;
@@ -501,7 +571,9 @@
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
+                        <li id="authNav">
+                            <!-- سيتم تعبئة هذا من خلال JavaScript -->
+                        </li>
                     </ul>
                 </nav>
             </header>
@@ -625,7 +697,7 @@
             </section>
         </div>
 
-        <!-- صفحة تسجيل الدخول -->
+        <!-- صفحة تسجيل الدخول / إنشاء حساب -->
         <div id="loginPage" class="page">
             <header>
                 <div class="logo-container">
@@ -641,24 +713,58 @@
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
+                        <li id="authNavLogin">
+                            <!-- سيتم تعبئة هذا من خلال JavaScript -->
+                        </li>
                     </ul>
                 </nav>
             </header>
 
             <div class="login-form">
-                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">تسجيل الدخول</h2>
-                <p style="text-align: center; margin-bottom: 30px; opacity: 0.8;">مرحباً بعودتك إلى Roma&knzy stor</p>
-
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="البريد الإلكتروني">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">مرحباً بعودتك</h2>
+                
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="switchAuthTab('login')">تسجيل الدخول</div>
+                    <div class="auth-tab" onclick="switchAuthTab('signup')">إنشاء حساب</div>
                 </div>
 
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="كلمة المرور">
+                <!-- نموذج تسجيل الدخول -->
+                <div id="loginForm" class="auth-form active">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" class="form-control" placeholder="البريد الإلكتروني">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" class="form-control" placeholder="كلمة المرور">
+                    </div>
+
+                    <button class="btn" style="width: 100%;" onclick="login()">تسجيل الدخول</button>
                 </div>
 
-                <button class="btn" style="width: 100%;">تسجيل الدخول</button>
+                <!-- نموذج إنشاء حساب -->
+                <div id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <input type="text" id="signupName" class="form-control" placeholder="الاسم الكامل">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="signupEmail" class="form-control" placeholder="البريد الإلكتروني">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" id="signupPhone" class="form-control" placeholder="رقم الهاتف">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" id="signupPassword" class="form-control" placeholder="كلمة المرور">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" id="signupConfirmPassword" class="form-control" placeholder="تأكيد كلمة المرور">
+                    </div>
+
+                    <button class="btn" style="width: 100%;" onclick="signup()">إنشاء حساب</button>
+                </div>
             </div>
         </div>
 
@@ -678,7 +784,9 @@
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
+                        <li id="authNavOrders">
+                            <!-- سيتم تعبئة هذا من خلال JavaScript -->
+                        </li>
                     </ul>
                 </nav>
             </header>
@@ -705,7 +813,9 @@
                     <ul>
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
+                        <li id="authNavPayment">
+                            <!-- سيتم تعبئة هذا من خلال JavaScript -->
+                        </li>
                     </ul>
                 </nav>
             </header>
@@ -753,9 +863,10 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
     <script>
-        // Firebase Configuration - من اللي بعتتيه
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
             authDomain: "romalshop.firebaseapp.com",
@@ -768,10 +879,144 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        const auth = firebase.auth();
 
         let selectedPackage = { amount: 0, price: 0 };
+        let currentUser = null;
+
+        // إدارة حالة المستخدم
+        auth.onAuthStateChanged((user) => {
+            currentUser = user;
+            updateAuthUI();
+            
+            if (user) {
+                console.log('المستخدم مسجل الدخول:', user.email);
+            } else {
+                console.log('لا يوجد مستخدم مسجل الدخول');
+            }
+        });
+
+        function updateAuthUI() {
+            const authNav = document.getElementById('authNav');
+            const authNavLogin = document.getElementById('authNavLogin');
+            const authNavOrders = document.getElementById('authNavOrders');
+            const authNavPayment = document.getElementById('authNavPayment');
+            
+            if (currentUser) {
+                const userHTML = `
+                    <div class="user-info">
+                        <i class="fas fa-user"></i>
+                        <span>${currentUser.email}</span>
+                        <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+                    </div>
+                `;
+                
+                if (authNav) authNav.innerHTML = userHTML;
+                if (authNavLogin) authNavLogin.innerHTML = userHTML;
+                if (authNavOrders) authNavOrders.innerHTML = userHTML;
+                if (authNavPayment) authNavPayment.innerHTML = userHTML;
+            } else {
+                const loginHTML = '<li><a href="#" onclick="showPage(\'loginPage\')">تسجيل الدخول</a></li>';
+                
+                if (authNav) authNav.innerHTML = loginHTML;
+                if (authNavLogin) authNavLogin.innerHTML = loginHTML;
+                if (authNavOrders) authNavOrders.innerHTML = loginHTML;
+                if (authNavPayment) authNavPayment.innerHTML = loginHTML;
+            }
+        }
+
+        function switchAuthTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            
+            if (tab === 'login') {
+                document.querySelector('.auth-tab:nth-child(1)').classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.querySelector('.auth-tab:nth-child(2)').classList.add('active');
+                document.getElementById('signupForm').classList.add('active');
+            }
+        }
+
+        async function signup() {
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const phone = document.getElementById('signupPhone').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if (!name || !email || !phone || !password || !confirmPassword) {
+                alert('يرجى ملء جميع الحقول');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('كلمة المرور غير متطابقة');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+                return;
+            }
+            
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // حفظ بيانات المستخدم الإضافية في Firestore
+                await db.collection('users').doc(user.uid).set({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('تم إنشاء الحساب بنجاح!');
+                showPage('homePage');
+            } catch (error) {
+                console.error('خطأ في إنشاء الحساب:', error);
+                alert('حدث خطأ: ' + error.message);
+            }
+        }
+
+        async function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email || !password) {
+                alert('يرجى إدخال البريد الإلكتروني وكلمة المرور');
+                return;
+            }
+            
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                alert('تم تسجيل الدخول بنجاح!');
+                showPage('homePage');
+            } catch (error) {
+                console.error('خطأ في تسجيل الدخول:', error);
+                alert('خطأ في البريد الإلكتروني أو كلمة المرور');
+            }
+        }
+
+        async function logout() {
+            try {
+                await auth.signOut();
+                alert('تم تسجيل الخروج بنجاح');
+                showPage('homePage');
+            } catch (error) {
+                console.error('خطأ في تسجيل الخروج:', error);
+            }
+        }
 
         function showPage(pageId) {
+            // إذا حاول المستخدم الوصول لصفحة تحتاج تسجيل دخول
+            if ((pageId === 'ordersPage' || pageId === 'paymentPage') && !currentUser) {
+                alert('يرجى تسجيل الدخول أولاً');
+                showPage('loginPage');
+                return;
+            }
+            
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
@@ -783,12 +1028,24 @@
         }
 
         function selectPackage(amount, price) {
+            if (!currentUser) {
+                alert('يرجى تسجيل الدخول أولاً لشراء الباقة');
+                showPage('loginPage');
+                return;
+            }
+            
             selectedPackage = { amount, price };
             document.getElementById('selectedPackageInfo').textContent = `باقة ${amount} متابع - ${price} جنيه`;
             showPage('paymentPage');
         }
 
         async function submitOrder() {
+            if (!currentUser) {
+                alert('يرجى تسجيل الدخول أولاً');
+                showPage('loginPage');
+                return;
+            }
+            
             const username = document.getElementById('username').value;
             const phone = document.getElementById('phone').value;
             const receipt = document.getElementById('receipt').files[0];
@@ -800,6 +1057,8 @@
             
             try {
                 const newOrder = {
+                    userId: currentUser.uid,
+                    userEmail: currentUser.email,
                     package: selectedPackage,
                     username,
                     phone,
@@ -825,10 +1084,22 @@
         }
 
         async function loadOrders() {
+            if (!currentUser) {
+                document.getElementById('ordersList').innerHTML = `
+                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 50px; margin-bottom: 20px; color: var(--warning);"></i>
+                        <h3>يرجى تسجيل الدخول لعرض الطلبات</h3>
+                        <button class="btn" onclick="showPage('loginPage')" style="margin-top: 15px;">تسجيل الدخول</button>
+                    </div>
+                `;
+                return;
+            }
+            
             const ordersList = document.getElementById('ordersList');
             
             try {
                 const snapshot = await db.collection('orders')
+                    .where('userId', '==', currentUser.uid)
                     .orderBy('timestamp', 'desc')
                     .get();
                 
@@ -870,9 +1141,10 @@
             }
         }
 
-        // Auto-load orders when page loads
+        // Auto-load when page loads
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Roma&knzy stor Started Successfully!');
+            updateAuthUI();
         });
     </script>
 </body>
