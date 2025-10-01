@@ -8,17 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Tajawal',sans-serif}
-    body{background:linear-gradient(135deg,#1A1A2E,#2D1B3E);color:#fff;min-height:100vh;line-height:1.6;overflow-x:hidden}
+    body{background:linear-gradient(135deg,#1A1A2E,#2D1B3E);color:#fff;line-height:1.6;overflow-x:hidden}
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
     header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.1);position:sticky;top:0;background:rgba(26,26,46,.9);backdrop-filter:blur(10px);z-index:100}
     .logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#E91E63,#F8BBD9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     nav ul{display:flex;list-style:none;gap:15px}
-    nav a{color:#fff;text-decoration:none;padding:10px 20px;border-radius:25px;transition:.3s;font-weight:500;position:relative}
+    nav a{color:#fff;text-decoration:none;padding:10px 20px;border-radius:25px;transition:.3s;font-weight:500}
     nav a:hover{background:linear-gradient(135deg,#E91E63,#F8BBD9);color:#fff}
     .btn{background:linear-gradient(135deg,#E91E63,#F8BBD9);color:#fff;padding:12px 25px;border:none;border-radius:30px;font-size:16px;font-weight:bold;cursor:pointer;transition:.3s}
     .btn:hover{transform:translateY(-3px)}
-    .page{display:none;animation:fadeIn .5s ease}.active{display:block}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     .hero{text-align:center;padding:80px 0}
     .hero h1{font-size:2.8rem;margin-bottom:15px;background:linear-gradient(90deg,#FF80AB,#F8BBD9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .features,.package-grid,.social-cards{display:grid;gap:20px}
@@ -28,19 +26,19 @@
     .section-title{text-align:center;font-size:2rem;margin:40px 0}
     .package-grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
     .package-amount{font-size:2rem;font-weight:800;background:linear-gradient(90deg,#E91E63,#F8BBD9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .login-form{background:rgba(255,255,255,0.08);padding:30px;border-radius:18px;max-width:400px;margin:40px auto}
+    .login-form,.payment-page{background:rgba(255,255,255,0.08);padding:30px;border-radius:18px;max-width:500px;margin:40px auto}
     .form-group{margin-bottom:15px}
     .form-control{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);color:#fff}
     .form-control::placeholder{color:rgba(255,255,255,0.6)}
     .order-item{background:rgba(255,255,255,0.05);padding:15px;border-radius:15px;margin-bottom:12px}
-    .status{padding:4px 10px;border-radius:12px;font-size:14px}
-    .status-pending{background:rgba(255,199,95,.2);color:#FFC75F}
-    .status-completed{background:rgba(0,201,167,.2);color:#00C9A7}
+    .status-pending{background:rgba(255,199,95,.2);color:#FFC75F;padding:4px 10px;border-radius:12px}
+    .status-completed{background:rgba(0,201,167,.2);color:#00C9A7;padding:4px 10px;border-radius:12px}
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- الصفحة الرئيسية -->
+
+    <!-- الرئيسية -->
     <div id="homePage" class="page active">
       <header>
         <div class="logo-text">Roma&knzy stor <i class="fas fa-shopping-bag"></i></div>
@@ -48,104 +46,75 @@
           <ul>
             <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
             <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-            <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
           </ul>
         </nav>
       </header>
       <section class="hero">
         <h1>مصدرك الموثوق لزيادة المتابعين</h1>
-        <p>احصل على متابعين حقيقيين ونشطين لحسابك بأفضل الأسعار</p>
+        <p>احصل على متابعين حقيقيين ونشطين لحساب إنستجرامك بأفضل الأسعار</p>
         <button class="btn" onclick="showPage('packagesPage')"><i class="fas fa-shopping-cart"></i> ابدأ الآن</button>
       </section>
       <section class="features">
-        <div class="feature-card"><i class="fas fa-shield-alt fa-2x"></i><h3>ضمان الجودة</h3><p>متابعين حقيقيين مع ضمان الاسترجاع</p></div>
+        <div class="feature-card"><i class="fas fa-shield-alt fa-2x"></i><h3>ضمان الجودة</h3><p>متابعين حقيقيين بنسبة 100% مع ضمان استرجاع الأموال</p></div>
         <div class="feature-card"><i class="fas fa-bolt fa-2x"></i><h3>تسليم فوري</h3><p>الخدمة تبدأ فور الدفع</p></div>
-        <div class="feature-card"><i class="fas fa-lock fa-2x"></i><h3>آمن تماماً</h3><p>لا نطلب كلمة مرورك أبداً</p></div>
+        <div class="feature-card"><i class="fas fa-lock fa-2x"></i><h3>آمن تماماً</h3><p>خدمتنا لا تحتاج كلمة مرور حسابك</p></div>
       </section>
       <section class="social-section">
         <h2 class="section-title">تواصل معنا</h2>
         <div class="social-cards">
-          <a href="https://wa.me/20112223344" class="social-card"><i class="fab fa-whatsapp fa-2x"></i><h3>واتساب</h3><p>0112223344</p></a>
+          <a href="https://wa.me/20112223344" class="social-card" target="_blank">
+            <i class="fab fa-whatsapp fa-2x"></i><h3>واتساب</h3><p>0112223344</p>
+          </a>
         </div>
       </section>
       <section class="social-section">
-        <h2 class="section-title">صفحاتنا على الإنستجرام</h2>
+        <h2 class="section-title">قنواتنا</h2>
         <div class="social-cards">
-          <a href="https://www.instagram.com/xx.mariam_roma.x" class="social-card"><i class="fab fa-instagram fa-2x"></i><h3>صفحة Roma</h3></a>
-          <a href="https://www.instagram.com/x._.kenzyy_mohamedx" class="social-card"><i class="fab fa-instagram fa-2x"></i><h3>صفحة Kenzy</h3></a>
+          <a href="https://whatsapp.com/channel/0029VbB2NsIEawdoGrI0m83J" class="social-card" target="_blank">
+            <i class="fab fa-whatsapp fa-2x"></i><h3>قناة Roma&kenzy</h3>
+          </a>
+        </div>
+      </section>
+      <section class="social-section">
+        <h2 class="section-title">صفحات الإنستجرام</h2>
+        <div class="social-cards">
+          <a href="https://www.instagram.com/xx.mariam_roma.x" class="social-card"><i class="fab fa-instagram fa-2x"></i><h3>Roma</h3></a>
+          <a href="https://www.instagram.com/x._.kenzyy_mohamedx" class="social-card"><i class="fab fa-instagram fa-2x"></i><h3>Kenzy</h3></a>
         </div>
       </section>
     </div>
 
-    <!-- صفحة الباقات -->
+    <!-- الباقات -->
     <div id="packagesPage" class="page">
       <header>
         <div class="logo-text">Roma&knzy stor</div>
-        <nav>
-          <ul>
-            <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-            <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-            <li><a href="#" onclick="showPage('loginPage')">تسجيل الدخول</a></li>
-          </ul>
-        </nav>
       </header>
       <h2 class="section-title">اختر الباقة</h2>
       <div class="package-grid">
+        <div class="package-card"><div class="package-amount">50</div><p>10 جنيه</p><button class="btn" onclick="selectPackage(50,10)">اختر</button></div>
         <div class="package-card"><div class="package-amount">100</div><p>20 جنيه</p><button class="btn" onclick="selectPackage(100,20)">اختر</button></div>
         <div class="package-card"><div class="package-amount">250</div><p>45 جنيه</p><button class="btn" onclick="selectPackage(250,45)">اختر</button></div>
         <div class="package-card"><div class="package-amount">500</div><p>85 جنيه</p><button class="btn" onclick="selectPackage(500,85)">اختر</button></div>
       </div>
     </div>
 
-    <!-- تسجيل الدخول -->
-    <div id="loginPage" class="page">
+    <!-- الدفع -->
+    <div id="paymentPage" class="page">
       <header><div class="logo-text">Roma&knzy stor</div></header>
-      <div class="login-form">
-        <h2>تسجيل الدخول</h2>
-        <div class="form-group"><input type="text" id="loginUser" class="form-control" placeholder="اسم المستخدم"></div>
-        <div class="form-group"><input type="password" id="loginPass" class="form-control" placeholder="كلمة المرور"></div>
-        <button class="btn" onclick="login()">دخول</button>
-        <p style="margin-top:15px;text-align:center">ليس لديك حساب؟ <a href="#" onclick="showPage('signupPage')">إنشاء حساب</a></p>
-      </div>
-    </div>
-
-    <!-- تسجيل حساب -->
-    <div id="signupPage" class="page">
-      <header><div class="logo-text">Roma&knzy stor</div></header>
-      <div class="login-form">
-        <h2>إنشاء حساب</h2>
-        <div class="form-group"><input type="text" id="signupUser" class="form-control" placeholder="اسم المستخدم"></div>
-        <div class="form-group"><input type="password" id="signupPass" class="form-control" placeholder="كلمة المرور"></div>
-        <button class="btn" onclick="signup()">تسجيل</button>
+      <div class="payment-page">
+        <h2 style="text-align:center;margin-bottom:20px">إتمام الطلب</h2>
+        <p id="selectedPackageInfo">—</p>
+        <div class="form-group"><input type="text" id="orderUsername" class="form-control" placeholder="اسم المستخدم إنستجرام"></div>
+        <div class="form-group"><input type="tel" id="orderPhone" class="form-control" placeholder="رقم الهاتف"></div>
+        <button class="btn" style="width:100%" onclick="submitOrder()">تأكيد الطلب</button>
       </div>
     </div>
 
     <!-- الطلبات -->
     <div id="ordersPage" class="page">
-      <header>
-        <div class="logo-text">Roma&knzy stor</div>
-        <nav>
-          <ul>
-            <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-            <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-            <li><a href="#" onclick="logout()">خروج</a></li>
-          </ul>
-        </nav>
-      </header>
+      <header><div class="logo-text">Roma&knzy stor</div></header>
       <h2 class="section-title">طلباتي</h2>
       <div id="ordersList"></div>
-    </div>
-
-    <!-- الدفع -->
-    <div id="paymentPage" class="page">
-      <header><div class="logo-text">Roma&knzy stor</div></header>
-      <div class="login-form">
-        <h2>إتمام الطلب</h2>
-        <p id="selectedPackageInfo">—</p>
-        <div class="form-group"><input type="text" id="orderUsername" class="form-control" placeholder="اسم إنستجرام"></div>
-        <div class="form-group"><input type="tel" id="orderPhone" class="form-control" placeholder="رقم الهاتف"></div>
-        <button class="btn" onclick="submitOrder()">تأكيد</button>
-      </div>
     </div>
   </div>
 
@@ -162,7 +131,6 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    let currentUser=null;
     let selectedPackage=null;
 
     function showPage(id){
@@ -171,55 +139,37 @@
       if(id==='ordersPage') loadOrders();
     }
 
-    async function signup(){
-      const user=document.getElementById('signupUser').value.trim();
-      const pass=document.getElementById('signupPass').value;
-      if(!user||!pass){alert("املأ البيانات");return;}
-      const ref=db.collection('users');
-      const snap=await ref.where('username','==',user).get();
-      if(!snap.empty){alert("المستخدم موجود بالفعل");return;}
-      await ref.add({username:user,password:pass});
-      alert("تم التسجيل بنجاح");showPage('loginPage');
-    }
-
-    async function login(){
-      const user=document.getElementById('loginUser').value.trim();
-      const pass=document.getElementById('loginPass').value;
-      const snap=await db.collection('users').where('username','==',user).where('password','==',pass).get();
-      if(snap.empty){alert("خطأ في البيانات");return;}
-      currentUser=user;
-      alert("تم تسجيل الدخول");
-      showPage('homePage');
-    }
-
-    function logout(){currentUser=null;alert("تم تسجيل الخروج");showPage('homePage');}
-
     function selectPackage(amount,price){
-      if(!currentUser){alert("سجل الدخول أولاً");showPage('loginPage');return;}
       selectedPackage={amount,price};
       document.getElementById('selectedPackageInfo').innerText=`باقة ${amount} متابع - ${price} جنيه`;
       showPage('paymentPage');
     }
 
     async function submitOrder(){
-      if(!currentUser||!selectedPackage){alert("خطأ");return;}
       const username=document.getElementById('orderUsername').value;
       const phone=document.getElementById('orderPhone').value;
+      if(!username||!phone){alert("املأ جميع الحقول");return;}
       await db.collection('orders').add({
-        user:currentUser,package:selectedPackage,username,phone,
-        status:"قيد المراجعة",date:new Date().toLocaleDateString('ar-EG')
+        package:selectedPackage,username,phone,status:"قيد المراجعة",
+        date:new Date().toLocaleDateString('ar-EG'),
+        timestamp:firebase.firestore.FieldValue.serverTimestamp()
       });
-      alert("تم إرسال الطلب");showPage('ordersPage');
+      alert("تم إرسال الطلب بنجاح");
+      showPage('ordersPage');
     }
 
     async function loadOrders(){
       const list=document.getElementById('ordersList');list.innerHTML="";
-      if(!currentUser){list.innerHTML="<p>سجل الدخول لرؤية طلباتك</p>";return;}
-      const snap=await db.collection('orders').where('user','==',currentUser).orderBy('date','desc').get();
-      if(snap.empty){list.innerHTML="<p>لا توجد طلبات</p>";return;}
+      const snap=await db.collection('orders').orderBy('timestamp','desc').get();
+      if(snap.empty){list.innerHTML="<p style='text-align:center'>لا توجد طلبات</p>";return;}
       snap.forEach(doc=>{
         const o=doc.data();
-        list.innerHTML+=`<div class="order-item"><strong>${o.package.amount} متابع - ${o.package.price} جنيه</strong><br>حالة: <span class="status status-pending">${o.status}</span><br>اسم: @${o.username} | هاتف: ${o.phone}</div>`;
+        const statusClass=o.status==="تم الإرسال"?"status-completed":"status-pending";
+        list.innerHTML+=`<div class="order-item">
+          <strong>${o.package.amount} متابع - ${o.package.price} جنيه</strong><br>
+          <span class="${statusClass}">${o.status}</span><br>
+          اسم: @${o.username} | هاتف: ${o.phone} | تاريخ: ${o.date}
+        </div>`;
       });
     }
   </script>
