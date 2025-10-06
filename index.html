@@ -1010,51 +1010,75 @@
             console.log('Roma&knzy stor Started Successfully!');
         });
     </script>
-   <!-- Firebase Auth -->
+
+<!-- صفحة تسجيل الدخول / التسجيل -->
+<div id="authPage" class="page" style="display:none;">
+  <div style="display:flex;align-items:center;justify-content:center;height:100vh;">
+    <div style="background:rgba(255,255,255,0.08);padding:40px;border-radius:20px;text-align:center;width:90%;max-width:400px;box-shadow:0 0 25px rgba(0,0,0,0.4);">
+      <div class="logo" style="width:80px;height:80px;border-radius:50%;overflow:hidden;margin:0 auto 10px;box-shadow:0 0 15px rgba(233,30,99,0.5);">
+        <img src="1.png" alt="Roma&knzy stor" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <h1 style="background:linear-gradient(90deg,#E91E63,#F48FB1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Roma&knzy stor</h1>
+      <h2 id="formTitle" style="margin:20px 0;">تسجيل الدخول</h2>
+
+      <input id="email" type="email" placeholder="البريد الإلكتروني" style="width:100%;padding:12px;margin-bottom:10px;border-radius:10px;border:none;background:rgba(255,255,255,0.1);color:white;">
+      <input id="password" type="password" placeholder="كلمة المرور" style="width:100%;padding:12px;margin-bottom:15px;border-radius:10px;border:none;background:rgba(255,255,255,0.1);color:white;">
+
+      <button id="actionBtn" onclick="signIn()" style="width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(90deg,#E91E63,#F48FB1);color:white;font-weight:bold;cursor:pointer;">تسجيل الدخول</button>
+
+      <p style="margin-top:15px;color:rgba(255,255,255,0.8);">
+        <span id="switchText">ما عندكش حساب؟</span>
+        <a onclick="toggleAuthMode()" style="color:#FF80AB;cursor:pointer;">إنشاء حساب</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase Auth -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-
 <script>
-    const auth = firebase.auth();
+  const auth = firebase.auth();
+  let isSignUp = false;
 
-    function showLoginPage() {
-        document.body.innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:linear-gradient(135deg,#1A1A2E,#2D1B3E);color:white;font-family:Tajawal,sans-serif;">
-            <div style="background:rgba(255,255,255,0.1);padding:40px;border-radius:15px;box-shadow:0 0 30px rgba(0,0,0,0.3);text-align:center;max-width:350px;width:100%;">
-                <h2 style="margin-bottom:20px;">تسجيل الدخول</h2>
-                <input id="email" type="email" placeholder="الإيميل" style="width:100%;padding:10px;margin-bottom:10px;border:none;border-radius:8px;background:rgba(255,255,255,0.1);color:white;">
-                <input id="password" type="password" placeholder="كلمة السر" style="width:100%;padding:10px;margin-bottom:15px;border:none;border-radius:8px;background:rgba(255,255,255,0.1);color:white;">
-                <button onclick="login()" style="width:100%;padding:10px;background:#E91E63;border:none;border-radius:8px;color:white;font-weight:bold;margin-bottom:10px;">دخول</button>
-                <button onclick="signup()" style="width:100%;padding:10px;background:#F48FB1;border:none;border-radius:8px;color:white;font-weight:bold;">إنشاء حساب</button>
-            </div>
-        </div>`;
+  // عرض صفحة الدخول لو المستخدم مش مسجل
+  auth.onAuthStateChanged(user => {
+    if (!user) {
+      document.getElementById('authPage').style.display = 'block';
+      document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
     }
+  });
 
-    // تسجيل دخول
-    function login() {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        auth.signInWithEmailAndPassword(email, password)
-            .then(() => location.reload())
-            .catch(err => alert("خطأ: " + err.message));
-    }
+  // تسجيل الدخول
+  function signIn() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => location.reload())
+      .catch(err => alert("خطأ: " + err.message));
+  }
 
-    // تسجيل جديد
-    function signup() {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(() => location.reload())
-            .catch(err => alert("خطأ: " + err.message));
-    }
+  // إنشاء حساب
+  function signUp() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    // متابعة حالة المستخدم
-    auth.onAuthStateChanged(user => {
-        if (!user) {
-            showLoginPage();
-        } else {
-            console.log("تم تسجيل الدخول:", user.email);
-        }
-    });
-</script> 
+    if (password.length < 6) return alert("كلمة المرور لازم تكون 6 أحرف على الأقل");
+    if (!email.includes("@") || !email.includes(".")) return alert("من فضلك أدخل إيميل صحيح");
+
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(() => location.reload())
+      .catch(err => alert("خطأ: " + err.message));
+  }
+
+  // تبديل بين Sign In و Sign Up
+  function toggleAuthMode() {
+    isSignUp = !isSignUp;
+    document.getElementById('formTitle').textContent = isSignUp ? "إنشاء حساب جديد" : "تسجيل الدخول";
+    document.getElementById('actionBtn').textContent = isSignUp ? "إنشاء حساب" : "تسجيل الدخول";
+    document.getElementById('actionBtn').setAttribute('onclick', isSignUp ? 'signUp()' : 'signIn()');
+    document.getElementById('switchText').textContent = isSignUp ? "عندك حساب؟" : "ما عندكش حساب؟";
+  }
+</script>
+    
 </body>
 </html>
