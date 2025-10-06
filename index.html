@@ -1010,5 +1010,51 @@
             console.log('Roma&knzy stor Started Successfully!');
         });
     </script>
+   <!-- Firebase Auth -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+<script>
+    const auth = firebase.auth();
+
+    function showLoginPage() {
+        document.body.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:linear-gradient(135deg,#1A1A2E,#2D1B3E);color:white;font-family:Tajawal,sans-serif;">
+            <div style="background:rgba(255,255,255,0.1);padding:40px;border-radius:15px;box-shadow:0 0 30px rgba(0,0,0,0.3);text-align:center;max-width:350px;width:100%;">
+                <h2 style="margin-bottom:20px;">تسجيل الدخول</h2>
+                <input id="email" type="email" placeholder="الإيميل" style="width:100%;padding:10px;margin-bottom:10px;border:none;border-radius:8px;background:rgba(255,255,255,0.1);color:white;">
+                <input id="password" type="password" placeholder="كلمة السر" style="width:100%;padding:10px;margin-bottom:15px;border:none;border-radius:8px;background:rgba(255,255,255,0.1);color:white;">
+                <button onclick="login()" style="width:100%;padding:10px;background:#E91E63;border:none;border-radius:8px;color:white;font-weight:bold;margin-bottom:10px;">دخول</button>
+                <button onclick="signup()" style="width:100%;padding:10px;background:#F48FB1;border:none;border-radius:8px;color:white;font-weight:bold;">إنشاء حساب</button>
+            </div>
+        </div>`;
+    }
+
+    // تسجيل دخول
+    function login() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        auth.signInWithEmailAndPassword(email, password)
+            .then(() => location.reload())
+            .catch(err => alert("خطأ: " + err.message));
+    }
+
+    // تسجيل جديد
+    function signup() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(() => location.reload())
+            .catch(err => alert("خطأ: " + err.message));
+    }
+
+    // متابعة حالة المستخدم
+    auth.onAuthStateChanged(user => {
+        if (!user) {
+            showLoginPage();
+        } else {
+            console.log("تم تسجيل الدخول:", user.email);
+        }
+    });
+</script> 
 </body>
 </html>
