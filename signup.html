@@ -2,15 +2,120 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>إنشاء حساب | Roma&Knzy</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب | Roma&Knzy Stor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      height: 100vh;
+      background: linear-gradient(270deg, #ff4b91, #5c2fc2, #2b244d);
+      background-size: 600% 600%;
+      animation: bgMove 10s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 25px;
+      padding: 40px 30px;
+      text-align: center;
+      width: 330px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    h2 {
+      background: linear-gradient(to right, #ff4b91, #ff4ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, #ff4b91, #ff4ba2);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    a {
+      color: #ff4b91;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body>
-  <div class="box">
+  <div class="card">
+    <div class="logo">
+      <img src="1.png" alt="Roma&Knzy Stor Logo">
+    </div>
     <h2>إنشاء حساب</h2>
+
     <input type="email" id="email" placeholder="البريد الإلكتروني">
     <input type="password" id="password" placeholder="كلمة المرور">
     <button onclick="signup()">إنشاء حساب</button>
+
     <p>عندك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
   </div>
 
