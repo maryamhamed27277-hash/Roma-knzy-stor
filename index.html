@@ -567,9 +567,9 @@
             }
         }
 
-       .user-avatar {
-  width: 40px;
-  height: 40px;
+        .user-avatar {
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ff4b91, #5c2fc2);
   display: flex;
@@ -580,7 +580,11 @@
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   overflow: hidden;
-  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.user-avatar:hover {
+  transform: scale(1.05);
 }
 
 .user-avatar img {
@@ -590,8 +594,8 @@
 }
 
 .avatar-letter {
-  font-size: 16px;
-} 
+  font-size: 18px;
+}
     </style>
 </head>
 <body>
