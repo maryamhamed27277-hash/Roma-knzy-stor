@@ -832,6 +832,15 @@
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
                     </ul>
                 </nav>
+
+               <nav>
+  <ul id="navMenu">
+    <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
+    <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
+    <li><a href="profile.html">حسابي</a></li>
+    <li><a href="#" onclick="logout()">تسجيل الخروج</a></li>
+  </ul>
+</nav> 
             </header>
 
             <div class="payment-page">
@@ -1014,6 +1023,12 @@
 if (!localStorage.getItem("loggedIn")) {
   window.location.href = "login.html";
 }
+
+    // 🔒 تسجيل الخروج
+function logout() {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "login.html";
+}    
     </script>
 </body>
 </html>
