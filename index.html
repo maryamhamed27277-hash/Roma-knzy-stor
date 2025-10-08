@@ -1009,6 +1009,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Roma&knzy stor Started Successfully!');
         });
+
+        // التحقق من تسجيل الدخول
+if (!localStorage.getItem("loggedIn")) {
+  window.location.href = "login.html";
+}
     </script>
 </body>
 </html>
