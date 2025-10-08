@@ -824,11 +824,19 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <nav>
-                    <ul id="navMenuOrders">
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                    </ul>
-                </nav>
+  <ul>
+    <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
+    <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
+
+    <!-- 🧑‍💼 الأفاتار بجانب طلباتي -->
+    <li>
+      <div class="user-avatar" onclick="goToProfile()">
+        <img id="userAvatar" src="" alt="User Avatar" style="display:none;">
+        <div id="userLetter" class="avatar-letter"></div>
+      </div>
+    </li>
+  </ul>
+</nav>
             </header>
 
             <h2 class="section-title">طلباتي</h2>
@@ -852,21 +860,8 @@
                 <button class="menu-toggle" onclick="toggleMenu()">
                     <i class="fas fa-bars"></i>
                 </button>
-                <nav>
-  <ul>
-    <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-    <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-
-    <!-- 🧑‍💼 الأفاتار بجانب طلباتي -->
-    <li>
-      <div class="user-avatar" onclick="goToProfile()">
-        <img id="userAvatar" src="" alt="User Avatar" style="display:none;">
-        <div id="userLetter" class="avatar-letter"></div>
-      </div>
-    </li>
-  </ul>
-</nav>
             </header>
+            
 
             <div class="payment-page">
                 <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
