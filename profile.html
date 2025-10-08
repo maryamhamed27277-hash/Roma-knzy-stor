@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الملف الشخصي | Roma&Knzy Stor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(270deg, #ff4b91, #5c2fc2, #2b244d);
+      background-size: 600% 600%;
+      animation: movebg 10s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      margin: 0;
+    }
+
+    @keyframes movebg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .profile-card {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 25px;
+      padding: 35px 25px;
+      text-align: center;
+      width: 340px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 15px;
+      border: 3px solid #ff4b91;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin: 10px 0 5px;
+      color: #fff;
+    }
+
+    p {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 14px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, #ff4b91, #ff4ba2);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    a {
+      display: block;
+      color: #ffb3d1;
+      text-decoration: none;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <div class="profile-img" id="profileImage">
+      <img src="1.png" alt="Profile Image" />
+    </div>
+
+    <h2 id="userName">جار التحميل...</h2>
+    <p id="userEmail">—</p>
+
+    <input type="file" id="imageInput" accept="image/*" />
+    <input type="text" id="username" placeholder="اسم المستخدم" />
+    <input type="tel" id="phone" placeholder="رقم الهاتف" />
+
+    <button onclick="saveProfile()">💾 حفظ التعديلات</button>
+    <button onclick="logout()">🚪 تسجيل الخروج</button>
+
+    <a href="index.html">⬅️ العودة للموقع</a>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
+      authDomain: "romalshop.firebaseapp.com",
+      projectId: "romalshop",
+      storageBucket: "romalshop.appspot.com",
+      messagingSenderId: "830369715807",
+      appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+
+    const userNameEl = document.getElementById("userName");
+    const userEmailEl = document.getElementById("userEmail");
+    const imageEl = document.querySelector("#profileImage img");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      userEmailEl.textContent = user.email;
+
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        const data = userSnap.data();
+        document.getElementById("username").value = data.username || "";
+        document.getElementById("phone").value = data.phone || "";
+        if (data.imageURL) imageEl.src = data.imageURL;
+        userNameEl.textContent = data.username || user.email.split("@")[0];
+      } else {
+        userNameEl.textContent = user.email.split("@")[0];
+      }
+    });
+
+    window.saveProfile = async function() {
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const username = document.getElementById("username").value;
+      const phone = document.getElementById("phone").value;
+      const file = document.getElementById("imageInput").files[0];
+
+      let imageURL = imageEl.src;
+
+      if (file) {
+        const fileRef = ref(storage, `profiles/${user.uid}.jpg`);
+        await uploadBytes(fileRef, file);
+        imageURL = await getDownloadURL(fileRef);
+      }
+
+      await setDoc(doc(db, "users", user.uid), { username, phone, imageURL });
+      alert("✅ تم حفظ التعديلات بنجاح!");
+    };
+
+    window.logout = async function() {
+      await signOut(auth);
+      localStorage.removeItem("loggedIn");
+      window.location.href = "login.html";
+    };
+  </script>
+</body>
+</html>
