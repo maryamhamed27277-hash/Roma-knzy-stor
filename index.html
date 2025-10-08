@@ -813,26 +813,19 @@
 
         <!-- صفحة الدفع -->
         <div id="paymentPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <nav>
-                    <ul id="navMenuPayment">
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                    </ul>
-                </nav>
-            </header>
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
+
+  <div class="logo-container" style="display:flex; align-items:center; gap:10px;">
+    <img src="1.png" alt="Roma&Knzy Stor" style="width:45px; height:45px; border-radius:50%;">
+    <h1 style="font-size:22px; background:linear-gradient(135deg,#ff4b91,#ff4ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Roma&Knzy Stor</h1>
+  </div>
+
+  <nav style="display:flex; align-items:center; gap:20px;">
+    <a href="#" onclick="showPage('homePage')" style="color:white; text-decoration:none; font-weight:600;">الرئيسية</a>
+    <a href="#" onclick="showPage('ordersPage')" style="color:white; text-decoration:none; font-weight:600;">طلباتي</a>
+    <a href="profile.html" style="color:#ffb3d1; text-decoration:none; font-weight:600;">ملفي الشخصي</a>
+  </nav>
+</header>
 
             <div class="payment-page">
                 <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
@@ -1013,6 +1006,10 @@
         // التحقق من تسجيل الدخول
 if (!localStorage.getItem("loggedIn")) {
   window.location.href = "login.html";
+}
+        // الانتقال إلى صفحة الملف الشخصي
+function openProfile() {
+  window.location.href = "profile.html";
 }
     </script>
 </body>
