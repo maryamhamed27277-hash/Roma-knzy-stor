@@ -566,36 +566,6 @@
                 margin: 10px 0;
             }
         }
-
-        .user-avatar {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff4b91, #5c2fc2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  overflow: hidden;
-  transition: 0.3s;
-}
-
-.user-avatar:hover {
-  transform: scale(1.05);
-}
-
-.user-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.avatar-letter {
-  font-size: 18px;
-}
     </style>
 </head>
 <body>
@@ -828,19 +798,11 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <nav>
-  <ul>
-    <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-    <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-
-    <!-- 🧑‍💼 الأفاتار بجانب طلباتي -->
-    <li>
-      <div class="user-avatar" onclick="goToProfile()">
-        <img id="userAvatar" src="" alt="User Avatar" style="display:none;">
-        <div id="userLetter" class="avatar-letter"></div>
-      </div>
-    </li>
-  </ul>
-</nav>
+                    <ul id="navMenuOrders">
+                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
+                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
+                    </ul>
+                </nav>
             </header>
 
             <h2 class="section-title">طلباتي</h2>
@@ -864,8 +826,13 @@
                 <button class="menu-toggle" onclick="toggleMenu()">
                     <i class="fas fa-bars"></i>
                 </button>
+                <nav>
+                    <ul id="navMenuPayment">
+                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
+                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
+                    </ul>
+                </nav>
             </header>
-            
 
             <div class="payment-page">
                 <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
@@ -1046,43 +1013,6 @@
         // التحقق من تسجيل الدخول
 if (!localStorage.getItem("loggedIn")) {
   window.location.href = "login.html";
-}
-
-        // ✅ تحميل بيانات المستخدم بعد تسجيل الدخول
-firebase.auth().onAuthStateChanged(async (user) => {
-  const imgEl = document.getElementById('userAvatar');
-  const letterEl = document.getElementById('userLetter');
-
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
-
-  // جلب البيانات من Firestore
-  const userDoc = await firebase.firestore().collection("users").doc(user.uid).get();
-  if (userDoc.exists) {
-    const data = userDoc.data();
-    if (data.imageURL) {
-      imgEl.src = data.imageURL;
-      imgEl.style.display = "block";
-      letterEl.style.display = "none";
-    } else {
-      const name = data.username || user.email.split('@')[0];
-      letterEl.textContent = name.charAt(0).toUpperCase();
-      letterEl.style.display = "flex";
-      imgEl.style.display = "none";
-    }
-  } else {
-    const name = user.email.split('@')[0];
-    letterEl.textContent = name.charAt(0).toUpperCase();
-    letterEl.style.display = "flex";
-    imgEl.style.display = "none";
-  }
-});
-
-// 👤 الانتقال إلى صفحة الحساب الشخصي
-function goToProfile() {
-  window.location.href = "profile.html";
 }
     </script>
 </body>
