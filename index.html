@@ -408,81 +408,65 @@
 
         /* قسم التواصل الجديد */
         .contact-section {
-            margin: 80px 0;
-            text-align: center;
+            background: rgba(255,255,255,0.05);
+            margin: 80px -20px;
+            padding: 50px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .contact-grid {
+        .contact-bar {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
-        .contact-card {
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
             background: rgba(255,255,255,0.08);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
+            border-radius: 15px;
             border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        .contact-item:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .contact-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .contact-title {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            font-weight: 700;
+            flex-shrink: 0;
         }
 
         .contact-info {
+            flex: 1;
+        }
+
+        .contact-title {
+            font-weight: 700;
+            margin-bottom: 5px;
             font-size: 1.1rem;
-            margin-bottom: 20px;
-            opacity: 0.9;
         }
 
-        .contact-btn {
-            background: var(--gradient);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        .contact-desc {
+            opacity: 0.8;
+            font-size: 0.9rem;
         }
 
         .social-section {
@@ -663,8 +647,12 @@
                 text-align: center;
             }
 
-            .contact-grid {
+            .contact-bar {
                 grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                padding: 15px;
             }
         }
 
@@ -1104,7 +1092,7 @@
                         </div>
 
                         <div class="package-card tiktok">
-                            <div class="package-icon">🔄</div>
+                            <div class="package-icon">↗️</div>
                             <div class="package-amount tiktok">200</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">شير تيك توك</div>
                             <div class="package-price">20 جنيه</div>
@@ -1118,69 +1106,55 @@
 
             <!-- قسم التواصل الجديد -->
             <section class="contact-section">
-                <h2 class="section-title">وسائل التواصل</h2>
-                
-                <div class="contact-grid">
-                    <div class="contact-card">
+                <div class="contact-bar">
+                    <a href="https://wa.me/+201122223344" class="contact-item" target="_blank">
                         <div class="contact-icon">
                             <i class="fab fa-whatsapp"></i>
                         </div>
-                        <h3 class="contact-title">واتساب للطلبات</h3>
-                        <p class="contact-info">01122223344</p>
-                        <a href="https://wa.me/+201122223344" class="contact-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> تواصل معنا
-                        </a>
-                    </div>
+                        <div class="contact-info">
+                            <div class="contact-title">واتساب للطلبات</div>
+                            <div class="contact-desc">01122223344</div>
+                        </div>
+                    </a>
                     
-                    <div class="contact-card">
+                    <a href="https://wa.me/+201141346727" class="contact-item" target="_blank">
                         <div class="contact-icon">
                             <i class="fab fa-whatsapp"></i>
                         </div>
-                        <h3 class="contact-title">واتساب للدعم</h3>
-                        <p class="contact-info">01141346727</p>
-                        <a href="https://wa.me/+201141346727" class="contact-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> تواصل معنا
-                        </a>
-                    </div>
+                        <div class="contact-info">
+                            <div class="contact-title">واتساب للدعم</div>
+                            <div class="contact-desc">01141346727</div>
+                        </div>
+                    </a>
                     
-                    <div class="contact-card">
+                    <a href="https://www.instagram.com/xx.mariam_roma.x?igsh=Ymxxa2gzaDR3dTl4" class="contact-item" target="_blank">
                         <div class="contact-icon">
                             <i class="fab fa-instagram"></i>
                         </div>
-                        <h3 class="contact-title">إنستجرام</h3>
-                        <p class="contact-info">تابع صفحاتنا</p>
-                        <a href="https://www.instagram.com/xx.mariam_roma.x?igsh=Ymxxa2gzaDR3dTl4" class="contact-btn" target="_blank">
-                            <i class="fab fa-instagram"></i> تابعنا
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- قسم قناة الواتساب -->
-            <section class="social-section">
-                <h2 class="section-title">تابع قنواتنا</h2>
-                <div class="social-cards">
-                    <a href="https://whatsapp.com/channel/0029VbB2NsIEawdoGrI0m83J" class="social-card" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        <h3>قناة Roma&kenzy</h3>
-                        <p>تابعنا على واتساب</p>
+                        <div class="contact-info">
+                            <div class="contact-title">إنستجرام روما</div>
+                            <div class="contact-desc">@xx.mariam_roma.x</div>
+                        </div>
                     </a>
-                </div>
-            </section>
-
-            <!-- قسم صفحات الإنستجرام -->
-            <section class="social-section">
-                <h2 class="section-title">صفحاتنا على الإنستجرام</h2>
-                <div class="social-cards">
-                    <a href="https://www.instagram.com/xx.mariam_roma.x?igsh=Ymxxa2gzaDR3dTl4" class="social-card" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                        <h3>صفحة Roma</h3>
-                        <p>تابع صفحتنا</p>
+                    
+                    <a href="https://www.instagram.com/x._.kenzyy_mohamedx?igsh=NzFyaTN4YXVmNmth" class="contact-item" target="_blank">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-title">إنستجرام كنزي</div>
+                            <div class="contact-desc">@x._.kenzyy_mohamedx</div>
+                        </div>
                     </a>
-                    <a href="https://www.instagram.com/x._.kenzyy_mohamedx?igsh=NzFyaTN4YXVmNmth" class="social-card" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                        <h3>صفحة Kenzy</h3>
-                        <p>تابع صفحتنا</p>
+                    
+                    <a href="https://whatsapp.com/channel/0029VbB2NsIEawdoGrI0m83J" class="contact-item" target="_blank">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-title">قناة الواتساب</div>
+                            <div class="contact-desc">Roma&kenzy</div>
+                        </div>
                     </a>
                 </div>
             </section>
