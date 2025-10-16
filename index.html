@@ -10,14 +10,14 @@
     <title>Roma&knzy stor</title>
     <link rel="icon" type="image/png" href="1.png">
     <!-- تحسين الظهور في بحث جوجل (SEO) -->
-    <meta name="description" content="موقع روما و كنزي Roma & Knzy Stor يقدم خدمات شحن و شراء متابعين انستجرام وأيضاً خدمات تيك توك (لايكات، مشاهدات، حفظ) بأرخص الأسعار وبجودة عالية.">
-    <meta name="keywords" content="شحن متابعين انستجرام, شراء متابعين انستجرام, متابعين انستجرام, لايكات تيك توك, مشاهدات تيك توك, حفظ تيك توك, روما و كنزي, Roma & Knzy, Roma & Knzy Stor, موقع روما و كنزي, ارخص اسعار متابعين انستجرام, موقع زيادة متابعين">
+    <meta name="description" content="موقع روما و كنزي Roma & Knzy Stor يقدم خدمات شحن و شراء متابعين انستجرام وأيضاً خدمات تيك توك (لايكات، مشاهدات، حفظ، شير) بأرخص الأسعار وبجودة عالية.">
+    <meta name="keywords" content="شحن متابعين انستجرام, شراء متابعين انستجرام, متابعين انستجرام, لايكات تيك توك, مشاهدات تيك توك, حفظ تيك توك, شير تيك توك, روما و كنزي, Roma & Knzy, Roma & Knzy Stor, موقع روما و كنزي, ارخص اسعار متابعين انستجرام, موقع زيادة متابعين">
     <meta name="author" content="Roma & Knzy Team">
     <meta name="robots" content="index, follow">
 
     <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
     <meta property="og:title" content="Roma&knzy stor | شحن متابعين انستجرام وخدمات تيك توك بأرخص الأسعار">
-    <meta property="og:description" content="أفضل موقع لشحن وشراء متابعين إنستجرام وخدمات تيك توك (لايكات، مشاهدات، حفظ) بأرخص الأسعار - Roma & Knzy Stor.">
+    <meta property="og:description" content="أفضل موقع لشحن وشراء متابعين إنستجرام وخدمات تيك توك (لايكات، مشاهدات، حفظ، شير) بأرخص الأسعار - Roma & Knzy Stor.">
     <meta property="og:url" content="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_AR">
@@ -406,6 +406,85 @@
             margin-bottom: 15px;
         }
 
+        /* قسم التواصل الجديد */
+        .contact-section {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.08);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .contact-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+
         .social-section {
             margin: 80px 0;
             text-align: center;
@@ -582,6 +661,10 @@
             .service-tab {
                 width: 80%;
                 text-align: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -851,7 +934,7 @@
                     <h1 style="background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                         خدمات تيك توك الاحترافية
                     </h1>
-                    <p>احصل على لايكات، مشاهدات، وحفظ لأفضل الأسعار</p>
+                    <p>احصل على لايكات، مشاهدات، حفظ، وشير لأفضل الأسعار</p>
                     <a href="#tiktok-packages" class="btn tiktok">
                         <i class="fab fa-tiktok"></i> ابدأ الآن
                     </a>
@@ -1006,8 +1089,8 @@
                         </div>
                     </div>
 
-                    <!-- الباقات الخاصة - علام الحفظ -->
-                    <h2 class="section-title tiktok">الباقات الخاصة - علام الحفظ</h2>
+                    <!-- الباقات الخاصة - علام الحفظ والشير -->
+                    <h2 class="section-title tiktok">الباقات الخاصة - حفظ وشير</h2>
                     
                     <div class="package-grid">
                         <div class="package-card tiktok">
@@ -1019,24 +1102,57 @@
                                 <i class="fas fa-gem"></i> اختر الباقة
                             </button>
                         </div>
+
+                        <div class="package-card tiktok">
+                            <div class="package-icon">🔄</div>
+                            <div class="package-amount tiktok">200</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">شير تيك توك</div>
+                            <div class="package-price">20 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'شير')">
+                                <i class="fas fa-gem"></i> اختر الباقة
+                            </button>
+                        </div>
                     </div>
                 </section>
             </div>
 
-            <!-- قسم التواصل -->
-            <section class="social-section">
-                <h2 class="section-title">تواصل معنا</h2>
-                <div class="social-cards">
-                    <a href="https://wa.me/+201122223344" class="social-card" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        <h3>واتساب</h3>
-                        <p>01122223344</p>
-                    </a>
-                    <a href="https://wa.me/+201141346727" class="social-card" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        <h3>واتساب</h3>
-                        <p>01141346727</p>
-                    </a>
+            <!-- قسم التواصل الجديد -->
+            <section class="contact-section">
+                <h2 class="section-title">وسائل التواصل</h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3 class="contact-title">واتساب للطلبات</h3>
+                        <p class="contact-info">01122223344</p>
+                        <a href="https://wa.me/+201122223344" class="contact-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> تواصل معنا
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3 class="contact-title">واتساب للدعم</h3>
+                        <p class="contact-info">01141346727</p>
+                        <a href="https://wa.me/+201141346727" class="contact-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> تواصل معنا
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3 class="contact-title">إنستجرام</h3>
+                        <p class="contact-info">تابع صفحاتنا</p>
+                        <a href="https://www.instagram.com/xx.mariam_roma.x?igsh=Ymxxa2gzaDR3dTl4" class="contact-btn" target="_blank">
+                            <i class="fab fa-instagram"></i> تابعنا
+                        </a>
+                    </div>
                 </div>
             </section>
 
@@ -1226,7 +1342,9 @@
             let serviceText = service === 'instagram' ? 'إنستجرام' : 'تيك توك';
             let typeText = type === 'متابعين' ? 'متابع' : 
                           type === 'لايكات' ? 'لايك' :
-                          type === 'مشاهدات' ? 'مشاهدة' : 'حفظ';
+                          type === 'مشاهدات' ? 'مشاهدة' : 
+                          type === 'حفظ' ? 'حفظ' :
+                          type === 'شير' ? 'شير' : type;
             
             document.getElementById('selectedPackageInfo').textContent = 
                 `باقة ${amount} ${typeText} ${serviceText} - ${price} جنيه`;
@@ -1327,7 +1445,9 @@
                     const serviceText = order.package.service === 'instagram' ? 'إنستجرام' : 'تيك توك';
                     const typeText = order.package.type === 'متابعين' ? 'متابع' : 
                                    order.package.type === 'لايكات' ? 'لايك' :
-                                   order.package.type === 'مشاهدات' ? 'مشاهدة' : 'حفظ';
+                                   order.package.type === 'مشاهدات' ? 'مشاهدة' : 
+                                   order.package.type === 'حفظ' ? 'حفظ' :
+                                   order.package.type === 'شير' ? 'شير' : type;
                     
                     ordersHTML += `
                         <div class="order-item">
