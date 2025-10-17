@@ -957,6 +957,21 @@
                         </div>
                     </div>
 
+                    <!-- الباقات الخاصة - متابعين -->
+                    <h2 class="section-title">الباقات الخاصة - متابعين</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card">
+                            <div class="package-icon">👥</div>
+                            <div class="package-amount">5000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                            <div class="package-price">750 جنيه</div>
+                            <button class="btn" onclick="selectPackage(5000, 750, 'instagram', 'متابعين')">
+                                <i class="fas fa-gem"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
+
                     <!-- الباقات الخاصة - لايكات -->
                     <h2 class="section-title">الباقات الخاصة - لايكات</h2>
                     
@@ -1044,50 +1059,8 @@
                 <section class="packages-section" id="offers-packages">
                     <h2 class="section-title offers">عروض كل فترة</h2>
                     
-                    <div class="package-grid">
-                        <div class="package-card offers">
-                            <div class="offer-badge">عرض محدود</div>
-                            <div class="package-icon">🔥</div>
-                            <div class="package-amount offers">50</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">5 جنيه</div>
-                            <button class="btn offers" onclick="selectPackage(50, 5, 'offers', 'متابعين')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card offers">
-                            <div class="offer-badge">عرض مميز</div>
-                            <div class="package-icon">🎯</div>
-                            <div class="package-amount offers">150+50</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">15 جنيه</div>
-                            <button class="btn offers" onclick="selectPackage(200, 15, 'offers', 'متابعين')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card offers">
-                            <div class="offer-badge">عرض خاص</div>
-                            <div class="package-icon">⭐</div>
-                            <div class="package-amount offers">300</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">30 جنيه</div>
-                            <button class="btn offers" onclick="selectPackage(300, 30, 'offers', 'متابعين')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card offers">
-                            <div class="offer-badge">عرض قوي</div>
-                            <div class="package-icon">💎</div>
-                            <div class="package-amount offers">500+50</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">55 جنيه</div>
-                            <button class="btn offers" onclick="selectPackage(550, 55, 'offers', 'متابعين')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
+                    <div id="offersContainer" class="package-grid">
+                        <!-- العروض تظهر هنا تلقائياً -->
                     </div>
                 </section>
             </div>
@@ -1148,7 +1121,99 @@
             </section>
         </div>
 
-        <!-- باقي الصفحات (طلبات، دفع) -->
+        <!-- صفحة الطلبات -->
+        <div id="ordersPage" class="page">
+            <header>
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="1.png" alt="Roma&knzy stor Logo">
+                    </div>
+                    <div class="logo-text">
+                        Roma&knzy stor
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                </div>
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul id="navMenuOrders">
+                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
+                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <h2 class="section-title">طلباتي</h2>
+            <div id="ordersList">
+                <!-- الطلبات تظهر هنا -->
+            </div>
+        </div>
+
+        <!-- صفحة الدفع -->
+        <div id="paymentPage" class="page">
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
+
+  <div class="logo-container" style="display:flex; align-items:center; gap:10px;">
+    <img src="1.png" alt="Roma&Knzy Stor" style="width:45px; height:45px; border-radius:50%;">
+    <h1 style="font-size:22px; background:linear-gradient(135deg,#ff4b91,#ff4ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Roma&Knzy Stor</h1>
+  </div>
+
+  <nav style="display:flex; align-items:center; gap:20px;">
+    <a href="#" onclick="showPage('homePage')" style="color:white; text-decoration:none; font-weight:600;">الرئيسية</a>
+    <a href="#" onclick="showPage('ordersPage')" style="color:white; text-decoration:none; font-weight:600;">طلباتي</a>
+    <a href="profile.html" style="color:#ffb3d1; text-decoration:none; font-weight:600;">ملفي الشخصي</a>
+  </nav>
+</header>
+
+            <div class="payment-page">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
+                    <h3>بيانات الباقة المختارة</h3>
+                    <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 100 متابع - 25 جنيه</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
+                    <h3>طريقة الدفع</h3>
+                    <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
+                        <i class="fas fa-mobile-alt" style="font-size: 30px; color: var(--accent);"></i>
+                        <div>
+                            <p style="margin-bottom: 5px;">الدفع عبر فودافون كاش</p>
+                            <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">01031090116</p>
+                        </div>
+                    </div>
+                    <p style="opacity: 0.8; font-size: 0.9rem;">يرجى إرسال المبلغ إلى الرقم أعلاه ثم إرفاق صورة إيصال الدفع</p>
+                </div>
+
+                <div class="form-group" id="usernameGroup">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="usernameLabel">اسم المستخدم في إنستجرام</label>
+                    <input type="text" id="username" class="form-control" placeholder="اسم المستخدم بدون @">
+                </div>
+
+                <div class="form-group" id="postLinkGroup" style="display: none;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="postLinkLabel">رابط البوست في إنستجرام</label>
+                    <input type="url" id="postLink" class="form-control" placeholder="https://www.instagram.com/p/xxxxxxxxxx/">
+                </div>
+
+                <div class="form-group" id="videoLinkGroup" style="display: none;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="videoLinkLabel">رابط الفيديو في تيك توك</label>
+                    <input type="url" id="videoLink" class="form-control" placeholder="https://www.tiktok.com/@username/video/123456789">
+                </div>
+
+                <div class="form-group">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">رقم الهاتف</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="رقم الهاتف للتواصل">
+                </div>
+
+                <div class="form-group">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">صورة إيصال الدفع</label>
+                    <input type="file" id="receipt" class="form-control" accept="image/*">
+                </div>
+
+                <button class="btn" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
+            </div>
+        </div>
     </div>
 
     <!-- Firebase -->
@@ -1176,6 +1241,8 @@
         async function checkOffersAvailability() {
             try {
                 const offersDoc = await db.collection('settings').doc('offers').get();
+                const offersContainer = document.getElementById('offersContainer');
+                
                 if (offersDoc.exists) {
                     const offersData = offersDoc.data();
                     const now = new Date();
@@ -1185,16 +1252,84 @@
                     
                     // التحقق إذا كان العرض نشط وفي الوقت المحدد
                     if (isActive && startTime && endTime && now >= startTime && now <= endTime) {
-                        document.getElementById('offersService').style.display = 'block';
+                        // عرض العروض النشطة
+                        offersContainer.innerHTML = `
+                            <div class="package-card offers">
+                                <div class="offer-badge">عرض محدود</div>
+                                <div class="package-icon">🔥</div>
+                                <div class="package-amount offers">50</div>
+                                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                                <div class="package-price">5 جنيه</div>
+                                <button class="btn offers" onclick="selectPackage(50, 5, 'offers', 'متابعين')">
+                                    <i class="fas fa-gem"></i> اختر الباقة
+                                </button>
+                            </div>
+
+                            <div class="package-card offers">
+                                <div class="offer-badge">عرض مميز</div>
+                                <div class="package-icon">🎯</div>
+                                <div class="package-amount offers">150+50</div>
+                                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                                <div class="package-price">15 جنيه</div>
+                                <button class="btn offers" onclick="selectPackage(200, 15, 'offers', 'متابعين')">
+                                    <i class="fas fa-gem"></i> اختر الباقة
+                                </button>
+                            </div>
+
+                            <div class="package-card offers">
+                                <div class="offer-badge">عرض خاص</div>
+                                <div class="package-icon">⭐</div>
+                                <div class="package-amount offers">300</div>
+                                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                                <div class="package-price">30 جنيه</div>
+                                <button class="btn offers" onclick="selectPackage(300, 30, 'offers', 'متابعين')">
+                                    <i class="fas fa-gem"></i> اختر الباقة
+                                </button>
+                            </div>
+
+                            <div class="package-card offers">
+                                <div class="offer-badge">عرض قوي</div>
+                                <div class="package-icon">💎</div>
+                                <div class="package-amount offers">500+50</div>
+                                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
+                                <div class="package-price">55 جنيه</div>
+                                <button class="btn offers" onclick="selectPackage(550, 55, 'offers', 'متابعين')">
+                                    <i class="fas fa-gem"></i> اختر الباقة
+                                </button>
+                            </div>
+                        `;
                         return true;
+                    } else {
+                        // عرض رسالة أن العروض غير متاحة
+                        offersContainer.innerHTML = `
+                            <div style="text-align: center; padding: 50px; grid-column: 1 / -1;">
+                                <i class="fas fa-clock" style="font-size: 4rem; color: var(--offers-color); margin-bottom: 20px;"></i>
+                                <h3>لا توجد عروض متاحة حالياً</h3>
+                                <p style="opacity: 0.7;">تابعنا لمعرفة العروض القادمة</p>
+                            </div>
+                        `;
+                        return false;
                     }
+                } else {
+                    // لا توجد إعدادات للعروض
+                    offersContainer.innerHTML = `
+                        <div style="text-align: center; padding: 50px; grid-column: 1 / -1;">
+                            <i class="fas fa-bolt" style="font-size: 4rem; color: var(--offers-color); margin-bottom: 20px;"></i>
+                            <h3>عروض قريباً إن شاء الله</h3>
+                            <p style="opacity: 0.7;">سيتم الإعلان عن العروض قريباً</p>
+                        </div>
+                    `;
+                    return false;
                 }
-                // إخفاء قسم العروض إذا لم يكن نشط
-                document.getElementById('offersService').style.display = 'none';
-                return false;
             } catch (error) {
                 console.error('Error checking offers:', error);
-                document.getElementById('offersService').style.display = 'none';
+                document.getElementById('offersContainer').innerHTML = `
+                    <div style="text-align: center; padding: 50px; grid-column: 1 / -1;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--danger); margin-bottom: 20px;"></i>
+                        <h3>حدث خطأ في تحميل العروض</h3>
+                        <p style="opacity: 0.7;">يرجى المحاولة مرة أخرى</p>
+                    </div>
+                `;
                 return false;
             }
         }
@@ -1223,17 +1358,204 @@
                 document.getElementById('tiktokService').style.display = 'block';
             } else if (service === 'offers') {
                 document.querySelector('.service-tab:nth-child(3)').classList.add('active');
-                // التحقق من توفر العروض قبل العرض
-                checkOffersAvailability().then(isAvailable => {
-                    if (!isAvailable) {
-                        alert('لا توجد عروض متاحة حالياً. الرجاء المحاولة لاحقاً.');
-                        showService('instagram');
-                    }
-                });
+                document.getElementById('offersService').style.display = 'block';
+                // تحميل العروض عند فتح القسم
+                checkOffersAvailability();
             }
         }
 
-        // باقي الدوال (selectPackage, submitOrder, etc...)
+        // دالة اختيار الباقة
+        function selectPackage(amount, price, service, type) {
+            selectedPackage = { amount, price, service, type };
+            
+            let serviceText = service === 'instagram' ? 'إنستجرام' : 
+                            service === 'tiktok' ? 'تيك توك' : 'عروض';
+            let typeText = type === 'متابعين' ? 'متابع' : 
+                          type === 'لايكات' ? 'لايك' :
+                          type === 'مشاهدات' ? 'مشاهدة' : 
+                          type === 'حفظ' ? 'حفظ' :
+                          type === 'شير' ? 'شير' : type;
+            
+            document.getElementById('selectedPackageInfo').textContent = 
+                `باقة ${amount} ${typeText} ${serviceText} - ${price} جنيه`;
+            
+            // تحديث الحقول حسب نوع الخدمة
+            const usernameGroup = document.getElementById('usernameGroup');
+            const postLinkGroup = document.getElementById('postLinkGroup');
+            const videoLinkGroup = document.getElementById('videoLinkGroup');
+            
+            // إخفاء جميع الحقول أولاً
+            usernameGroup.style.display = 'none';
+            postLinkGroup.style.display = 'none';
+            videoLinkGroup.style.display = 'none';
+            
+            if (service === 'instagram') {
+                if (type === 'متابعين') {
+                    usernameGroup.style.display = 'block';
+                    document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
+                    document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
+                } else if (type === 'لايكات') {
+                    postLinkGroup.style.display = 'block';
+                    document.getElementById('postLinkLabel').textContent = 'رابط البوست في إنستجرام';
+                    document.getElementById('postLink').placeholder = 'https://www.instagram.com/p/xxxxxxxxxx/';
+                }
+            } else if (service === 'tiktok') {
+                videoLinkGroup.style.display = 'block';
+                document.getElementById('videoLinkLabel').textContent = 'رابط الفيديو في تيك توك';
+                document.getElementById('videoLink').placeholder = 'https://www.tiktok.com/@username/video/123456789';
+            } else if (service === 'offers') {
+                usernameGroup.style.display = 'block';
+                document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
+                document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
+            }
+            
+            showPage('paymentPage');
+        }
+
+        // دالة إرسال الطلب
+        async function submitOrder() {
+            let userInput;
+            const phone = document.getElementById('phone').value;
+            const receipt = document.getElementById('receipt').files[0];
+            
+            // تحديد الحقل المناسب حسب نوع الخدمة
+            if (selectedPackage.service === 'instagram') {
+                if (selectedPackage.type === 'متابعين' || selectedPackage.service === 'offers') {
+                    userInput = document.getElementById('username').value;
+                    if (!userInput) {
+                        alert('يرجى إدخال اسم المستخدم في إنستجرام');
+                        return;
+                    }
+                } else if (selectedPackage.type === 'لايكات') {
+                    userInput = document.getElementById('postLink').value;
+                    if (!userInput) {
+                        alert('يرجى إدخال رابط البوست في إنستجرام');
+                        return;
+                    }
+                }
+            } else if (selectedPackage.service === 'tiktok') {
+                userInput = document.getElementById('videoLink').value;
+                if (!userInput) {
+                    alert('يرجى إدخال رابط الفيديو في تيك توك');
+                    return;
+                }
+            }
+            
+            if (!phone || !receipt) {
+                alert('يرجى ملء جميع الحقول وإرفاق صورة الإيصال');
+                return;
+            }
+            
+            try {
+                const newOrder = {
+                    package: selectedPackage,
+                    userInput: userInput,
+                    phone: phone,
+                    status: 'قيد المراجعة',
+                    date: new Date().toLocaleDateString('ar-EG'),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                };
+                
+                await db.collection('orders').add(newOrder);
+                
+                alert('تم تقديم طلبك بنجاح! سيتم مراجعته قريباً.');
+                resetPaymentForm();
+                showPage('ordersPage');
+            } catch (error) {
+                alert('حدث خطأ أثناء إرسال الطلب. تأكد من اتصال الإنترنت.');
+            }
+        }
+
+        // دالة إعادة تعيين نموذج الدفع
+        function resetPaymentForm() {
+            document.getElementById('username').value = '';
+            document.getElementById('postLink').value = '';
+            document.getElementById('videoLink').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('receipt').value = '';
+        }
+
+        // دالة عرض الصفحة
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // إغلاق القائمة في الشاشات الصغيرة
+            document.querySelectorAll('nav ul').forEach(menu => {
+                menu.classList.remove('show');
+            });
+            
+            if (pageId === 'ordersPage') {
+                loadOrders();
+            }
+        }
+
+        // دالة تحميل الطلبات
+        async function loadOrders() {
+            const ordersList = document.getElementById('ordersList');
+            
+            try {
+                const snapshot = await db.collection('orders')
+                    .orderBy('timestamp', 'desc')
+                    .get();
+                
+                if (snapshot.empty) {
+                    ordersList.innerHTML = `
+                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                            <i class="fas fa-shopping-cart" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
+                            <h3>لا توجد طلبات حالياً</h3>
+                            <p style="opacity: 0.7;">بمجرد إرسال طلبك، سيظهر هنا</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let ordersHTML = '';
+                snapshot.forEach(doc => {
+                    const order = doc.data();
+                    const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
+                    const serviceText = order.package.service === 'instagram' ? 'إنستجرام' : 
+                                      order.package.service === 'tiktok' ? 'تيك توك' : 'عروض';
+                    const typeText = order.package.type === 'متابعين' ? 'متابع' : 
+                                   order.package.type === 'لايكات' ? 'لايك' :
+                                   order.package.type === 'مشاهدات' ? 'مشاهدة' : 
+                                   order.package.type === 'حفظ' ? 'حفظ' :
+                                   order.package.type === 'شير' ? 'شير' : type;
+                    
+                    ordersHTML += `
+                        <div class="order-item">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <strong>طلب #${doc.id.slice(-6)}</strong>
+                                    <p style="margin-top: 5px; opacity: 0.8;">${order.package.amount} ${typeText} ${serviceText} - ${order.package.price} جنيه</p>
+                                </div>
+                                <span class="${statusClass}">${order.status}</span>
+                            </div>
+                            <p><strong>${order.package.service === 'instagram' && order.package.type === 'لايكات' ? 'رابط البوست:' : 
+                                      order.package.service === 'instagram' ? 'اسم المستخدم:' : 
+                                      order.package.service === 'tiktok' ? 'رابط الفيديو:' : 'اسم المستخدم:'}</strong> ${order.userInput}</p>
+                            <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
+                            <p><strong>تاريخ الطلب:</strong> ${order.date}</p>
+                        </div>
+                    `;
+                });
+                
+                ordersList.innerHTML = ordersHTML;
+            } catch (error) {
+                ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
+            }
+        }
+
+        // دالة تبديل القائمة في الشاشات الصغيرة
+        function toggleMenu() {
+            const currentPage = document.querySelector('.page.active').id;
+            const navMenu = document.getElementById(`navMenu${currentPage !== 'homePage' ? currentPage.replace('Page', '') : ''}`);
+            if (navMenu) {
+                navMenu.classList.toggle('show');
+            }
+        }
 
         // تحميل تلقائي عند فتح الصفحة
         document.addEventListener('DOMContentLoaded', function() {
