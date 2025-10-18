@@ -913,6 +913,81 @@
                             </button>
                         </div>
                     </div>
+
+                    <!-- قسم لايكات إنستجرام الجديد -->
+                    <h2 class="section-title">لايكات إنستجرام</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount">50</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">5 جنيه</div>
+                            <button class="btn" onclick="selectPackage(50, 5, 'instagram', 'لايكات', true)">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount">100</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">10 جنيه</div>
+                            <button class="btn" onclick="selectPackage(100, 10, 'instagram', 'لايكات', true)">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount">250</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">25 جنيه</div>
+                            <button class="btn" onclick="selectPackage(250, 25, 'instagram', 'لايكات', true)">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount">300</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">30 جنيه</div>
+                            <button class="btn" onclick="selectPackage(300, 30, 'instagram', 'لايكات', true)">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount">500</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">50 جنيه</div>
+                            <button class="btn" onclick="selectPackage(500, 50, 'instagram', 'لايكات', true)">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount">700</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">70 جنيه</div>
+                            <button class="btn" onclick="selectPackage(700, 70, 'instagram', 'لايكات', true)">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount">1000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">90 جنيه</div>
+                            <button class="btn" onclick="selectPackage(1000, 90, 'instagram', 'لايكات', true)">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
                 </section>
             </div>
 
@@ -1230,6 +1305,12 @@
                     <input type="text" id="username" class="form-control" placeholder="اسم المستخدم بدون @">
                 </div>
 
+                <div class="form-group" id="postLinkGroup" style="display: none;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="postLinkLabel">رابط البوست في إنستجرام</label>
+                    <input type="url" id="postLink" class="form-control" placeholder="https://www.instagram.com/p/...">
+                    <small style="opacity: 0.7; display: block; margin-top: 5px;">يرجى إدخال رابط البوست وليس اسم المستخدم</small>
+                </div>
+
                 <div class="form-group" id="videoLinkGroup" style="display: none;">
                     <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="videoLinkLabel">رابط الفيديو في تيك توك</label>
                     <input type="url" id="videoLink" class="form-control" placeholder="https://www.tiktok.com/@username/video/123456789">
@@ -1310,8 +1391,8 @@
             }
         }
 
-        function selectPackage(amount, price, service, type) {
-            selectedPackage = { amount, price, service, type };
+        function selectPackage(amount, price, service, type, isLikes = false) {
+            selectedPackage = { amount, price, service, type, isLikes };
             
             let serviceText = service === 'instagram' ? 'إنستجرام' : 'تيك توك';
             let typeText = type === 'متابعين' ? 'متابع' : 
@@ -1325,15 +1406,29 @@
             
             // تحديث الحقول حسب نوع الخدمة
             const usernameGroup = document.getElementById('usernameGroup');
+            const postLinkGroup = document.getElementById('postLinkGroup');
             const videoLinkGroup = document.getElementById('videoLinkGroup');
             
             if (service === 'instagram') {
-                usernameGroup.style.display = 'block';
-                videoLinkGroup.style.display = 'none';
-                document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
-                document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
+                if (isLikes) {
+                    // لايكات إنستجرام - طلب رابط البوست
+                    usernameGroup.style.display = 'none';
+                    postLinkGroup.style.display = 'block';
+                    videoLinkGroup.style.display = 'none';
+                    document.getElementById('postLinkLabel').textContent = 'رابط البوست في إنستجرام';
+                    document.getElementById('postLink').placeholder = 'https://www.instagram.com/p/...';
+                } else {
+                    // متابعين إنستجرام - طلب اسم المستخدم
+                    usernameGroup.style.display = 'block';
+                    postLinkGroup.style.display = 'none';
+                    videoLinkGroup.style.display = 'none';
+                    document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
+                    document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
+                }
             } else {
+                // تيك توك - طلب رابط الفيديو
                 usernameGroup.style.display = 'none';
+                postLinkGroup.style.display = 'none';
                 videoLinkGroup.style.display = 'block';
                 document.getElementById('videoLinkLabel').textContent = 'رابط الفيديو في تيك توك';
                 document.getElementById('videoLink').placeholder = 'https://www.tiktok.com/@username/video/123456789';
@@ -1348,12 +1443,23 @@
             const receipt = document.getElementById('receipt').files[0];
             
             if (selectedPackage.service === 'instagram') {
-                userInput = document.getElementById('username').value;
-                if (!userInput) {
-                    alert('يرجى إدخال اسم المستخدم في إنستجرام');
-                    return;
+                if (selectedPackage.isLikes) {
+                    // لايكات إنستجرام - رابط البوست
+                    userInput = document.getElementById('postLink').value;
+                    if (!userInput) {
+                        alert('يرجى إدخال رابط البوست في إنستجرام');
+                        return;
+                    }
+                } else {
+                    // متابعين إنستجرام - اسم المستخدم
+                    userInput = document.getElementById('username').value;
+                    if (!userInput) {
+                        alert('يرجى إدخال اسم المستخدم في إنستجرام');
+                        return;
+                    }
                 }
             } else {
+                // تيك توك - رابط الفيديو
                 userInput = document.getElementById('videoLink').value;
                 if (!userInput) {
                     alert('يرجى إدخال رابط الفيديو في تيك توك');
@@ -1388,6 +1494,7 @@
 
         function resetPaymentForm() {
             document.getElementById('username').value = '';
+            document.getElementById('postLink').value = '';
             document.getElementById('videoLink').value = '';
             document.getElementById('phone').value = '';
             document.getElementById('receipt').value = '';
@@ -1432,7 +1539,7 @@
                                 </div>
                                 <span class="${statusClass}">${order.status}</span>
                             </div>
-                            <p><strong>${order.package.service === 'instagram' ? 'اسم المستخدم:' : 'رابط الفيديو:'}</strong> ${order.userInput}</p>
+                            <p><strong>${order.package.service === 'instagram' ? (order.package.isLikes ? 'رابط البوست:' : 'اسم المستخدم:') : 'رابط الفيديو:'}</strong> ${order.userInput}</p>
                             <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
                             <p><strong>تاريخ الطلب:</strong> ${order.date}</p>
                         </div>
