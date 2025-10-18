@@ -48,7 +48,6 @@
             --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
             --tiktok-pink: #FE2C55;
             --tiktok-blue: #25F4EE;
-            --offers-color: #9C27B0;
         }
 
         body {
@@ -156,7 +155,6 @@
             justify-content: center;
             gap: 20px;
             margin: 30px 0;
-            flex-wrap: wrap;
         }
 
         .service-tab {
@@ -178,11 +176,6 @@
         .service-tab.tiktok.active {
             background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
             box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
-        }
-
-        .service-tab.offers.active {
-            background: linear-gradient(135deg, var(--offers-color) 0%, #E91E63 100%);
-            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
         }
 
         .hero {
@@ -242,11 +235,6 @@
             box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
         }
 
-        .btn.offers {
-            background: linear-gradient(135deg, var(--offers-color) 0%, #E91E63 100%);
-            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
-        }
-
         .btn::before {
             content: '';
             position: absolute;
@@ -269,10 +257,6 @@
 
         .btn.tiktok:hover {
             box-shadow: 0 10px 25px rgba(254, 44, 85, 0.6);
-        }
-
-        .btn.offers:hover {
-            box-shadow: 0 10px 25px rgba(156, 39, 176, 0.6);
         }
 
         .features {
@@ -341,12 +325,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .section-title.offers {
-            background: linear-gradient(135deg, var(--offers-color) 0%, #E91E63 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .section-title::after {
             content: '';
             position: absolute;
@@ -361,10 +339,6 @@
 
         .section-title.tiktok::after {
             background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
-        }
-
-        .section-title.offers::after {
-            background: linear-gradient(135deg, var(--offers-color) 0%, #E91E63 100%);
         }
 
         .package-grid {
@@ -400,10 +374,6 @@
             background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
         }
 
-        .package-card.offers::before {
-            background: linear-gradient(135deg, var(--offers-color) 0%, #E91E63 100%);
-        }
-
         .package-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -424,12 +394,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .package-amount.offers {
-            background: linear-gradient(135deg, var(--offers-color) 0%, #E91E63 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .package-price {
             font-size: 2.2rem;
             font-weight: 700;
@@ -440,25 +404,6 @@
         .package-icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
-        }
-
-        .offer-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: linear-gradient(135deg, var(--offers-color) 0%, #E91E63 100%);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
 
         /* قسم التواصل الجديد */
@@ -813,16 +758,13 @@
                 <div class="service-tab tiktok" onclick="showService('tiktok')">
                     <i class="fab fa-tiktok"></i> خدمات تيك توك
                 </div>
-                <div class="service-tab offers" onclick="showService('offers')">
-                    <i class="fas fa-bolt"></i> عروض كل فترة
-                </div>
             </div>
 
             <!-- قسم خدمات الإنستجرام -->
             <div id="instagramService" class="service-content">
                 <section class="hero">
                     <h1>مصدرك الموثوق لزيادة المتابعين</h1>
-                    <p>احصل على متابعين ولايكات إنستجرام بأفضل الأسعار</p>
+                    <p>احصل على متابعين إنستجرامك بأفضل الأسعار</p>
                     <a href="#packages" class="btn">
                         <i class="fas fa-shopping-cart"></i> ابدأ الآن
                     </a>
@@ -846,9 +788,9 @@
                     </div>
                 </section>
 
-                <!-- الباقات البسيطة - متابعين -->
+                <!-- الباقات البسيطة -->
                 <section class="packages-section" id="packages">
-                    <h2 class="section-title">الباقات البسيطة/متابعين</h2>
+                    <h2 class="section-title">الباقات البسيطة</h2>
                     
                     <div class="package-grid">
                         <div class="package-card">
@@ -902,8 +844,8 @@
                         </div>
                     </div>
 
-                    <!-- العروض المميزة - متابعين -->
-                    <h2 class="section-title">العروض المميزة/متابعين</h2>
+                    <!-- العروض المميزة -->
+                    <h2 class="section-title">العروض المميزة</h2>
                     
                     <div class="package-grid">
                         <div class="package-card">
@@ -957,8 +899,8 @@
                         </div>
                     </div>
 
-                    <!-- الباقات الخاصة - متابعين -->
-                    <h2 class="section-title">الباقات الخاصة/متابعين</h2>
+                    <!-- الباقات الخاصة -->
+                    <h2 class="section-title">الباقات الخاصة</h2>
                     
                     <div class="package-grid">
                         <div class="package-card">
@@ -971,286 +913,198 @@
                             </button>
                         </div>
                     </div>
-
-                    <!-- الباقات الخاصة - لايكات -->
-                    <h2 class="section-title">الباقات الخاصة/لايكات</h2>
-                    
-                    <div class="package-grid">
-                        <div class="package-card">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount">50</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
-                            <div class="package-price">5 جنيه</div>
-                            <button class="btn" onclick="selectPackage(50, 5, 'instagram', 'لايكات')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount">100</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
-                            <div class="package-price">10 جنيه</div>
-                            <button class="btn" onclick="selectPackage(100, 10, 'instagram', 'لايكات')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount">200</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
-                            <div class="package-price">20 جنيه</div>
-                            <button class="btn" onclick="selectPackage(200, 20, 'instagram', 'لايكات')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount">300</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
-                            <div class="package-price">30 جنيه</div>
-                            <button class="btn" onclick="selectPackage(300, 30, 'instagram', 'لايكات')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount">500</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
-                            <div class="package-price">50 جنيه</div>
-                            <button class="btn" onclick="selectPackage(500, 50, 'instagram', 'لايكات')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount">1000</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
-                            <div class="package-price">90 جنيه</div>
-                            <button class="btn" onclick="selectPackage(1000, 90, 'instagram', 'لايكات')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-                    </div>
                 </section>
             </div>
 
             <!-- قسم خدمات تيك توك -->
-            <!-- قسم خدمات تيك توك -->
-<div id="tiktokService" class="service-content" style="display: none;">
-    <section class="hero">
-        <h1 style="background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-            خدمات تيك توك الاحترافية
-        </h1>
-        <p>احصل على لايكات، مشاهدات، حفظ، وشير لأفضل الأسعار</p>
-        <a href="#tiktok-packages" class="btn tiktok">
-            <i class="fab fa-tiktok"></i> ابدأ الآن
-        </a>
-    </section>
-
-    <section class="features">
-        <div class="feature-card">
-            <i class="fas fa-shield-alt"></i>
-            <h3>ضمان الجودة</h3>
-            <p>خدماتنا مع ضمان استرجاع الأموال اذا لم تصل الخدمة</p>
-        </div>
-        <div class="feature-card">
-            <i class="fas fa-bolt"></i>
-            <h3>تسليم فوري</h3>
-            <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة</p>
-        </div>
-        <div class="feature-card">
-            <i class="fas fa-lock"></i>
-            <h3>آمن تماماً</h3>
-            <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
-        </div>
-    </section>
-
-    <!-- الباقات البسيطة - لايكات -->
-    <section class="packages-section" id="tiktok-packages">
-        <h2 class="section-title tiktok">الباقات البسيطة/لايكات</h2>
-        
-        <div class="package-grid">
-            <div class="package-card tiktok">
-                <div class="package-icon">❤️</div>
-                <div class="package-amount tiktok">60</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                <div class="package-price">5 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(60, 5, 'tiktok', 'لايكات')">
-                    <i class="fas fa-shopping-cart"></i> اختر الباقة
-                </button>
-            </div>
-            
-            <div class="package-card tiktok">
-                <div class="package-icon">❤️</div>
-                <div class="package-amount tiktok">120</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                <div class="package-price">10 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(120, 10, 'tiktok', 'لايكات')">
-                    <i class="fas fa-shopping-cart"></i> اختر الباقة
-                </button>
-            </div>
-            
-            <div class="package-card tiktok">
-                <div class="package-icon">❤️</div>
-                <div class="package-amount tiktok">240</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                <div class="package-price">20 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(240, 20, 'tiktok', 'لايكات')">
-                    <i class="fas fa-shopping-cart"></i> اختر الباقة
-                </button>
-            </div>
-            
-            <div class="package-card tiktok">
-                <div class="package-icon">❤️</div>
-                <div class="package-amount tiktok">300</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                <div class="package-price">25 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(300, 25, 'tiktok', 'لايكات')">
-                    <i class="fas fa-shopping-cart"></i> اختر الباقة
-                </button>
-            </div>
-
-            <div class="package-card tiktok">
-                <div class="package-icon">❤️</div>
-                <div class="package-amount tiktok">600</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                <div class="package-price">50 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(600, 50, 'tiktok', 'لايكات')">
-                    <i class="fas fa-shopping-cart"></i> اختر الباقة
-                </button>
-            </div>
-
-            <div class="package-card tiktok">
-                <div class="package-icon">❤️</div>
-                <div class="package-amount tiktok">1020</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                <div class="package-price">100 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(1020, 100, 'tiktok', 'لايكات')">
-                    <i class="fas fa-shopping-cart"></i> اختر الباقة
-                </button>
-            </div>
-        </div>
-
-        <!-- العروض المميزة - مشاهدات -->
-        <h2 class="section-title tiktok">العروض المميزة/مشاهدات</h2>
-        
-        <div class="package-grid">
-            <div class="package-card tiktok">
-                <div class="package-icon">👀</div>
-                <div class="package-amount tiktok">100</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                <div class="package-price">10 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(100, 10, 'tiktok', 'مشاهدات')">
-                    <i class="fas fa-crown"></i> اختر الباقة
-                </button>
-            </div>
-            
-            <div class="package-card tiktok">
-                <div class="package-icon">👀</div>
-                <div class="package-amount tiktok">200</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                <div class="package-price">20 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'مشاهدات')">
-                    <i class="fas fa-crown"></i> اختر الباقة
-                </button>
-            </div>
-            
-            <div class="package-card tiktok">
-                <div class="package-icon">👀</div>
-                <div class="package-amount tiktok">300</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                <div class="package-price">30 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(300, 30, 'tiktok', 'مشاهدات')">
-                    <i class="fas fa-crown"></i> اختر الباقة
-                </button>
-            </div>
-            
-            <div class="package-card tiktok">
-                <div class="package-icon">👀</div>
-                <div class="package-amount tiktok">500</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                <div class="package-price">50 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(500, 50, 'tiktok', 'مشاهدات')">
-                    <i class="fas fa-crown"></i> اختر الباقة
-                </button>
-            </div>
-            
-            <div class="package-card tiktok">
-                <div class="package-icon">👀</div>
-                <div class="package-amount tiktok">700</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                <div class="package-price">70 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(700, 70, 'tiktok', 'مشاهدات')">
-                    <i class="fas fa-crown"></i> اختر الباقة
-                </button>
-            </div>
-            
-            <div class="package-card tiktok">
-                <div class="package-icon">👀</div>
-                <div class="package-amount tiktok">1000</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                <div class="package-price">100 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(1000, 100, 'tiktok', 'مشاهدات')">
-                    <i class="fas fa-crown"></i> اختر الباقة
-                </button>
-            </div>
-        </div>
-
-        <!-- الباقات الخاصة - حفظ وشير -->
-        <h2 class="section-title tiktok">الباقات الخاصة/حفظ وشير</h2>
-        
-        <div class="package-grid">
-            <div class="package-card tiktok">
-                <div class="package-icon">💾</div>
-                <div class="package-amount tiktok">290</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">حفظ تيك توك</div>
-                <div class="package-price">15 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(290, 15, 'tiktok', 'حفظ')">
-                    <i class="fas fa-gem"></i> اختر الباقة
-                </button>
-            </div>
-
-            <div class="package-card tiktok">
-                <div class="package-icon">↗️</div>
-                <div class="package-amount tiktok">200</div>
-                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">شير تيك توك</div>
-                <div class="package-price">20 جنيه</div>
-                <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'شير')">
-                    <i class="fas fa-gem"></i> اختر الباقة
-                </button>
-            </div>
-        </div>
-    </section>
-</div>
-            </div>
-
-            <!-- قسم عروض كل فترة -->
-            <div id="offersService" class="service-content" style="display: none;">
+            <div id="tiktokService" class="service-content" style="display: none;">
                 <section class="hero">
-                    <h1 style="background: linear-gradient(135deg, var(--offers-color) 0%, #E91E63 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        عروض حصرية كل فترة 🎁
+                    <h1 style="background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        خدمات تيك توك الاحترافية
                     </h1>
-                    <p>استفد من العروض المميزة لفترة محدودة فقط!</p>
-                    <a href="#offers-packages" class="btn offers">
-                        <i class="fas fa-bolt"></i> استفد من العروض
+                    <p>احصل على لايكات، مشاهدات، حفظ، وشير لأفضل الأسعار</p>
+                    <a href="#tiktok-packages" class="btn tiktok">
+                        <i class="fab fa-tiktok"></i> ابدأ الآن
                     </a>
                 </section>
 
-                <section class="packages-section" id="offers-packages">
-                    <h2 class="section-title offers">عروض كل فترة</h2>
+                <section class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>ضمان الجودة</h3>
+                        <p>خدماتنا مع ضمان استرجاع الأموال اذا لم تصل الخدمة</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>تسليم فوري</h3>
+                        <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>آمن تماماً</h3>
+                        <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
+                    </div>
+                </section>
+
+                <!-- الباقات البسيطة - لايكات -->
+                <section class="packages-section" id="tiktok-packages">
+                    <h2 class="section-title tiktok">الباقات البسيطة - لايكات</h2>
                     
-                    <div id="offersContainer" class="package-grid">
-                        <!-- العروض تظهر هنا تلقائياً -->
+                    <div class="package-grid">
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">60</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">5 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(60, 5, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">120</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">10 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(120, 10, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">240</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">20 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(240, 20, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">300</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">25 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(300, 25, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">600</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">50 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(600, 50, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">1020</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">100 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(1020, 100, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- العروض المميزة - مشاهدات -->
+                    <h2 class="section-title tiktok">العروض المميزة - مشاهدات</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">100</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">10 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(100, 10, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">200</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">20 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">300</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">30 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(300, 30, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">500</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">50 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(500, 50, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">700</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">70 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(700, 70, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">1000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">100 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(1000, 100, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- الباقات الخاصة - علام الحفظ والشير -->
+                    <h2 class="section-title tiktok">الباقات الخاصة - حفظ وشير</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card tiktok">
+                            <div class="package-icon">💾</div>
+                            <div class="package-amount tiktok">290</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">حفظ تيك توك</div>
+                            <div class="package-price">15 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(290, 15, 'tiktok', 'حفظ')">
+                                <i class="fas fa-gem"></i> اختر الباقة
+                            </button>
+                        </div>
+
+                        <div class="package-card tiktok">
+                            <div class="package-icon">↗️</div>
+                            <div class="package-amount tiktok">200</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">شير تيك توك</div>
+                            <div class="package-price">20 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'شير')">
+                                <i class="fas fa-gem"></i> اختر الباقة
+                            </button>
+                        </div>
                     </div>
                 </section>
             </div>
 
-            <!-- قسم التواصل -->
+            <!-- قسم التواصل الجديد -->
             <section class="contact-section">
                 <div class="contact-bar">
                     <a href="https://wa.me/+201122223344" class="contact-item" target="_blank">
@@ -1376,11 +1230,6 @@
                     <input type="text" id="username" class="form-control" placeholder="اسم المستخدم بدون @">
                 </div>
 
-                <div class="form-group" id="postLinkGroup" style="display: none;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="postLinkLabel">رابط البوست في إنستجرام</label>
-                    <input type="url" id="postLink" class="form-control" placeholder="https://www.instagram.com/p/xxxxxxxxxx/">
-                </div>
-
                 <div class="form-group" id="videoLinkGroup" style="display: none;">
                     <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="videoLinkLabel">رابط الفيديو في تيك توك</label>
                     <input type="url" id="videoLink" class="form-control" placeholder="https://www.tiktok.com/@username/video/123456789">
@@ -1422,139 +1271,49 @@
 
         let selectedPackage = { amount: 100, price: 25, service: 'instagram', type: 'متابعين' };
 
-        // دالة التحقق من العروض المؤقتة
-        async function checkOffersAvailability() {
-            try {
-                const offersDoc = await db.collection('settings').doc('offers').get();
-                const offersContainer = document.getElementById('offersContainer');
-                
-                if (offersDoc.exists) {
-                    const offersData = offersDoc.data();
-                    const now = new Date();
-                    const startTime = offersData.startTime?.toDate();
-                    const endTime = offersData.endTime?.toDate();
-                    const isActive = offersData.isActive;
-                    
-                    // التحقق إذا كان العرض نشط وفي الوقت المحدد
-                    if (isActive && startTime && endTime && now >= startTime && now <= endTime) {
-                        // عرض العروض النشطة
-                        offersContainer.innerHTML = `
-                            <div class="package-card offers">
-                                <div class="offer-badge">عرض محدود</div>
-                                <div class="package-icon">🔥</div>
-                                <div class="package-amount offers">50</div>
-                                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                                <div class="package-price">5 جنيه</div>
-                                <button class="btn offers" onclick="selectPackage(50, 5, 'offers', 'متابعين')">
-                                    <i class="fas fa-gem"></i> اختر الباقة
-                                </button>
-                            </div>
-
-                            <div class="package-card offers">
-                                <div class="offer-badge">عرض مميز</div>
-                                <div class="package-icon">🎯</div>
-                                <div class="package-amount offers">150+50</div>
-                                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                                <div class="package-price">15 جنيه</div>
-                                <button class="btn offers" onclick="selectPackage(200, 15, 'offers', 'متابعين')">
-                                    <i class="fas fa-gem"></i> اختر الباقة
-                                </button>
-                            </div>
-
-                            <div class="package-card offers">
-                                <div class="offer-badge">عرض خاص</div>
-                                <div class="package-icon">⭐</div>
-                                <div class="package-amount offers">300</div>
-                                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                                <div class="package-price">30 جنيه</div>
-                                <button class="btn offers" onclick="selectPackage(300, 30, 'offers', 'متابعين')">
-                                    <i class="fas fa-gem"></i> اختر الباقة
-                                </button>
-                            </div>
-
-                            <div class="package-card offers">
-                                <div class="offer-badge">عرض قوي</div>
-                                <div class="package-icon">💎</div>
-                                <div class="package-amount offers">500+50</div>
-                                <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                                <div class="package-price">55 جنيه</div>
-                                <button class="btn offers" onclick="selectPackage(550, 55, 'offers', 'متابعين')">
-                                    <i class="fas fa-gem"></i> اختر الباقة
-                                </button>
-                            </div>
-                        `;
-                        return true;
-                    } else {
-                        // عرض رسالة أن العروض غير متاحة
-                        offersContainer.innerHTML = `
-                            <div style="text-align: center; padding: 50px; grid-column: 1 / -1;">
-                                <i class="fas fa-clock" style="font-size: 4rem; color: var(--offers-color); margin-bottom: 20px;"></i>
-                                <h3>لا توجد عروض متاحة حالياً</h3>
-                                <p style="opacity: 0.7;">تابعنا لمعرفة العروض القادمة</p>
-                            </div>
-                        `;
-                        return false;
-                    }
-                } else {
-                    // لا توجد إعدادات للعروض
-                    offersContainer.innerHTML = `
-                        <div style="text-align: center; padding: 50px; grid-column: 1 / -1;">
-                            <i class="fas fa-bolt" style="font-size: 4rem; color: var(--offers-color); margin-bottom: 20px;"></i>
-                            <h3>عروض قريباً إن شاء الله</h3>
-                            <p style="opacity: 0.7;">سيتم الإعلان عن العروض قريباً</p>
-                        </div>
-                    `;
-                    return false;
-                }
-            } catch (error) {
-                console.error('Error checking offers:', error);
-                document.getElementById('offersContainer').innerHTML = `
-                    <div style="text-align: center; padding: 50px; grid-column: 1 / -1;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--danger); margin-bottom: 20px;"></i>
-                        <h3>حدث خطأ في تحميل العروض</h3>
-                        <p style="opacity: 0.7;">يرجى المحاولة مرة أخرى</p>
-                    </div>
-                `;
-                return false;
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // إغلاق القائمة في الشاشات الصغيرة
+            document.querySelectorAll('nav ul').forEach(menu => {
+                menu.classList.remove('show');
+            });
+            
+            if (pageId === 'ordersPage') {
+                loadOrders();
             }
         }
 
-        // تحديث حالة العروض كل دقيقة
-        setInterval(checkOffersAvailability, 60000);
+        function toggleMenu() {
+            const currentPage = document.querySelector('.page.active').id;
+            const navMenu = document.getElementById(`navMenu${currentPage !== 'homePage' ? currentPage.replace('Page', '') : ''}`);
+            navMenu.classList.toggle('show');
+        }
 
-        // دالة عرض الخدمات
         function showService(service) {
             // تحديث أزرار التبويب
             document.querySelectorAll('.service-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // إخفاء جميع الأقسام
-            document.getElementById('instagramService').style.display = 'none';
-            document.getElementById('tiktokService').style.display = 'none';
-            document.getElementById('offersService').style.display = 'none';
-            
-            // إظهار القسم المطلوب
             if (service === 'instagram') {
                 document.querySelector('.service-tab:first-child').classList.add('active');
                 document.getElementById('instagramService').style.display = 'block';
-            } else if (service === 'tiktok') {
-                document.querySelector('.service-tab:nth-child(2)').classList.add('active');
+                document.getElementById('tiktokService').style.display = 'none';
+            } else {
+                document.querySelector('.service-tab:last-child').classList.add('active');
+                document.getElementById('instagramService').style.display = 'none';
                 document.getElementById('tiktokService').style.display = 'block';
-            } else if (service === 'offers') {
-                document.querySelector('.service-tab:nth-child(3)').classList.add('active');
-                document.getElementById('offersService').style.display = 'block';
-                // تحميل العروض عند فتح القسم
-                checkOffersAvailability();
             }
         }
 
-        // دالة اختيار الباقة
         function selectPackage(amount, price, service, type) {
             selectedPackage = { amount, price, service, type };
             
-            let serviceText = service === 'instagram' ? 'إنستجرام' : 
-                            service === 'tiktok' ? 'تيك توك' : 'عروض';
+            let serviceText = service === 'instagram' ? 'إنستجرام' : 'تيك توك';
             let typeText = type === 'متابعين' ? 'متابع' : 
                           type === 'لايكات' ? 'لايك' :
                           type === 'مشاهدات' ? 'مشاهدة' : 
@@ -1566,59 +1325,35 @@
             
             // تحديث الحقول حسب نوع الخدمة
             const usernameGroup = document.getElementById('usernameGroup');
-            const postLinkGroup = document.getElementById('postLinkGroup');
             const videoLinkGroup = document.getElementById('videoLinkGroup');
             
-            // إخفاء جميع الحقول أولاً
-            usernameGroup.style.display = 'none';
-            postLinkGroup.style.display = 'none';
-            videoLinkGroup.style.display = 'none';
-            
             if (service === 'instagram') {
-                if (type === 'متابعين') {
-                    usernameGroup.style.display = 'block';
-                    document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
-                    document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
-                } else if (type === 'لايكات') {
-                    postLinkGroup.style.display = 'block';
-                    document.getElementById('postLinkLabel').textContent = 'رابط البوست في إنستجرام';
-                    document.getElementById('postLink').placeholder = 'https://www.instagram.com/p/xxxxxxxxxx/';
-                }
-            } else if (service === 'tiktok') {
+                usernameGroup.style.display = 'block';
+                videoLinkGroup.style.display = 'none';
+                document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
+                document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
+            } else {
+                usernameGroup.style.display = 'none';
                 videoLinkGroup.style.display = 'block';
                 document.getElementById('videoLinkLabel').textContent = 'رابط الفيديو في تيك توك';
                 document.getElementById('videoLink').placeholder = 'https://www.tiktok.com/@username/video/123456789';
-            } else if (service === 'offers') {
-                usernameGroup.style.display = 'block';
-                document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
-                document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
             }
             
             showPage('paymentPage');
         }
 
-        // دالة إرسال الطلب
         async function submitOrder() {
             let userInput;
             const phone = document.getElementById('phone').value;
             const receipt = document.getElementById('receipt').files[0];
             
-            // تحديد الحقل المناسب حسب نوع الخدمة
             if (selectedPackage.service === 'instagram') {
-                if (selectedPackage.type === 'متابعين' || selectedPackage.service === 'offers') {
-                    userInput = document.getElementById('username').value;
-                    if (!userInput) {
-                        alert('يرجى إدخال اسم المستخدم في إنستجرام');
-                        return;
-                    }
-                } else if (selectedPackage.type === 'لايكات') {
-                    userInput = document.getElementById('postLink').value;
-                    if (!userInput) {
-                        alert('يرجى إدخال رابط البوست في إنستجرام');
-                        return;
-                    }
+                userInput = document.getElementById('username').value;
+                if (!userInput) {
+                    alert('يرجى إدخال اسم المستخدم في إنستجرام');
+                    return;
                 }
-            } else if (selectedPackage.service === 'tiktok') {
+            } else {
                 userInput = document.getElementById('videoLink').value;
                 if (!userInput) {
                     alert('يرجى إدخال رابط الفيديو في تيك توك');
@@ -1651,33 +1386,13 @@
             }
         }
 
-        // دالة إعادة تعيين نموذج الدفع
         function resetPaymentForm() {
             document.getElementById('username').value = '';
-            document.getElementById('postLink').value = '';
             document.getElementById('videoLink').value = '';
             document.getElementById('phone').value = '';
             document.getElementById('receipt').value = '';
         }
 
-        // دالة عرض الصفحة
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            
-            // إغلاق القائمة في الشاشات الصغيرة
-            document.querySelectorAll('nav ul').forEach(menu => {
-                menu.classList.remove('show');
-            });
-            
-            if (pageId === 'ordersPage') {
-                loadOrders();
-            }
-        }
-
-        // دالة تحميل الطلبات
         async function loadOrders() {
             const ordersList = document.getElementById('ordersList');
             
@@ -1701,8 +1416,7 @@
                 snapshot.forEach(doc => {
                     const order = doc.data();
                     const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
-                    const serviceText = order.package.service === 'instagram' ? 'إنستجرام' : 
-                                      order.package.service === 'tiktok' ? 'تيك توك' : 'عروض';
+                    const serviceText = order.package.service === 'instagram' ? 'إنستجرام' : 'تيك توك';
                     const typeText = order.package.type === 'متابعين' ? 'متابع' : 
                                    order.package.type === 'لايكات' ? 'لايك' :
                                    order.package.type === 'مشاهدات' ? 'مشاهدة' : 
@@ -1718,9 +1432,7 @@
                                 </div>
                                 <span class="${statusClass}">${order.status}</span>
                             </div>
-                            <p><strong>${order.package.service === 'instagram' && order.package.type === 'لايكات' ? 'رابط البوست:' : 
-                                      order.package.service === 'instagram' ? 'اسم المستخدم:' : 
-                                      order.package.service === 'tiktok' ? 'رابط الفيديو:' : 'اسم المستخدم:'}</strong> ${order.userInput}</p>
+                            <p><strong>${order.package.service === 'instagram' ? 'اسم المستخدم:' : 'رابط الفيديو:'}</strong> ${order.userInput}</p>
                             <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
                             <p><strong>تاريخ الطلب:</strong> ${order.date}</p>
                         </div>
@@ -1733,32 +1445,28 @@
             }
         }
 
-        // دالة تبديل القائمة في الشاشات الصغيرة
-        function toggleMenu() {
-            const currentPage = document.querySelector('.page.active').id;
-            const navMenu = document.getElementById(`navMenu${currentPage !== 'homePage' ? currentPage.replace('Page', '') : ''}`);
-            if (navMenu) {
-                navMenu.classList.toggle('show');
-            }
-        }
-
-        // تحميل تلقائي عند فتح الصفحة
+        // Auto-load orders when page loads
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Roma&knzy stor Started Successfully!');
-            // التحقق من العروض عند التحميل
-            checkOffersAvailability();
         });
 
         // التحقق من تسجيل الدخول
-        if (!localStorage.getItem("loggedIn")) {
-            window.location.href = "login.html";
-        }
+if (!localStorage.getItem("loggedIn")) {
+  window.location.href = "login.html";
+}
+        // الانتقال إلى صفحة الملف الشخصي
+function openProfile() {
+  window.location.href = "profile.html";
+}
 
-        // تسجيل الخروج
-        function logout() {
-            localStorage.removeItem("loggedIn");
-            window.location.href = "login.html";
-        }
+        
+    // 🚪 تسجيل الخروج
+function logout() {
+  // إزالة حالة الدخول من localStorage
+  localStorage.removeItem("loggedIn");
+  // توجيه المستخدم إلى صفحة تسجيل الدخول
+  window.location.href = "login.html";
+}    
     </script>
 </body>
 </html>
