@@ -48,6 +48,7 @@
             --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
             --tiktok-pink: #FE2C55;
             --tiktok-blue: #25F4EE;
+            --virtual-number: #9C27B0;
         }
 
         body {
@@ -178,6 +179,11 @@
             box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
         }
 
+        .service-tab.virtual.active {
+            background: linear-gradient(135deg, var(--virtual-number) 0%, #E1BEE7 100%);
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+        }
+
         .hero {
             text-align: center;
             padding: 100px 0;
@@ -235,6 +241,11 @@
             box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
         }
 
+        .btn.virtual {
+            background: linear-gradient(135deg, var(--virtual-number) 0%, #E1BEE7 100%);
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+        }
+
         .btn::before {
             content: '';
             position: absolute;
@@ -257,6 +268,10 @@
 
         .btn.tiktok:hover {
             box-shadow: 0 10px 25px rgba(254, 44, 85, 0.6);
+        }
+
+        .btn.virtual:hover {
+            box-shadow: 0 10px 25px rgba(156, 39, 176, 0.6);
         }
 
         .features {
@@ -325,6 +340,12 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .section-title.virtual {
+            background: linear-gradient(135deg, var(--virtual-number) 0%, #E1BEE7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -339,6 +360,10 @@
 
         .section-title.tiktok::after {
             background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
+        }
+
+        .section-title.virtual::after {
+            background: linear-gradient(135deg, var(--virtual-number) 0%, #E1BEE7 100%);
         }
 
         .package-grid {
@@ -374,6 +399,10 @@
             background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
         }
 
+        .package-card.virtual::before {
+            background: linear-gradient(135deg, var(--virtual-number) 0%, #E1BEE7 100%);
+        }
+
         .package-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -390,6 +419,12 @@
 
         .package-amount.tiktok {
             background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .package-amount.virtual {
+            background: linear-gradient(135deg, var(--virtual-number) 0%, #E1BEE7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -729,6 +764,27 @@
                 margin: 10px 0;
             }
         }
+
+        /* خصم */
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--success);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            opacity: 0.6;
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -757,6 +813,9 @@
                 </div>
                 <div class="service-tab tiktok" onclick="showService('tiktok')">
                     <i class="fab fa-tiktok"></i> خدمات تيك توك
+                </div>
+                <div class="service-tab virtual" onclick="showService('virtual')">
+                    <i class="fas fa-phone"></i> أرقام افتراضية
                 </div>
             </div>
 
@@ -788,128 +847,214 @@
                     </div>
                 </section>
 
-                <!-- الباقات البسيطة -->
+                <!-- الباقات البسيطة - متابعين -->
                 <section class="packages-section" id="packages">
-                    <h2 class="section-title">الباقات البسيطة</h2>
+                    <h2 class="section-title">الباقات البسيطة - متابعين</h2>
                     
                     <div class="package-grid">
                         <div class="package-card">
+                            <div class="discount-badge">خصم 5 جنيه</div>
                             <div class="package-icon">👥</div>
                             <div class="package-amount">50</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">15 جنيه</div>
+                            <div class="package-price">
+                                <span class="old-price">20 جنيه</span>
+                                15 جنيه
+                            </div>
                             <button class="btn" onclick="selectPackage(50, 15, 'instagram', 'متابعين')">
                                 <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                         
                         <div class="package-card">
+                            <div class="discount-badge">خصم 5 جنيه</div>
                             <div class="package-icon">👥</div>
                             <div class="package-amount">100</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">25 جنيه</div>
+                            <div class="package-price">
+                                <span class="old-price">30 جنيه</span>
+                                25 جنيه
+                            </div>
                             <button class="btn" onclick="selectPackage(100, 25, 'instagram', 'متابعين')">
                                 <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                         
                         <div class="package-card">
+                            <div class="discount-badge">خصم 5 جنيه</div>
                             <div class="package-icon">👥</div>
                             <div class="package-amount">150</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">30 جنيه</div>
+                            <div class="package-price">
+                                <span class="old-price">35 جنيه</span>
+                                30 جنيه
+                            </div>
                             <button class="btn" onclick="selectPackage(150, 30, 'instagram', 'متابعين')">
                                 <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                         
                         <div class="package-card">
+                            <div class="discount-badge">خصم 5 جنيه</div>
                             <div class="package-icon">👥</div>
                             <div class="package-amount">200</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">40 جنيه</div>
+                            <div class="package-price">
+                                <span class="old-price">45 جنيه</span>
+                                40 جنيه
+                            </div>
                             <button class="btn" onclick="selectPackage(200, 40, 'instagram', 'متابعين')">
                                 <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                         
                         <div class="package-card">
+                            <div class="discount-badge">خصم 5 جنيه</div>
                             <div class="package-icon">👥</div>
                             <div class="package-amount">300</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">60 جنيه</div>
+                            <div class="package-price">
+                                <span class="old-price">65 جنيه</span>
+                                60 جنيه
+                            </div>
                             <button class="btn" onclick="selectPackage(300, 60, 'instagram', 'متابعين')">
                                 <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                     </div>
 
-                    <!-- العروض المميزة -->
-                    <h2 class="section-title">العروض المميزة</h2>
+                    <!-- العروض المميزة - متابعين -->
+                    <h2 class="section-title">العروض المميزة - متابعين</h2>
                     
                     <div class="package-grid">
                         <div class="package-card">
+                            <div class="discount-badge">خصم 5 جنيه</div>
                             <div class="package-icon">👥</div>
                             <div class="package-amount">400</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">75 جنيه</div>
+                            <div class="package-price">
+                                <span class="old-price">80 جنيه</span>
+                                75 جنيه
+                            </div>
                             <button class="btn" onclick="selectPackage(400, 75, 'instagram', 'متابعين')">
                                 <i class="fas fa-crown"></i> اختر الباقة
                             </button>
                         </div>
                         
                         <div class="package-card">
+                            <div class="discount-badge">خصم 5 جنيه</div>
                             <div class="package-icon">👥</div>
                             <div class="package-amount">500</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">90 جنيه</div>
+                            <div class="package-price">
+                                <span class="old-price">95 جنيه</span>
+                                90 جنيه
+                            </div>
                             <button class="btn" onclick="selectPackage(500, 90, 'instagram', 'متابعين')">
                                 <i class="fas fa-crown"></i> اختر الباقة
                             </button>
                         </div>
                         
                         <div class="package-card">
+                            <div class="discount-badge">خصم 5 جنيه</div>
                             <div class="package-icon">👥</div>
-                            <div class="package-amount">600</div>
+                            <div class="package-amount">700</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">110 جنيه</div>
-                            <button class="btn" onclick="selectPackage(600, 110, 'instagram', 'متابعين')">
+                            <div class="package-price">
+                                <span class="old-price">130 جنيه</span>
+                                125 جنيه
+                            </div>
+                            <button class="btn" onclick="selectPackage(700, 125, 'instagram', 'متابعين')">
                                 <i class="fas fa-crown"></i> اختر الباقة
                             </button>
                         </div>
                         
                         <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">800</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">130 جنيه</div>
-                            <button class="btn" onclick="selectPackage(800, 130, 'instagram', 'متابعين')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card">
+                            <div class="discount-badge">خصم 5 جنيه</div>
                             <div class="package-icon">👥</div>
                             <div class="package-amount">1000</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">150 جنيه</div>
-                            <button class="btn" onclick="selectPackage(1000, 150, 'instagram', 'متابعين')">
+                            <div class="package-price">
+                                <span class="old-price">180 جنيه</span>
+                                175 جنيه
+                            </div>
+                            <button class="btn" onclick="selectPackage(1000, 175, 'instagram', 'متابعين')">
                                 <i class="fas fa-crown"></i> اختر الباقة
                             </button>
                         </div>
                     </div>
 
-                    <!-- الباقات الخاصة -->
-                    <h2 class="section-title">الباقات الخاصة</h2>
+                    <!-- قسم لايكات إنستجرام الجديد -->
+                    <h2 class="section-title">لايكات إنستجرام</h2>
                     
                     <div class="package-grid">
                         <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">5000</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">750 جنيه</div>
-                            <button class="btn" onclick="selectPackage(5000, 750, 'instagram', 'متابعين')">
-                                <i class="fas fa-gem"></i> اختر الباقة
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount">50</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">5 جنيه</div>
+                            <button class="btn" onclick="selectPackage(50, 5, 'instagram', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount">100</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">10 جنيه</div>
+                            <button class="btn" onclick="selectPackage(100, 10, 'instagram', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount">200</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">20 جنيه</div>
+                            <button class="btn" onclick="selectPackage(200, 20, 'instagram', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount">300</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">30 جنيه</div>
+                            <button class="btn" onclick="selectPackage(300, 30, 'instagram', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount">500</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">45 جنيه</div>
+                            <button class="btn" onclick="selectPackage(500, 45, 'instagram', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount">700</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">65 جنيه</div>
+                            <button class="btn" onclick="selectPackage(700, 65, 'instagram', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card">
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount">1000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك إنستجرام</div>
+                            <div class="package-price">90 جنيه</div>
+                            <button class="btn" onclick="selectPackage(1000, 90, 'instagram', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                     </div>
@@ -919,554 +1064,524 @@
             <!-- قسم خدمات تيك توك -->
             <div id="tiktokService" class="service-content" style="display: none;">
                 <section class="hero">
-                    <h1 style="background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        خدمات تيك توك الاحترافية
-                    </h1>
-                    <p>احصل على لايكات، مشاهدات، حفظ، وشير لأفضل الأسعار</p>
+                    <h1>خدمات تيك توك الاحترافية</h1>
+                    <p>احصل على لايكات، مشاهدات، حفظ، ومشاركات لتيك توك بأفضل الأسعار</p>
                     <a href="#tiktok-packages" class="btn tiktok">
-                        <i class="fab fa-tiktok"></i> ابدأ الآن
+                        <i class="fas fa-shopping-cart"></i> ابدأ الآن
                     </a>
                 </section>
 
-                <section class="features">
-                    <div class="feature-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>ضمان الجودة</h3>
-                        <p>خدماتنا مع ضمان استرجاع الأموال اذا لم تصل الخدمة</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-bolt"></i>
-                        <h3>تسليم فوري</h3>
-                        <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-lock"></i>
-                        <h3>آمن تماماً</h3>
-                        <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
-                    </div>
-                </section>
-
-                <!-- الباقات البسيطة - لايكات -->
                 <section class="packages-section" id="tiktok-packages">
-                    <h2 class="section-title tiktok">الباقات البسيطة - لايكات</h2>
+                    <h2 class="section-title tiktok">لايكات تيك توك</h2>
                     
                     <div class="package-grid">
                         <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">60</div>
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount tiktok">100</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
                             <div class="package-price">5 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(60, 5, 'tiktok', 'لايكات')">
+                            <button class="btn tiktok" onclick="selectPackage(100, 5, 'tiktok', 'لايكات')">
                                 <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                         
                         <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">120</div>
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount tiktok">500</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">10 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(120, 10, 'tiktok', 'لايكات')">
+                            <div class="package-price">15 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(500, 15, 'tiktok', 'لايكات')">
                                 <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                         
                         <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">240</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">20 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(240, 20, 'tiktok', 'لايكات')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">300</div>
+                            <div class="package-icon">👍</div>
+                            <div class="package-amount tiktok">1000</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
                             <div class="package-price">25 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(300, 25, 'tiktok', 'لايكات')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">600</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">50 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(600, 50, 'tiktok', 'لايكات')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">1020</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">100 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(1020, 100, 'tiktok', 'لايكات')">
+                            <button class="btn tiktok" onclick="selectPackage(1000, 25, 'tiktok', 'لايكات')">
                                 <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                     </div>
 
-                    <!-- العروض المميزة - مشاهدات -->
-                    <h2 class="section-title tiktok">العروض المميزة - مشاهدات</h2>
+                    <h2 class="section-title tiktok">مشاهدات تيك توك</h2>
                     
                     <div class="package-grid">
                         <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">100</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">10 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(100, 10, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">200</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">20 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">300</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">30 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(300, 30, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">500</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">50 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(500, 50, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">700</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">70 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(700, 70, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
+                            <div class="package-icon">👁️</div>
                             <div class="package-amount tiktok">1000</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">100 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(1000, 100, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
+                            <div class="package-price">10 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(1000, 10, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👁️</div>
+                            <div class="package-amount tiktok">5000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">30 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(5000, 30, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👁️</div>
+                            <div class="package-amount tiktok">10000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">50 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(10000, 50, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                     </div>
 
-                    <!-- الباقات الخاصة - علام الحفظ والشير -->
-                    <h2 class="section-title tiktok">الباقات الخاصة - حفظ وشير</h2>
+                    <h2 class="section-title tiktok">حفظ تيك توك</h2>
                     
                     <div class="package-grid">
                         <div class="package-card tiktok">
                             <div class="package-icon">💾</div>
-                            <div class="package-amount tiktok">290</div>
+                            <div class="package-amount tiktok">100</div>
                             <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">حفظ تيك توك</div>
-                            <div class="package-price">15 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(290, 15, 'tiktok', 'حفظ')">
-                                <i class="fas fa-gem"></i> اختر الباقة
+                            <div class="package-price">10 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(100, 10, 'tiktok', 'حفظ')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
-
+                        
                         <div class="package-card tiktok">
-                            <div class="package-icon">↗️</div>
-                            <div class="package-amount tiktok">200</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">شير تيك توك</div>
-                            <div class="package-price">20 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'شير')">
-                                <i class="fas fa-gem"></i> اختر الباقة
+                            <div class="package-icon">💾</div>
+                            <div class="package-amount tiktok">500</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">حفظ تيك توك</div>
+                            <div class="package-price">35 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(500, 35, 'tiktok', 'حفظ')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">💾</div>
+                            <div class="package-amount tiktok">1000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">حفظ تيك توك</div>
+                            <div class="package-price">60 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(1000, 60, 'tiktok', 'حفظ')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
+
+                    <h2 class="section-title tiktok">مشاركات تيك توك</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card tiktok">
+                            <div class="package-icon">🔄</div>
+                            <div class="package-amount tiktok">100</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاركة تيك توك</div>
+                            <div class="package-price">15 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(100, 15, 'tiktok', 'مشاركات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">🔄</div>
+                            <div class="package-amount tiktok">500</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاركة تيك توك</div>
+                            <div class="package-price">50 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(500, 50, 'tiktok', 'مشاركات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">🔄</div>
+                            <div class="package-amount tiktok">1000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاركة تيك توك</div>
+                            <div class="package-price">90 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(1000, 90, 'tiktok', 'مشاركات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
                             </button>
                         </div>
                     </div>
                 </section>
             </div>
 
-            <!-- قسم التواصل الجديد -->
+            <!-- قسم الأرقام الافتراضية -->
+            <div id="virtualService" class="service-content" style="display: none;">
+                <section class="hero">
+                    <h1>أرقام واتساب افتراضية أمريكية</h1>
+                    <p>احصل على رقم واتساب أمريكي افتراضي للتواصل بأمان</p>
+                    <a href="#virtual-packages" class="btn virtual">
+                        <i class="fas fa-shopping-cart"></i> ابدأ الآن
+                    </a>
+                </section>
+
+                <section class="packages-section" id="virtual-packages">
+                    <h2 class="section-title virtual">الأرقام المتاحة</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card virtual">
+                            <div class="package-icon">📱</div>
+                            <div class="package-amount virtual">***+18198019</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">رقم واتساب أمريكي</div>
+                            <div class="package-price">50 جنيه</div>
+                            <button class="btn virtual" onclick="selectVirtualNumber('***+18198019', 50)">
+                                <i class="fas fa-shopping-cart"></i> اختر الرقم
+                            </button>
+                        </div>
+                        
+                        <div class="package-card virtual">
+                            <div class="package-icon">📱</div>
+                            <div class="package-amount virtual">***+15165770</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">رقم واتساب أمريكي</div>
+                            <div class="package-price">50 جنيه</div>
+                            <button class="btn virtual" onclick="selectVirtualNumber('***+15165770', 50)">
+                                <i class="fas fa-shopping-cart"></i> اختر الرقم
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; margin: 50px 0; text-align: center;">
+                    <h2 style="margin-bottom: 20px; font-size: 1.8rem;">معلومات الأرقام الافتراضية</h2>
+                    <p style="margin-bottom: 15px; font-size: 1.1rem;">هذه أرقام افتراضية تعمل للواتساب</p>
+                    <p style="margin-bottom: 15px; font-size: 1.1rem;">صفحة الدفع للرقم ستكون المعلومات هي: أضف رقم تواصل عشان تستلم الرقم وصورة التحويل</p>
+                    <p style="margin-bottom: 15px; font-size: 1.1rem;">الأرقام محمية بإخفاء الأربعة أرقام الأخيرة لحماية الرقم من السرقة</p>
+                </section>
+            </div>
+
+            <!-- قسم التواصل -->
             <section class="contact-section">
                 <div class="contact-bar">
-                    <a href="https://wa.me/+201122223344" class="contact-item" target="_blank">
+                    <a href="https://wa.me/201021234567" class="contact-item" target="_blank">
                         <div class="contact-icon">
                             <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="contact-info">
-                            <div class="contact-title">واتساب للطلبات</div>
-                            <div class="contact-desc">01122223344</div>
+                            <div class="contact-title">واتساب</div>
+                            <div class="contact-desc">+20 102 123 4567</div>
                         </div>
                     </a>
                     
-                    <a href="https://wa.me/+201141346727" class="contact-item" target="_blank">
+                    <a href="https://t.me/roma_knzy" class="contact-item" target="_blank">
                         <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
+                            <i class="fab fa-telegram"></i>
                         </div>
                         <div class="contact-info">
-                            <div class="contact-title">واتساب للدعم</div>
-                            <div class="contact-desc">01141346727</div>
+                            <div class="contact-title">تيليجرام</div>
+                            <div class="contact-desc">@roma_knzy</div>
                         </div>
                     </a>
                     
-                    <a href="https://www.instagram.com/xx.mariam_roma.x?igsh=Ymxxa2gzaDR3dTl4" class="contact-item" target="_blank">
+                    <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fab fa-instagram"></i>
+                            <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-info">
-                            <div class="contact-title">إنستجرام روما</div>
-                            <div class="contact-desc">@xx.mariam_roma.x</div>
+                            <div class="contact-title">البريد الإلكتروني</div>
+                            <div class="contact-desc">info@roma-knzy.com</div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- وسائل التواصل الاجتماعي -->
+            <section class="social-section">
+                <h2 class="section-title">تابعنا على وسائل التواصل</h2>
+                <div class="social-cards">
+                    <a href="#" class="social-card">
+                        <i class="fab fa-facebook"></i>
+                        <h3>فيسبوك</h3>
+                        <p>تابعنا على فيسبوك</p>
                     </a>
                     
-                    <a href="https://www.instagram.com/x._.kenzyy_mohamedx?igsh=NzFyaTN4YXVmNmth" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">إنستجرام كنزي</div>
-                            <div class="contact-desc">@x._.kenzyy_mohamedx</div>
-                        </div>
+                    <a href="#" class="social-card">
+                        <i class="fab fa-instagram"></i>
+                        <h3>إنستجرام</h3>
+                        <p>تابعنا على إنستجرام</p>
                     </a>
                     
-                    <a href="https://whatsapp.com/channel/0029VbB2NsIEawdoGrI0m83J" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">قناة الواتساب</div>
-                            <div class="contact-desc">Roma&kenzy</div>
-                        </div>
+                    <a href="#" class="social-card">
+                        <i class="fab fa-tiktok"></i>
+                        <h3>تيك توك</h3>
+                        <p>تابعنا على تيك توك</p>
                     </a>
                 </div>
             </section>
         </div>
 
-        <!-- صفحة الطلبات -->
-        <div id="ordersPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
+        <!-- صفحة الدفع -->
+        <div id="paymentPage" class="page">
+            <div class="payment-page">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">اكمل طلبك</h2>
+                
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" class="form-control" placeholder="أدخل اسم المستخدم الخاص بك">
+                </div>
+                
+                <div class="form-group">
+                    <label for="link">رابط الحساب/المنشور</label>
+                    <input type="text" id="link" class="form-control" placeholder="أدخل رابط الحساب أو المنشور">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact">رقم التواصل (للاستفسارات)</label>
+                    <input type="text" id="contact" class="form-control" placeholder="أدخل رقم التواصل">
+                </div>
+                
+                <div class="form-group">
+                    <label>طريقة الدفع</label>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <button class="btn" style="flex: 1;" onclick="selectPayment('vodafone')">
+                            <i class="fas fa-mobile-alt"></i> فودافون كاش
+                        </button>
+                        <button class="btn" style="flex: 1;" onclick="selectPayment('instapay')">
+                            <i class="fas fa-wallet"></i> انستاباي
+                        </button>
                     </div>
                 </div>
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
+                
+                <div class="form-group">
+                    <label>تفاصيل الطلب</label>
+                    <div id="orderDetails" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-top: 10px;">
+                        <!-- سيتم تعبئة تفاصيل الطلب هنا -->
+                    </div>
+                </div>
+                
+                <button class="btn" style="width: 100%; margin-top: 20px;" onclick="submitOrder()">
+                    <i class="fas fa-paper-plane"></i> تأكيد الطلب
                 </button>
-                <nav>
-                    <ul id="navMenuOrders">
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <h2 class="section-title">طلباتي</h2>
-            <div id="ordersList">
-                <!-- الطلبات تظهر هنا -->
+                
+                <button class="btn" style="width: 100%; margin-top: 10px; background: rgba(255,255,255,0.1);" onclick="showPage('homePage')">
+                    <i class="fas fa-arrow-right"></i> العودة للرئيسية
+                </button>
             </div>
         </div>
 
-        <!-- صفحة الدفع -->
-        <div id="paymentPage" class="page">
-<header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
-
-  <div class="logo-container" style="display:flex; align-items:center; gap:10px;">
-    <img src="1.png" alt="Roma&Knzy Stor" style="width:45px; height:45px; border-radius:50%;">
-    <h1 style="font-size:22px; background:linear-gradient(135deg,#ff4b91,#ff4ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Roma&Knzy Stor</h1>
-  </div>
-
-  <nav style="display:flex; align-items:center; gap:20px;">
-    <a href="#" onclick="showPage('homePage')" style="color:white; text-decoration:none; font-weight:600;">الرئيسية</a>
-    <a href="#" onclick="showPage('ordersPage')" style="color:white; text-decoration:none; font-weight:600;">طلباتي</a>
-    <a href="profile.html" style="color:#ffb3d1; text-decoration:none; font-weight:600;">ملفي الشخصي</a>
-  </nav>
-</header>
-
+        <!-- صفحة طلباتي -->
+        <div id="ordersPage" class="page">
             <div class="payment-page">
-                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
-
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>بيانات الباقة المختارة</h3>
-                    <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 100 متابع - 25 جنيه</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>طريقة الدفع</h3>
-                    <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
-                        <i class="fas fa-mobile-alt" style="font-size: 30px; color: var(--accent);"></i>
-                        <div>
-                            <p style="margin-bottom: 5px;">الدفع عبر فودافون كاش</p>
-                            <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">01031090116</p>
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">طلباتي</h2>
+                
+                <div id="ordersList">
+                    <!-- سيتم تعبئة الطلبات هنا -->
+                    <div class="order-item">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <h3>50 متابع إنستجرام</h3>
+                            <span class="status-completed">مكتمل</span>
                         </div>
+                        <p>اسم المستخدم: @example</p>
+                        <p>التاريخ: 2023-10-15</p>
+                        <p>السعر: 15 جنيه</p>
                     </div>
-                    <p style="opacity: 0.8; font-size: 0.9rem;">يرجى إرسال المبلغ إلى الرقم أعلاه ثم إرفاق صورة إيصال الدفع</p>
+                    
+                    <div class="order-item">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <h3>1000 مشاهدة تيك توك</h3>
+                            <span class="status-pending">قيد التنفيذ</span>
+                        </div>
+                        <p>اسم المستخدم: @example2</p>
+                        <p>التاريخ: 2023-10-16</p>
+                        <p>السعر: 50 جنيه</p>
+                    </div>
                 </div>
-
-                <div class="form-group" id="usernameGroup">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="usernameLabel">اسم المستخدم في إنستجرام</label>
-                    <input type="text" id="username" class="form-control" placeholder="اسم المستخدم بدون @">
-                </div>
-
-                <div class="form-group" id="videoLinkGroup" style="display: none;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="videoLinkLabel">رابط الفيديو في تيك توك</label>
-                    <input type="url" id="videoLink" class="form-control" placeholder="https://www.tiktok.com/@username/video/123456789">
-                </div>
-
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">رقم الهاتف</label>
-                    <input type="tel" id="phone" class="form-control" placeholder="رقم الهاتف للتواصل">
-                </div>
-
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">صورة إيصال الدفع</label>
-                    <input type="file" id="receipt" class="form-control" accept="image/*">
-                </div>
-
-                <button class="btn" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
+                
+                <button class="btn" style="width: 100%; margin-top: 20px;" onclick="showPage('homePage')">
+                    <i class="fas fa-arrow-right"></i> العودة للرئيسية
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
     <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
-            authDomain: "romalshop.firebaseapp.com",
-            projectId: "romalshop",
-            storageBucket: "romalshop.firebasestorage.app",
-            messagingSenderId: "830369715807",
-            appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        let selectedPackage = { amount: 100, price: 25, service: 'instagram', type: 'متابعين' };
-
+        // بيانات التطبيق
+        let currentOrder = null;
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        
+        // وظيفة إظهار الصفحة المطلوبة
         function showPage(pageId) {
+            // إخفاء جميع الصفحات
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
+            
+            // إظهار الصفحة المطلوبة
             document.getElementById(pageId).classList.add('active');
             
-            // إغلاق القائمة في الشاشات الصغيرة
-            document.querySelectorAll('nav ul').forEach(menu => {
-                menu.classList.remove('show');
-            });
-            
+            // إذا كانت صفحة الطلبات، قم بتحديث القائمة
             if (pageId === 'ordersPage') {
-                loadOrders();
+                updateOrdersList();
             }
         }
-
-        function toggleMenu() {
-            const currentPage = document.querySelector('.page.active').id;
-            const navMenu = document.getElementById(`navMenu${currentPage !== 'homePage' ? currentPage.replace('Page', '') : ''}`);
-            navMenu.classList.toggle('show');
-        }
-
-        function showService(service) {
-            // تحديث أزرار التبويب
+        
+        // وظيفة إظهار الخدمة المطلوبة
+        function showService(serviceId) {
+            // إخفاء جميع الخدمات
+            document.querySelectorAll('.service-content').forEach(service => {
+                service.style.display = 'none';
+            });
+            
+            // إظهار الخدمة المطلوبة
+            document.getElementById(serviceId + 'Service').style.display = 'block';
+            
+            // تحديث أزرار التبويب النشطة
             document.querySelectorAll('.service-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            if (service === 'instagram') {
-                document.querySelector('.service-tab:first-child').classList.add('active');
-                document.getElementById('instagramService').style.display = 'block';
-                document.getElementById('tiktokService').style.display = 'none';
-            } else {
-                document.querySelector('.service-tab:last-child').classList.add('active');
-                document.getElementById('instagramService').style.display = 'none';
-                document.getElementById('tiktokService').style.display = 'block';
-            }
+            document.querySelector(`.service-tab:nth-child(${serviceId === 'instagram' ? 1 : serviceId === 'tiktok' ? 2 : 3})`).classList.add('active');
         }
-
+        
+        // وظيفة اختيار الباقة
         function selectPackage(amount, price, service, type) {
-            selectedPackage = { amount, price, service, type };
+            currentOrder = {
+                amount: amount,
+                price: price,
+                service: service,
+                type: type,
+                date: new Date().toISOString().split('T')[0]
+            };
             
-            let serviceText = service === 'instagram' ? 'إنستجرام' : 'تيك توك';
-            let typeText = type === 'متابعين' ? 'متابع' : 
-                          type === 'لايكات' ? 'لايك' :
-                          type === 'مشاهدات' ? 'مشاهدة' : 
-                          type === 'حفظ' ? 'حفظ' :
-                          type === 'شير' ? 'شير' : type;
+            // تحديث تفاصيل الطلب في صفحة الدفع
+            document.getElementById('orderDetails').innerHTML = `
+                <p><strong>الخدمة:</strong> ${service === 'instagram' ? 'إنستجرام' : 'تيك توك'}</p>
+                <p><strong>النوع:</strong> ${type}</p>
+                <p><strong>الكمية:</strong> ${amount}</p>
+                <p><strong>السعر:</strong> ${price} جنيه</p>
+            `;
             
-            document.getElementById('selectedPackageInfo').textContent = 
-                `باقة ${amount} ${typeText} ${serviceText} - ${price} جنيه`;
-            
-            // تحديث الحقول حسب نوع الخدمة
-            const usernameGroup = document.getElementById('usernameGroup');
-            const videoLinkGroup = document.getElementById('videoLinkGroup');
-            
-            if (service === 'instagram') {
-                usernameGroup.style.display = 'block';
-                videoLinkGroup.style.display = 'none';
-                document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
-                document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
-            } else {
-                usernameGroup.style.display = 'none';
-                videoLinkGroup.style.display = 'block';
-                document.getElementById('videoLinkLabel').textContent = 'رابط الفيديو في تيك توك';
-                document.getElementById('videoLink').placeholder = 'https://www.tiktok.com/@username/video/123456789';
-            }
-            
+            // الانتقال إلى صفحة الدفع
             showPage('paymentPage');
         }
-
-        async function submitOrder() {
-            let userInput;
-            const phone = document.getElementById('phone').value;
-            const receipt = document.getElementById('receipt').files[0];
+        
+        // وظيفة اختيار الرقم الافتراضي
+        function selectVirtualNumber(number, price) {
+            currentOrder = {
+                number: number,
+                price: price,
+                service: 'virtual',
+                type: 'رقم واتساب أمريكي',
+                date: new Date().toISOString().split('T')[0]
+            };
             
-            if (selectedPackage.service === 'instagram') {
-                userInput = document.getElementById('username').value;
-                if (!userInput) {
-                    alert('يرجى إدخال اسم المستخدم في إنستجرام');
-                    return;
-                }
-            } else {
-                userInput = document.getElementById('videoLink').value;
-                if (!userInput) {
-                    alert('يرجى إدخال رابط الفيديو في تيك توك');
-                    return;
-                }
-            }
+            // تحديث تفاصيل الطلب في صفحة الدفع
+            document.getElementById('orderDetails').innerHTML = `
+                <p><strong>الخدمة:</strong> رقم واتساب افتراضي</p>
+                <p><strong>النوع:</strong> رقم واتساب أمريكي</p>
+                <p><strong>الرقم:</strong> ${number}</p>
+                <p><strong>السعر:</strong> ${price} جنيه</p>
+            `;
             
-            if (!phone || !receipt) {
-                alert('يرجى ملء جميع الحقول وإرفاق صورة الإيصال');
+            // الانتقال إلى صفحة الدفع
+            showPage('paymentPage');
+        }
+        
+        // وظيفة اختيار طريقة الدفع
+        function selectPayment(method) {
+            alert(`تم اختيار طريقة الدفع: ${method === 'vodafone' ? 'فودافون كاش' : 'انستاباي'}`);
+        }
+        
+        // وظيفة تقديم الطلب
+        function submitOrder() {
+            const username = document.getElementById('username').value;
+            const link = document.getElementById('link').value;
+            const contact = document.getElementById('contact').value;
+            
+            if (!username || !link || !contact) {
+                alert('يرجى ملء جميع الحقول المطلوبة');
                 return;
             }
             
-            try {
-                const newOrder = {
-                    package: selectedPackage,
-                    userInput: userInput,
-                    phone: phone,
-                    status: 'قيد المراجعة',
-                    date: new Date().toLocaleDateString('ar-EG'),
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                };
-                
-                await db.collection('orders').add(newOrder);
-                
-                alert('تم تقديم طلبك بنجاح! سيتم مراجعته قريباً.');
-                resetPaymentForm();
-                showPage('ordersPage');
-            } catch (error) {
-                alert('حدث خطأ أثناء إرسال الطلب. تأكد من اتصال الإنترنت.');
+            if (!currentOrder) {
+                alert('يرجى اختيار باقة أولاً');
+                return;
             }
-        }
-
-        function resetPaymentForm() {
-            document.getElementById('username').value = '';
-            document.getElementById('videoLink').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('receipt').value = '';
-        }
-
-        async function loadOrders() {
-            const ordersList = document.getElementById('ordersList');
             
-            try {
-                const snapshot = await db.collection('orders')
-                    .orderBy('timestamp', 'desc')
-                    .get();
+            // إضافة الطلب إلى القائمة
+            const order = {
+                ...currentOrder,
+                username: username,
+                link: link,
+                contact: contact,
+                id: Date.now(),
+                status: 'pending'
+            };
+            
+            orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+            
+            alert('تم تقديم طلبك بنجاح! سيتم التواصل معك قريباً.');
+            
+            // إعادة تعيين الحقول
+            document.getElementById('username').value = '';
+            document.getElementById('link').value = '';
+            document.getElementById('contact').value = '';
+            currentOrder = null;
+            
+            // العودة إلى الصفحة الرئيسية
+            showPage('homePage');
+        }
+        
+        // وظيفة تحديث قائمة الطلبات
+        function updateOrdersList() {
+            const ordersList = document.getElementById('ordersList');
+            ordersList.innerHTML = '';
+            
+            if (orders.length === 0) {
+                ordersList.innerHTML = '<p style="text-align: center; opacity: 0.7;">لا توجد طلبات سابقة</p>';
+                return;
+            }
+            
+            orders.forEach(order => {
+                const orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
                 
-                if (snapshot.empty) {
-                    ordersList.innerHTML = `
-                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                            <i class="fas fa-shopping-cart" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
-                            <h3>لا توجد طلبات حالياً</h3>
-                            <p style="opacity: 0.7;">بمجرد إرسال طلبك، سيظهر هنا</p>
-                        </div>
-                    `;
-                    return;
+                let serviceText = '';
+                if (order.service === 'instagram') {
+                    serviceText = `${order.amount} ${order.type === 'لايكات' ? 'لايك إنستجرام' : 'متابع إنستجرام'}`;
+                } else if (order.service === 'tiktok') {
+                    serviceText = `${order.amount} ${order.type} تيك توك`;
+                } else if (order.service === 'virtual') {
+                    serviceText = order.number;
                 }
                 
-                let ordersHTML = '';
-                snapshot.forEach(doc => {
-                    const order = doc.data();
-                    const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
-                    const serviceText = order.package.service === 'instagram' ? 'إنستجرام' : 'تيك توك';
-                    const typeText = order.package.type === 'متابعين' ? 'متابع' : 
-                                   order.package.type === 'لايكات' ? 'لايك' :
-                                   order.package.type === 'مشاهدات' ? 'مشاهدة' : 
-                                   order.package.type === 'حفظ' ? 'حفظ' :
-                                   order.package.type === 'شير' ? 'شير' : type;
-                    
-                    ordersHTML += `
-                        <div class="order-item">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <div>
-                                    <strong>طلب #${doc.id.slice(-6)}</strong>
-                                    <p style="margin-top: 5px; opacity: 0.8;">${order.package.amount} ${typeText} ${serviceText} - ${order.package.price} جنيه</p>
-                                </div>
-                                <span class="${statusClass}">${order.status}</span>
-                            </div>
-                            <p><strong>${order.package.service === 'instagram' ? 'اسم المستخدم:' : 'رابط الفيديو:'}</strong> ${order.userInput}</p>
-                            <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
-                            <p><strong>تاريخ الطلب:</strong> ${order.date}</p>
-                        </div>
-                    `;
-                });
+                orderItem.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <h3>${serviceText}</h3>
+                        <span class="${order.status === 'completed' ? 'status-completed' : 'status-pending'}">
+                            ${order.status === 'completed' ? 'مكتمل' : 'قيد التنفيذ'}
+                        </span>
+                    </div>
+                    <p>اسم المستخدم: ${order.username}</p>
+                    <p>التاريخ: ${order.date}</p>
+                    <p>السعر: ${order.price} جنيه</p>
+                `;
                 
-                ordersList.innerHTML = ordersHTML;
-            } catch (error) {
-                ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
+                ordersList.appendChild(orderItem);
+            });
+        }
+        
+        // وظيفة تسجيل الخروج
+        function logout() {
+            if (confirm('هل تريد تسجيل الخروج؟')) {
+                localStorage.removeItem('user');
+                alert('تم تسجيل الخروج بنجاح');
+                // هنا يمكن إعادة توجيه المستخدم لصفحة تسجيل الدخول
             }
         }
-
-        // Auto-load orders when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Roma&knzy stor Started Successfully!');
-        });
-
-        // التحقق من تسجيل الدخول
-if (!localStorage.getItem("loggedIn")) {
-  window.location.href = "login.html";
-}
-        // الانتقال إلى صفحة الملف الشخصي
-function openProfile() {
-  window.location.href = "profile.html";
-}
-
         
-    // 🚪 تسجيل الخروج
-function logout() {
-  // إزالة حالة الدخول من localStorage
-  localStorage.removeItem("loggedIn");
-  // توجيه المستخدم إلى صفحة تسجيل الدخول
-  window.location.href = "login.html";
-}    
+        // تهيئة التطبيق عند التحميل
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحديث قائمة الطلبات إذا كانت موجودة
+            if (document.getElementById('ordersPage').classList.contains('active')) {
+                updateOrdersList();
+            }
+        });
     </script>
 </body>
 </html>
