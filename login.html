@@ -129,6 +129,74 @@
   </style>
 </head>
 <body>
+  <!-- شاشة الانترو -->
+<div id="intro">
+  <div class="intro-logo">
+    <img src="1.png" alt="Roma & Knzy Logo">
+    <h1>Roma & Knzy Stor</h1>
+  </div>
+</div>
+
+<style>
+  #intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #ff4b91, #5c2fc2, #2b244d);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    animation: fadeOut 1s ease forwards;
+    animation-delay: 3.5s;
+  }
+
+  #intro img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255,255,255,0.5);
+    animation: bounce 2s ease infinite;
+  }
+
+  #intro h1 {
+    margin-top: 20px;
+    font-size: 2rem;
+    color: white;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #fff, #ff4b91, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes glow {
+    0%, 100% { opacity: 1; text-shadow: 0 0 15px #ff4b91; }
+    50% { opacity: 0.8; text-shadow: 0 0 25px #fff; }
+  }
+
+  @keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+  }
+</style>
+
+<script>
+  // لما الانترو يخلص بعد 4 ثواني يظهر الموقع
+  window.onload = () => {
+    setTimeout(() => {
+      document.getElementById("intro").style.display = "none";
+    }, 4000);
+  };
+</script>
   <div class="card">
     <div class="logo">
       <img src="1.png" alt="Roma&Knzy Stor Logo">
