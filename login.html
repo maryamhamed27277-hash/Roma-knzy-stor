@@ -1,27 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>تسجيل الدخول | Roma&Knzy Stor</title>
-      <link rel="icon" type="image/png" href="1.png">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
-      <!-- تحسين الظهور في بحث جوجل (SEO) -->
-    <meta name="description" content="موقع روما و كنزي Roma & Knzy Stor يقدم خدمات شحن و شراء متابعين انستجرام بأرخص الأسعار وبجودة عالية. أفضل موقع لزيادة متابعين إنستجرام بسرعة واحترافية.">
-    <meta name="keywords" content="شحن متابعين انستجرام, شراء متابعين انستجرام, متابعين انستجرام, روما و كنزي, Roma & Knzy, Roma & Knzy Stor, موقع روما و كنزي, ارخص اسعار متابعين انستجرام, موقع زيادة متابعين">
-    <meta name="author" content="Roma & Knzy Team">
-    <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="1.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-    <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
-    <meta property="og:title" content="Roma&knzy stor | شحن متابعين انستجرام بأرخص الأسعار">
-    <meta property="og:description" content="أفضل موقع لشحن وشراء متابعين إنستجرام بأرخص الأسعار - Roma & Knzy Stor.">
-    <meta property="og:url" content="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_AR">
-    <link rel="canonical" href="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    
   <style>
     * {
       box-sizing: border-box;
@@ -38,7 +24,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: white;
+      overflow: hidden;
     }
 
     @keyframes bgMove {
@@ -47,34 +33,43 @@
       100% { background-position: 0% 50%; }
     }
 
-    .card {
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 25px;
-      padding: 40px 30px;
-      text-align: center;
-      width: 330px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.4);
-    }
-
-    .logo {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin: 0 auto 20px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .logo img {
+    .scene {
+      position: relative;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 400px;
+      text-align: center;
+      color: white;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    .lottie-girl {
+      width: 250px;
+      height: 250px;
+      margin: 0 auto;
+      animation: slideIn 3s ease forwards;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateX(-300px); opacity: 0; }
+      70% { transform: translateX(20px); opacity: 1; }
+      100% { transform: translateX(0); }
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.65);
+      border-radius: 25px;
+      padding: 35px 25px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transform: scale(0.8);
+      animation: appear 1s ease forwards;
+      animation-delay: 3s;
+    }
+
+    @keyframes appear {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     h2 {
@@ -82,16 +77,16 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-size: 1.6rem;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     input {
       width: 100%;
       padding: 12px;
-      margin: 10px 0;
+      margin: 8px 0;
       border-radius: 10px;
       border: none;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
       font-size: 15px;
       outline: none;
@@ -128,18 +123,26 @@
     }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <div class="logo">
-      <img src="1.png" alt="Roma&Knzy Stor Logo">
+  <div class="scene">
+    <!-- أنيميشن البنت -->
+    <lottie-player 
+      src="https://lottie.host/30e4f11f-1c72-4d30-9f24-3e789ff4ebaf/GLnxlBicvL.json"
+      background="transparent"
+      speed="1"
+      class="lottie-girl"
+      autoplay>
+    </lottie-player>
+
+    <!-- نموذج تسجيل الدخول -->
+    <div class="card">
+      <h2>تسجيل الدخول</h2>
+      <input type="email" id="email" placeholder="البريد الإلكتروني" />
+      <input type="password" id="password" placeholder="كلمة المرور" />
+      <button onclick="login()">تسجيل الدخول</button>
+      <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب</a></p>
     </div>
-    <h2>تسجيل الدخول</h2>
-
-    <input type="email" id="email" placeholder="البريد الإلكتروني">
-    <input type="password" id="password" placeholder="كلمة المرور">
-    <button onclick="login()">تسجيل الدخول</button>
-
-    <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب</a></p>
   </div>
 
   <script type="module">
