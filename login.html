@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roma&Knzy | أنترو مذهل</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Roma&Knzy - Epic Intro</title>
     <style>
         * {
             margin: 0;
@@ -14,190 +13,136 @@
 
         body {
             background: #000;
-            color: white;
             overflow: hidden;
-            height: 100vh;
             font-family: Arial, sans-serif;
         }
 
-        /* الأنترو الرئيسي */
-        .intro {
+        /* Video Background */
+        .video-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
-            z-index: 1000;
+            z-index: -1;
+        }
+
+        .video-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.3) contrast(1.2);
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
         }
 
-        /* شبكة ثلاثية الأبعاد */
-        .grid-3d {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: 
-                linear-gradient(90deg, rgba(255,75,145,0.1) 1px, transparent 1px),
-                linear-gradient(rgba(255,75,145,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg);
-            animation: gridMove 20s linear infinite;
+        /* Glitch Text Effect */
+        .glitch-container {
+            position: relative;
+            margin-bottom: 50px;
         }
 
-        @keyframes gridMove {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateX(0); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(-25%) translateX(-25%); }
-        }
-
-        /* دائرة الطاقة */
-        .energy-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            border: 3px solid transparent;
-            border-radius: 50%;
-            animation: energyPulse 3s ease-in-out infinite;
-        }
-
-        .energy-ring::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px solid transparent;
-            border-radius: 50%;
-            animation: energyPulse 3s ease-in-out infinite 0.5s;
-        }
-
-        .energy-ring::after {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            border: 1px solid transparent;
-            border-radius: 50%;
-            animation: energyPulse 3s ease-in-out infinite 1s;
-        }
-
-        @keyframes energyPulse {
-            0%, 100% { 
-                border-color: rgba(255,75,145,0.3);
-                box-shadow: 0 0 20px rgba(255,75,145,0.3);
-            }
-            50% { 
-                border-color: rgba(255,75,145,0.8);
-                box-shadow: 0 0 40px rgba(255,75,145,0.6),
-                           0 0 60px rgba(255,75,145,0.4);
-            }
-        }
-
-        /* الشعار المركزي */
-        .main-logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #ff4b91, #5c2fc2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            animation: logoGlow 2s ease-in-out infinite alternate;
-        }
-
-        .main-logo i {
-            font-size: 3rem;
+        .glitch {
+            font-size: 6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0.05em 0 0 rgba(255,0,0,0.75),
+                        -0.025em -0.05em 0 rgba(0,255,0,0.75),
+                        0.025em 0.05em 0 rgba(0,0,255,0.75);
+            animation: glitch 2000ms infinite;
             color: white;
         }
 
-        @keyframes logoGlow {
-            0% { 
-                box-shadow: 0 0 20px rgba(255,75,145,0.5);
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% { 
-                box-shadow: 0 0 40px rgba(255,75,145,0.8),
-                           0 0 60px rgba(255,75,145,0.4);
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
-
-        /* النص المتحرك */
-        .intro-text {
+        .glitch span {
             position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            opacity: 0;
-            animation: textReveal 6s ease-in-out infinite;
+            top: 0;
+            left: 0;
         }
 
-        .intro-text h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, #ff4b91, #5c2fc2, #ff4b91);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% 100%;
-            animation: gradientShift 3s ease-in-out infinite;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(255,75,145,0.5);
+        .glitch span:first-child {
+            animation: glitch 650ms infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            transform: translate(-0.025em, -0.0125em);
+            opacity: 0.8;
         }
 
-        .intro-text p {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.7);
-            animation: subtitlePulse 3s ease-in-out infinite;
+        .glitch span:last-child {
+            animation: glitch 375ms infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            transform: translate(0.0125em, 0.025em);
+            opacity: 0.8;
         }
 
-        @keyframes textReveal {
-            0%, 100% { 
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 rgba(255,0,0,0.75),
+                            -0.05em -0.025em 0 rgba(0,255,0,0.75),
+                            -0.025em 0.05em 0 rgba(0,0,255,0.75);
             }
-            20%, 80% { 
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
+            14% {
+                text-shadow: 0.05em 0 0 rgba(255,0,0,0.75),
+                            -0.05em -0.025em 0 rgba(0,255,0,0.75),
+                            -0.025em 0.05em 0 rgba(0,0,255,0.75);
+            }
+            15% {
+                text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.75),
+                            0.025em 0.025em 0 rgba(0,255,0,0.75),
+                            -0.05em -0.05em 0 rgba(0,0,255,0.75);
+            }
+            49% {
+                text-shadow: -0.05em -0.025em 0 rgba(255,0,0,0.75),
+                            0.025em 0.025em 0 rgba(0,255,0,0.75),
+                            -0.05em -0.05em 0 rgba(0,0,255,0.75);
+            }
+            50% {
+                text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.75),
+                            0.05em 0 0 rgba(0,255,0,0.75),
+                            0 -0.05em 0 rgba(0,0,255,0.75);
+            }
+            99% {
+                text-shadow: 0.025em 0.05em 0 rgba(255,0,0,0.75),
+                            0.05em 0 0 rgba(0,255,0,0.75),
+                            0 -0.05em 0 rgba(0,0,255,0.75);
+            }
+            100% {
+                text-shadow: -0.025em 0 0 rgba(255,0,0,0.75),
+                            -0.025em -0.025em 0 rgba(0,255,0,0.75),
+                            -0.025em -0.05em 0 rgba(0,0,255,0.75);
             }
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        @keyframes subtitlePulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
-        }
-
-        /* الجسيمات المتحركة */
+        /* Particle System */
         .particles {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
         }
 
         .particle {
             position: absolute;
-            background: rgba(255,75,145,0.6);
+            width: 4px;
+            height: 4px;
+            background: #fff;
             border-radius: 50%;
-            animation: particleFloat 8s infinite linear;
-            box-shadow: 0 0 10px rgba(255,75,145,0.8);
+            animation: float 6s infinite linear;
+            box-shadow: 0 0 10px rgba(255,255,255,0.8);
         }
 
-        @keyframes particleFloat {
+        @keyframes float {
             0% {
                 transform: translateY(100vh) translateX(0) rotate(0deg);
                 opacity: 0;
@@ -214,155 +159,82 @@
             }
         }
 
-        /* الأعمدة الضوئية */
-        .light-columns {
-            position: absolute;
-            width: 100%;
+        /* Progress Bar */
+        .progress-container {
+            width: 400px;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        .progress-bar {
             height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff4b91, #5c2fc2);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(255,75,145,0.7);
         }
 
-        .light-column {
-            position: absolute;
-            bottom: 0;
-            width: 4px;
-            height: 0;
-            background: linear-gradient(to top, rgba(255,75,145,0.8), transparent);
-            animation: lightRise 4s ease-out infinite;
-            box-shadow: 0 0 20px rgba(255,75,145,0.6);
-        }
-
-        @keyframes lightRise {
-            0% {
-                height: 0;
-                opacity: 0;
-            }
-            50% {
-                height: 70%;
-                opacity: 1;
-            }
-            100% {
-                height: 0;
-                opacity: 0;
-            }
-        }
-
-        /* شاشة التحول */
-        .transition-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 1s ease;
-        }
-
-        .transition-screen.active {
-            opacity: 1;
-        }
-
-        /* شاشة تسجيل الدخول */
-        .login-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+        /* Logo Animation */
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff4b91, #5c2fc2);
+            border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            z-index: 800;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 1s ease;
+            justify-content: center;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 50px rgba(255,75,145,0.5);
         }
 
-        .login-screen.active {
+        .logo i {
+            font-size: 3rem;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Login Form */
+        .login-form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 1s ease;
+        }
+
+        .login-form.active {
             opacity: 1;
             pointer-events: all;
         }
 
-        .login-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 40px;
-            width: 400px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            transform: translateY(50px);
-            opacity: 0;
-            transition: all 1s ease 0.5s;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .login-screen.active .login-container {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .login-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ff4b91, #5c2fc2);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 30px rgba(255,75,145,0.5);
-        }
-
-        .login-logo i {
-            font-size: 2rem;
-            color: white;
-        }
-
-        .login-title {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #ff4b91, #5c2fc2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
-        .input-group input {
+        .form-group input {
             width: 100%;
-            padding: 15px 45px 15px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
             color: white;
             font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #ff4b91;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(255, 75, 145, 0.3);
-        }
-
-        .input-group i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
         }
 
         .login-btn {
@@ -370,138 +242,112 @@
             padding: 15px;
             background: linear-gradient(135deg, #ff4b91, #5c2fc2);
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             color: white;
             font-size: 1.1rem;
-            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 10px;
         }
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 75, 145, 0.4);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .intro-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .login-container {
-                width: 90%;
-                padding: 30px 25px;
-            }
+            box-shadow: 0 10px 25px rgba(255,75,145,0.4);
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- الأنترو -->
-    <div class="intro" id="intro">
-        <div class="grid-3d"></div>
-        <div class="energy-ring"></div>
-        <div class="main-logo">
-            <i class="fas fa-crown"></i>
-        </div>
-        <div class="intro-text">
-            <h1>Roma&Knzy</h1>
-            <p>أنترو مذهل بتأثيرات ثلاثية الأبعاد</p>
-        </div>
-        <div class="particles" id="particles"></div>
-        <div class="light-columns" id="lightColumns"></div>
+    <!-- Video Background -->
+    <div class="video-bg">
+        <video autoplay muted loop>
+            <!-- يمكن استبدال هذا بمقطع فيديو حقيقي -->
+            <source src="https://assets.codepen.io/3364143/720p.mp4" type="video/mp4">
+        </video>
     </div>
 
-    <!-- شاشة التحول -->
-    <div class="transition-screen" id="transitionScreen"></div>
-
-    <!-- شاشة تسجيل الدخول -->
-    <div class="login-screen" id="loginScreen">
-        <div class="login-container">
-            <div class="login-header">
-                <div class="login-logo">
-                    <i class="fas fa-crown"></i>
-                </div>
-                <h2 class="login-title">تسجيل الدخول</h2>
-                <p style="color: rgba(255,255,255,0.7);">أدخل بياناتك للمتابعة</p>
-            </div>
-
-            <div class="input-group">
-                <input type="email" placeholder="البريد الإلكتروني">
-                <i class="fas fa-envelope"></i>
-            </div>
-
-            <div class="input-group">
-                <input type="password" placeholder="كلمة المرور">
-                <i class="fas fa-lock"></i>
-            </div>
-
-            <button class="login-btn">دخول</button>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <i class="fas fa-crown"></i>
         </div>
+
+        <!-- Glitch Text -->
+        <div class="glitch-container">
+            <div class="glitch" data-text="ROMA&KNZY">ROMA&KNZY
+                <span aria-hidden="true">ROMA&KNZY</span>
+                <span aria-hidden="true">ROMA&KNZY</span>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <!-- Particles -->
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="login-form" id="loginForm">
+        <h2 style="color: white; text-align: center; margin-bottom: 30px;">تسجيل الدخول</h2>
+        <div class="form-group">
+            <input type="email" placeholder="البريد الإلكتروني">
+        </div>
+        <div class="form-group">
+            <input type="password" placeholder="كلمة المرور">
+        </div>
+        <button class="login-btn">دخول</button>
     </div>
 
     <script>
         // إنشاء الجسيمات
         function createParticles() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 100; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                const size = Math.random() * 8 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
                 particle.style.left = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 8}s`;
+                particle.style.animationDelay = `${Math.random() * 6}s`;
                 
                 container.appendChild(particle);
             }
         }
 
-        // إنشاء الأعمدة الضوئية
-        function createLightColumns() {
-            const container = document.getElementById('lightColumns');
-            for (let i = 0; i < 20; i++) {
-                const column = document.createElement('div');
-                column.className = 'light-column';
-                
-                column.style.left = `${Math.random() * 100}%`;
-                column.style.animationDelay = `${Math.random() * 4}s`;
-                
-                container.appendChild(column);
-            }
-        }
-
-        // الانتقال إلى شاشة تسجيل الدخول
-        function transitionToLogin() {
-            const intro = document.getElementById('intro');
-            const transitionScreen = document.getElementById('transitionScreen');
-            const loginScreen = document.getElementById('loginScreen');
+        // محاكاة التحميل
+        function simulateLoading() {
+            const progressBar = document.getElementById('progressBar');
+            const loginForm = document.getElementById('loginForm');
+            let progress = 0;
             
-            // إظهار شاشة التحول
-            transitionScreen.classList.add('active');
-            
-            setTimeout(() => {
-                // إخفاء الأنترو
-                intro.style.display = 'none';
-                transitionScreen.classList.remove('active');
-                
-                // إظهار شاشة تسجيل الدخول
-                loginScreen.classList.add('active');
-            }, 1000);
+            const interval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    // الانتقال لشاشة التسجيل بعد اكتمال التحميل
+                    setTimeout(() => {
+                        document.querySelector('.container').style.opacity = '0';
+                        setTimeout(() => {
+                            document.querySelector('.container').style.display = 'none';
+                            loginForm.classList.add('active');
+                        }, 1000);
+                    }, 500);
+                }
+                progressBar.style.width = `${progress}%`;
+            }, 200);
         }
 
         // بدء الأنترو
         function startIntro() {
             createParticles();
-            createLightColumns();
-            
-            // الانتقال بعد 5 ثواني
-            setTimeout(transitionToLogin, 5000);
+            setTimeout(simulateLoading, 1000);
         }
 
-        // بدء التشغيل
+        // بدء التشغيل عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', startIntro);
     </script>
 </body>
