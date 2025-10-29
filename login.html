@@ -1,80 +1,94 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Roma&Knzy Intro → Login</title>
-<link rel="icon" type="image/png" href="1.png">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Roma&Knzy — Intro → Login</title>
+<link rel="icon" href="1.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --accent1:#ff4b91; --accent2:#ff9ad8;
-    --bgA: linear-gradient(180deg,#0b0710 10%, #1b0f2a 60%, #12081a 100%);
+    --p1:#ff4b91; --p2:#ff9ad8; --bg-dark:#08060a;
+    --card-bg: rgba(255,255,255,0.04);
   }
   *{box-sizing:border-box;font-family:"Tajawal",sans-serif}
-  html,body{height:100%;margin:0;background:var(--bgA);overflow:hidden;color:#fff}
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#0b0710,#12081a 60%);color:#fff;overflow:hidden}
 
-  /* ============== INTRO OVERLAY ============== */
+  /* INTRO OVERLAY (سينمائي) */
   .intro-overlay{
     position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-    z-index:9999;background:radial-gradient(ellipse at center, rgba(255,75,145,0.04), transparent 25%), rgba(6,6,10,0.92);
-    transition:opacity .8s ease,visibility .8s;
+    z-index:9999;background:linear-gradient(180deg, rgba(2,2,6,0.92), rgba(6,6,10,0.88));
+    transition:opacity .8s ease,visibility .8s ease;
   }
 
-  .insta-card{
-    width:380px;max-width:94vw;border-radius:16px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    box-shadow:0 30px 80px rgba(0,0,0,0.6);backdrop-filter: blur(6px);position:relative;overflow:visible;
-    transform-origin:center;animation:cardPop .9s cubic-bezier(.2,.9,.2,1) forwards;
+  .cinema-card{
+    width:380px;max-width:92vw;border-radius:16px;padding:16px;background:var(--card-bg);
+    box-shadow:0 30px 80px rgba(0,0,0,0.7);backdrop-filter:blur(6px);position:relative;overflow:visible;
+    transform-origin:center;animation:cardAppear .7s cubic-bezier(.2,.9,.2,1) both;
   }
-  @keyframes cardPop{from{transform:translateY(18px) scale(.98);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+  @keyframes cardAppear{from{transform:translateY(20px) scale(.96);opacity:0}to{transform:none;opacity:1}}
 
-  .insta-glow{position:absolute;inset:-12px;border-radius:18px;pointer-events:none;background:radial-gradient(circle at 30% 30%, rgba(255,75,145,0.06), transparent 14%), radial-gradient(circle at 70% 70%, rgba(163,225,255,0.03), transparent 14%);mix-blend-mode:screen;opacity:0}
+  /* soft halo */
+  .halo{position:absolute;left:50%;top:-60px;transform:translateX(-50%);width:560px;height:260px;border-radius:50%;
+    background:radial-gradient(circle at 30% 40%, rgba(255,75,145,0.08), transparent 22%), radial-gradient(circle at 70% 70%, rgba(163,225,255,0.04), transparent 25%);
+    filter:blur(18px);pointer-events:none;mix-blend-mode:screen;z-index:-1;opacity:0.9}
 
-  .insta-header{display:flex;gap:14px;align-items:center}
-  .avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;border:3px solid rgba(255,255,255,0.04);box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+  .header{display:flex;gap:12px;align-items:center}
+  .avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;border:3px solid rgba(255,255,255,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.6)}
   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-
   .meta{flex:1}
-  .name{font-weight:900;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:8px}
-  .verified{font-size:.72rem;padding:.12rem .5rem;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:800}
-  .sub{color:rgba(255,255,255,0.72);font-size:.92rem;margin-top:6px}
+  .meta .name{font-weight:900;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+  .meta .verified{font-size:.72rem;padding:.12rem .5rem;border-radius:999px;background:linear-gradient(90deg,var(--p1),var(--p2));color:#fff;font-weight:800}
+  .sub{color:rgba(255,255,255,0.72);margin-top:6px;font-size:.92rem}
 
-  .f-row{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-  .followers-box{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(255,255,255,0.02)}
-  .count-left{display:flex;flex-direction:column}
-  .count-num{font-weight:900;font-size:1.6rem;color:#fff;text-shadow:0 14px 32px rgba(0,0,0,0.6)}
+  .f-row{margin-top:14px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+  .followers-box{flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+  .count-col{display:flex;flex-direction:column}
+  .count-num{font-weight:900;font-size:1.6rem;color:#fff;letter-spacing:1px;text-shadow:0 12px 30px rgba(0,0,0,0.6)}
   .count-label{font-size:.9rem;color:rgba(255,255,255,0.68)}
 
-  .follow-btn{min-width:110px;padding:10px 16px;border-radius:999px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:900;cursor:pointer;box-shadow:0 14px 40px rgba(255,75,145,0.12);transform-origin:center;outline:none}
-  .follow-pressed{transform:scale(.95);filter:brightness(.98);}
+  .follow-wrap{display:flex;align-items:center;gap:10px}
+  .follow-btn{min-width:110px;padding:10px 16px;border-radius:999px;border:none;background:linear-gradient(90deg,var(--p1),var(--p2));color:#fff;font-weight:900;cursor:pointer;box-shadow:0 14px 40px rgba(255,75,145,0.12);transform-origin:center;outline:none}
+  .follow-btn.pressed{transform:scale(.94);filter:brightness(.98)}
 
-  /* particles */
-  .particle{position:fixed;pointer-events:none;font-size:18px;will-change:transform,opacity;z-index:9999;text-shadow:0 8px 18px rgba(0,0,0,0.4)}
-
-  /* finish glow */
-  .finish-flash{
-    position:fixed;inset:0;background:radial-gradient(circle at 50% 40%, rgba(255,255,255,0.14), transparent 20%);opacity:0;pointer-events:none;z-index:9998;
+  /* pressed ripple effect */
+  .ripple{
+    position:absolute;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 40%);
+    width:20px;height:20px;opacity:0;
   }
 
-  .intro-hidden{opacity:0;visibility:hidden;pointer-events:none}
+  /* particles (icons flying) */
+  .particle{position:fixed;pointer-events:none;font-size:18px;will-change:transform,opacity;z-index:9999;text-shadow:0 8px 18px rgba(0,0,0,0.35)}
 
-  /* ============== MAIN LOGIN (hidden until intro done) ============== */
+  /* tiny camera shake */
+  .shake{animation:camShake .38s cubic-bezier(.36,.07,.19,.97);}
+  @keyframes camShake{
+    0%{transform:translateY(0)}
+    25%{transform:translateY(-6px) rotate(-0.6deg)}
+    50%{transform:translateY(6px) rotate(0.6deg)}
+    75%{transform:translateY(-4px) rotate(-0.3deg)}
+    100%{transform:translateY(0)}
+  }
+
+  /* finish flash */
+  .finish-flash{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 40%, rgba(255,255,255,0.14), transparent 18%);opacity:0;z-index:9998}
+
+  .hide{opacity:0;visibility:hidden;pointer-events:none}
+
+  /* MAIN login styles (after intro) */
   .main-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px;transition:opacity .9s ease;opacity:0;visibility:hidden}
-  .card{background:rgba(255,255,255,0.96);border-radius:16px;padding:30px;text-align:center;width:360px;box-shadow:0 20px 50px rgba(6,6,10,0.12);color:#111}
-  .card .logo{width:88px;height:88px;border-radius:50%;overflow:hidden;margin:0 auto 16px;box-shadow:0 12px 30px rgba(0,0,0,0.06)}
-  .card .logo img{width:100%;height:100%;object-fit:cover}
-  .card h2{margin:0;font-size:1.3rem;color:#111}
-  .hint{color:rgba(0,0,0,0.55);margin-top:6px}
-  .field{margin-top:14px}
-  input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(6,6,10,0.04);outline:none;background:#fff;font-size:14px}
-  .btn{margin-top:14px;width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:800;cursor:pointer}
-  .tiny{font-size:.86rem;color:rgba(0,0,0,0.45);margin-top:10px}
+  .login-card{background:rgba(255,255,255,0.98);border-radius:12px;padding:28px;width:360px;box-shadow:0 20px 50px rgba(6,6,10,0.12);color:#111;text-align:center}
+  .login-card .logo{width:88px;height:88px;border-radius:50%;overflow:hidden;margin:0 auto 12px}
+  .login-card .logo img{width:100%;height:100%;object-fit:cover}
+  .login-card h2{margin:0;font-size:1.25rem;color:#111}
+  input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(6,6,10,0.04);outline:none;margin-top:12px;background:#fff}
+  .btn{margin-top:14px;padding:12px;width:100%;border-radius:10px;border:none;background:linear-gradient(90deg,var(--p1),var(--p2));color:#fff;font-weight:800;cursor:pointer}
 
   @media (max-width:420px){
-    .insta-card{width:92vw}
+    .cinema-card{width:92vw}
     .avatar{width:60px;height:60px}
     .count-num{font-size:1.2rem}
-    .card{width:92vw;padding:18px}
+    .login-card{width:92vw;padding:18px}
   }
 </style>
 </head>
@@ -82,25 +96,29 @@
 
   <!-- INTRO OVERLAY -->
   <div class="intro-overlay" id="introOverlay" aria-hidden="false">
-    <div class="insta-card" id="instaCard" role="region" aria-label="حساب Roma&Knzy">
-      <div class="insta-glow" id="instaGlow"></div>
+    <div class="halo" aria-hidden="true"></div>
 
-      <div class="insta-header">
+    <div class="cinema-card" id="cinemaCard" role="region" aria-label="حساب Roma&Knzy">
+      <div class="insta-glow" id="instaGlow" style="position:absolute;inset:-10px;border-radius:14px;pointer-events:none;mix-blend-mode:screen;opacity:0"></div>
+
+      <div class="header">
         <div class="avatar"><img src="1.png" alt="Roma&Knzy Logo"></div>
         <div class="meta">
-          <div class="name">Roma&Knzy <span class="verified">Verified</span></div>
+          <div class="name">Roma&Knzy <span class="verified" aria-hidden="true">Verified</span></div>
           <div class="sub">حساب رسمي — زيادة المتابعين</div>
         </div>
       </div>
 
       <div class="f-row">
-        <div class="followers-box" aria-hidden="true">
-          <div class="count-left">
+        <div class="followers-box">
+          <div class="count-col">
             <div class="count-num" id="fcount">1,243</div>
             <div class="count-label">متابع</div>
           </div>
-          <div style="display:flex;align-items:center">
-            <button class="follow-btn" id="followBtn" aria-hidden="true">Follow</button>
+
+          <div class="follow-wrap" style="position:relative">
+            <button id="followBtn" class="follow-btn" aria-hidden="true">Follow</button>
+            <div id="ripple" class="ripple" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -109,20 +127,20 @@
 
   <div class="finish-flash" id="finishFlash" aria-hidden="true"></div>
 
-  <!-- particles root (no initial DOM children) -->
+  <!-- particles root (empty) -->
   <div id="particlesRoot" aria-hidden="true"></div>
 
   <!-- MAIN LOGIN (hidden until intro done) -->
   <main class="main-wrap" id="mainWrap" aria-hidden="true">
-    <div class="card" role="main" aria-label="نموذج تسجيل الدخول">
+    <div class="login-card" role="main" aria-label="نموذج تسجيل الدخول">
       <div class="logo"><img src="1.png" alt="Roma&Knzy Logo"></div>
       <h2>تسجيل الدخول</h2>
-      <div class="hint">أدخل بياناتك للدخول لحسابك</div>
+      <div class="hint" style="color:rgba(0,0,0,0.6);margin-top:8px">أدخل بياناتك للدخول</div>
 
-      <div class="field"><input type="email" id="email" placeholder="example@mail.com"></div>
-      <div class="field"><input type="password" id="password" placeholder="••••••••"></div>
+      <input type="email" id="email" placeholder="example@mail.com"/>
+      <input type="password" id="password" placeholder="••••••••"/>
       <button class="btn" onclick="login()">تسجيل الدخول</button>
-      <div class="tiny">ما عندكش حساب؟ <a href="signup.html" style="color:var(--accent1);font-weight:800">إنشاء حساب</a></div>
+      <div style="margin-top:12px;font-size:.9rem;color:rgba(0,0,0,0.45)">ما عندكش حساب؟ <a href="signup.html" style="color:var(--p1);font-weight:800">إنشاء حساب</a></div>
     </div>
   </main>
 
@@ -138,51 +156,54 @@
     messagingSenderId: "830369715807",
     appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
   };
-
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  /* --------- Intro sequence settings --------- */
-  const startCount = 1243;
-  const targetCount = 10000;
-  const countEl = document.getElementById('fcount');
+  /* settings */
+  const START = 1243;
+  const TARGET = 10000;
+  const DURATION = 3400; // ms
   const followBtn = document.getElementById('followBtn');
+  const fcount = document.getElementById('fcount');
   const introOverlay = document.getElementById('introOverlay');
   const mainWrap = document.getElementById('mainWrap');
   const particlesRoot = document.getElementById('particlesRoot');
-  const instaGlow = document.getElementById('instaGlow');
+  const cinemaCard = document.getElementById('cinemaCard');
   const finishFlash = document.getElementById('finishFlash');
+  const ripple = document.getElementById('ripple');
+  const instaGlow = document.getElementById('instaGlow');
 
-  // format number with commas
   function fmt(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
-
-  // easing easeOutCubic
   function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
 
-  // spawn particle icon near x,y
+  // spawn particle
   function spawnParticle(x,y){
     const icons = ['❤️','⭐','👥','🔥','💖'];
     const el = document.createElement('div');
     el.className = 'particle';
     el.textContent = icons[Math.floor(Math.random()*icons.length)];
     document.body.appendChild(el);
-    const size = 12 + Math.random()*20;
+
+    const size = 12 + Math.random()*18;
     el.style.fontSize = size + 'px';
     el.style.left = (x + (Math.random()*120 - 60)) + 'px';
     el.style.top = (y + (Math.random()*40 - 20)) + 'px';
     el.style.opacity = '1';
-    const dx = (Math.random()*260 - 130);
-    const dy = - (160 + Math.random()*420);
-    const rot = (Math.random()*80 - 40);
-    const dur = 1000 + Math.random()*1200;
+
+    const dx = (Math.random()*350 - 175);
+    const dy = - (180 + Math.random()*520);
+    const rot = (Math.random()*100 - 50);
+    const dur = 1100 + Math.random()*1000;
+
     el.animate([
       { transform: 'translate(0,0) rotate(0deg) scale(1)', opacity:1 },
       { transform: `translate(${dx}px, ${dy}px) rotate(${rot}deg) scale(.7)`, opacity:0 }
-    ], { duration: dur, easing: 'cubic-bezier(.22,.9,.3,1)', fill:'forwards' });
+    ], { duration: dur, easing: 'cubic-bezier(.22,.9,.3,1)', fill: 'forwards' });
+
     setTimeout(()=> el.remove(), dur + 80);
   }
 
-  // animate count
+  // animate number
   function animateCount(start, end, duration, onUpdate, onComplete){
     const t0 = performance.now();
     function frame(now){
@@ -197,81 +218,104 @@
     requestAnimationFrame(frame);
   }
 
-  // run the intro sequence
-  function runIntro(){
-    // small cinematic delay
-    setTimeout(()=> {
-      // simulate follow press
-      followBtn.classList.add('follow-pressed');
-      // optional click sound (uncomment to enable)
-      // const s = new Audio('https://actions.google.com/sounds/v1/buttons/button_roblox_click.ogg'); s.volume=0.18; s.play();
+  // simulate follow press (auto)
+  function autoFollowSequence(){
+    // press visual
+    followBtn.classList.add('pressed');
+    // ripple center at follow button
+    const rect = followBtn.getBoundingClientRect();
+    ripple.style.left = (rect.left + rect.width/2) + 'px';
+    ripple.style.top = (rect.top + rect.height/2) + 'px';
+    ripple.style.opacity = '1';
+    ripple.animate([{width:'20px',height:'20px',opacity:0.6},{width:'260px',height:'260px',opacity:0}],{duration:520,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});
+    setTimeout(()=> ripple.style.opacity='0', 520);
 
-      const rect = document.getElementById('instaCard').getBoundingClientRect();
-      const cx = rect.left + rect.width/2;
-      const cy = rect.top + rect.height/2;
-      // spawn initial burst
-      for(let i=0;i<12;i++) spawnParticle(cx,cy);
-      // tiny glow pulse
-      instaGlow.animate([{opacity:0},{opacity:1},{opacity:0}],{duration:900,easing:'ease-out'});
-    }, 600);
+    // spawn tiny burst
+    const cardRect = cinemaCard.getBoundingClientRect();
+    const cx = Math.round(cardRect.left + cardRect.width/2);
+    const cy = Math.round(cardRect.top + cardRect.height/2);
+    for(let i=0;i<14;i++) spawnParticle(cx, cy);
 
-    // start the follower count after press
-    setTimeout(()=> {
-      animateCount(startCount, targetCount, 3400, (val)=>{
-        countEl.textContent = fmt(val);
-        // spawn some particles during progress
-        const rect2 = document.getElementById('instaCard').getBoundingClientRect();
-        const cx2 = rect2.left + rect2.width/2;
-        const cy2 = rect2.top + rect2.height/2;
-        if (Math.random() < 0.6) spawnParticle(cx2, cy2);
-      }, ()=> {
-        // finish burst, flash and reveal login
-        const rect3 = document.getElementById('instaCard').getBoundingClientRect();
-        const cx3 = rect3.left + rect3.width/2;
-        const cy3 = rect3.top + rect3.height/2;
-        for(let i=0;i<28;i++) spawnParticle(cx3,cy3);
-        // finish flash
-        finishFlash.animate([{opacity:0},{opacity:1},{opacity:0}],{duration:700,easing:'ease-out',fill:'forwards'});
-        // add small glow to card
-        instaGlow.animate([{opacity:0},{opacity:1},{opacity:0}],{duration:900,easing:'ease-out'});
-        // reveal login after short pause
-        setTimeout(()=> {
-          introOverlay.classList.add('intro-hidden');
-          mainWrap.style.opacity = '1'; mainWrap.style.visibility = 'visible'; mainWrap.setAttribute('aria-hidden','false');
-          introOverlay.setAttribute('aria-hidden','true');
-          // focus email
-          setTimeout(()=>{ const e = document.getElementById('email'); if(e) e.focus(); }, 300);
-        }, 700);
-      });
-    }, 950);
+    // small glow pulse
+    instaGlow.animate([{opacity:0},{opacity:1},{opacity:0}],{duration:900,easing:'ease-out',fill:'forwards'});
+    // camera shake
+    cinemaCard.classList.add('shake');
+    setTimeout(()=> cinemaCard.classList.remove('shake'), 380);
   }
 
-  // safety fallback: ensure reveal if anything hangs
-  window.addEventListener('load', ()=> {
-    setTimeout(runIntro, 420);
+  // finish sequence: big burst + flash + reveal login
+  function finishSequence(){
+    const cardRect = cinemaCard.getBoundingClientRect();
+    const cx = Math.round(cardRect.left + cardRect.width/2);
+    const cy = Math.round(cardRect.top + cardRect.height/2);
+    for(let i=0;i<34;i++) spawnParticle(cx, cy);
+    // flash
+    finishFlash.animate([{opacity:0},{opacity:1},{opacity:0}],{duration:700,easing:'ease-out',fill:'forwards'});
+    // glow stronger
+    instaGlow.animate([{opacity:0},{opacity:1},{opacity:0}],{duration:1000,easing:'ease-out',fill:'forwards'});
+
     setTimeout(()=> {
-      if (!mainWrap.style.visibility || mainWrap.style.visibility === 'hidden'){
-        introOverlay.classList.add('intro-hidden');
-        mainWrap.style.opacity = '1'; mainWrap.style.visibility = 'visible';
-      }
-    }, 11000);
+      introOverlay.classList.add('hide');
+      mainWrap.style.opacity = '1'; mainWrap.style.visibility = 'visible'; mainWrap.setAttribute('aria-hidden','false');
+      introOverlay.setAttribute('aria-hidden','true');
+      setTimeout(()=> { const e = document.getElementById('email'); if(e) e.focus(); }, 250);
+    }, 700);
+  }
+
+  // run intro
+  function runIntro(){
+    // small cinematic pause then auto-press
+    setTimeout(()=> {
+      autoFollowSequence();
+    }, 560);
+
+    setTimeout(()=> {
+      // count up
+      animateCount(START, TARGET, DURATION, (val)=>{
+        fcount.textContent = fmt(val);
+        // spawn some particles but not too many
+        const rect = cinemaCard.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top + rect.height/2;
+        if (Math.random() < 0.55) spawnParticle(cx, cy);
+      }, ()=> {
+        // slight speed bump near end visual
+        // finish
+        finishSequence();
+      });
+    }, 900);
+  }
+
+  // safety fallback (in case something blocks)
+  window.addEventListener('load', ()=> {
+    try{ setTimeout(runIntro, 420); }catch(e){ revealNow(); }
+    setTimeout(()=> { if(!mainWrap.style.visibility || mainWrap.style.visibility === 'hidden'){ revealNow(); } }, 12000);
   });
 
-  /* ---------- Firebase Auth handler (existing) ---------- */
-  window.login = function(){
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    if(!email || !password){ alert('من فضلك املأ الحقول'); return; }
+  function revealNow(){
+    introOverlay.classList.add('hide');
+    mainWrap.style.opacity = '1'; mainWrap.style.visibility = 'visible';
+  }
 
+  /* ---------- Firebase login handler ---------- */
+  window.login = function(){
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    if(!email||!password){ alert('من فضلك املأ الحقول'); return; }
     signInWithEmailAndPassword(auth, email, password)
-      .then(()=> {
-        localStorage.setItem("loggedIn","true");
-        window.location.href = "index.html";
-      })
-      .catch((err)=> {
-        alert("خطأ في تسجيل الدخول: " + err.message);
-      });
+      .then(()=> { localStorage.setItem('loggedIn','true'); window.location.href = 'index.html'; })
+      .catch(err=> { alert('خطأ في تسجيل الدخول: ' + err.message); });
   };
+
+  // constants (placed after functions to use in runIntro)
+  const START = START || 1243;
+  const TARGET = TARGET || 10000;
+  const DURATION = DURATION || 3400;
+
+  // small compatibility fix (if constants overwritten)
+  // start runIntro using defined constants above
+  // NOTE: runIntro already scheduled on load
+
 </script>
 </body>
 </html>
