@@ -29,191 +29,270 @@
 
     body {
       height: 100vh;
-      background: linear-gradient(270deg, #ff4b91, #5c2fc2, #2b244d);
-      background-size: 600% 600%;
-      animation: bgMove 10s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: #0a0a16;
       color: white;
       overflow: hidden;
       position: relative;
     }
 
-    /* تأثيرات الجسيمات المتحركة */
-    .particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      animation: floatParticle 15s infinite linear;
-    }
-
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes floatParticle {
-      0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-1000%) translateX(100%) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    /* الأنترو */
+    /* الأنترو - تصميم فريد */
     .intro {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(270deg, #ff4b91, #5c2fc2, #2b244d);
+      background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a16 70%);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 1000;
-      transition: opacity 1s ease, transform 1s ease;
+      overflow: hidden;
     }
 
+    /* شبكة ثلاثية الأبعاد متحركة */
+    .grid-3d {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: 
+        linear-gradient(90deg, rgba(255,75,145,0.1) 1px, transparent 1px),
+        linear-gradient(rgba(255,75,145,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      transform: perspective(500px) rotateX(60deg) translateY(-50%) translateX(-25%);
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(-50%) translateX(-25%); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(-50%) translateX(-75%); }
+    }
+
+    /* دوائر متداخلة متحركة */
+    .orbital-circles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .orbital-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,75,145,0.3);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: orbit 15s linear infinite;
+    }
+
+    .orbital-circle:nth-child(1) { width: 200px; height: 200px; animation-duration: 20s; }
+    .orbital-circle:nth-child(2) { width: 400px; height: 400px; animation-duration: 25s; animation-delay: -5s; }
+    .orbital-circle:nth-child(3) { width: 600px; height: 600px; animation-duration: 30s; animation-delay: -10s; }
+    .orbital-circle:nth-child(4) { width: 800px; height: 800px; animation-duration: 35s; animation-delay: -15s; }
+
+    @keyframes orbit {
+      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+      50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
+      100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+    }
+
+    /* جسيمات متفرقة */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,75,145,0.7);
+      box-shadow: 0 0 10px #ff4b91, 0 0 20px #ff4b91;
+      animation: particleFloat 8s infinite linear;
+    }
+
+    @keyframes particleFloat {
+      0%, 100% { 
+        transform: translateY(0) translateX(0) scale(0.5);
+        opacity: 0;
+      }
+      25% { 
+        opacity: 1;
+      }
+      75% { 
+        opacity: 1;
+      }
+      100% { 
+        transform: translateY(-100vh) translateX(100vw) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* الشعار الرئيسي */
     .intro-logo {
-      width: 150px;
-      height: 150px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       overflow: hidden;
       margin-bottom: 30px;
-      box-shadow: 0 0 30px rgba(255,255,255,0.4);
-      animation: logoIntro 2s ease-in-out infinite;
       position: relative;
+      z-index: 10;
+      border: 2px solid rgba(255,75,145,0.5);
+      box-shadow: 
+        0 0 30px rgba(255,75,145,0.5),
+        inset 0 0 30px rgba(255,75,145,0.2);
+      animation: logoGlow 3s ease-in-out infinite alternate;
     }
 
     .intro-logo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 50%;
     }
 
-    @keyframes logoIntro {
-      0%, 100% { 
-        transform: scale(1) rotate(0deg);
-        box-shadow: 0 0 30px rgba(255,255,255,0.4);
+    @keyframes logoGlow {
+      0% { 
+        box-shadow: 
+          0 0 30px rgba(255,75,145,0.5),
+          inset 0 0 30px rgba(255,75,145,0.2);
+        transform: scale(1);
       }
-      50% { 
-        transform: scale(1.1) rotate(5deg);
-        box-shadow: 0 0 50px rgba(255,255,255,0.7);
+      100% { 
+        box-shadow: 
+          0 0 50px rgba(255,75,145,0.8),
+          0 0 80px rgba(255,75,145,0.4),
+          inset 0 0 40px rgba(255,75,145,0.3);
+        transform: scale(1.05);
       }
     }
 
+    /* العنوان الرئيسي */
     .intro-title {
-      font-size: 3rem;
+      font-size: 4rem;
       font-weight: 800;
-      background: linear-gradient(to right, #ff4b91, #ff4ba2, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       margin-bottom: 20px;
       text-align: center;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1s ease 0.5s forwards;
+      position: relative;
+      z-index: 10;
+      background: linear-gradient(to right, #ff4b91, #ff4ba2, #a855f7, #5c2fc2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255,75,145,0.5);
+      animation: titlePulse 2s ease-in-out infinite alternate;
     }
 
+    @keyframes titlePulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    /* العنوان الفرعي */
     .intro-subtitle {
       font-size: 1.5rem;
       color: rgba(255,255,255,0.8);
       margin-bottom: 40px;
       text-align: center;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1s ease 1s forwards;
+      position: relative;
+      z-index: 10;
+      max-width: 600px;
+      line-height: 1.6;
+      animation: subtitleFade 3s ease-in-out infinite alternate;
     }
 
-    .intro-loader {
-      width: 80px;
-      height: 4px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 4px;
+    @keyframes subtitleFade {
+      0% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    /* شريط التقدم */
+    .progress-container {
+      width: 300px;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
       overflow: hidden;
       position: relative;
-      opacity: 0;
-      animation: fadeIn 1s ease 1.5s forwards;
+      z-index: 10;
     }
 
-    .intro-loader::after {
-      content: '';
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, #ff4b91, #5c2fc2);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px rgba(255,75,145,0.7);
+    }
+
+    /* تأثيرات النص المتحرك */
+    .floating-text {
       position: absolute;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      animation: floatText 15s linear infinite;
+      z-index: 5;
+    }
+
+    @keyframes floatText {
+      0% { 
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% { 
+        opacity: 1;
+      }
+      90% { 
+        opacity: 1;
+      }
+      100% { 
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* نموذج تسجيل الدخول - مخفي في البداية */
+    .login-container {
+      position: fixed;
       top: 0;
       left: 0;
+      width: 100%;
       height: 100%;
-      width: 0;
-      background: linear-gradient(to right, #ff4b91, #ff4ba2);
-      animation: loading 2s ease 2s forwards;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 900;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease;
+      background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a16 100%);
     }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .login-container.show {
+      opacity: 1;
+      pointer-events: all;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes loading {
-      to {
-        width: 100%;
-      }
-    }
-
-    /* نموذج تسجيل الدخول */
     .card {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 25px;
       padding: 40px 30px;
       text-align: center;
       width: 350px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.4);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      backdrop-filter: blur(15px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transform: translateY(0);
-      transition: all 0.5s ease;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 1s ease 0.5s;
       position: relative;
       overflow: hidden;
-      opacity: 0;
-      transform: scale(0.8);
     }
 
-    .card.show {
+    .login-container.show .card {
+      transform: translateY(0);
       opacity: 1;
-      transform: scale(1);
-    }
-
-    .card:hover {
-      transform: translateY(-10px) scale(1);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
     }
 
     .card::before {
@@ -223,9 +302,9 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
       transform: rotate(45deg);
-      animation: shine 3s infinite;
+      animation: shine 6s infinite;
     }
 
     @keyframes shine {
@@ -239,10 +318,11 @@
       border-radius: 50%;
       overflow: hidden;
       margin: 0 auto 20px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
       animation: float 3s ease-in-out infinite;
       position: relative;
       z-index: 1;
+      border: 1px solid rgba(255,75,145,0.3);
     }
 
     .logo img {
@@ -253,7 +333,7 @@
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-10px); }
     }
 
     h2 {
@@ -276,7 +356,7 @@
       padding: 15px 15px 15px 45px;
       border-radius: 10px;
       border: none;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08);
       color: white;
       font-size: 15px;
       outline: none;
@@ -285,9 +365,9 @@
     }
 
     input:focus {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255, 75, 145, 0.5);
-      box-shadow: 0 0 10px rgba(255, 75, 145, 0.3);
+      box-shadow: 0 0 15px rgba(255, 75, 145, 0.3);
     }
 
     .input-icon {
@@ -339,7 +419,7 @@
 
     button:hover {
       transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(255, 75, 145, 0.4);
+      box-shadow: 0 5px 20px rgba(255, 75, 145, 0.5);
     }
 
     button:hover::before {
@@ -394,7 +474,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08);
       color: white;
       cursor: pointer;
       transition: 0.3s;
@@ -402,7 +482,7 @@
 
     .social-btn:hover {
       transform: translateY(-5px);
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.15);
     }
 
     .notification {
@@ -438,7 +518,7 @@
       }
       
       .intro-title {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
       
       .intro-subtitle {
@@ -448,55 +528,69 @@
   </style>
 </head>
 <body>
-  <div class="particles" id="particles"></div>
-  
-  <!-- الأنترو -->
+  <!-- الأنترو الفريد -->
   <div class="intro" id="intro">
+    <div class="grid-3d"></div>
+    <div class="orbital-circles">
+      <div class="orbital-circle"></div>
+      <div class="orbital-circle"></div>
+      <div class="orbital-circle"></div>
+      <div class="orbital-circle"></div>
+    </div>
+    <div class="particles" id="particles"></div>
+    
     <div class="intro-logo">
       <img src="1.png" alt="Roma&Knzy Stor Logo">
     </div>
     <h1 class="intro-title">Roma&Knzy Stor</h1>
-    <p class="intro-subtitle">أفضل موقع لشحن متابعين إنستجرام</p>
-    <div class="intro-loader"></div>
+    <p class="intro-subtitle">أفضل منصة عربية لشحن متابعين إنستجرام بجودة فائقة وأسعار لا تنافس</p>
+    
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <div id="floatingTexts"></div>
   </div>
   
   <!-- نموذج تسجيل الدخول -->
-  <div class="card" id="loginCard">
-    <div class="logo">
-      <img src="1.png" alt="Roma&Knzy Stor Logo">
-    </div>
-    <h2>تسجيل الدخول</h2>
-
-    <div class="input-group">
-      <i class="fas fa-envelope input-icon"></i>
-      <input type="email" id="email" placeholder="البريد الإلكتروني">
-    </div>
-    
-    <div class="input-group">
-      <i class="fas fa-lock input-icon"></i>
-      <input type="password" id="password" placeholder="كلمة المرور">
-      <i class="fas fa-eye password-toggle" id="togglePassword"></i>
-    </div>
-    
-    <button onclick="login()">
-      <span id="buttonText">تسجيل الدخول</span>
-      <div class="loading" id="loading"></div>
-    </button>
-
-    <div class="social-login">
-      <div class="social-btn">
-        <i class="fab fa-google"></i>
+  <div class="login-container" id="loginContainer">
+    <div class="card">
+      <div class="logo">
+        <img src="1.png" alt="Roma&Knzy Stor Logo">
       </div>
-      <div class="social-btn">
-        <i class="fab fa-facebook-f"></i>
-      </div>
-      <div class="social-btn">
-        <i class="fab fa-twitter"></i>
-      </div>
-    </div>
+      <h2>تسجيل الدخول</h2>
 
-    <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب</a></p>
-    <p><a href="forgot-password.html">نسيت كلمة المرور؟</a></p>
+      <div class="input-group">
+        <i class="fas fa-envelope input-icon"></i>
+        <input type="email" id="email" placeholder="البريد الإلكتروني">
+      </div>
+      
+      <div class="input-group">
+        <i class="fas fa-lock input-icon"></i>
+        <input type="password" id="password" placeholder="كلمة المرور">
+        <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+      </div>
+      
+      <button onclick="login()">
+        <span id="buttonText">تسجيل الدخول</span>
+        <div class="loading" id="loading"></div>
+      </button>
+
+      <div class="social-login">
+        <div class="social-btn">
+          <i class="fab fa-google"></i>
+        </div>
+        <div class="social-btn">
+          <i class="fab fa-facebook-f"></i>
+        </div>
+        <div class="social-btn">
+          <i class="fab fa-twitter"></i>
+        </div>
+      </div>
+
+      <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب</a></p>
+      <p><a href="forgot-password.html">نسيت كلمة المرور؟</a></p>
+    </div>
   </div>
 
   <div class="notification" id="notification"></div>
@@ -520,14 +614,14 @@
     // إنشاء الجسيمات المتحركة
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
-      const particleCount = 30;
+      const particleCount = 50;
       
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         
         // حجم عشوائي
-        const size = Math.random() * 20 + 5;
+        const size = Math.random() * 8 + 2;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         
@@ -536,10 +630,35 @@
         particle.style.top = `${Math.random() * 100}%`;
         
         // تأخير عشوائي للحركة
-        particle.style.animationDelay = `${Math.random() * 15}s`;
+        particle.style.animationDelay = `${Math.random() * 8}s`;
         
         particlesContainer.appendChild(particle);
       }
+    }
+
+    // إنشاء النصوص العائمة
+    function createFloatingTexts() {
+      const textsContainer = document.getElementById('floatingTexts');
+      const texts = ["جودة", "سرعة", "أمان", "احترافية", "تميز", "إبداع", "تطور", "ريادة"];
+      const colors = ["#ff4b91", "#ff4ba2", "#a855f7", "#5c2fc2", "#3b82f6", "#06b6d4"];
+      
+      texts.forEach((text, index) => {
+        const floatingText = document.createElement('div');
+        floatingText.classList.add('floating-text');
+        floatingText.textContent = text;
+        floatingText.style.left = `${Math.random() * 90 + 5}%`;
+        floatingText.style.animationDelay = `${Math.random() * 15}s`;
+        floatingText.style.color = colors[Math.floor(Math.random() * colors.length)];
+        floatingText.style.fontSize = `${Math.random() * 1 + 0.8}rem`;
+        
+        textsContainer.appendChild(floatingText);
+      });
+    }
+
+    // تحديث شريط التقدم
+    function updateProgressBar(percent) {
+      const progressBar = document.getElementById('progressBar');
+      progressBar.style.width = `${percent}%`;
     }
 
     // تبديل رؤية كلمة المرور
@@ -625,29 +744,40 @@
     // إخفاء الأنترو وإظهار نموذج تسجيل الدخول
     function showLoginForm() {
       const intro = document.getElementById('intro');
-      const loginCard = document.getElementById('loginCard');
+      const loginContainer = document.getElementById('loginContainer');
       
       // إخفاء الأنترو
       intro.style.opacity = '0';
-      intro.style.transform = 'scale(1.2)';
+      intro.style.transform = 'scale(1.5)';
       
       // بعد انتهاء الانتقال، إخفاء الأنترو نهائيًا وإظهار نموذج تسجيل الدخول
       setTimeout(() => {
         intro.style.display = 'none';
-        loginCard.classList.add('show');
-      }, 1000);
+        loginContainer.classList.add('show');
+      }, 1500);
+    }
+
+    // محاكاة تحميل الأنترو
+    function simulateIntroLoading() {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          setTimeout(showLoginForm, 500);
+        }
+        updateProgressBar(progress);
+      }, 300);
     }
 
     // تهيئة الصفحة
     document.addEventListener('DOMContentLoaded', function() {
       createParticles();
+      createFloatingTexts();
       
-      // إخفاء نموذج تسجيل الدخول في البداية
-      const loginCard = document.getElementById('loginCard');
-      loginCard.style.display = 'none';
-      
-      // عرض الأنترو أولاً ثم الانتقال إلى نموذج تسجيل الدخول
-      setTimeout(showLoginForm, 4000); // الأنترو سيظهر لمدة 4 ثوانٍ
+      // بدء محاكاة التحميل بعد تأخير بسيط
+      setTimeout(simulateIntroLoading, 1000);
     });
   </script>
 </body>
