@@ -1,371 +1,257 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Roma&Knzy Intro → Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roma&Knzy Stor | تسجيل الدخول</title>
+  <link rel="icon" type="image/png" href="1.png">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --pink-1: #ffd6ea;
-      --pink-2: #ff9ad8;
-      --accent: #ff4b91;
-      --gold: rgba(255, 200, 120, 0.18);
-      --card-bg: rgba(255,255,255,0.95);
-      --glass: rgba(255,255,255,0.06);
-      --shadow: 0 10px 30px rgba(18,18,30,0.35);
-      --duration-intro: 4200ms; /* مدة الانترو تقريبًا */
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif;}
+    body {
+      background: linear-gradient(270deg, #ff4b91, #5c2fc2, #2b244d);
+      background-size: 600% 600%;
+      animation: bgMove 10s ease infinite;
+      overflow: hidden;
+    }
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    *{box-sizing:border-box;font-family:"Tajawal",sans-serif}
-    html,body{height:100%;margin:0;background:linear-gradient(135deg,#fdf2fb,#f7f0ff 40%, #e8fbff);overflow:hidden;color:#111}
-
-    /* ---------- OVERLAY الانترو ---------- */
-    .intro-overlay{
-      position:fixed;inset:0;display:flex;justify-content:center;align-items:center;
-      background:linear-gradient(180deg, rgba(6,6,10,0.95), rgba(6,6,10,0.86));
-      z-index:9999;transition:opacity .8s ease, visibility .8s ease;
-      backdrop-filter: blur(6px);
+    /* ====== الانترو ====== */
+    .intro {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      z-index: 999;
+      animation: fadeOut 2s ease 8s forwards;
     }
 
-    .instagram-card{
-      width:360px;
-      max-width:92vw;
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border-radius:18px;
-      padding:18px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.04);
-      transform: translateY(10px);
-      overflow:visible;
-      position:relative;
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
     }
 
-    /* halo خلفية ناعمة للتركيز */
-    .halo{
-      position:absolute;left:50%;top:20%;transform:translateX(-50%);width:480px;height:480px;border-radius:50%;
-      background: radial-gradient(circle at 40% 30%, rgba(255,75,145,0.12), transparent 30%),
-                  radial-gradient(circle at 70% 70%, rgba(163,225,255,0.08), transparent 30%);
-      filter: blur(30px);pointer-events:none;
+    .insta-card {
+      background: #121212;
+      width: 320px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(255,75,145,0.4);
+      text-align: center;
+      padding: 20px;
+      animation: popIn 1s ease;
     }
 
-    /* رأس الcard */
-    .meta{
-      display:flex;gap:12px;align-items:center;
-    }
-    .avatar{
-      width:68px;height:68px;border-radius:50%;overflow:hidden;border:3px solid rgba(255,255,255,0.06);
-      box-shadow:0 6px 20px rgba(0,0,0,0.5), 0 0 22px rgba(255,75,145,0.12);
-      background:linear-gradient(180deg,#fff 0,#eee 100%);
-      flex:0 0 auto;
-    }
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-
-    .info{flex:1}
-    .name{
-      font-weight:800;color:#fff;font-size:1.05rem;
-      display:flex;align-items:center;gap:8px;
-    }
-    .name .handle{font-weight:700}
-    .meta .badge{
-      font-size:.78rem;padding:.18rem .6rem;border-radius:999px;background:linear-gradient(90deg,var(--accent),#ff0070);
-      color:#fff;box-shadow:0 6px 18px rgba(255,75,145,0.12)
+    @keyframes popIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
-    .sub{color:rgba(255,255,255,0.78);font-size:.88rem;margin-top:6px}
-
-    /* follower counter */
-    .counter{
-      margin-top:14px;background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      padding:12px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;
-      border:1px solid rgba(255,255,255,0.03);
-    }
-    .count-left{display:flex;gap:12px;align-items:center}
-    .count-num{font-weight:900;font-size:1.4rem;color:#fff;text-shadow:0 6px 18px rgba(0,0,0,0.5)}
-    .count-label{font-size:.9rem;color:rgba(255,255,255,0.75)}
-
-    .follow-btn{
-      min-width:98px;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, #fff, var(--pink-1));
-      border: none;cursor:default;font-weight:800;color:#111;box-shadow:0 6px 20px rgba(0,0,0,0.18);
-      transform: translateY(0);
+    .insta-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
     }
 
-    /* رموز المتابعين الطائرة */
-    .particle {
-      position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;
-      font-size:18px;opacity:0;will-change:transform,opacity;
-      text-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    .insta-header img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 2px solid #ff4b91;
     }
 
-    /* تأثير وميض حول الرقم بعد اكتمال العد */
-    .glow {
-      position:absolute;inset:0;border-radius:14px;pointer-events:none;
-      background:radial-gradient(circle at 30% 20%, rgba(255,200,210,0.06), transparent 15%),
-                 radial-gradient(circle at 70% 70%, rgba(180,235,255,0.04), transparent 15%);
-      mix-blend-mode: screen;
+    .insta-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
     }
 
-    /* ---------- صفحة تسجيل الدخول الكيوت ---------- */
-    .login-wrap{
-      min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;visibility:hidden;opacity:0;transition:opacity .9s ease, visibility .9s;
-    }
-    .login-card{
-      width:360px;max-width:94vw;background:var(--card-bg);border-radius:18px;padding:26px;box-shadow:0 20px 50px rgba(13,12,22,0.12);
-      border:1px solid rgba(255,255,255,0.6);
-    }
-    .login-card .brand{
-      display:flex;gap:12px;align-items:center;margin-bottom:12px;
-    }
-    .login-card .brand .avatar{width:56px;height:56px}
-    .login-card h2{margin:0;font-size:1.3rem;color:#111}
-    .hint{color:rgba(0,0,0,0.6);font-size:.95rem;margin-top:6px}
-
-    .field{margin-top:14px}
-    input[type="email"], input[type="password"]{
-      width:100%;padding:12px;border-radius:10px;border:1px solid rgba(16,16,16,0.06);outline:none;font-size:14px;
-      background:linear-gradient(180deg,#fff,#fff);box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+    .follow-btn {
+      background: linear-gradient(to right, #ff4b91, #ff4ba2);
+      border: none;
+      border-radius: 10px;
+      padding: 8px 15px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      animation: clickFollow 1.5s ease 2s forwards;
     }
 
-    .btn-login{
-      margin-top:14px;width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),#ff006a);
-      color:#fff;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(255,75,145,0.12);
+    @keyframes clickFollow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(0.9); background: #ff4ba2; }
     }
 
-    .tiny{font-size:.85rem;color:rgba(0,0,0,0.45);margin-top:10px}
-
-    /* ---------- أنيميشنات ---------- */
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity:1 }
-      100% { transform: translateY(-640px) scale(.6); opacity:0 }
+    .followers {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #ffb8dc;
     }
 
-    @keyframes pop {
-      0% { transform: scale(.85); opacity:0 }
-      60% { transform: scale(1.06); opacity:1 }
-      100% { transform: scale(1); opacity:1 }
+    /* ====== صفحة تسجيل الدخول ====== */
+    .login-page {
+      display: none;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      transition: opacity 1s ease;
     }
 
-    /* fade out intro */
-    .intro-hidden{ opacity:0 !important; visibility:hidden !important; pointer-events:none; }
-
-    /* responsive */
-    @media (max-width:420px){
-      .instagram-card{width:92vw;padding:14px;border-radius:14px}
-      .avatar{width:56px;height:56px}
-      .count-num{font-size:1.1rem}
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 25px;
+      padding: 40px 30px;
+      text-align: center;
+      width: 330px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
     }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h2 {
+      background: linear-gradient(to right, #ff4b91, #ff4ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, #ff4b91, #ff4ba2);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover { transform: scale(1.05); }
+
+    p { margin-top: 15px; font-size: 0.9rem; color: #ccc; }
+    a { color: #ff4b91; text-decoration: none; font-weight: 700; }
   </style>
 </head>
 <body>
 
-  <!-- INTRO OVERLAY -->
-  <div class="intro-overlay" id="introOverlay" aria-hidden="true">
-    <div class="halo" aria-hidden="true"></div>
-
-    <div class="instagram-card" role="region" aria-label="معاينة حساب إنستجرام وهمي">
-      <div class="meta">
-        <div class="avatar" aria-hidden="true">
-          <!-- استخدم الصورة الموجودة في نفس الفولدر باسم 1.png -->
-          <img src="1.png" alt="Roma&Knzy Logo">
-        </div>
-        <div class="info">
-          <div class="name">
-            <span class="handle">Roma&Knzy</span>
-            <span class="badge" aria-hidden="true">Verified</span>
-          </div>
-          <div class="sub">حساب رسمي — زيادة المتابعين</div>
-        </div>
+  <!-- الانترو -->
+  <div class="intro" id="intro">
+    <div class="insta-card">
+      <div class="insta-header">
+        <img src="1.png" alt="Roma&Knzy">
+        <h3>Roma&Knzy</h3>
       </div>
-
-      <div class="counter" aria-hidden="true" style="margin-top:14px;position:relative">
-        <div class="count-left">
-          <div style="display:flex;flex-direction:column">
-            <span class="count-num" id="followerNumber">1,243</span>
-            <span class="count-label">متابع</span>
-          </div>
-        </div>
-        <div>
-          <button class="follow-btn" aria-hidden="true">Follow</button>
-        </div>
-
-        <div class="glow" aria-hidden="true"></div>
-      </div>
+      <p style="color:#bbb;">romaknzy.official</p>
+      <button class="follow-btn">متابعة</button>
+      <div class="followers">المتابعون: <span id="count">3,254</span></div>
     </div>
   </div>
 
-  <!-- PARTICLE ICONS (تظهر أثناء العد) -->
-  <div id="particlesRoot" aria-hidden="true"></div>
-
-  <!-- صفحة تسجيل الدخول التي تظهر بعد الانتهاء -->
-  <main class="login-wrap" id="loginWrap" aria-hidden="true">
-    <div class="login-card" role="main" aria-label="نموذج تسجيل الدخول">
-      <div class="brand">
-        <div class="avatar"><img src="1.png" alt="Roma&Knzy Logo"></div>
-        <div>
-          <h2>Roma & Knzy Stor</h2>
-          <div class="hint">أهلاً! سجل دخولك أو أنشئ حساب بسرعة</div>
-        </div>
+  <!-- صفحة تسجيل الدخول -->
+  <div class="login-page" id="loginPage">
+    <div class="card">
+      <div class="logo">
+        <img src="1.png" alt="Roma&Knzy Stor Logo">
       </div>
+      <h2>تسجيل الدخول</h2>
 
-      <div class="field">
-        <label class="tiny">البريد الإلكتروني</label>
-        <input type="email" placeholder="example@mail.com" id="email">
-      </div>
-      <div class="field">
-        <label class="tiny">كلمة المرور</label>
-        <input type="password" placeholder="••••••••" id="password">
-      </div>
-      <button class="btn-login" onclick="fakeLogin()">تسجيل الدخول</button>
+      <input type="email" id="email" placeholder="البريد الإلكتروني">
+      <input type="password" id="password" placeholder="كلمة المرور">
+      <button onclick="login()">تسجيل الدخول</button>
 
-      <div class="tiny">نسيت كلمة المرور؟ <a href="#" style="color:var(--accent);font-weight:700">استرجاع</a></div>
+      <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب</a></p>
     </div>
-  </main>
+  </div>
 
-  <script>
-    /***********************
-     * إعداد المتغيرات
-     ***********************/
-    const startCount = 1243;      // بداية العد
-    const targetCount = 10000;    // القيمة النهائية
-    const duration = 3200;        // مدة العد بالملي ثانية
-    const particlesRoot = document.getElementById('particlesRoot');
-    const followerNumberEl = document.getElementById('followerNumber');
-    const introOverlay = document.getElementById('introOverlay');
-    const loginWrap = document.getElementById('loginWrap');
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
-    // تنسيق الرقم بـ فواصل الآلاف
-    function formatNumber(n){
-      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+    const firebaseConfig = {
+      apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
+      authDomain: "romalshop.firebaseapp.com",
+      projectId: "romalshop",
+      storageBucket: "romalshop.firebasestorage.app",
+      messagingSenderId: "830369715807",
+      appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
+    };
 
-    /***********************
-     * دالة أنيميشن العد (smooth)
-     ***********************/
-    function animateCount(start, end, duration, onUpdate, onComplete) {
-      const startTime = performance.now();
-      function tick(now){
-        const elapsed = now - startTime;
-        const t = Math.min(1, elapsed / duration);
-        // easing: easeOutCubic
-        const ease = (--t)*t*t+1;
-        const current = Math.floor(start + (end - start) * ease);
-        onUpdate(current);
-        if (elapsed < duration) {
-          requestAnimationFrame(tick);
-        } else {
-          onUpdate(end);
-          if (onComplete) onComplete();
-        }
-      }
-      requestAnimationFrame(tick);
-    }
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-    /***********************
-     * إنشاء جزيئات (رموز متابعين)
-     ***********************/
-    function spawnParticle(x, y) {
-      const icons = ['❤️','⭐','👥','🔥','💖'];
-      const elem = document.createElement('div');
-      elem.className = 'particle';
-      elem.textContent = icons[Math.floor(Math.random() * icons.length)];
-      // وضع البداية حول منتصف الكارد
-      elem.style.left = (x + (Math.random()*120 - 60)) + 'px';
-      elem.style.top = (y + (Math.random()*40 - 20)) + 'px';
-      elem.style.fontSize = (14 + Math.random()*20) + 'px';
-      document.body.appendChild(elem);
+    // عداد المتابعين التدريجي
+    let count = 3254;
+    const target = 10000;
+    const countElement = document.getElementById("count");
 
-      // حركة عشوائية للأعلى
-      const dx = (Math.random() * 160 - 80);
-      const dy = - (220 + Math.random() * 420);
-      const rotation = (Math.random() * 80 - 40);
-      const duration = 1400 + Math.random() * 1000;
-
-      elem.animate([
-        { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
-        { transform: `translate(${dx}px, ${dy}px) rotate(${rotation}deg) scale(.7)`, opacity: 0 }
-      ], {
-        duration: duration,
-        easing: 'cubic-bezier(.22,.9,.3,1)',
-        fill: 'forwards'
-      });
-
-      // إزالة العنصر بعد الانتهاء
-      setTimeout(()=> elem.remove(), duration + 50);
-    }
-
-    /***********************
-     * تسلسل الانيميشن: الانترو أوتوماتيكي
-     ***********************/
-    function runIntro() {
-      // موقع منتصف الكارد (نقطة انطلاق الجزيئات)
-      const card = document.querySelector('.instagram-card');
-      const rect = card.getBoundingClientRect();
-      const baseX = rect.left + rect.width / 2;
-      const baseY = rect.top + rect.height / 2;
-
-      // تشغيل العد المتدرج
-      animateCount(startCount, targetCount, duration, (val) => {
-        followerNumberEl.textContent = formatNumber(val);
-        // أثناء العد نولد عدد من الجزيئات بشكل متناسب مع التقدم
-        // كل إطار نولد بضعة عناصر عشوائية
-        for (let i = 0; i < 3; i++) {
-          // احتمالية أقل للظهور في البداية وأكثر كلما اقتربنا للنهاية
-          if (Math.random() < 0.38) spawnParticle(baseX + (Math.random()*40-20), baseY + (Math.random()*10-5));
-        }
-      }, () => {
-        // عند الانتهاء نولد انفجار صغير من جزيئات وومضة إضاءة
-        for (let i=0;i<28;i++) spawnParticle(baseX, baseY);
-        // وميض لطيف حول الكارد
-        const glow = document.querySelector('.glow');
-        if (glow) {
-          glow.animate([
-            { opacity: 0 },
-            { opacity: 1 },
-            { opacity: 0 }
-          ], { duration: 850, easing: 'ease-out' });
-        }
-
-        // بعد لحظة قصيرة نعمل fade للانترو ونظهر صفحة الدخول
+    const increaseFollowers = setInterval(() => {
+      count += Math.floor(Math.random() * 150);
+      if (count >= target) {
+        count = target;
+        clearInterval(increaseFollowers);
         setTimeout(() => {
-          introOverlay.classList.add('intro-hidden');
-          // اجعل صفحة الدخول مرئية
-          loginWrap.style.opacity = '1';
-          loginWrap.style.visibility = 'visible';
-          // اجعل التركيز على حقل الايميل
-          setTimeout(()=> document.getElementById('email').focus(), 350);
-        }, 900);
-      });
-    }
-
-    /***********************
-     * تشغيل الانترو تلقائيًا بعد تحميل الصفحة
-     ***********************/
-    window.addEventListener('load', () => {
-      // ننتظر طفيف قبل البدأ لتعطي إحساس سينمائي
-      setTimeout(runIntro, 650);
-    });
-
-    /***********************
-     * fake login handler (تجريبي)
-     ***********************/
-    function fakeLogin(){
-      const btn = document.querySelector('.btn-login');
-      btn.disabled = true;
-      btn.textContent = 'جاري الدخول...';
-      setTimeout(()=> {
-        btn.textContent = 'تم';
-        btn.style.background = 'linear-gradient(90deg,#6ae1ff,#9cffdd)';
-        btn.disabled = false;
-      }, 900);
-    }
-
-    // تحسين الوصول: إخفاء overlay من قارئ الشاشة بعد الانتهاء
-    const observer = new MutationObserver(() => {
-      if (introOverlay.classList.contains('intro-hidden')) {
-        introOverlay.setAttribute('aria-hidden','true');
-        loginWrap.setAttribute('aria-hidden','false');
+          document.getElementById("intro").style.display = "none";
+          document.getElementById("loginPage").style.display = "flex";
+        }, 1000);
       }
-    });
-    observer.observe(introOverlay, { attributes: true, attributeFilter: ['class'] });
+      countElement.textContent = count.toLocaleString();
+    }, 200);
+
+    // تسجيل الدخول
+    window.login = function() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          localStorage.setItem("loggedIn", "true");
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          alert("خطأ في تسجيل الدخول: " + error.message);
+        });
+    };
   </script>
 </body>
 </html>
