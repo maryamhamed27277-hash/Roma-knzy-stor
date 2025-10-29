@@ -3,245 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roma&Knzy | تسجيل الدخول</title>
+    <title>Roma&Knzy | أنترو مذهل</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #ffd6e7 0%, #ffb6c1 50%, #ff9eb5 100%);
+            background: #000;
+            color: white;
+            overflow: hidden;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            font-family: Arial, sans-serif;
         }
 
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* الأنترو */
+        /* الأنترو الرئيسي */
         .intro {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #ffd6e7 0%, #ffb6c1 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
             z-index: 1000;
-            transition: opacity 0.8s ease;
-        }
-
-        .intro-logo {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, #ff9eb5, #ff6b9c);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .intro-logo i {
-            font-size: 4rem;
-            color: white;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .loading-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 2px;
             overflow: hidden;
         }
 
-        .loading-progress {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(135deg, #ff6b9c, #ff1493);
-            border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-
-        /* شاشة تسجيل الدخول */
-        .login-screen {
+        /* شبكة ثلاثية الأبعاد */
+        .grid-3d {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.8s ease;
+            width: 200%;
+            height: 200%;
+            background: 
+                linear-gradient(90deg, rgba(255,75,145,0.1) 1px, transparent 1px),
+                linear-gradient(rgba(255,75,145,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg);
+            animation: gridMove 20s linear infinite;
         }
 
-        .login-screen.active {
-            opacity: 1;
-            pointer-events: all;
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateX(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(-25%) translateX(-25%); }
         }
 
-        .login-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 40px;
-            width: 380px;
-            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            text-align: center;
-        }
-
-        .avatar {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #ff9eb5, #ff6b9c);
+        /* دائرة الطاقة */
+        .energy-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 3px solid transparent;
             border-radius: 50%;
-            margin: -70px auto 20px;
+            animation: energyPulse 3s ease-in-out infinite;
+        }
+
+        .energy-ring::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            animation: energyPulse 3s ease-in-out infinite 0.5s;
+        }
+
+        .energy-ring::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            animation: energyPulse 3s ease-in-out infinite 1s;
+        }
+
+        @keyframes energyPulse {
+            0%, 100% { 
+                border-color: rgba(255,75,145,0.3);
+                box-shadow: 0 0 20px rgba(255,75,145,0.3);
+            }
+            50% { 
+                border-color: rgba(255,75,145,0.8);
+                box-shadow: 0 0 40px rgba(255,75,145,0.6),
+                           0 0 60px rgba(255,75,145,0.4);
+            }
+        }
+
+        /* الشعار المركزي */
+        .main-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff4b91, #5c2fc2);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+            z-index: 10;
+            animation: logoGlow 2s ease-in-out infinite alternate;
         }
 
-        .avatar i {
-            font-size: 2.5rem;
+        .main-logo i {
+            font-size: 3rem;
             color: white;
         }
 
-        .welcome-text {
-            color: #ff6b9c;
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 30px;
+        @keyframes logoGlow {
+            0% { 
+                box-shadow: 0 0 20px rgba(255,75,145,0.5);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% { 
+                box-shadow: 0 0 40px rgba(255,75,145,0.8),
+                           0 0 60px rgba(255,75,145,0.4);
+                transform: translate(-50%, -50%) scale(1.1);
+            }
         }
 
-        .input-group {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 15px 45px 15px 15px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid rgba(255, 182, 193, 0.3);
-            border-radius: 15px;
-            color: #ff6b9c;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #ff6b9c;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 0 0 3px rgba(255, 107, 156, 0.1);
-        }
-
-        .input-group input::placeholder {
-            color: #ffb6c1;
-        }
-
-        .input-group i {
+        /* النص المتحرك */
+        .intro-text {
             position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #ff6b9c;
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            animation: textReveal 6s ease-in-out infinite;
         }
 
-        .password-toggle {
+        .intro-text h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #ff4b91, #5c2fc2, #ff4b91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255,75,145,0.5);
+        }
+
+        .intro-text p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.7);
+            animation: subtitlePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes textReveal {
+            0%, 100% { 
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            20%, 80% { 
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes subtitlePulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* الجسيمات المتحركة */
+        .particles {
             position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #ff6b9c;
-            cursor: pointer;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #ff6b9c, #ff1493);
-            border: none;
-            border-radius: 15px;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            box-shadow: 0 10px 20px rgba(255, 107, 156, 0.3);
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(255, 107, 156, 0.4);
-        }
-
-        .links {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .links a {
-            color: #ff6b9c;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .links a:hover {
-            color: #ff1493;
-            text-decoration: underline;
-        }
-
-        /* تأثيرات الخلفية */
-        .floating-hearts {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: -1;
         }
 
-        .heart {
+        .particle {
             position: absolute;
-            color: rgba(255, 107, 156, 0.3);
-            font-size: 1.5rem;
-            animation: float-heart 8s infinite linear;
+            background: rgba(255,75,145,0.6);
+            border-radius: 50%;
+            animation: particleFloat 8s infinite linear;
+            box-shadow: 0 0 10px rgba(255,75,145,0.8);
         }
 
-        @keyframes float-heart {
+        @keyframes particleFloat {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(100vh) translateX(0) rotate(0deg);
                 opacity: 0;
             }
             10% {
@@ -251,162 +209,300 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100px) rotate(360deg);
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
                 opacity: 0;
             }
         }
 
+        /* الأعمدة الضوئية */
+        .light-columns {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .light-column {
+            position: absolute;
+            bottom: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to top, rgba(255,75,145,0.8), transparent);
+            animation: lightRise 4s ease-out infinite;
+            box-shadow: 0 0 20px rgba(255,75,145,0.6);
+        }
+
+        @keyframes lightRise {
+            0% {
+                height: 0;
+                opacity: 0;
+            }
+            50% {
+                height: 70%;
+                opacity: 1;
+            }
+            100% {
+                height: 0;
+                opacity: 0;
+            }
+        }
+
+        /* شاشة التحول */
+        .transition-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+        }
+
+        .transition-screen.active {
+            opacity: 1;
+        }
+
+        /* شاشة تسجيل الدخول */
+        .login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 800;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+        }
+
+        .login-screen.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 1s ease 0.5s;
+        }
+
+        .login-screen.active .login-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff4b91, #5c2fc2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(255,75,145,0.5);
+        }
+
+        .login-logo i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .login-title {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ff4b91, #5c2fc2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 45px 15px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #ff4b91;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 75, 145, 0.3);
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff4b91, #5c2fc2);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 75, 145, 0.4);
+        }
+
         /* Responsive */
-        @media (max-width: 480px) {
-            .login-card {
+        @media (max-width: 768px) {
+            .intro-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .login-container {
                 width: 90%;
                 padding: 30px 25px;
-            }
-            
-            .avatar {
-                width: 80px;
-                height: 80px;
-                margin-top: -60px;
-            }
-            
-            .avatar i {
-                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- الأنترو -->
-        <div class="intro" id="intro">
-            <div class="intro-logo">
-                <i class="fas fa-heart"></i>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress" id="loadingProgress"></div>
-            </div>
+    <!-- الأنترو -->
+    <div class="intro" id="intro">
+        <div class="grid-3d"></div>
+        <div class="energy-ring"></div>
+        <div class="main-logo">
+            <i class="fas fa-crown"></i>
         </div>
-
-        <!-- شاشة تسجيل الدخول -->
-        <div class="login-screen" id="loginScreen">
-            <div class="login-card">
-                <div class="avatar">
-                    <i class="fas fa-user-circle"></i>
-                </div>
-                <div class="welcome-text">أهلاً وسهلاً</div>
-                
-                <div class="input-group">
-                    <input type="email" id="email" placeholder="البريد الإلكتروني">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                
-                <div class="input-group">
-                    <input type="password" id="password" placeholder="كلمة المرور">
-                    <i class="fas fa-lock"></i>
-                    <i class="fas fa-eye password-toggle" id="togglePassword"></i>
-                </div>
-                
-                <button class="login-btn" onclick="login()">
-                    <span id="buttonText">دخول</span>
-                    <div id="loading" style="display: none;">
-                        <i class="fas fa-spinner fa-spin"></i>
-                    </div>
-                </button>
-                
-                <div class="links">
-                    <a href="signup.html">إنشاء حساب</a>
-                    <a href="forgot-password.html">نسيت كلمة المرور؟</a>
-                </div>
-            </div>
+        <div class="intro-text">
+            <h1>Roma&Knzy</h1>
+            <p>أنترو مذهل بتأثيرات ثلاثية الأبعاد</p>
         </div>
+        <div class="particles" id="particles"></div>
+        <div class="light-columns" id="lightColumns"></div>
+    </div>
 
-        <!-- قلوب عائمة -->
-        <div class="floating-hearts" id="floatingHearts"></div>
+    <!-- شاشة التحول -->
+    <div class="transition-screen" id="transitionScreen"></div>
+
+    <!-- شاشة تسجيل الدخول -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h2 class="login-title">تسجيل الدخول</h2>
+                <p style="color: rgba(255,255,255,0.7);">أدخل بياناتك للمتابعة</p>
+            </div>
+
+            <div class="input-group">
+                <input type="email" placeholder="البريد الإلكتروني">
+                <i class="fas fa-envelope"></i>
+            </div>
+
+            <div class="input-group">
+                <input type="password" placeholder="كلمة المرور">
+                <i class="fas fa-lock"></i>
+            </div>
+
+            <button class="login-btn">دخول</button>
+        </div>
     </div>
 
     <script>
-        // إنشاء القلوب العائمة
-        function createHearts() {
-            const container = document.getElementById('floatingHearts');
-            const hearts = ['❤️', '💖', '💗', '💓', '💞'];
-            
-            for (let i = 0; i < 15; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-                heart.style.left = `${Math.random() * 100}%`;
-                heart.style.animationDelay = `${Math.random() * 8}s`;
-                heart.style.fontSize = `${Math.random() * 1 + 1}rem`;
-                container.appendChild(heart);
+        // إنشاء الجسيمات
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 8 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 8}s`;
+                
+                container.appendChild(particle);
             }
         }
 
-        // محاكاة تحميل الأنترو
-        function simulateLoading() {
-            const progressBar = document.getElementById('loadingProgress');
-            let progress = 0;
-            
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    setTimeout(showLoginScreen, 500);
-                }
-                progressBar.style.width = `${progress}%`;
-            }, 200);
+        // إنشاء الأعمدة الضوئية
+        function createLightColumns() {
+            const container = document.getElementById('lightColumns');
+            for (let i = 0; i < 20; i++) {
+                const column = document.createElement('div');
+                column.className = 'light-column';
+                
+                column.style.left = `${Math.random() * 100}%`;
+                column.style.animationDelay = `${Math.random() * 4}s`;
+                
+                container.appendChild(column);
+            }
         }
 
-        // إظهار شاشة تسجيل الدخول
-        function showLoginScreen() {
+        // الانتقال إلى شاشة تسجيل الدخول
+        function transitionToLogin() {
             const intro = document.getElementById('intro');
+            const transitionScreen = document.getElementById('transitionScreen');
             const loginScreen = document.getElementById('loginScreen');
             
-            intro.style.opacity = '0';
+            // إظهار شاشة التحول
+            transitionScreen.classList.add('active');
             
             setTimeout(() => {
+                // إخفاء الأنترو
                 intro.style.display = 'none';
+                transitionScreen.classList.remove('active');
+                
+                // إظهار شاشة تسجيل الدخول
                 loginScreen.classList.add('active');
-            }, 800);
+            }, 1000);
         }
 
-        // تبديل رؤية كلمة المرور
-        document.getElementById('togglePassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const type = passwordInput.type === 'password' ? 'text' : 'password';
-            passwordInput.type = type;
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-
-        // تسجيل الدخول
-        function login() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const buttonText = document.getElementById('buttonText');
-            const loading = document.getElementById('loading');
-
-            if (!email || !password) {
-                alert('يرجى ملء جميع الحقول');
-                return;
-            }
-
-            // عرض حالة التحميل
-            buttonText.style.display = 'none';
-            loading.style.display = 'block';
-
-            // محاكاة عملية تسجيل الدخول
-            setTimeout(() => {
-                alert('تم تسجيل الدخول بنجاح!');
-                window.location.href = "index.html";
-            }, 1500);
+        // بدء الأنترو
+        function startIntro() {
+            createParticles();
+            createLightColumns();
+            
+            // الانتقال بعد 5 ثواني
+            setTimeout(transitionToLogin, 5000);
         }
 
-        // تهيئة الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            createHearts();
-            setTimeout(simulateLoading, 1000);
-        });
+        // بدء التشغيل
+        document.addEventListener('DOMContentLoaded', startIntro);
     </script>
 </body>
 </html>
