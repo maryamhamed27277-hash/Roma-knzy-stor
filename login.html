@@ -3,60 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول | Roma&Knzy Stor</title>
-      <link rel="icon" type="image/png" href="1.png">
+  <title>Roma&Knzy Stor | تسجيل الدخول</title>
+  <link rel="icon" type="image/png" href="1.png">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
-      <!-- تحسين الظهور في بحث جوجل (SEO) -->
-    <meta name="description" content="موقع روما و كنزي Roma & Knzy Stor يقدم خدمات شحن و شراء متابعين انستجرام بأرخص الأسعار وبجودة عالية. أفضل موقع لزيادة متابعين إنستجرام بسرعة واحترافية.">
-    <meta name="keywords" content="شحن متابعين انستجرام, شراء متابعين انستجرام, متابعين انستجرام, روما و كنزي, Roma & Knzy, Roma & Knzy Stor, موقع روما و كنزي, ارخص اسعار متابعين انستجرام, موقع زيادة متابعين">
-    <meta name="author" content="Roma & Knzy Team">
-    <meta name="robots" content="index, follow">
 
-    <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
-    <meta property="og:title" content="Roma&knzy stor | شحن متابعين انستجرام بأرخص الأسعار">
-    <meta property="og:description" content="أفضل موقع لشحن وشراء متابعين إنستجرام بأرخص الأسعار - Roma & Knzy Stor.">
-    <meta property="og:url" content="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_AR">
-    <link rel="canonical" href="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
       font-family: 'Tajawal', sans-serif;
     }
 
     body {
       height: 100vh;
-      background: linear-gradient(270deg, #ff4b91, #5c2fc2, #2b244d);
-      background-size: 600% 600%;
-      animation: bgMove 10s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      overflow: hidden;
+      background: #000;
       color: white;
     }
 
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* الانترو */
+    #intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #ff4b91, #5c2fc2, #2b244d);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 4.5s;
     }
 
+    #intro .logo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      opacity: 0;
+      animation: popIn 1.2s ease forwards 0.5s;
+      box-shadow: 0 0 40px rgba(255,255,255,0.6);
+    }
+
+    #intro .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #intro h1 {
+      margin-top: 25px;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #fff, #ff4b91, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      animation: fadeSlide 1.2s ease forwards 1.8s;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      80% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* الصوت */
+    audio {
+      display: none;
+    }
+
+    /* صفحة تسجيل الدخول */
     .card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       background: rgba(0, 0, 0, 0.6);
       border-radius: 25px;
       padding: 40px 30px;
       text-align: center;
       width: 330px;
       box-shadow: 0 0 25px rgba(0,0,0,0.4);
+      opacity: 0;
+      animation: showCard 1s ease forwards;
+      animation-delay: 5s;
     }
 
-    .logo {
+    @keyframes showCard {
+      to { opacity: 1; }
+    }
+
+    .card .logo2 {
       width: 90px;
       height: 90px;
       border-radius: 50%;
@@ -66,7 +118,7 @@
       animation: float 3s ease-in-out infinite;
     }
 
-    .logo img {
+    .card .logo2 img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -129,76 +181,21 @@
   </style>
 </head>
 <body>
-  <!-- شاشة الانترو -->
-<div id="intro">
-  <div class="intro-logo">
-    <img src="1.png" alt="Roma & Knzy Logo">
+
+  <!-- الانترو -->
+  <div id="intro">
+    <div class="logo"><img src="1.png" alt="Roma&Knzy Logo"></div>
     <h1>Roma & Knzy Stor</h1>
   </div>
-</div>
 
-<style>
-  #intro {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, #ff4b91, #5c2fc2, #2b244d);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    flex-direction: column;
-    animation: fadeOut 1s ease forwards;
-    animation-delay: 3.5s;
-  }
+  <!-- الصوت -->
+  <audio autoplay>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/09/audio_8f2e9c1b2d.mp3?filename=intro-sound-143069.mp3" type="audio/mpeg">
+  </audio>
 
-  #intro img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    box-shadow: 0 0 30px rgba(255,255,255,0.5);
-    animation: bounce 2s ease infinite;
-  }
-
-  #intro h1 {
-    margin-top: 20px;
-    font-size: 2rem;
-    color: white;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #fff, #ff4b91, #fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glow 2s ease-in-out infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  @keyframes glow {
-    0%, 100% { opacity: 1; text-shadow: 0 0 15px #ff4b91; }
-    50% { opacity: 0.8; text-shadow: 0 0 25px #fff; }
-  }
-
-  @keyframes fadeOut {
-    to { opacity: 0; visibility: hidden; }
-  }
-</style>
-
-<script>
-  // لما الانترو يخلص بعد 4 ثواني يظهر الموقع
-  window.onload = () => {
-    setTimeout(() => {
-      document.getElementById("intro").style.display = "none";
-    }, 4000);
-  };
-</script>
+  <!-- صفحة تسجيل الدخول -->
   <div class="card">
-    <div class="logo">
+    <div class="logo2">
       <img src="1.png" alt="Roma&Knzy Stor Logo">
     </div>
     <h2>تسجيل الدخول</h2>
