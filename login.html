@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول | Roma&Knzy Stor</title>
-  <link rel="icon" type="image/png" href="1.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
+  <link rel="icon" type="image/png" href="1.png">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="موقع روما و كنزي Roma & Knzy Stor يقدم خدمات شحن و شراء متابعين انستجرام بأرخص الأسعار وبجودة عالية. أفضل موقع لزيادة متابعين إنستجرام بسرعة واحترافية.">
+  <meta name="keywords" content="شحن متابعين انستجرام, شراء متابعين انستجرام, متابعين انستجرام, روما و كنزي, Roma & Knzy, Roma & Knzy Stor, موقع روما و كنزي, ارخص اسعار متابعين انستجرام, موقع زيادة متابعين">
+  <meta name="author" content="Roma & Knzy Team">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Roma&knzy stor | شحن متابعين انستجرام بأرخص الأسعار">
+  <meta property="og:description" content="أفضل موقع لشحن وشراء متابعين إنستجرام بأرخص الأسعار - Roma & Knzy Stor.">
+  <meta property="og:url" content="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_AR">
+  <link rel="canonical" href="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  
   <style>
     * {
       box-sizing: border-box;
@@ -24,7 +35,26 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      color: white;
       overflow: hidden;
+      position: relative;
+    }
+
+    /* تأثيرات الجسيمات المتحركة */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      animation: floatParticle 15s infinite linear;
     }
 
     @keyframes bgMove {
@@ -33,43 +63,81 @@
       100% { background-position: 0% 50%; }
     }
 
-    .scene {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      color: white;
-    }
-
-    .lottie-girl {
-      width: 250px;
-      height: 250px;
-      margin: 0 auto;
-      animation: slideIn 3s ease forwards;
-    }
-
-    @keyframes slideIn {
-      0% { transform: translateX(-300px); opacity: 0; }
-      70% { transform: translateX(20px); opacity: 1; }
-      100% { transform: translateX(0); }
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1000%) translateX(100%) rotate(720deg);
+        opacity: 0;
+      }
     }
 
     .card {
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.6);
       border-radius: 25px;
-      padding: 35px 25px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-      opacity: 0;
-      transform: scale(0.8);
-      animation: appear 1s ease forwards;
-      animation-delay: 3s;
+      padding: 40px 30px;
+      text-align: center;
+      width: 350px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: translateY(0);
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    @keyframes appear {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: float 3s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     h2 {
@@ -77,24 +145,57 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-size: 1.6rem;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .input-group {
+      position: relative;
+      margin: 20px 0;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      margin: 8px 0;
+      padding: 15px 15px 15px 45px;
       border-radius: 10px;
       border: none;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       color: white;
       font-size: 15px;
       outline: none;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    input:focus {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255, 75, 145, 0.5);
+      box-shadow: 0 0 10px rgba(255, 75, 145, 0.3);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.7);
+      z-index: 1;
+    }
+
+    .password-toggle {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      z-index: 1;
     }
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 15px;
       border: none;
       border-radius: 10px;
       background: linear-gradient(to right, #ff4b91, #ff4ba2);
@@ -104,46 +205,166 @@
       cursor: pointer;
       margin-top: 10px;
       transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
     }
 
     button:hover {
       transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255, 75, 145, 0.4);
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    .loading {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     p {
       margin-top: 15px;
       font-size: 0.9rem;
       color: #ccc;
+      position: relative;
+      z-index: 1;
     }
 
     a {
       color: #ff4b91;
       text-decoration: none;
       font-weight: 700;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.2);
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 20px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transform: translateX(150%);
+      transition: transform 0.5s ease;
+      z-index: 1000;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.error {
+      border-right: 4px solid #ff4b91;
+    }
+
+    .notification.success {
+      border-right: 4px solid #4CAF50;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 90%;
+        padding: 30px 20px;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="scene">
-    <!-- أنيميشن البنت -->
-    <lottie-player 
-      src="https://lottie.host/30e4f11f-1c72-4d30-9f24-3e789ff4ebaf/GLnxlBicvL.json"
-      background="transparent"
-      speed="1"
-      class="lottie-girl"
-      autoplay>
-    </lottie-player>
-
-    <!-- نموذج تسجيل الدخول -->
-    <div class="card">
-      <h2>تسجيل الدخول</h2>
-      <input type="email" id="email" placeholder="البريد الإلكتروني" />
-      <input type="password" id="password" placeholder="كلمة المرور" />
-      <button onclick="login()">تسجيل الدخول</button>
-      <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب</a></p>
+  <div class="particles" id="particles"></div>
+  
+  <div class="card">
+    <div class="logo">
+      <img src="1.png" alt="Roma&Knzy Stor Logo">
     </div>
+    <h2>تسجيل الدخول</h2>
+
+    <div class="input-group">
+      <i class="fas fa-envelope input-icon"></i>
+      <input type="email" id="email" placeholder="البريد الإلكتروني">
+    </div>
+    
+    <div class="input-group">
+      <i class="fas fa-lock input-icon"></i>
+      <input type="password" id="password" placeholder="كلمة المرور">
+      <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+    </div>
+    
+    <button onclick="login()">
+      <span id="buttonText">تسجيل الدخول</span>
+      <div class="loading" id="loading"></div>
+    </button>
+
+    <div class="social-login">
+      <div class="social-btn">
+        <i class="fab fa-google"></i>
+      </div>
+      <div class="social-btn">
+        <i class="fab fa-facebook-f"></i>
+      </div>
+      <div class="social-btn">
+        <i class="fab fa-twitter"></i>
+      </div>
+    </div>
+
+    <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب</a></p>
+    <p><a href="forgot-password.html">نسيت كلمة المرور؟</a></p>
   </div>
+
+  <div class="notification" id="notification"></div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
@@ -161,19 +382,126 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    window.login = function() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+    // إنشاء الجسيمات المتحركة
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // حجم عشوائي
+        const size = Math.random() * 20 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // موقع عشوائي
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // تأخير عشوائي للحركة
+        particle.style.animationDelay = `${Math.random() * 15}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
 
+    // تبديل رؤية كلمة المرور
+    document.getElementById('togglePassword').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      
+      // تغيير الأيقونة
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+
+    // عرض الإشعارات
+    function showNotification(message, type) {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      notification.className = 'notification ' + type;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 4000);
+    }
+
+    // تسجيل الدخول
+    window.login = function() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const buttonText = document.getElementById('buttonText');
+      const loading = document.getElementById('loading');
+      
+      // التحقق من الحقول الفارغة
+      if (!email || !password) {
+        showNotification('يرجى ملء جميع الحقول', 'error');
+        return;
+      }
+      
+      // عرض حالة التحميل
+      buttonText.style.display = 'none';
+      loading.style.display = 'block';
+      
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           localStorage.setItem("loggedIn", "true");
-          window.location.href = "index.html";
+          showNotification('تم تسجيل الدخول بنجاح!', 'success');
+          
+          // الانتقال إلى الصفحة الرئيسية بعد تأخير قصير
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 1500);
         })
         .catch((error) => {
-          alert("خطأ في تسجيل الدخول: " + error.message);
+          // إخفاء حالة التحميل
+          buttonText.style.display = 'block';
+          loading.style.display = 'none';
+          
+          let errorMessage = 'حدث خطأ أثناء تسجيل الدخول';
+          
+          // تحويل رسائل الخطأ إلى العربية
+          switch(error.code) {
+            case 'auth/invalid-email':
+              errorMessage = 'البريد الإلكتروني غير صحيح';
+              break;
+            case 'auth/user-disabled':
+              errorMessage = 'هذا المستخدم معطل';
+              break;
+            case 'auth/user-not-found':
+              errorMessage = 'لا يوجد حساب مرتبط بهذا البريد الإلكتروني';
+              break;
+            case 'auth/wrong-password':
+              errorMessage = 'كلمة المرور غير صحيحة';
+              break;
+            case 'auth/too-many-requests':
+              errorMessage = 'تم إجراء محاولات تسجيل دخول كثيرة جدًا. يرجى المحاولة مرة أخرى لاحقًا';
+              break;
+          }
+          
+          showNotification(errorMessage, 'error');
         });
     };
+
+    // تهيئة الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      
+      // إضافة تأثير عند تحميل الصفحة
+      const card = document.querySelector('.card');
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      
+      setTimeout(() => {
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, 300);
+    });
   </script>
 </body>
 </html>
