@@ -1104,6 +1104,90 @@
                 </section>
             </div>
 
+            <!-- قسم تحميل التطبيق -->
+<section class="app-download-section" style="margin: 80px 0; text-align: center;">
+    <h2 class="section-title">حمل تطبيقنا الآن!</h2>
+    
+    <div style="background: rgba(255,255,255,0.08); padding: 40px; border-radius: 20px; max-width: 600px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.12);">
+        <div style="font-size: 60px; margin-bottom: 20px;">📱</div>
+        <h3 style="margin-bottom: 15px;">تطبيق Roma&Knzy Stor للجوال</h3>
+        <p style="margin-bottom: 25px; opacity: 0.8;">جميع خدمات الإنستجرام والتيك توك في جيبك!</p>
+        
+        <!-- روابط تحميل -->
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;">
+            <a href="https://drive.google.com/uc?export=download&id=1OgkBmzGQBPgUf3sfGJ0zulQDfbxnJ5ys" 
+               class="btn" 
+               style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px;"
+               onclick="trackDownload()">
+                <i class="fas fa-download"></i>
+                تحميل التطبيق الآن
+            </a>
+            
+            <button class="btn" onclick="showInstallInstructions()" style="background: var(--secondary-dark);">
+                <i class="fas fa-info-circle"></i>
+                تعليمات التثبيت
+            </button>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-top: 20px;">
+            <h4 style="margin-bottom: 10px; color: var(--accent);">⚠️ مهم قبل التثبيت:</h4>
+            <p style="font-size: 14px; margin-bottom: 8px;">1. اسمح بتثبيت التطبيقات من مصادر غير معروفة</p>
+            <p style="font-size: 14px; margin-bottom: 0;">2. التطبيق آمن 100% ومطوّر بواسطة فريقنا</p>
+        </div>
+    </div>
+</section>
+
+<!-- نافذة التعليمات -->
+<div id="installInstructions" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background: var(--dark); padding: 30px; border-radius: 15px; max-width: 500px; margin: 20px; border: 2px solid var(--primary);">
+        <h3 style="margin-bottom: 20px; color: var(--accent);">تعليمات تثبيت التطبيق</h3>
+        <div style="text-align: right; margin-bottom: 25px;">
+            <p>📲 <strong>1. حمّل الملف</strong> من الرابط أعلاه</p>
+            <p>⚙️ <strong>2. اذهب إلى الإعدادات</strong> → الأمان</p>
+            <p>🔓 <strong>3. فعّل خيار</strong> "مصادر غير معروفة"</p>
+            <p>📥 <strong>4. افتح الملف المحمّل</strong> للتثبيت</p>
+            <p>✅ <strong>5. اتّبع خطوات</strong> التثبيت</p>
+        </div>
+        <button class="btn" onclick="closeInstructions()" style="width: 100%;">فهمت، شكراً!</button>
+    </div>
+</div>
+
+<script>
+function showInstallInstructions() {
+    document.getElementById('installInstructions').style.display = 'flex';
+}
+
+function closeInstructions() {
+    document.getElementById('installInstructions').style.display = 'none';
+}
+
+function trackDownload() {
+    // يمكنك إضافة تتبع التحميلات هنا لاحقاً
+    console.log('تم بدء تحميل التطبيق');
+}
+
+// إشعار تلقائي بعد الطلب الأول
+function showAppPromo() {
+    setTimeout(() => {
+        if(confirm('🎉 يمكنك تحميل تطبيقنا لتجربة أسرع! هل تريد التحميل الآن؟')) {
+            window.open('https://drive.google.com/uc?export=download&id=1OgkBmzGQBPgUf3sfGJ0zulQDfbxnJ5ys', '_blank');
+        }
+    }, 3000);
+}
+
+// إظهار إشعار التطبيق عند فتح الموقع
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        if(localStorage.getItem('appPromoShown') !== 'true') {
+            if(confirm('📱 هل تريد تحميل تطبيق Roma&Knzy Stor على هاتفك؟')) {
+                window.open('https://drive.google.com/uc?export=download&id=1OgkBmzGQBPgUf3sfGJ0zulQDfbxnJ5ys', '_blank');
+            }
+            localStorage.setItem('appPromoShown', 'true');
+        }
+    }, 5000);
+});
+</script>
+
             <!-- قسم التواصل الجديد -->
             <section class="contact-section">
                 <div class="contact-bar">
