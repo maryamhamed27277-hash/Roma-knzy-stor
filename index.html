@@ -7,8 +7,9 @@
     <meta name="language" content="Arabic">
     <meta name="geo.region" content="EG">
     <meta name="geo.placename" content="Egypt">
-    <title>Roma&knzy stor</title>
+    <title>Roma&knzy stor - خدمات المتابعين والتفاعلات</title>
     <link rel="icon" type="image/png" href="1.png">
+    
     <!-- تحسين الظهور في بحث جوجل (SEO) -->
     <meta name="description" content="موقع روما و كنزي Roma & Knzy Stor يقدم خدمات شحن و شراء متابعين انستجرام وأيضاً خدمات تيك توك (لايكات، مشاهدات، حفظ، شير) بأرخص الأسعار وبجودة عالية.">
     <meta name="keywords" content="شحن متابعين انستجرام, شراء متابعين انستجرام, متابعين انستجرام, لايكات تيك توك, مشاهدات تيك توك, حفظ تيك توك, شير تيك توك, روما و كنزي, Roma & Knzy, Roma & Knzy Stor, موقع روما و كنزي, ارخص اسعار متابعين انستجرام, موقع زيادة متابعين">
@@ -22,86 +23,189 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_AR">
     <link rel="canonical" href="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
+    
+    <!-- الروابط الخارجية -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     
     <style>
+        :root {
+            /* نظام الألوان الجديد */
+            --primary: #FF2D78;
+            --primary-dark: #D81B60;
+            --primary-light: #FF5C8D;
+            --secondary: #9C27B0;
+            --secondary-dark: #7B1FA2;
+            --accent: #FF4081;
+            --success: #00E676;
+            --warning: #FFD600;
+            --danger: #FF5252;
+            --info: #40C4FF;
+            
+            /* ألوان الخلفية */
+            --bg-dark: #0F0F1E;
+            --bg-darker: #0A0A14;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --bg-card-hover: rgba(255, 255, 255, 0.08);
+            --bg-header: rgba(15, 15, 30, 0.95);
+            
+            /* ألوان النص */
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            
+            /* التدرجات */
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-primary-hover: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
+            --gradient-tiktok: linear-gradient(135deg, #FE2C55 0%, #25F4EE 100%);
+            --gradient-instagram: linear-gradient(45deg, #F09433 0%, #E6683C 25%, #DC2743 50%, #CC2366 75%, #BC1888 100%);
+            --gradient-hero: linear-gradient(135deg, #FF2D78 0%, #9C27B0 50%, #673AB7 100%);
+            
+            /* الظلال والتأثيرات */
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.4);
+            --glow-primary: 0 0 20px rgba(255, 45, 120, 0.5);
+            --glow-tiktok: 0 0 20px rgba(254, 44, 85, 0.5);
+            
+            /* الأنيميشن والتوقيتات */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* الزوايا والحدود */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 50%;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
         }
 
-        :root {
-            --primary: #FF2D78;
-            --primary-dark: #D81B60;
-            --secondary: #FF8CB3;
-            --secondary-dark: #F06292;
-            --accent: #FF5C8D;
-            --light: #FCE4EC;
-            --dark: #1A1A2E;
-            --darker: #12121F;
-            --success: #00E5A0;
-            --warning: #FFD166;
-            --danger: #FF6B6B;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-            --gradient-hero: linear-gradient(135deg, #FF2D78 0%, #FF8CB3 50%, #9C27B0 100%);
-            --tiktok-pink: #FE2C55;
-            --tiktok-blue: #25F4EE;
-            --tiktok-gradient: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --card-border: rgba(255, 255, 255, 0.15);
-            --glow-primary: 0 0 20px rgba(255, 45, 120, 0.5);
-            --glow-tiktok: 0 0 20px rgba(254, 44, 85, 0.5);
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
-            color: var(--light);
-            min-height: 100vh;
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 45, 120, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(156, 39, 176, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(103, 58, 183, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* التحميل */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        /* الحاوية الرئيسية */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
+        /* الهيدر */
         header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--bg-header);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all var(--transition-normal);
+        }
+
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            position: sticky;
-            top: 0;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(15px);
-            z-index: 100;
-            transition: all 0.3s ease;
+            padding: 15px 0;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            text-decoration: none;
         }
 
         .logo {
             width: 50px;
             height: 50px;
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             box-shadow: var(--glow-primary);
-            transition: all 0.3s ease;
-            position: relative;
+            transition: all var(--transition-normal);
         }
 
         .logo:hover {
@@ -117,32 +221,36 @@
 
         .logo-text {
             font-size: 24px;
-            font-weight: 800;
-            background: var(--gradient);
+            font-weight: 900;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
         }
 
-        .logo-text:hover {
-            transform: translateY(-2px);
+        .logo-text span {
+            font-size: 14px;
+            font-weight: 500;
+            background: var(--text-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
+        /* التنقل */
         nav ul {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 10px;
         }
 
         nav a {
-            color: var(--light);
+            color: var(--text-primary);
             text-decoration: none;
             padding: 10px 20px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
+            border-radius: var(--radius-full);
+            transition: all var(--transition-normal);
             font-weight: 500;
             position: relative;
             overflow: hidden;
@@ -155,37 +263,114 @@
             left: 0;
             width: 0;
             height: 100%;
-            background: var(--gradient);
-            transition: width 0.3s ease;
+            background: var(--gradient-primary);
+            transition: width var(--transition-normal);
             z-index: -1;
-            border-radius: 25px;
+            border-radius: var(--radius-full);
         }
 
-        nav a:hover::before {
+        nav a:hover::before,
+        nav a.active::before {
             width: 100%;
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a.active {
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .user-profile:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background: rgba(255, 82, 82, 0.2);
+            color: var(--danger);
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-weight: 500;
+        }
+
+        .logout-btn:hover {
+            background: var(--danger);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* زر القائمة للجوال */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .menu-toggle:hover {
+            color: var(--primary);
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        /* أقسام الخدمات */
         .service-tabs {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin: 30px 0;
+            margin: 40px 0;
         }
 
         .service-tab {
-            background: var(--card-bg);
-            padding: 15px 30px;
-            border-radius: 25px;
+            background: var(--bg-card);
+            padding: 18px 35px;
+            border-radius: var(--radius-xl);
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid var(--card-border);
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             position: relative;
             overflow: hidden;
         }
@@ -197,34 +382,32 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gradient);
+            background: var(--gradient-primary);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity var(--transition-normal);
             z-index: -1;
-            border-radius: 25px;
-        }
-
-        .service-tab.active {
-            transform: translateY(-5px);
-            box-shadow: var(--glow-primary);
+            border-radius: var(--radius-xl);
         }
 
         .service-tab.active::before {
             opacity: 1;
         }
 
-        .service-tab.tiktok.active {
-            box-shadow: var(--glow-tiktok);
+        .service-tab.tiktok::before {
+            background: var(--gradient-tiktok);
         }
 
-        .service-tab.tiktok.active::before {
-            background: var(--tiktok-gradient);
+        .service-tab.active {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .service-tab:hover {
             transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
 
+        /* الهيرو */
         .hero {
             text-align: center;
             padding: 100px 0;
@@ -232,16 +415,11 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 45, 120, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 70%, rgba(156, 39, 176, 0.1) 0%, transparent 50%);
-            z-index: -1;
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
@@ -252,6 +430,7 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             animation: textGlow 3s ease-in-out infinite alternate;
+            line-height: 1.2;
         }
 
         @keyframes textGlow {
@@ -266,32 +445,47 @@
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 40px;
-            opacity: 0.9;
-            max-width: 700px;
+            color: var(--text-secondary);
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
         .btn {
-            background: var(--gradient);
+            background: var(--gradient-primary);
             color: white;
-            padding: 15px 35px;
+            padding: 16px 35px;
             border: none;
-            border-radius: 30px;
+            border-radius: var(--radius-xl);
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             position: relative;
             overflow: hidden;
             box-shadow: var(--glow-primary);
         }
 
         .btn.tiktok {
-            background: var(--tiktok-gradient);
+            background: var(--gradient-tiktok);
             box-shadow: var(--glow-tiktok);
+        }
+
+        .btn.secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-md);
         }
 
         .btn::before {
@@ -318,6 +512,12 @@
             box-shadow: 0 10px 25px rgba(254, 44, 85, 0.6);
         }
 
+        .btn.secondary:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+        }
+
+        /* الميزات */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -326,13 +526,13 @@
         }
 
         .feature-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--radius-lg);
             text-align: center;
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
+            transition: all var(--transition-normal);
             position: relative;
             overflow: hidden;
         }
@@ -344,27 +544,40 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--gradient);
+            background: var(--gradient-primary);
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-xl);
+            background: var(--bg-card-hover);
         }
 
         .feature-card i {
             font-size: 50px;
             margin-bottom: 20px;
-            background: var(--gradient);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
         }
 
         .feature-card:hover i {
             transform: scale(1.1);
         }
 
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* الباقات */
         .packages-section {
             margin: 100px 0;
         }
@@ -377,14 +590,14 @@
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--gradient);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             padding: 0 20px;
         }
 
         .section-title.tiktok {
-            background: var(--tiktok-gradient);
+            background: var(--gradient-tiktok);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -397,12 +610,12 @@
             transform: translateX(-50%);
             width: 80%;
             height: 3px;
-            background: var(--gradient);
+            background: var(--gradient-primary);
             border-radius: 3px;
         }
 
         .section-title.tiktok::after {
-            background: var(--tiktok-gradient);
+            background: var(--gradient-tiktok);
         }
 
         .package-grid {
@@ -413,13 +626,13 @@
         }
 
         .package-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--radius-lg);
             text-align: center;
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
+            transition: all var(--transition-normal);
             position: relative;
             overflow: hidden;
         }
@@ -431,26 +644,53 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: var(--gradient);
+            background: var(--gradient-primary);
         }
 
         .package-card.tiktok::before {
-            background: var(--tiktok-gradient);
+            background: var(--gradient-tiktok);
         }
 
         .package-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-xl);
+            background: var(--bg-card-hover);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .package-card.tiktok .package-badge {
+            background: var(--gradient-tiktok);
+        }
+
+        .package-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            transition: all var(--transition-normal);
+        }
+
+        .package-card:hover .package-icon {
+            transform: scale(1.2) rotate(5deg);
         }
 
         .package-amount {
             font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient);
+            font-weight: 900;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
         }
 
         .package-card:hover .package-amount {
@@ -458,35 +698,52 @@
         }
 
         .package-amount.tiktok {
-            background: var(--tiktok-gradient);
+            background: var(--gradient-tiktok);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .package-type {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
         }
 
         .package-price {
             font-size: 2.2rem;
             font-weight: 700;
             margin: 20px 0;
-            color: var(--light);
+            color: var(--text-primary);
         }
 
-        .package-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
+        .package-features {
+            list-style: none;
+            margin: 20px 0;
+            text-align: right;
         }
 
-        .package-card:hover .package-icon {
-            transform: scale(1.2) rotate(5deg);
+        .package-features li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-right: 25px;
         }
 
-        /* قسم التواصل الجديد */
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* التواصل */
         .contact-section {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             margin: 80px -20px;
-            padding: 50px 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .contact-bar {
@@ -501,32 +758,32 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 20px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
             text-decoration: none;
             color: inherit;
         }
 
         .contact-item:hover {
             transform: translateY(-5px);
-            background: rgba(255,255,255,0.12);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: var(--bg-card-hover);
+            box-shadow: var(--shadow-lg);
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            background: var(--gradient);
+            background: var(--gradient-primary);
             flex-shrink: 0;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
         }
 
         .contact-item:hover .contact-icon {
@@ -541,55 +798,15 @@
             font-weight: 700;
             margin-bottom: 5px;
             font-size: 1.1rem;
+            color: var(--text-primary);
         }
 
         .contact-desc {
-            opacity: 0.8;
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-        .social-section {
-            margin: 80px 0;
-            text-align: center;
-        }
-
-        .social-cards {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .social-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            width: 200px;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .social-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .social-card i {
-            font-size: 40px;
-            margin-bottom: 15px;
-            color: var(--accent);
-            transition: all 0.3s ease;
-        }
-
-        .social-card:hover i {
-            transform: scale(1.2);
-        }
-
+        /* الصفحات */
         .page {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -604,35 +821,56 @@
             display: block;
         }
 
+        /* صفحة الدفع */
         .payment-page {
-            background: var(--card-bg);
+            background: var(--bg-card);
             padding: 40px;
-            border-radius: 20px;
-            max-width: 500px;
+            border-radius: var(--radius-lg);
+            max-width: 600px;
             margin: 50px auto;
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-xl);
+            transition: all var(--transition-normal);
         }
 
         .payment-page:hover {
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
+        .payment-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .payment-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-primary);
         }
 
         .form-control {
             width: 100%;
             padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05);
-            color: white;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
             font-size: 16px;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
         }
 
         .form-control:focus {
@@ -643,196 +881,270 @@
         }
 
         .form-control::placeholder {
-            color: rgba(255,255,255,0.5);
+            color: var(--text-muted);
+        }
+
+        .order-summary {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: var(--radius-md);
+            margin-bottom: 25px;
+        }
+
+        .order-summary h3 {
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .payment-method {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: var(--radius-md);
+            margin-bottom: 25px;
+        }
+
+        .payment-method h3 {
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .payment-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .payment-details p {
+            margin-bottom: 5px;
+        }
+
+        .payment-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* صفحة الطلبات */
+        .orders-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .orders-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .orders-filter {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            color: white;
         }
 
         .order-item {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
+            background: var(--bg-card);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
         }
 
         .order-item:hover {
-            background: rgba(255,255,255,0.08);
+            background: var(--bg-card-hover);
             transform: translateX(5px);
         }
 
-        .status-pending {
-            background: rgba(255, 199, 95, 0.2);
-            color: var(--warning);
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .order-id {
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .order-status {
             padding: 5px 15px;
-            border-radius: 20px;
+            border-radius: var(--radius-full);
             font-size: 14px;
-            display: inline-block;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            background: rgba(255, 214, 0, 0.2);
+            color: var(--warning);
         }
 
         .status-completed {
-            background: rgba(0, 201, 167, 0.2);
+            background: rgba(0, 230, 118, 0.2);
             color: var(--success);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
         }
 
-        /* تحسينات للشعار */
-        .logo-icon {
-            font-size: 24px;
+        .status-processing {
+            background: rgba(64, 196, 255, 0.2);
+            color: var(--info);
         }
 
-        /* تأثيرات إضافية */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        .order-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
 
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .order-detail {
+            display: flex;
+            flex-direction: column;
         }
 
-        /* تحسينات للاستجابة */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            nav ul {
-                gap: 10px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .package-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-cards {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-                padding: 0 15px;
-            }
-
-            .service-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .service-tab {
-                width: 80%;
-                text-align: center;
-            }
-
-            .contact-bar {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-item {
-                padding: 15px;
-            }
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
         }
 
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .package-amount {
-                font-size: 2.5rem;
-            }
-            
-            .package-price {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-                padding: 0 10px;
-            }
-            
-            .social-card {
-                width: 100%;
-                max-width: 250px;
-            }
-            
-            .payment-page {
-                padding: 25px;
-                margin: 30px auto;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 16px;
-            }
+        .detail-value {
+            font-weight: 500;
+            color: var(--text-primary);
         }
 
-        /* هامبرغر مينو للشاشات الصغيرة */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .no-orders {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .menu-toggle:hover {
-            transform: scale(1.1);
+        .no-orders i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+            color: var(--text-muted);
         }
 
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(26, 26, 46, 0.95);
-                padding: 20px;
-                border-radius: 0 0 15px 15px;
-                backdrop-filter: blur(15px);
-            }
-            
-            nav ul.show {
-                display: flex;
-                animation: slideDown 0.3s ease;
-            }
-            
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            
-            nav ul li {
-                margin: 10px 0;
-            }
+        .no-orders h3 {
+            margin-bottom: 10px;
+            color: var(--text-primary);
         }
 
-        /* تأثيرات إضافية للصفحة الرئيسية */
+        .no-orders p {
+            color: var(--text-secondary);
+        }
+
+        /* الفوتر */
+        footer {
+            background: var(--bg-darker);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+
+        .social-link:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* تأثير الجسيمات */
         .particles {
             position: fixed;
             top: 0;
@@ -866,533 +1178,790 @@
                 opacity: 0;
             }
         }
+
+        /* التمرير السلس */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-full);
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: var(--glow-primary);
+            z-index: 99;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* الإشعارات */
+        .notification {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            padding: 15px 25px;
+            border-radius: var(--radius-md);
+            background: var(--success);
+            color: white;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            transform: translateX(-100%);
+            transition: transform var(--transition-normal);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .notification.warning {
+            background: var(--warning);
+            color: var(--bg-dark);
+        }
+
+        /* الاستجابة للشاشات الصغيرة */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .package-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-header);
+                padding: 20px;
+                border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+                backdrop-filter: blur(20px);
+            }
+            
+            nav ul.show {
+                display: flex;
+                animation: slideDown 0.3s ease;
+            }
+            
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .service-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .service-tab {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-bar {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h3::after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .scroll-top {
+                left: 20px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .package-amount {
+                font-size: 2.5rem;
+            }
+            
+            .package-price {
+                font-size: 1.8rem;
+            }
+            
+            .payment-page {
+                padding: 25px;
+                margin: 30px auto;
+            }
+            
+            .order-details {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- تأثير الجسيمات المتحركة -->
+    <!-- شاشة التحميل -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <div class="loading-text">جاري تحميل Roma&knzy Stor...</div>
+    </div>
+
+    <!-- الإشعارات -->
+    <div class="notification" id="notification"></div>
+
+    <!-- زر العودة للأعلى -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- تأثير الجسيمات -->
     <div class="particles" id="particles"></div>
 
-    <div class="container">
-        <!-- الصفحة الرئيسية -->
-        <div id="homePage" class="page active">
-
-            <header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
-
-                <div class="logo-container" style="display:flex; align-items:center; gap:10px;">
-                    <img src="1.png" alt="Roma&Knzy Stor" style="width:45px; height:45px; border-radius:50%;">
-                    <h1 style="font-size:22px; background:linear-gradient(135deg,#ff4b91,#ff4ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Roma&Knzy Stor</h1>
+    <!-- الهيدر -->
+    <header>
+        <div class="container header-container">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <a href="#" class="logo-container" onclick="showPage('homePage')">
+                <div class="logo">
+                    <img src="1.png" alt="Roma&knzy stor Logo">
                 </div>
-                <nav>
-                    <a href="#" onclick="showPage('homePage')" style="color:white;">الرئيسية</a>
-                    <a href="#" onclick="showPage('ordersPage')" style="color:white;">طلباتي</a>
-                    <a href="#" onclick="logout()" style="color:#ffb3d1; text-decoration:none; font-weight:600;">تسجيل الخروج</a>
-                </nav>
-
-            </header>
-
-            <!-- أزرار التبديل بين الخدمات -->
-            <div class="service-tabs">
-                <div class="service-tab active" onclick="showService('instagram')">
-                    <i class="fab fa-instagram"></i> خدمات الإنستجرام
+                <div class="logo-text">
+                    Roma&knzy stor
+                    <span>خدمات المتابعين والتفاعلات</span>
                 </div>
-                <div class="service-tab tiktok" onclick="showService('tiktok')">
-                    <i class="fab fa-tiktok"></i> خدمات تيك توك
+            </a>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" class="active" onclick="showPage('homePage')">الرئيسية</a></li>
+                    <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
+                    <li><a href="#" onclick="showPage('paymentPage')">طلب جديد</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-actions">
+                <div class="user-profile" onclick="openProfile()">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>حسابي</span>
                 </div>
-            </div>
-
-            <!-- قسم خدمات الإنستجرام -->
-            <div id="instagramService" class="service-content">
-                <section class="hero">
-                    <h1>مصدرك الموثوق لزيادة المتابعين</h1>
-                    <p>احصل على متابعين إنستجرامك بأفضل الأسعار</p>
-                    <a href="#packages" class="btn">
-                        <i class="fas fa-shopping-cart"></i> ابدأ الآن
-                    </a>
-                </section>
-
-                <section class="features">
-                    <div class="feature-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>ضمان الجودة</h3>
-                        <p>متابعين مع ضمان استرجاع الأموال اذا لم تصل المتابعين </p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-bolt"></i>
-                        <h3>تسليم فوري</h3>
-                        <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة </p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-lock"></i>
-                        <h3>آمن تماماً</h3>
-                        <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
-                    </div>
-                </section>
-
-                <!-- الباقات البسيطة -->
-                <section class="packages-section" id="packages">
-                    <h2 class="section-title">الباقات البسيطة</h2>
-                    
-                    <div class="package-grid">
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">50</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">15 جنيه</div>
-                            <button class="btn" onclick="selectPackage(50, 15, 'instagram', 'متابعين')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">100</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">25 جنيه</div>
-                            <button class="btn" onclick="selectPackage(100, 25, 'instagram', 'متابعين')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">150</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">30 جنيه</div>
-                            <button class="btn" onclick="selectPackage(150, 30, 'instagram', 'متابعين')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">200</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">40 جنيه</div>
-                            <button class="btn" onclick="selectPackage(200, 40, 'instagram', 'متابعين')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">300</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">60 جنيه</div>
-                            <button class="btn" onclick="selectPackage(300, 60, 'instagram', 'متابعين')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- العروض المميزة -->
-                    <h2 class="section-title">العروض المميزة</h2>
-                    
-                    <div class="package-grid">
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">400</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">75 جنيه</div>
-                            <button class="btn" onclick="selectPackage(400, 75, 'instagram', 'متابعين')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">500</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">90 جنيه</div>
-                            <button class="btn" onclick="selectPackage(500, 90, 'instagram', 'متابعين')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">600</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">110 جنيه</div>
-                            <button class="btn" onclick="selectPackage(600, 110, 'instagram', 'متابعين')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">800</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">130 جنيه</div>
-                            <button class="btn" onclick="selectPackage(800, 130, 'instagram', 'متابعين')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">1000</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">150 جنيه</div>
-                            <button class="btn" onclick="selectPackage(1000, 150, 'instagram', 'متابعين')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- الباقات الخاصة -->
-                    <h2 class="section-title">الباقات الخاصة</h2>
-                    
-                    <div class="package-grid">
-                        <div class="package-card">
-                            <div class="package-icon">👥</div>
-                            <div class="package-amount">5000</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
-                            <div class="package-price">750 جنيه</div>
-                            <button class="btn" onclick="selectPackage(5000, 750, 'instagram', 'متابعين')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- قسم خدمات تيك توك -->
-            <div id="tiktokService" class="service-content" style="display: none;">
-                <section class="hero">
-                    <h1 style="background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        خدمات تيك توك الاحترافية
-                    </h1>
-                    <p>احصل على لايكات، مشاهدات، حفظ، وشير لأفضل الأسعار</p>
-                    <a href="#tiktok-packages" class="btn tiktok">
-                        <i class="fab fa-tiktok"></i> ابدأ الآن
-                    </a>
-                </section>
-
-                <section class="features">
-                    <div class="feature-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>ضمان الجودة</h3>
-                        <p>خدماتنا مع ضمان استرجاع الأموال اذا لم تصل الخدمة</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-bolt"></i>
-                        <h3>تسليم فوري</h3>
-                        <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-lock"></i>
-                        <h3>آمن تماماً</h3>
-                        <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
-                    </div>
-                </section>
-
-                <!-- الباقات البسيطة - لايكات -->
-                <section class="packages-section" id="tiktok-packages">
-                    <h2 class="section-title tiktok">الباقات البسيطة - لايكات</h2>
-                    
-                    <div class="package-grid">
-                        <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">60</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">5 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(60, 5, 'tiktok', 'لايكات')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">120</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">10 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(120, 10, 'tiktok', 'لايكات')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">240</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">20 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(240, 20, 'tiktok', 'لايكات')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">300</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">25 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(300, 25, 'tiktok', 'لايكات')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">600</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">50 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(600, 50, 'tiktok', 'لايكات')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card tiktok">
-                            <div class="package-icon">❤️</div>
-                            <div class="package-amount tiktok">1020</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
-                            <div class="package-price">100 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(1020, 100, 'tiktok', 'لايكات')">
-                                <i class="fas fa-shopping-cart"></i> اختر الباقة
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- العروض المميزة - مشاهدات -->
-                    <h2 class="section-title tiktok">العروض المميزة - مشاهدات</h2>
-                    
-                    <div class="package-grid">
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">100</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">10 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(100, 10, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">200</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">20 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">300</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">30 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(300, 30, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">500</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">50 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(500, 50, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">700</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">70 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(700, 70, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                        
-                        <div class="package-card tiktok">
-                            <div class="package-icon">👀</div>
-                            <div class="package-amount tiktok">1000</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
-                            <div class="package-price">100 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(1000, 100, 'tiktok', 'مشاهدات')">
-                                <i class="fas fa-crown"></i> اختر الباقة
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- الباقات الخاصة - علام الحفظ والشير -->
-                    <h2 class="section-title tiktok">الباقات الخاصة - حفظ وشير</h2>
-                    
-                    <div class="package-grid">
-                        <div class="package-card tiktok">
-                            <div class="package-icon">💾</div>
-                            <div class="package-amount tiktok">290</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">حفظ تيك توك</div>
-                            <div class="package-price">15 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(290, 15, 'tiktok', 'حفظ')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-
-                        <div class="package-card tiktok">
-                            <div class="package-icon">↗️</div>
-                            <div class="package-amount tiktok">200</div>
-                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">شير تيك توك</div>
-                            <div class="package-price">20 جنيه</div>
-                            <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'شير')">
-                                <i class="fas fa-gem"></i> اختر الباقة
-                            </button>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- قسم التواصل الجديد -->
-            <section class="contact-section">
-                <div class="contact-bar">
-                    <a href="https://wa.me/+20 11 08301980" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">واتساب للطلبات</div>
-                            <div class="contact-desc">01108301980</div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://wa.me/+201141346727" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">واتساب للدعم</div>
-                            <div class="contact-desc">01141346727</div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.instagram.com/xx.mariam_roma.x?igsh=Ymxxa2gzaDR3dTl4" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">إنستجرام روما</div>
-                            <div class="contact-desc">@xx.mariam_roma.x</div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://www.instagram.com/x.kenzyy_mohamed.x?igsh=Zjh4bGJtZ2E5anUz" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">إنستجرام كنزي</div>
-                            <div class="contact-desc">@x.kenzyy_mohamed.x</div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://whatsapp.com/channel/0029VbB2NsIEawdoGrI0m83J" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">قناة الواتساب</div>
-                            <div class="contact-desc">Roma&kenzy</div>
-                        </div>
-                    </a>
-                </div>
-            </section>
-        </div>
-
-        <!-- صفحة الطلبات -->
-        <div id="ordersPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
                 </button>
-                <nav>
-                    <ul id="navMenuOrders">
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <h2 class="section-title">طلباتي</h2>
-            <div id="ordersList">
-                <!-- الطلبات تظهر هنا -->
             </div>
         </div>
+    </header>
 
-        <!-- صفحة الدفع -->
-        <div id="paymentPage" class="page">
-            <header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
-
-                <div class="logo-container" style="display:flex; align-items:center; gap:10px;">
-                    <img src="1.png" alt="Roma&Knzy Stor" style="width:45px; height:45px; border-radius:50%;">
-                    <h1 style="font-size:22px; background:linear-gradient(135deg,#ff4b91,#ff4ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Roma&Knzy Stor</h1>
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
+        <div class="container">
+            <!-- الصفحة الرئيسية -->
+            <div id="homePage" class="page active">
+                <!-- أزرار التبديل بين الخدمات -->
+                <div class="service-tabs">
+                    <div class="service-tab active" onclick="showService('instagram')">
+                        <i class="fab fa-instagram"></i> خدمات الإنستجرام
+                    </div>
+                    <div class="service-tab tiktok" onclick="showService('tiktok')">
+                        <i class="fab fa-tiktok"></i> خدمات تيك توك
+                    </div>
                 </div>
 
-                <nav style="display:flex; align-items:center; gap:20px;">
-                    <a href="#" onclick="showPage('homePage')" style="color:white; text-decoration:none; font-weight:600;">الرئيسية</a>
-                    <a href="#" onclick="showPage('ordersPage')" style="color:white; text-decoration:none; font-weight:600;">طلباتي</a>
-                    <a href="profile.html" style="color:#ffb3d1; text-decoration:none; font-weight:600;">ملفي الشخصي</a>
-                </nav>
-            </header>
+                <!-- قسم خدمات الإنستجرام -->
+                <div id="instagramService" class="service-content">
+                    <section class="hero">
+                        <div class="hero-content">
+                            <h1>مصدرك الموثوق لزيادة المتابعين</h1>
+                            <p>احصل على متابعين إنستجرام حقيقيين ومتفاعلين بأفضل الأسعار وأعلى جودة في السوق</p>
+                            <div class="hero-buttons">
+                                <a href="#packages" class="btn">
+                                    <i class="fas fa-shopping-cart"></i> ابدأ الآن
+                                </a>
+                                <a href="#features" class="btn secondary">
+                                    <i class="fas fa-info-circle"></i> تعرف أكثر
+                                </a>
+                            </div>
+                        </div>
+                    </section>
 
-            <div class="payment-page">
-                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
+                    <section class="features" id="features">
+                        <div class="feature-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>ضمان الجودة</h3>
+                            <p>متابعين حقيقيين مع ضمان استرجاع الأموال اذا لم تصل المتابعين خلال 24 ساعة</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-bolt"></i>
+                            <h3>تسليم فوري</h3>
+                            <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة فقط من إتمام الطلب</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-lock"></i>
+                            <h3>آمن تماماً</h3>
+                            <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك، فقط اسم المستخدم</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-headset"></i>
+                            <h3>دعم فني 24/7</h3>
+                            <p>فريق دعم فني متاح على مدار الساعة لمساعدتك في أي استفسار</p>
+                        </div>
+                    </section>
 
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>بيانات الباقة المختارة</h3>
-                    <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 100 متابع - 25 جنيه</p>
+                    <!-- الباقات البسيطة -->
+                    <section class="packages-section" id="packages">
+                        <h2 class="section-title">الباقات البسيطة</h2>
+                        
+                        <div class="package-grid">
+                            <div class="package-card">
+                                <div class="package-badge">الأكثر طلباً</div>
+                                <div class="package-icon">👥</div>
+                                <div class="package-amount">50</div>
+                                <div class="package-type">متابع إنستجرام</div>
+                                <div class="package-price">15 جنيه</div>
+                                <ul class="package-features">
+                                    <li>متابعين حقيقيين</li>
+                                    <li>تسليم خلال 20 دقيقة</li>
+                                    <li>ضمان 30 يوم</li>
+                                </ul>
+                                <button class="btn" onclick="selectPackage(50, 15, 'instagram', 'متابعين')">
+                                    <i class="fas fa-shopping-cart"></i> اختر الباقة
+                                </button>
+                            </div>
+                            
+                            <div class="package-card">
+                                <div class="package-icon">👥</div>
+                                <div class="package-amount">100</div>
+                                <div class="package-type">متابع إنستجرام</div>
+                                <div class="package-price">25 جنيه</div>
+                                <ul class="package-features">
+                                    <li>متابعين حقيقيين</li>
+                                    <li>تسليم خلال 20 دقيقة</li>
+                                    <li>ضمان 30 يوم</li>
+                                </ul>
+                                <button class="btn" onclick="selectPackage(100, 25, 'instagram', 'متابعين')">
+                                    <i class="fas fa-shopping-cart"></i> اختر الباقة
+                                </button>
+                            </div>
+                            
+                            <div class="package-card">
+                                <div class="package-icon">👥</div>
+                                <div class="package-amount">150</div>
+                                <div class="package-type">متابع إنستجرام</div>
+                                <div class="package-price">30 جنيه</div>
+                                <ul class="package-features">
+                                    <li>متابعين حقيقيين</li>
+                                    <li>تسليم خلال 20 دقيقة</li>
+                                    <li>ضمان 30 يوم</li>
+                                </ul>
+                                <button class="btn" onclick="selectPackage(150, 30, 'instagram', 'متابعين')">
+                                    <i class="fas fa-shopping-cart"></i> اختر الباقة
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- العروض المميزة -->
+                        <h2 class="section-title">العروض المميزة</h2>
+                        
+                        <div class="package-grid">
+                            <div class="package-card">
+                                <div class="package-badge">عرض خاص</div>
+                                <div class="package-icon">👥</div>
+                                <div class="package-amount">500</div>
+                                <div class="package-type">متابع إنستجرام</div>
+                                <div class="package-price">90 جنيه</div>
+                                <ul class="package-features">
+                                    <li>متابعين حقيقيين</li>
+                                    <li>تسليم خلال 30 دقيقة</li>
+                                    <li>ضمان 60 يوم</li>
+                                    <li>دعم فني متميز</li>
+                                </ul>
+                                <button class="btn" onclick="selectPackage(500, 90, 'instagram', 'متابعين')">
+                                    <i class="fas fa-crown"></i> اختر الباقة
+                                </button>
+                            </div>
+                            
+                            <div class="package-card">
+                                <div class="package-badge">الأفضل</div>
+                                <div class="package-icon">👥</div>
+                                <div class="package-amount">1000</div>
+                                <div class="package-type">متابع إنستجرام</div>
+                                <div class="package-price">150 جنيه</div>
+                                <ul class="package-features">
+                                    <li>متابعين حقيقيين</li>
+                                    <li>تسليم خلال 45 دقيقة</li>
+                                    <li>ضمان 90 يوم</li>
+                                    <li>دعم فني متميز</li>
+                                    <li>متابعين متفاعلين</li>
+                                </ul>
+                                <button class="btn" onclick="selectPackage(1000, 150, 'instagram', 'متابعين')">
+                                    <i class="fas fa-crown"></i> اختر الباقة
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- الباقات الخاصة -->
+                        <h2 class="section-title">الباقات الخاصة</h2>
+                        
+                        <div class="package-grid">
+                            <div class="package-card">
+                                <div class="package-badge">باقة VIP</div>
+                                <div class="package-icon">👥</div>
+                                <div class="package-amount">5000</div>
+                                <div class="package-type">متابع إنستجرام</div>
+                                <div class="package-price">750 جنيه</div>
+                                <ul class="package-features">
+                                    <li>متابعين حقيقيين متفاعلين</li>
+                                    <li>تسليم خلال 24 ساعة</li>
+                                    <li>ضمان 6 أشهر</li>
+                                    <li>دعم فني متميز</li>
+                                    <li>تقارير أداء أسبوعية</li>
+                                    <li>استشارات متخصصة</li>
+                                </ul>
+                                <button class="btn" onclick="selectPackage(5000, 750, 'instagram', 'متابعين')">
+                                    <i class="fas fa-gem"></i> اختر الباقة
+                                </button>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>طريقة الدفع</h3>
-                    <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
-                        <i class="fas fa-mobile-alt" style="font-size: 30px; color: var(--accent);"></i>
-                        <div>
-                            <p style="margin-bottom: 5px;">الدفع عبر فودافون كاش</p>
-                            <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">01031090116</p>
+                <!-- قسم خدمات تيك توك -->
+                <div id="tiktokService" class="service-content" style="display: none;">
+                    <section class="hero">
+                        <div class="hero-content">
+                            <h1 style="background: var(--gradient-tiktok); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                خدمات تيك توك الاحترافية
+                            </h1>
+                            <p>احصل على لايكات، مشاهدات، حفظ، وشير لأفضل الأسعار وأسرع خدمة</p>
+                            <div class="hero-buttons">
+                                <a href="#tiktok-packages" class="btn tiktok">
+                                    <i class="fab fa-tiktok"></i> ابدأ الآن
+                                </a>
+                                <a href="#features" class="btn secondary">
+                                    <i class="fas fa-info-circle"></i> تعرف أكثر
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="features" id="features">
+                        <div class="feature-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>ضمان الجودة</h3>
+                            <p>خدماتنا مع ضمان استرجاع الأموال اذا لم تصل الخدمة خلال 24 ساعة</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-bolt"></i>
+                            <h3>تسليم فوري</h3>
+                            <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة فقط</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-lock"></i>
+                            <h3>آمن تماماً</h3>
+                            <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك، فقط رابط الفيديو</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>زيادة التفاعل</h3>
+                            <p>تفاعلات حقيقية تزيد من فرص ظهورك في صفحة Explore</p>
+                        </div>
+                    </section>
+
+                    <!-- الباقات البسيطة - لايكات -->
+                    <section class="packages-section" id="tiktok-packages">
+                        <h2 class="section-title tiktok">الباقات البسيطة - لايكات</h2>
+                        
+                        <div class="package-grid">
+                            <div class="package-card tiktok">
+                                <div class="package-badge">الأكثر طلباً</div>
+                                <div class="package-icon">❤️</div>
+                                <div class="package-amount tiktok">120</div>
+                                <div class="package-type">لايك تيك توك</div>
+                                <div class="package-price">10 جنيه</div>
+                                <ul class="package-features">
+                                    <li>لايكات حقيقية</li>
+                                    <li>تسليم خلال 15 دقيقة</li>
+                                    <li>ضمان 30 يوم</li>
+                                </ul>
+                                <button class="btn tiktok" onclick="selectPackage(120, 10, 'tiktok', 'لايكات')">
+                                    <i class="fas fa-shopping-cart"></i> اختر الباقة
+                                </button>
+                            </div>
+                            
+                            <div class="package-card tiktok">
+                                <div class="package-icon">❤️</div>
+                                <div class="package-amount tiktok">240</div>
+                                <div class="package-type">لايك تيك توك</div>
+                                <div class="package-price">20 جنيه</div>
+                                <ul class="package-features">
+                                    <li>لايكات حقيقية</li>
+                                    <li>تسليم خلال 15 دقيقة</li>
+                                    <li>ضمان 30 يوم</li>
+                                </ul>
+                                <button class="btn tiktok" onclick="selectPackage(240, 20, 'tiktok', 'لايكات')">
+                                    <i class="fas fa-shopping-cart"></i> اختر الباقة
+                                </button>
+                            </div>
+                            
+                            <div class="package-card tiktok">
+                                <div class="package-icon">❤️</div>
+                                <div class="package-amount tiktok">600</div>
+                                <div class="package-type">لايك تيك توك</div>
+                                <div class="package-price">50 جنيه</div>
+                                <ul class="package-features">
+                                    <li>لايكات حقيقية</li>
+                                    <li>تسليم خلال 20 دقيقة</li>
+                                    <li>ضمان 30 يوم</li>
+                                </ul>
+                                <button class="btn tiktok" onclick="selectPackage(600, 50, 'tiktok', 'لايكات')">
+                                    <i class="fas fa-shopping-cart"></i> اختر الباقة
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- العروض المميزة - مشاهدات -->
+                        <h2 class="section-title tiktok">العروض المميزة - مشاهدات</h2>
+                        
+                        <div class="package-grid">
+                            <div class="package-card tiktok">
+                                <div class="package-badge">عرض خاص</div>
+                                <div class="package-icon">👀</div>
+                                <div class="package-amount tiktok">500</div>
+                                <div class="package-type">مشاهدة تيك توك</div>
+                                <div class="package-price">50 جنيه</div>
+                                <ul class="package-features">
+                                    <li>مشاهدات حقيقية</li>
+                                    <li>تسليم خلال 30 دقيقة</li>
+                                    <li>ضمان 60 يوم</li>
+                                    <li>زيادة فرص الظهور</li>
+                                </ul>
+                                <button class="btn tiktok" onclick="selectPackage(500, 50, 'tiktok', 'مشاهدات')">
+                                    <i class="fas fa-crown"></i> اختر الباقة
+                                </button>
+                            </div>
+                            
+                            <div class="package-card tiktok">
+                                <div class="package-badge">الأفضل</div>
+                                <div class="package-icon">👀</div>
+                                <div class="package-amount tiktok">1000</div>
+                                <div class="package-type">مشاهدة تيك توك</div>
+                                <div class="package-price">100 جنيه</div>
+                                <ul class="package-features">
+                                    <li>مشاهدات حقيقية</li>
+                                    <li>تسليم خلال 45 دقيقة</li>
+                                    <li>ضمان 90 يوم</li>
+                                    <li>زيادة فرص الظهور</li>
+                                    <li>مشاهدات متفاعلة</li>
+                                </ul>
+                                <button class="btn tiktok" onclick="selectPackage(1000, 100, 'tiktok', 'مشاهدات')">
+                                    <i class="fas fa-crown"></i> اختر الباقة
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- الباقات الخاصة - علام الحفظ والشير -->
+                        <h2 class="section-title tiktok">الباقات الخاصة - حفظ وشير</h2>
+                        
+                        <div class="package-grid">
+                            <div class="package-card tiktok">
+                                <div class="package-badge">مميز</div>
+                                <div class="package-icon">💾</div>
+                                <div class="package-amount tiktok">290</div>
+                                <div class="package-type">حفظ تيك توك</div>
+                                <div class="package-price">15 جنيه</div>
+                                <ul class="package-features">
+                                    <li>حفظ حقيقي</li>
+                                    <li>تسليم خلال 20 دقيقة</li>
+                                    <li>ضمان 30 يوم</li>
+                                    <li>زيادة التفاعل</li>
+                                </ul>
+                                <button class="btn tiktok" onclick="selectPackage(290, 15, 'tiktok', 'حفظ')">
+                                    <i class="fas fa-gem"></i> اختر الباقة
+                                </button>
+                            </div>
+
+                            <div class="package-card tiktok">
+                                <div class="package-badge">مميز</div>
+                                <div class="package-icon">↗️</div>
+                                <div class="package-amount tiktok">200</div>
+                                <div class="package-type">شير تيك توك</div>
+                                <div class="package-price">20 جنيه</div>
+                                <ul class="package-features">
+                                    <li>شير حقيقي</li>
+                                    <li>تسليم خلال 20 دقيقة</li>
+                                    <li>ضمان 30 يوم</li>
+                                    <li>زيادة الانتشار</li>
+                                </ul>
+                                <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'شير')">
+                                    <i class="fas fa-gem"></i> اختر الباقة
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- قسم التواصل -->
+                <section class="contact-section">
+                    <div class="contact-bar">
+                        <a href="https://wa.me/+201108301980" class="contact-item" target="_blank">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-title">واتساب للطلبات</div>
+                                <div class="contact-desc">01108301980</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://wa.me/+201141346727" class="contact-item" target="_blank">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-title">واتساب للدعم</div>
+                                <div class="contact-desc">01141346727</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.instagram.com/xx.mariam_roma.x?igsh=Ymxxa2gzaDR3dTl4" class="contact-item" target="_blank">
+                            <div class="contact-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-title">إنستجرام روما</div>
+                                <div class="contact-desc">@xx.mariam_roma.x</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.instagram.com/x.kenzyy_mohamed.x?igsh=Zjh4bGJtZ2E5anUz" class="contact-item" target="_blank">
+                            <div class="contact-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-title">إنستجرام كنزي</div>
+                                <div class="contact-desc">@x.kenzyy_mohamed.x</div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- صفحة الطلبات -->
+            <div id="ordersPage" class="page">
+                <div class="orders-container">
+                    <div class="orders-header">
+                        <h2 class="section-title">طلباتي</h2>
+                        <div class="orders-filter">
+                            <button class="filter-btn active" onclick="filterOrders('all')">الكل</button>
+                            <button class="filter-btn" onclick="filterOrders('pending')">قيد المراجعة</button>
+                            <button class="filter-btn" onclick="filterOrders('completed')">مكتمل</button>
                         </div>
                     </div>
-                    <p style="opacity: 0.8; font-size: 0.9rem;">يرجى إرسال المبلغ إلى الرقم أعلاه ثم إرفاق صورة إيصال الدفع</p>
+                    
+                    <div id="ordersList">
+                        <!-- الطلبات تظهر هنا -->
+                    </div>
                 </div>
+            </div>
 
-                <div class="form-group" id="usernameGroup">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="usernameLabel">اسم المستخدم في إنستجرام</label>
-                    <input type="text" id="username" class="form-control" placeholder="اسم المستخدم بدون @">
+            <!-- صفحة الدفع -->
+            <div id="paymentPage" class="page">
+                <div class="payment-page">
+                    <div class="payment-header">
+                        <h2>إتمام الطلب</h2>
+                        <p>املأ البيانات التالية لإتمام عملية الشراء</p>
+                    </div>
+
+                    <div class="order-summary">
+                        <h3>بيانات الباقة المختارة</h3>
+                        <p id="selectedPackageInfo">باقة 100 متابع إنستجرام - 25 جنيه</p>
+                    </div>
+
+                    <div class="payment-method">
+                        <h3>طريقة الدفع</h3>
+                        <div class="payment-info">
+                            <div class="payment-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="payment-details">
+                                <p>الدفع عبر فودافون كاش</p>
+                                <p class="payment-number">01031090116</p>
+                            </div>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">يرجى إرسال المبلغ إلى الرقم أعلاه ثم إرفاق صورة إيصال الدفع</p>
+                    </div>
+
+                    <form id="paymentForm">
+                        <div class="form-group" id="usernameGroup">
+                            <label class="form-label" id="usernameLabel">اسم المستخدم في إنستجرام</label>
+                            <input type="text" id="username" class="form-control" placeholder="اسم المستخدم بدون @" required>
+                        </div>
+
+                        <div class="form-group" id="videoLinkGroup" style="display: none;">
+                            <label class="form-label" id="videoLinkLabel">رابط الفيديو في تيك توك</label>
+                            <input type="url" id="videoLink" class="form-control" placeholder="https://www.tiktok.com/@username/video/123456789" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">رقم الهاتف</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="رقم الهاتف للتواصل" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">صورة إيصال الدفع</label>
+                            <input type="file" id="receipt" class="form-control" accept="image/*" required>
+                        </div>
+
+                        <button type="submit" class="btn" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> تأكيد الطلب
+                        </button>
+                    </form>
                 </div>
-
-                <div class="form-group" id="videoLinkGroup" style="display: none;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="videoLinkLabel">رابط الفيديو في تيك توك</label>
-                    <input type="url" id="videoLink" class="form-control" placeholder="https://www.tiktok.com/@username/video/123456789">
-                </div>
-
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">رقم الهاتف</label>
-                    <input type="tel" id="phone" class="form-control" placeholder="رقم الهاتف للتواصل">
-                </div>
-
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">صورة إيصال الدفع</label>
-                    <input type="file" id="receipt" class="form-control" accept="image/*">
-                </div>
-
-                <button class="btn" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
             </div>
         </div>
     </div>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن Roma&knzy</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7;">نقدم خدمات زيادة المتابعين والتفاعلات على منصات التواصل الاجتماعي بأعلى جودة وأفضل الأسعار في السوق.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> متابعين إنستجرام</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> لايكات تيك توك</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> مشاهدات تيك توك</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> حفظ تيك توك</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> شير تيك توك</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('homePage')"><i class="fas fa-arrow-left"></i> الرئيسية</a></li>
+                        <li><a href="#" onclick="showPage('ordersPage')"><i class="fas fa-arrow-left"></i> طلباتي</a></li>
+                        <li><a href="#" onclick="showPage('paymentPage')"><i class="fas fa-arrow-left"></i> طلب جديد</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> الشروط والأحكام</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-left"></i> سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/+201108301980"><i class="fas fa-arrow-left"></i> واتساب: 01108301980</a></li>
+                        <li><a href="https://wa.me/+201141346727"><i class="fas fa-arrow-left"></i> دعم فني: 01141346727</a></li>
+                        <li><a href="mailto:info@romaknzy.com"><i class="fas fa-arrow-left"></i> البريد: info@romaknzy.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2023 Roma&knzy Stor. تم التطوير بواسطة فريق روما وكنزي</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Firebase Configuration
@@ -1409,9 +1978,41 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        // حالة التطبيق
         let selectedPackage = { amount: 100, price: 25, service: 'instagram', type: 'متابعين' };
+        let currentUser = null;
 
-        // إنشاء تأثير الجسيمات المتحركة
+        // تهيئة التطبيق
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        // تهيئة التطبيق
+        function initializeApp() {
+            // التحقق من تسجيل الدخول
+            if (!localStorage.getItem("loggedIn")) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            // إنشاء تأثير الجسيمات
+            createParticles();
+            
+            // إعداد المستخدم
+            setupUser();
+            
+            // إعداد المستمعين للأحداث
+            setupEventListeners();
+            
+            // إخفاء شاشة التحميل
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 1500);
+            
+            console.log('Roma&knzy stor Started Successfully!');
+        }
+
+        // إنشاء تأثير الجسيمات
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 30;
@@ -1436,10 +2037,84 @@
             }
         }
 
+        // إعداد المستخدم
+        function setupUser() {
+            // في التطبيق الحقيقي، سيتم جلب بيانات المستخدم من قاعدة البيانات
+            currentUser = {
+                name: "مستخدم",
+                email: "user@example.com",
+                phone: "01000000000"
+            };
+            
+            // تحديث واجهة المستخدم
+            document.querySelector('.user-avatar').innerHTML = `<i class="fas fa-user"></i>`;
+        }
+
+        // إعداد المستمعين للأحداث
+        function setupEventListeners() {
+            // زر القائمة للجوال
+            document.getElementById('menuToggle').addEventListener('click', toggleMenu);
+            
+            // نموذج الدفع
+            document.getElementById('paymentForm').addEventListener('submit', submitOrder);
+            
+            // زر العودة للأعلى
+            document.getElementById('scrollTop').addEventListener('click', scrollToTop);
+            
+            // التمرير لإظهار/إخفاء زر العودة للأعلى
+            window.addEventListener('scroll', handleScroll);
+            
+            // النقر خارج القائمة لإغلاقها (للجوال)
+            document.addEventListener('click', function(event) {
+                const navMenu = document.getElementById('navMenu');
+                const menuToggle = document.getElementById('menuToggle');
+                
+                if (!navMenu.contains(event.target) && !menuToggle.contains(event.target) && navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                }
+            });
+        }
+
+        // التمرير
+        function handleScroll() {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        }
+
+        // العودة للأعلى
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // تبديل القائمة (للجوال)
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('show');
+        }
+
+        // عرض الصفحة
         function showPage(pageId) {
+            // إخفاء جميع الصفحات
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
+            
+            // إزالة النشاط من جميع روابط التنقل
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // إضافة النشاط للرابط الحالي
+            event.target.classList.add('active');
+            
+            // إظهار الصفحة المطلوبة
             document.getElementById(pageId).classList.add('active');
             
             // إغلاق القائمة في الشاشات الصغيرة
@@ -1447,34 +2122,34 @@
                 menu.classList.remove('show');
             });
             
+            // تحميل الطلبات إذا كانت صفحة الطلبات
             if (pageId === 'ordersPage') {
                 loadOrders();
             }
+            
+            // التمرير للأعلى
+            scrollToTop();
         }
 
-        function toggleMenu() {
-            const currentPage = document.querySelector('.page.active').id;
-            const navMenu = document.getElementById(`navMenu${currentPage !== 'homePage' ? currentPage.replace('Page', '') : ''}`);
-            navMenu.classList.toggle('show');
-        }
-
+        // عرض الخدمة
         function showService(service) {
             // تحديث أزرار التبويب
             document.querySelectorAll('.service-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             
+            event.target.classList.add('active');
+            
             if (service === 'instagram') {
-                document.querySelector('.service-tab:first-child').classList.add('active');
                 document.getElementById('instagramService').style.display = 'block';
                 document.getElementById('tiktokService').style.display = 'none';
             } else {
-                document.querySelector('.service-tab:last-child').classList.add('active');
                 document.getElementById('instagramService').style.display = 'none';
                 document.getElementById('tiktokService').style.display = 'block';
             }
         }
 
+        // اختيار الباقة
         function selectPackage(amount, price, service, type) {
             selectedPackage = { amount, price, service, type };
             
@@ -1507,7 +2182,10 @@
             showPage('paymentPage');
         }
 
-        async function submitOrder() {
+        // إرسال الطلب
+        async function submitOrder(event) {
+            event.preventDefault();
+            
             let userInput;
             const phone = document.getElementById('phone').value;
             const receipt = document.getElementById('receipt').files[0];
@@ -1515,19 +2193,19 @@
             if (selectedPackage.service === 'instagram') {
                 userInput = document.getElementById('username').value;
                 if (!userInput) {
-                    alert('يرجى إدخال اسم المستخدم في إنستجرام');
+                    showNotification('يرجى إدخال اسم المستخدم في إنستجرام', 'error');
                     return;
                 }
             } else {
                 userInput = document.getElementById('videoLink').value;
                 if (!userInput) {
-                    alert('يرجى إدخال رابط الفيديو في تيك توك');
+                    showNotification('يرجى إدخال رابط الفيديو في تيك توك', 'error');
                     return;
                 }
             }
             
             if (!phone || !receipt) {
-                alert('يرجى ملء جميع الحقول وإرفاق صورة الإيصال');
+                showNotification('يرجى ملء جميع الحقول وإرفاق صورة الإيصال', 'error');
                 return;
             }
             
@@ -1543,14 +2221,15 @@
                 
                 await db.collection('orders').add(newOrder);
                 
-                alert('تم تقديم طلبك بنجاح! سيتم مراجعته قريباً.');
+                showNotification('تم تقديم طلبك بنجاح! سيتم مراجعته قريباً.');
                 resetPaymentForm();
                 showPage('ordersPage');
             } catch (error) {
-                alert('حدث خطأ أثناء إرسال الطلب. تأكد من اتصال الإنترنت.');
+                showNotification('حدث خطأ أثناء إرسال الطلب. تأكد من اتصال الإنترنت.', 'error');
             }
         }
 
+        // إعادة تعيين نموذج الدفع
         function resetPaymentForm() {
             document.getElementById('username').value = '';
             document.getElementById('videoLink').value = '';
@@ -1558,8 +2237,15 @@
             document.getElementById('receipt').value = '';
         }
 
+        // تحميل الطلبات
         async function loadOrders() {
             const ordersList = document.getElementById('ordersList');
+            ordersList.innerHTML = `
+                <div class="no-orders">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <h3>جاري تحميل الطلبات...</h3>
+                </div>
+            `;
             
             try {
                 const snapshot = await db.collection('orders')
@@ -1568,10 +2254,13 @@
                 
                 if (snapshot.empty) {
                     ordersList.innerHTML = `
-                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                            <i class="fas fa-shopping-cart" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <div class="no-orders">
+                            <i class="fas fa-shopping-cart"></i>
                             <h3>لا توجد طلبات حالياً</h3>
-                            <p style="opacity: 0.7;">بمجرد إرسال طلبك، سيظهر هنا</p>
+                            <p>بمجرد إرسال طلبك، سيظهر هنا</p>
+                            <button class="btn" onclick="showPage('paymentPage')" style="margin-top: 20px;">
+                                <i class="fas fa-plus"></i> إنشاء طلب جديد
+                            </button>
                         </div>
                     `;
                     return;
@@ -1580,59 +2269,136 @@
                 let ordersHTML = '';
                 snapshot.forEach(doc => {
                     const order = doc.data();
-                    const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
+                    const statusClass = getStatusClass(order.status);
                     const serviceText = order.package.service === 'instagram' ? 'إنستجرام' : 'تيك توك';
-                    const typeText = order.package.type === 'متابعين' ? 'متابع' : 
-                                   order.package.type === 'لايكات' ? 'لايك' :
-                                   order.package.type === 'مشاهدات' ? 'مشاهدة' : 
-                                   order.package.type === 'حفظ' ? 'حفظ' :
-                                   order.package.type === 'شير' ? 'شير' : type;
+                    const typeText = getTypeText(order.package.type);
                     
                     ordersHTML += `
-                        <div class="order-item">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <div>
-                                    <strong>طلب #${doc.id.slice(-6)}</strong>
-                                    <p style="margin-top: 5px; opacity: 0.8;">${order.package.amount} ${typeText} ${serviceText} - ${order.package.price} جنيه</p>
-                                </div>
-                                <span class="${statusClass}">${order.status}</span>
+                        <div class="order-item" data-status="${order.status}">
+                            <div class="order-header">
+                                <div class="order-id">طلب #${doc.id.slice(-6)}</div>
+                                <span class="order-status ${statusClass}">${order.status}</span>
                             </div>
-                            <p><strong>${order.package.service === 'instagram' ? 'اسم المستخدم:' : 'رابط الفيديو:'}</strong> ${order.userInput}</p>
-                            <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
-                            <p><strong>تاريخ الطلب:</strong> ${order.date}</p>
+                            <div class="order-details">
+                                <div class="order-detail">
+                                    <span class="detail-label">الخدمة</span>
+                                    <span class="detail-value">${order.package.amount} ${typeText} ${serviceText}</span>
+                                </div>
+                                <div class="order-detail">
+                                    <span class="detail-label">السعر</span>
+                                    <span class="detail-value">${order.package.price} جنيه</span>
+                                </div>
+                                <div class="order-detail">
+                                    <span class="detail-label">${order.package.service === 'instagram' ? 'اسم المستخدم' : 'رابط الفيديو'}</span>
+                                    <span class="detail-value">${order.userInput}</span>
+                                </div>
+                                <div class="order-detail">
+                                    <span class="detail-label">رقم الهاتف</span>
+                                    <span class="detail-value">${order.phone}</span>
+                                </div>
+                                <div class="order-detail">
+                                    <span class="detail-label">تاريخ الطلب</span>
+                                    <span class="detail-value">${order.date}</span>
+                                </div>
+                            </div>
                         </div>
                     `;
                 });
                 
                 ordersList.innerHTML = ordersHTML;
             } catch (error) {
-                ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
+                ordersList.innerHTML = `
+                    <div class="no-orders">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>حدث خطأ في تحميل الطلبات</h3>
+                        <p>يرجى المحاولة مرة أخرى</p>
+                    </div>
+                `;
             }
         }
 
-        // Auto-load orders when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Roma&knzy stor Started Successfully!');
-            createParticles();
-        });
-
-        // التحقق من تسجيل الدخول
-        if (!localStorage.getItem("loggedIn")) {
-            window.location.href = "login.html";
+        // تصفية الطلبات
+        function filterOrders(status) {
+            const orders = document.querySelectorAll('.order-item');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            // تحديث أزرار التصفية
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // تصفية الطلبات
+            orders.forEach(order => {
+                if (status === 'all') {
+                    order.style.display = 'block';
+                } else {
+                    if (order.getAttribute('data-status') === status) {
+                        order.style.display = 'block';
+                    } else {
+                        order.style.display = 'none';
+                    }
+                }
+            });
         }
-        
+
+        // الحصول على فئة الحالة
+        function getStatusClass(status) {
+            switch(status) {
+                case 'قيد المراجعة':
+                    return 'status-pending';
+                case 'تم الإرسال':
+                    return 'status-completed';
+                case 'قيد المعالجة':
+                    return 'status-processing';
+                default:
+                    return 'status-pending';
+            }
+        }
+
+        // الحصول على نص النوع
+        function getTypeText(type) {
+            switch(type) {
+                case 'متابعين':
+                    return 'متابع';
+                case 'لايكات':
+                    return 'لايك';
+                case 'مشاهدات':
+                    return 'مشاهدة';
+                case 'حفظ':
+                    return 'حفظ';
+                case 'شير':
+                    return 'شير';
+                default:
+                    return type;
+            }
+        }
+
+        // عرض الإشعار
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification';
+            notification.classList.add(type);
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
         // الانتقال إلى صفحة الملف الشخصي
         function openProfile() {
             window.location.href = "profile.html";
         }
 
-        // 🚪 تسجيل الخروج
+        // تسجيل الخروج
         function logout() {
-            // إزالة حالة الدخول من localStorage
-            localStorage.removeItem("loggedIn");
-            // توجيه المستخدم إلى صفحة تسجيل الدخول
-            window.location.href = "login.html";
-        }    
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem("loggedIn");
+                window.location.href = "login.html";
+            }
+        }
     </script>
 </body>
 </html>
