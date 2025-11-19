@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta name="language" content="Arabic">
-    <meta name="geo.region" content="EG">
-    <meta name="geo.placename" content="Egypt">
+<meta name="geo.region" content="EG">
+<meta name="geo.placename" content="Egypt">
     <title>Roma&knzy stor</title>
     <link rel="icon" type="image/png" href="1.png">
     <!-- تحسين الظهور في بحث جوجل (SEO) -->
-    <meta name="description" content="موقع روما و كنزي Roma & Knzy Stor يقدم خدمات شحن و شراء متابعين انستجرام بأرخص الأسعار وبجودة عالية.">
-    <meta name="keywords" content="شحن متابعين انستجرام, شراء متابعين انستجرام, متابعين انستجرام, روما و كنزي, Roma & Knzy, Roma & Knzy Stor, موقع روما و كنزي, ارخص اسعار متابعين انستجرام, موقع زيادة متابعين">
+    <meta name="description" content="موقع روما و كنزي Roma & Knzy Stor يقدم خدمات شحن و شراء متابعين انستجرام وأيضاً خدمات تيك توك (لايكات، مشاهدات، حفظ، شير) بأرخص الأسعار وبجودة عالية.">
+    <meta name="keywords" content="شحن متابعين انستجرام, شراء متابعين انستجرام, متابعين انستجرام, لايكات تيك توك, مشاهدات تيك توك, حفظ تيك توك, شير تيك توك, روما و كنزي, Roma & Knzy, Roma & Knzy Stor, موقع روما و كنزي, ارخص اسعار متابعين انستجرام, موقع زيادة متابعين">
     <meta name="author" content="Roma & Knzy Team">
     <meta name="robots" content="index, follow">
 
     <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
-    <meta property="og:title" content="Roma&knzy stor | شحن متابعين انستجرام بأرخص الأسعار">
-    <meta property="og:description" content="أفضل موقع لشحن وشراء متابعين إنستجرام بأرخص الأسعار - Roma & Knzy Stor.">
+    <meta property="og:title" content="Roma&knzy stor | شحن متابعين انستجرام وخدمات تيك توك بأرخص الأسعار">
+    <meta property="og:description" content="أفضل موقع لشحن وشراء متابعين إنستجرام وخدمات تيك توك (لايكات، مشاهدات، حفظ، شير) بأرخص الأسعار - Roma & Knzy Stor.">
     <meta property="og:url" content="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_AR">
@@ -46,6 +46,8 @@
             --danger: #FF8066;
             --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            --tiktok-pink: #FE2C55;
+            --tiktok-blue: #25F4EE;
         }
 
         body {
@@ -148,6 +150,34 @@
             transform: translateY(-2px);
         }
 
+        .service-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .service-tab {
+            background: rgba(255,255,255,0.08);
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.12);
+            font-weight: 600;
+        }
+
+        .service-tab.active {
+            background: var(--gradient);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+
+        .service-tab.tiktok.active {
+            background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
+            box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
+        }
+
         .hero {
             text-align: center;
             padding: 100px 0;
@@ -200,6 +230,11 @@
             box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
         }
 
+        .btn.tiktok {
+            background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
+            box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
+        }
+
         .btn::before {
             content: '';
             position: absolute;
@@ -218,6 +253,10 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(233, 30, 99, 0.6);
+        }
+
+        .btn.tiktok:hover {
+            box-shadow: 0 10px 25px rgba(254, 44, 85, 0.6);
         }
 
         .features {
@@ -280,6 +319,12 @@
             padding: 0 20px;
         }
 
+        .section-title.tiktok {
+            background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -290,6 +335,10 @@
             height: 3px;
             background: var(--gradient);
             border-radius: 3px;
+        }
+
+        .section-title.tiktok::after {
+            background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
         }
 
         .package-grid {
@@ -321,6 +370,10 @@
             background: var(--gradient);
         }
 
+        .package-card.tiktok::before {
+            background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
+        }
+
         .package-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -333,6 +386,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+        }
+
+        .package-amount.tiktok {
+            background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .package-price {
@@ -529,6 +588,11 @@
             display: inline-block;
         }
 
+        /* تحسينات للشعار */
+        .logo-icon {
+            font-size: 24px;
+        }
+
         /* تأثيرات إضافية */
         .floating {
             animation: floating 3s ease-in-out infinite;
@@ -571,6 +635,16 @@
             .section-title {
                 font-size: 2rem;
                 padding: 0 15px;
+            }
+
+            .service-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-tab {
+                width: 80%;
+                text-align: center;
             }
 
             .contact-bar {
@@ -661,27 +735,30 @@
     <div class="container">
         <!-- الصفحة الرئيسية -->
         <div id="homePage" class="page active">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
+
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
+
+  <div class="logo-container" style="display:flex; align-items:center; gap:10px;">
+    <img src="1.png" alt="Roma&Knzy Stor" style="width:45px; height:45px; border-radius:50%;">
+    <h1 style="font-size:22px; background:linear-gradient(135deg,#ff4b91,#ff4ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Roma&Knzy Stor</h1>
+  </div>
+<nav>
+  <a href="#" onclick="showPage('homePage')" style="color:white;">الرئيسية</a>
+  <a href="#" onclick="showPage('ordersPage')" style="color:white;">طلباتي</a>
+  <a href="#" onclick="logout()" style="color:#ffb3d1; text-decoration:none; font-weight:600;">تسجيل الخروج</a>
+</nav>
+
+</header>
+
+            <!-- أزرار التبديل بين الخدمات -->
+            <div class="service-tabs">
+                <div class="service-tab active" onclick="showService('instagram')">
+                    <i class="fab fa-instagram"></i> خدمات الإنستجرام
                 </div>
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <nav>
-                    <ul id="navMenuHome">
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="logout()">تسجيل الخروج</a></li>
-                    </ul>
-                </nav>
-            </header>
+                <div class="service-tab tiktok" onclick="showService('tiktok')">
+                    <i class="fab fa-tiktok"></i> خدمات تيك توك
+                </div>
+            </div>
 
             <!-- قسم خدمات الإنستجرام -->
             <div id="instagramService" class="service-content">
@@ -839,6 +916,194 @@
                 </section>
             </div>
 
+            <!-- قسم خدمات تيك توك -->
+            <div id="tiktokService" class="service-content" style="display: none;">
+                <section class="hero">
+                    <h1 style="background: linear-gradient(135deg, var(--tiktok-pink) 0%, var(--tiktok-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        خدمات تيك توك الاحترافية
+                    </h1>
+                    <p>احصل على لايكات، مشاهدات، حفظ، وشير لأفضل الأسعار</p>
+                    <a href="#tiktok-packages" class="btn tiktok">
+                        <i class="fab fa-tiktok"></i> ابدأ الآن
+                    </a>
+                </section>
+
+                <section class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>ضمان الجودة</h3>
+                        <p>خدماتنا مع ضمان استرجاع الأموال اذا لم تصل الخدمة</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>تسليم فوري</h3>
+                        <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>آمن تماماً</h3>
+                        <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
+                    </div>
+                </section>
+
+                <!-- الباقات البسيطة - لايكات -->
+                <section class="packages-section" id="tiktok-packages">
+                    <h2 class="section-title tiktok">الباقات البسيطة - لايكات</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">60</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">5 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(60, 5, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">120</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">10 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(120, 10, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">240</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">20 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(240, 20, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">300</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">25 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(300, 25, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">600</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">50 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(600, 50, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+
+                        <div class="package-card tiktok">
+                            <div class="package-icon">❤️</div>
+                            <div class="package-amount tiktok">1020</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">لايك تيك توك</div>
+                            <div class="package-price">100 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(1020, 100, 'tiktok', 'لايكات')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- العروض المميزة - مشاهدات -->
+                    <h2 class="section-title tiktok">العروض المميزة - مشاهدات</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">100</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">10 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(100, 10, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">200</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">20 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">300</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">30 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(300, 30, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">500</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">50 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(500, 50, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">700</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">70 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(700, 70, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card tiktok">
+                            <div class="package-icon">👀</div>
+                            <div class="package-amount tiktok">1000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">مشاهدة تيك توك</div>
+                            <div class="package-price">100 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(1000, 100, 'tiktok', 'مشاهدات')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- الباقات الخاصة - علام الحفظ والشير -->
+                    <h2 class="section-title tiktok">الباقات الخاصة - حفظ وشير</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card tiktok">
+                            <div class="package-icon">💾</div>
+                            <div class="package-amount tiktok">290</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">حفظ تيك توك</div>
+                            <div class="package-price">15 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(290, 15, 'tiktok', 'حفظ')">
+                                <i class="fas fa-gem"></i> اختر الباقة
+                            </button>
+                        </div>
+
+                        <div class="package-card tiktok">
+                            <div class="package-icon">↗️</div>
+                            <div class="package-amount tiktok">200</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">شير تيك توك</div>
+                            <div class="package-price">20 جنيه</div>
+                            <button class="btn tiktok" onclick="selectPackage(200, 20, 'tiktok', 'شير')">
+                                <i class="fas fa-gem"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
             <!-- قسم التواصل الجديد -->
             <section class="contact-section">
                 <div class="contact-bar">
@@ -914,7 +1179,6 @@
                     <ul id="navMenuOrders">
                         <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
                         <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="logout()">تسجيل الخروج</a></li>
                     </ul>
                 </nav>
             </header>
@@ -927,27 +1191,19 @@
 
         <!-- صفحة الدفع -->
         <div id="paymentPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Roma&knzy stor Logo">
-                    </div>
-                    <div class="logo-text">
-                        Roma&knzy stor
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                </div>
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <nav>
-                    <ul id="navMenuPayment">
-                        <li><a href="#" onclick="showPage('homePage')">الرئيسية</a></li>
-                        <li><a href="#" onclick="showPage('ordersPage')">طلباتي</a></li>
-                        <li><a href="#" onclick="logout()">تسجيل الخروج</a></li>
-                    </ul>
-                </nav>
-            </header>
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
+
+  <div class="logo-container" style="display:flex; align-items:center; gap:10px;">
+    <img src="1.png" alt="Roma&Knzy Stor" style="width:45px; height:45px; border-radius:50%;">
+    <h1 style="font-size:22px; background:linear-gradient(135deg,#ff4b91,#ff4ba2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Roma&Knzy Stor</h1>
+  </div>
+
+  <nav style="display:flex; align-items:center; gap:20px;">
+    <a href="#" onclick="showPage('homePage')" style="color:white; text-decoration:none; font-weight:600;">الرئيسية</a>
+    <a href="#" onclick="showPage('ordersPage')" style="color:white; text-decoration:none; font-weight:600;">طلباتي</a>
+    <a href="profile.html" style="color:#ffb3d1; text-decoration:none; font-weight:600;">ملفي الشخصي</a>
+  </nav>
+</header>
 
             <div class="payment-page">
                 <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
@@ -969,9 +1225,14 @@
                     <p style="opacity: 0.8; font-size: 0.9rem;">يرجى إرسال المبلغ إلى الرقم أعلاه ثم إرفاق صورة إيصال الدفع</p>
                 </div>
 
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">اسم المستخدم في إنستجرام</label>
+                <div class="form-group" id="usernameGroup">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="usernameLabel">اسم المستخدم في إنستجرام</label>
                     <input type="text" id="username" class="form-control" placeholder="اسم المستخدم بدون @">
+                </div>
+
+                <div class="form-group" id="videoLinkGroup" style="display: none;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="videoLinkLabel">رابط الفيديو في تيك توك</label>
+                    <input type="url" id="videoLink" class="form-control" placeholder="https://www.tiktok.com/@username/video/123456789">
                 </div>
 
                 <div class="form-group">
@@ -1028,28 +1289,79 @@
 
         function toggleMenu() {
             const currentPage = document.querySelector('.page.active').id;
-            const navMenu = document.getElementById(`navMenu${currentPage.replace('Page', '')}`);
+            const navMenu = document.getElementById(`navMenu${currentPage !== 'homePage' ? currentPage.replace('Page', '') : ''}`);
             navMenu.classList.toggle('show');
+        }
+
+        function showService(service) {
+            // تحديث أزرار التبويب
+            document.querySelectorAll('.service-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            if (service === 'instagram') {
+                document.querySelector('.service-tab:first-child').classList.add('active');
+                document.getElementById('instagramService').style.display = 'block';
+                document.getElementById('tiktokService').style.display = 'none';
+            } else {
+                document.querySelector('.service-tab:last-child').classList.add('active');
+                document.getElementById('instagramService').style.display = 'none';
+                document.getElementById('tiktokService').style.display = 'block';
+            }
         }
 
         function selectPackage(amount, price, service, type) {
             selectedPackage = { amount, price, service, type };
             
             let serviceText = service === 'instagram' ? 'إنستجرام' : 'تيك توك';
-            let typeText = type === 'متابعين' ? 'متابع' : type;
+            let typeText = type === 'متابعين' ? 'متابع' : 
+                          type === 'لايكات' ? 'لايك' :
+                          type === 'مشاهدات' ? 'مشاهدة' : 
+                          type === 'حفظ' ? 'حفظ' :
+                          type === 'شير' ? 'شير' : type;
             
             document.getElementById('selectedPackageInfo').textContent = 
                 `باقة ${amount} ${typeText} ${serviceText} - ${price} جنيه`;
+            
+            // تحديث الحقول حسب نوع الخدمة
+            const usernameGroup = document.getElementById('usernameGroup');
+            const videoLinkGroup = document.getElementById('videoLinkGroup');
+            
+            if (service === 'instagram') {
+                usernameGroup.style.display = 'block';
+                videoLinkGroup.style.display = 'none';
+                document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
+                document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
+            } else {
+                usernameGroup.style.display = 'none';
+                videoLinkGroup.style.display = 'block';
+                document.getElementById('videoLinkLabel').textContent = 'رابط الفيديو في تيك توك';
+                document.getElementById('videoLink').placeholder = 'https://www.tiktok.com/@username/video/123456789';
+            }
             
             showPage('paymentPage');
         }
 
         async function submitOrder() {
-            const username = document.getElementById('username').value;
+            let userInput;
             const phone = document.getElementById('phone').value;
             const receipt = document.getElementById('receipt').files[0];
             
-            if (!username || !phone || !receipt) {
+            if (selectedPackage.service === 'instagram') {
+                userInput = document.getElementById('username').value;
+                if (!userInput) {
+                    alert('يرجى إدخال اسم المستخدم في إنستجرام');
+                    return;
+                }
+            } else {
+                userInput = document.getElementById('videoLink').value;
+                if (!userInput) {
+                    alert('يرجى إدخال رابط الفيديو في تيك توك');
+                    return;
+                }
+            }
+            
+            if (!phone || !receipt) {
                 alert('يرجى ملء جميع الحقول وإرفاق صورة الإيصال');
                 return;
             }
@@ -1057,7 +1369,7 @@
             try {
                 const newOrder = {
                     package: selectedPackage,
-                    username: username,
+                    userInput: userInput,
                     phone: phone,
                     status: 'قيد المراجعة',
                     date: new Date().toLocaleDateString('ar-EG'),
@@ -1076,6 +1388,7 @@
 
         function resetPaymentForm() {
             document.getElementById('username').value = '';
+            document.getElementById('videoLink').value = '';
             document.getElementById('phone').value = '';
             document.getElementById('receipt').value = '';
         }
@@ -1104,7 +1417,11 @@
                     const order = doc.data();
                     const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
                     const serviceText = order.package.service === 'instagram' ? 'إنستجرام' : 'تيك توك';
-                    const typeText = order.package.type === 'متابعين' ? 'متابع' : order.package.type;
+                    const typeText = order.package.type === 'متابعين' ? 'متابع' : 
+                                   order.package.type === 'لايكات' ? 'لايك' :
+                                   order.package.type === 'مشاهدات' ? 'مشاهدة' : 
+                                   order.package.type === 'حفظ' ? 'حفظ' :
+                                   order.package.type === 'شير' ? 'شير' : type;
                     
                     ordersHTML += `
                         <div class="order-item">
@@ -1115,7 +1432,7 @@
                                 </div>
                                 <span class="${statusClass}">${order.status}</span>
                             </div>
-                            <p><strong>اسم المستخدم:</strong> ${order.username}</p>
+                            <p><strong>${order.package.service === 'instagram' ? 'اسم المستخدم:' : 'رابط الفيديو:'}</strong> ${order.userInput}</p>
                             <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
                             <p><strong>تاريخ الطلب:</strong> ${order.date}</p>
                         </div>
@@ -1134,17 +1451,22 @@
         });
 
         // التحقق من تسجيل الدخول
-        if (!localStorage.getItem("loggedIn")) {
-            window.location.href = "login.html";
-        }
+if (!localStorage.getItem("loggedIn")) {
+  window.location.href = "login.html";
+}
+        // الانتقال إلى صفحة الملف الشخصي
+function openProfile() {
+  window.location.href = "profile.html";
+}
 
-        // 🚪 تسجيل الخروج
-        function logout() {
-            // إزالة حالة الدخول من localStorage
-            localStorage.removeItem("loggedIn");
-            // توجيه المستخدم إلى صفحة تسجيل الدخول
-            window.location.href = "login.html";
-        }    
+        
+    // 🚪 تسجيل الخروج
+function logout() {
+  // إزالة حالة الدخول من localStorage
+  localStorage.removeItem("loggedIn");
+  // توجيه المستخدم إلى صفحة تسجيل الدخول
+  window.location.href = "login.html";
+}    
     </script>
 </body>
 </html>
