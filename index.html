@@ -800,7 +800,7 @@
                     <div class="package-card">
                         <div class="package-icon">👥</div>
                         <div class="package-amount">600</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنstجرام</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">متابع إنستجرام</div>
                         <div class="package-price">60 جنيه</div>
                         <button class="btn" onclick="selectPackage(600, 60, 'instagram', 'متابعين')">
                             <i class="fas fa-crown"></i> اختر الباقة
@@ -1193,13 +1193,21 @@
             }
         }
 
-        // دالة تحميل التطبيق
+        // دالة تحميل التطبيق الجديد من GitHub
         function downloadApp() {
-            // رابط التحميل المباشر من جوجل درايف
-            const appDownloadUrl = 'https://drive.google.com/uc?export=download&id=1OgkBmzGQBPgUf3sfGJ0zulQDfbxnJ5ys';
+            // رابط التطبيق الجديد من GitHub
+            const appDownloadUrl = 'app-release%20(3).apk';
             
-            // فتح الرابط في نافذة جديدة للتحميل
-            window.open(appDownloadUrl, '_blank');
+            // إنشاء رابط تحميل مباشر
+            const link = document.createElement('a');
+            link.href = appDownloadUrl;
+            link.download = 'RomaKnzyStor.apk';
+            link.style.display = 'none';
+            
+            // إضافة الرابط للصفحة والنقر عليه
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
             
             // رسالة تأكيد
             alert('بدأ تحميل تطبيق Roma&Knzy Stor... شكراً لثقتك بنا!');
