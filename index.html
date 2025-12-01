@@ -1187,7 +1187,7 @@
                 <div class="form-group">
                     <label style="display: block; margin-bottom: 8px; font-weight: bold;">صورة إيصال الدفع</label>
                     <input type="file" id="receipt" class="form-control" accept="image/*">
-                    <small style="color: var(--accent); font-size: 0.8rem;">يدعم جميع أنواع الصور: JPG, JPEG, PNG, GIF, WebP</small>
+                    <small style="color: var(--accent); font-size: 0.8rem;">يدعم جميع أنواع الصور بما فيها صور الكاميرا</small>
                 </div>
 
                 <button class="btn" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
@@ -1216,27 +1216,77 @@
 
         let selectedPackage = { amount: 100, price: 10, service: 'instagram', type: 'متابعين' };
 
-        // دالة تحويل الصورة إلى base64 (مطورة لدعم كل أنواع الصور)
-        function convertImageToBase64(file) {
+        // دالة قوية لمعالجة صور الكاميرا
+        function processCameraImage(file) {
             return new Promise((resolve, reject) => {
-                // التحقق من أن الملف صورة
-                if (!file.type.match('image.*')) {
-                    reject(new Error('الرجاء اختيار ملف صورة فقط (JPG, PNG, GIF, etc)'));
-                    return;
-                }
-
+                // المحاولة الأولى: استخدام FileReader العادي
                 const reader = new FileReader();
                 
                 reader.onload = function(e) {
-                    // هنا الصورة بتكون جاهزة كـ base64
-                    resolve(e.target.result);
+                    // فحص إذا كانت الصورة صالحة
+                    const img = new Image();
+                    
+                    img.onload = function() {
+                        // الصورة صالحة
+                        resolve(e.target.result);
+                    };
+                    
+                    img.onerror = function() {
+                        // المحاولة الثانية: إعادة تسمية الملف
+                        const renamedFile = new File([file], 'image.jpg', { type: 'image/jpeg' });
+                        const newReader = new FileReader();
+                        
+                        newReader.onload = function(evt) {
+                            resolve(evt.target.result);
+                        };
+                        
+                        newReader.onerror = function() {
+                            // المحاولة الثالثة: استخدام Canvas لإعادة الترميز
+                            const canvas = document.createElement('canvas');
+                            const ctx = canvas.getContext('2d');
+                            const tempImg = new Image();
+                            
+                            tempImg.onload = function() {
+                                canvas.width = tempImg.width;
+                                canvas.height = tempImg.height;
+                                ctx.drawImage(tempImg, 0, 0);
+                                
+                                try {
+                                    const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+                                    resolve(dataUrl);
+                                } catch (canvasError) {
+                                    // المحاولة الأخيرة: تحويل إلى Blob
+                                    canvas.toBlob(function(blob) {
+                                        const finalReader = new FileReader();
+                                        finalReader.onload = function(blobEvent) {
+                                            resolve(blobEvent.target.result);
+                                        };
+                                        finalReader.onerror = reject;
+                                        finalReader.readAsDataURL(blob);
+                                    }, 'image/jpeg', 0.9);
+                                }
+                            };
+                            
+                            tempImg.onerror = reject;
+                            tempImg.src = URL.createObjectURL(file);
+                        };
+                        
+                        newReader.readAsDataURL(renamedFile);
+                    };
+                    
+                    img.src = e.target.result;
                 };
                 
-                reader.onerror = function(error) {
-                    reject(new Error('حدث خطأ في قراءة الملف: ' + error));
+                reader.onerror = function() {
+                    // إذا فشل FileReader العادي، نستخدم طريقة مباشرة
+                    try {
+                        const url = URL.createObjectURL(file);
+                        resolve(url);
+                    } catch (urlError) {
+                        reject(new Error('تعذر معالجة ملف الصورة'));
+                    }
                 };
                 
-                // قراءة الملف كـ Data URL (base64)
                 reader.readAsDataURL(file);
             });
         }
@@ -1335,14 +1385,23 @@
             }
             
             try {
-                // تحويل الصورة إلى base64 (تدعم كل أنواع الصور)
-                const receiptBase64 = await convertImageToBase64(receiptFile);
+                // إظهار رسالة التحميل
+                const originalButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
+                const originalText = originalButton.innerHTML;
+                originalButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الصورة...';
+                originalButton.disabled = true;
+                
+                // معالجة الصورة بكل الطرق الممكنة
+                let receiptBase64;
+                
+                // المحاولة مع دالة معالجة صور الكاميرا
+                receiptBase64 = await processCameraImage(receiptFile);
                 
                 const newOrder = {
                     package: selectedPackage,
                     userInput: userInput,
                     phone: phone,
-                    receiptImage: receiptBase64, // حفظ الصورة كـ base64
+                    receiptImage: receiptBase64,
                     status: 'قيد المراجعة',
                     date: new Date().toLocaleDateString('ar-EG'),
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -1350,11 +1409,30 @@
                 
                 await db.collection('orders').add(newOrder);
                 
+                // استعادة الزر لحالته الأصلية
+                originalButton.innerHTML = originalText;
+                originalButton.disabled = false;
+                
                 alert('تم تقديم طلبك بنجاح! سيتم مراجعته قريباً.');
                 resetPaymentForm();
                 showPage('ordersPage');
             } catch (error) {
-                alert('حدث خطأ أثناء إرسال الطلب: ' + error.message);
+                // استعادة الزر لحالته الأصلية في حالة الخطأ
+                const originalButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
+                originalButton.innerHTML = 'تأكيد الطلب';
+                originalButton.disabled = false;
+                
+                console.error('Error:', error);
+                
+                let errorMessage = 'حدث خطأ أثناء إرسال الطلب.\n\n';
+                errorMessage += 'نصائح لحل المشكلة:\n';
+                errorMessage += '1. جرب التقاط صورة أخرى\n';
+                errorMessage += '2. تأكد من أن الصورة غير تالفة\n';
+                errorMessage += '3. جرب اختيار صورة من المعرض بدلاً من الكاميرا\n';
+                errorMessage += '4. تأكد من اتصال الإنترنت\n';
+                errorMessage += '5. حاول تقليل حجم الصورة إذا كانت كبيرة جداً';
+                
+                alert(errorMessage);
             }
         }
 
