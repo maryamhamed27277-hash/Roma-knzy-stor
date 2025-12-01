@@ -1187,7 +1187,7 @@
                 <div class="form-group">
                     <label style="display: block; margin-bottom: 8px; font-weight: bold;">صورة إيصال الدفع</label>
                     <input type="file" id="receipt" class="form-control" accept="image/*">
-                    <small style="color: var(--accent); font-size: 0.8rem;">لا يدعم الصور من الكاميرا يجب اخذ الصورة اسكرين</small>
+                    <small style="color: var(--accent); font-size: 0.8rem;">اختر صورة واضحة للإيصال (يفضل تصغير حجم الصورة)</small>
                 </div>
 
                 <button class="btn" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
@@ -1216,77 +1216,12 @@
 
         let selectedPackage = { amount: 100, price: 10, service: 'instagram', type: 'متابعين' };
 
-        // دالة قوية لمعالجة صور الكاميرا
-        function processCameraImage(file) {
+        // دالة تحويل الصورة إلى base64 - طريقة الامتحان البسيطة
+        function convertImageToBase64(file) {
             return new Promise((resolve, reject) => {
-                // المحاولة الأولى: استخدام FileReader العادي
                 const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    // فحص إذا كانت الصورة صالحة
-                    const img = new Image();
-                    
-                    img.onload = function() {
-                        // الصورة صالحة
-                        resolve(e.target.result);
-                    };
-                    
-                    img.onerror = function() {
-                        // المحاولة الثانية: إعادة تسمية الملف
-                        const renamedFile = new File([file], 'image.jpg', { type: 'image/jpeg' });
-                        const newReader = new FileReader();
-                        
-                        newReader.onload = function(evt) {
-                            resolve(evt.target.result);
-                        };
-                        
-                        newReader.onerror = function() {
-                            // المحاولة الثالثة: استخدام Canvas لإعادة الترميز
-                            const canvas = document.createElement('canvas');
-                            const ctx = canvas.getContext('2d');
-                            const tempImg = new Image();
-                            
-                            tempImg.onload = function() {
-                                canvas.width = tempImg.width;
-                                canvas.height = tempImg.height;
-                                ctx.drawImage(tempImg, 0, 0);
-                                
-                                try {
-                                    const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
-                                    resolve(dataUrl);
-                                } catch (canvasError) {
-                                    // المحاولة الأخيرة: تحويل إلى Blob
-                                    canvas.toBlob(function(blob) {
-                                        const finalReader = new FileReader();
-                                        finalReader.onload = function(blobEvent) {
-                                            resolve(blobEvent.target.result);
-                                        };
-                                        finalReader.onerror = reject;
-                                        finalReader.readAsDataURL(blob);
-                                    }, 'image/jpeg', 0.9);
-                                }
-                            };
-                            
-                            tempImg.onerror = reject;
-                            tempImg.src = URL.createObjectURL(file);
-                        };
-                        
-                        newReader.readAsDataURL(renamedFile);
-                    };
-                    
-                    img.src = e.target.result;
-                };
-                
-                reader.onerror = function() {
-                    // إذا فشل FileReader العادي، نستخدم طريقة مباشرة
-                    try {
-                        const url = URL.createObjectURL(file);
-                        resolve(url);
-                    } catch (urlError) {
-                        reject(new Error('تعذر معالجة ملف الصورة'));
-                    }
-                };
-                
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
                 reader.readAsDataURL(file);
             });
         }
@@ -1384,24 +1319,21 @@
                 return;
             }
             
+            // تحقق من حجم الصورة (حد أقصى 5MB)
+            if (receiptFile.size > 5 * 1024 * 1024) {
+                alert('حجم الصورة كبير جداً! الرجاء اختيار صورة بحجم أقل من 5 ميجابايت');
+                return;
+            }
+            
             try {
-                // إظهار رسالة التحميل
-                const originalButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
-                const originalText = originalButton.innerHTML;
-                originalButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الصورة...';
-                originalButton.disabled = true;
-                
-                // معالجة الصورة بكل الطرق الممكنة
-                let receiptBase64;
-                
-                // المحاولة مع دالة معالجة صور الكاميرا
-                receiptBase64 = await processCameraImage(receiptFile);
+                // تحويل الصورة إلى base64 (طريقة بسيطة وسريعة)
+                const receiptBase64 = await convertImageToBase64(receiptFile);
                 
                 const newOrder = {
                     package: selectedPackage,
                     userInput: userInput,
                     phone: phone,
-                    receiptImage: receiptBase64,
+                    receiptImage: receiptBase64, // حفظ الصورة كـ base64
                     status: 'قيد المراجعة',
                     date: new Date().toLocaleDateString('ar-EG'),
                     timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -1409,30 +1341,19 @@
                 
                 await db.collection('orders').add(newOrder);
                 
-                // استعادة الزر لحالته الأصلية
-                originalButton.innerHTML = originalText;
-                originalButton.disabled = false;
-                
                 alert('تم تقديم طلبك بنجاح! سيتم مراجعته قريباً.');
                 resetPaymentForm();
                 showPage('ordersPage');
             } catch (error) {
-                // استعادة الزر لحالته الأصلية في حالة الخطأ
-                const originalButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
-                originalButton.innerHTML = 'تأكيد الطلب';
-                originalButton.disabled = false;
+                console.error('Error submitting order:', error);
                 
-                console.error('Error:', error);
-                
-                let errorMessage = 'حدث خطأ أثناء إرسال الطلب.\n\n';
-                errorMessage += 'نصائح لحل المشكلة:\n';
-                errorMessage += '1. خد الصورة اسكرين\n';
-                errorMessage += '2. مش بيقبل الصور من الكاميرا\n';
-                errorMessage += '3. لو مستخدم الكاميرا خش ع الصوره خدها اسكرين\n';
-                errorMessage += '4. تأكد من اتصال الإنترنت\n';
-                errorMessage += '5. حاول تقليل حجم الصورة إذا كانت كبيرة جداً';
-                
-                alert(errorMessage);
+                if (error.toString().includes('size')) {
+                    alert('حجم الصورة كبير جداً! جرب صورة أصغر حجماً.');
+                } else if (error.toString().includes('quota')) {
+                    alert('فشل رفع الصورة. قد يكون حجم الصورة كبيراً جداً.\nنصيحة: جرب تصغير حجم الصورة أولاً.');
+                } else {
+                    alert('حدث خطأ أثناء إرسال الطلب. تأكد من اتصال الإنترنت وحاول مرة أخرى.');
+                }
             }
         }
 
