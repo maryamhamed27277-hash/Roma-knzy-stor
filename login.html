@@ -32,20 +32,22 @@
     }
 
     body {
-      height: 100vh;
+      min-height: 100vh;
       background: linear-gradient(135deg, #1A1A2E 0%, #2D1B3E 100%);
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
+      padding: 20px;
     }
 
     .card {
-      background: rgba(26, 26, 46, 0.9);
+      background: rgba(26, 26, 46, 0.95);
       border-radius: 25px;
       padding: 40px 30px;
       text-align: center;
-      width: 350px;
+      width: 100%;
+      max-width: 400px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.3);
       border: 1px solid rgba(255,255,255,0.1);
       backdrop-filter: blur(10px);
@@ -126,6 +128,12 @@
       box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
     }
 
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     p {
       margin-top: 20px;
       font-size: 0.9rem;
@@ -148,7 +156,56 @@
       color: #FF8066;
       margin-top: 10px;
       font-size: 0.9rem;
+      padding: 10px;
+      background: rgba(255, 128, 102, 0.1);
+      border-radius: 8px;
       display: none;
+    }
+
+    .success-message {
+      color: #00C9A7;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      padding: 10px;
+      background: rgba(0, 201, 167, 0.1);
+      border-radius: 8px;
+      display: none;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .forgot-password {
+      text-align: left;
+      margin-top: 10px;
+    }
+
+    .forgot-password a {
+      font-size: 0.85rem;
+      color: #FF80AB;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 20px;
+        margin: 10px;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -159,23 +216,29 @@
     </div>
     <h2>تسجيل الدخول</h2>
 
-    <input type="email" id="email" placeholder="البريد الإلكتروني">
-    <input type="password" id="password" placeholder="كلمة المرور">
+    <input type="email" id="email" placeholder="البريد الإلكتروني" autocomplete="email">
+    <input type="password" id="password" placeholder="كلمة المرور" autocomplete="current-password">
+    
+    <div class="forgot-password">
+      <a href="#" onclick="forgotPassword()">نسيت كلمة المرور؟</a>
+    </div>
     
     <div class="error-message" id="errorMessage"></div>
+    <div class="success-message" id="successMessage"></div>
     
-    <button onclick="login()">
-      <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+    <button onclick="login()" id="loginBtn">
+      <span id="btnText"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</span>
+      <span id="btnLoading" style="display: none;"><span class="loading-spinner"></span> جاري تسجيل الدخول...</span>
     </button>
 
-    <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب</a></p>
+    <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب جديد</a></p>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <script>
-    // Firebase Configuration
+    // Firebase Configuration - نفس الإعدادات
     const firebaseConfig = {
       apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
       authDomain: "romalshop.firebaseapp.com",
@@ -186,67 +249,162 @@
     };
 
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    async function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const errorMessage = document.getElementById("errorMessage");
+    // عرض رسالة خطأ
+    function showError(message) {
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+      
+      const successDiv = document.getElementById('successMessage');
+      successDiv.style.display = 'none';
+    }
 
-      // إخفاء رسالة الخطأ
-      errorMessage.style.display = 'none';
+    // عرض رسالة نجاح
+    function showSuccess(message) {
+      const successDiv = document.getElementById('successMessage');
+      successDiv.textContent = message;
+      successDiv.style.display = 'block';
+      
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.style.display = 'none';
+    }
+
+    // إظهار حالة التحميل
+    function showLoading(show) {
+      const btn = document.getElementById('loginBtn');
+      const btnText = document.getElementById('btnText');
+      const btnLoading = document.getElementById('btnLoading');
+      
+      if (show) {
+        btn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline';
+      } else {
+        btn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      }
+    }
+
+    // دالة استعادة كلمة المرور
+    async function forgotPassword() {
+      const email = document.getElementById("email").value.trim();
+      
+      if (!email) {
+        showError("⛔ يرجى إدخال البريد الإلكتروني لاستعادة كلمة المرور");
+        return;
+      }
+      
+      try {
+        await auth.sendPasswordResetEmail(email);
+        showSuccess("✅ تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني");
+      } catch (error) {
+        showError("❌ حدث خطأ أثناء إرسال رابط الاستعادة: " + error.message);
+      }
+    }
+
+    // دالة تسجيل الدخول
+    async function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      
+      // إخفاء الرسائل السابقة
+      document.getElementById('errorMessage').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'none';
 
       // التحقق من الحقول
       if (!email || !password) {
-        errorMessage.textContent = "يرجى ملء جميع الحقول";
-        errorMessage.style.display = 'block';
+        showError("⛔ يرجى ملء جميع الحقول");
+        return;
+      }
+
+      // التحقق من صحة البريد الإلكتروني
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showError("⛔ البريد الإلكتروني غير صالح");
         return;
       }
 
       try {
+        // إظهار حالة التحميل
+        showLoading(true);
+
         // تسجيل الدخول
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
         const user = userCredential.user;
         
-        // تخزين حالة تسجيل الدخول
-        localStorage.setItem("loggedIn", "true");
-        localStorage.setItem("userId", user.uid);
-        
-        // التوجيه إلى الصفحة الرئيسية
-        window.location.href = "ro.html";
-        
+        // التحقق من تفعيل البريد الإلكتروني
+        if (!user.emailVerified) {
+          // إذا لم يتم تفعيل البريد، نسمح بالدخول مع إرسال رسالة
+          // يمكنك إضافة تفعيل البريد لاحقاً إذا أردت
+          showSuccess("⚠️ لم يتم تفعيل البريد الإلكتروني بعد");
+          
+          // نستمر في الدخول ولكن مع تنبيه
+          setTimeout(() => {
+            proceedToDashboard(user);
+          }, 2000);
+        } else {
+          proceedToDashboard(user);
+        }
+
       } catch (error) {
-        // عرض رسالة الخطأ المناسبة
-        let message = "خطأ في تسجيل الدخول";
+        console.error('Login error:', error);
+        
+        let message = "❌ حدث خطأ أثناء تسجيل الدخول";
         
         switch(error.code) {
           case 'auth/user-not-found':
-            message = "المستخدم غير موجود";
+            message = "👤 المستخدم غير موجود";
             break;
           case 'auth/wrong-password':
-            message = "كلمة المرور غير صحيحة";
+            message = "🔒 كلمة المرور غير صحيحة";
             break;
           case 'auth/invalid-email':
-            message = "البريد الإلكتروني غير صالح";
+            message = "📧 البريد الإلكتروني غير صالح";
             break;
           case 'auth/user-disabled':
-            message = "هذا الحساب معطل";
+            message = "🚫 هذا الحساب معطل";
             break;
           case 'auth/too-many-requests':
-            message = "عدد محاولات الدخول أكثر من المسموح، حاول لاحقاً";
+            message = "🔄 عدد محاولات الدخول أكثر من المسموح، حاول لاحقاً";
+            break;
+          case 'auth/network-request-failed':
+            message = "🌐 مشكلة في الاتصال بالإنترنت";
             break;
         }
         
-        errorMessage.textContent = message;
-        errorMessage.style.display = 'block';
+        showError(message);
+        showLoading(false);
       }
+    }
+
+    // متابعة إلى لوحة التحكم بعد تسجيل الدخول
+    function proceedToDashboard(user) {
+      // تخزين بيانات الجلسة
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("userId", user.uid);
+      localStorage.setItem("userEmail", user.email);
+      localStorage.setItem("userName", user.displayName || user.email.split('@')[0]);
+      
+      // التوجيه إلى الصفحة الرئيسية
+      window.location.href = "ro.html";
     }
 
     // السماح بإرسال النموذج بالضغط على Enter
     document.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         login();
+      }
+    });
+
+    // محاولة تسجيل الدخول التلقائي إذا كان المستخدم مسجل بالفعل
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // إذا كان المستخدم مسجل بالفعل، نوجهه مباشرة
+        proceedToDashboard(user);
       }
     });
   </script>
