@@ -13,13 +13,6 @@
   <meta name="author" content="Roma & Knzy Team">
   <meta name="robots" content="index, follow">
 
-  <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
-  <meta property="og:title" content="Roma&knzy stor | شحن متابعين انستجرام بأرخص الأسعار">
-  <meta property="og:description" content="أفضل موقع لشحن وشراء متابعين إنستجرام بأرخص الأسعار - Roma & Knzy Stor.">
-  <meta property="og:url" content="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ar_AR">
-  <link rel="canonical" href="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   
@@ -196,17 +189,6 @@
       font-size: 0.85rem;
       color: #FF80AB;
     }
-
-    @media (max-width: 480px) {
-      .card {
-        padding: 30px 20px;
-        margin: 10px;
-      }
-      
-      h2 {
-        font-size: 1.5rem;
-      }
-    }
   </style>
 </head>
 <body>
@@ -234,23 +216,31 @@
     <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب جديد</a></p>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <!-- Firebase v9+ Modular -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { 
+      getAuth, 
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      onAuthStateChanged 
+    } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
-  <script>
-    // Firebase Configuration - نفس الإعدادات
+    // Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
       authDomain: "romalshop.firebaseapp.com",
+      databaseURL: "https://romalshop-default-rtdb.europe-west1.firebasedatabase.app",
       projectId: "romalshop",
       storageBucket: "romalshop.firebasestorage.app",
       messagingSenderId: "830369715807",
-      appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
+      appId: "1:830369715807:web:ad0f4b6315876cf4b46dea",
+      measurementId: "G-KFLWM1T8DD"
     };
 
     // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
     // عرض رسالة خطأ
     function showError(message) {
@@ -290,7 +280,7 @@
     }
 
     // دالة استعادة كلمة المرور
-    async function forgotPassword() {
+    window.forgotPassword = async function() {
       const email = document.getElementById("email").value.trim();
       
       if (!email) {
@@ -299,29 +289,26 @@
       }
       
       try {
-        await auth.sendPasswordResetEmail(email);
+        await sendPasswordResetEmail(auth, email);
         showSuccess("✅ تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني");
       } catch (error) {
-        showError("❌ حدث خطأ أثناء إرسال رابط الاستعادة: " + error.message);
+        showError("❌ حدث خطأ أثناء إرسال رابط الاستعادة");
       }
-    }
+    };
 
     // دالة تسجيل الدخول
-    async function login() {
+    window.login = async function() {
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
       
-      // إخفاء الرسائل السابقة
       document.getElementById('errorMessage').style.display = 'none';
       document.getElementById('successMessage').style.display = 'none';
 
-      // التحقق من الحقول
       if (!email || !password) {
         showError("⛔ يرجى ملء جميع الحقول");
         return;
       }
 
-      // التحقق من صحة البريد الإلكتروني
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         showError("⛔ البريد الإلكتروني غير صالح");
@@ -329,26 +316,12 @@
       }
 
       try {
-        // إظهار حالة التحميل
         showLoading(true);
 
-        // تسجيل الدخول
-        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         
-        // التحقق من تفعيل البريد الإلكتروني
-        if (!user.emailVerified) {
-          // إذا لم يتم تفعيل البريد، نسمح بالدخول مع إرسال رسالة
-          // يمكنك إضافة تفعيل البريد لاحقاً إذا أردت
-          showSuccess("⚠️ لم يتم تفعيل البريد الإلكتروني بعد");
-          
-          // نستمر في الدخول ولكن مع تنبيه
-          setTimeout(() => {
-            proceedToDashboard(user);
-          }, 2000);
-        } else {
-          proceedToDashboard(user);
-        }
+        proceedToDashboard(user);
 
       } catch (error) {
         console.error('Login error:', error);
@@ -379,31 +352,28 @@
         showError(message);
         showLoading(false);
       }
-    }
+    };
 
     // متابعة إلى لوحة التحكم بعد تسجيل الدخول
     function proceedToDashboard(user) {
-      // تخزين بيانات الجلسة
       localStorage.setItem("loggedIn", "true");
       localStorage.setItem("userId", user.uid);
       localStorage.setItem("userEmail", user.email);
       localStorage.setItem("userName", user.displayName || user.email.split('@')[0]);
       
-      // التوجيه إلى الصفحة الرئيسية
       window.location.href = "ro.html";
     }
 
     // السماح بإرسال النموذج بالضغط على Enter
     document.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
-        login();
+        window.login();
       }
     });
 
     // محاولة تسجيل الدخول التلقائي إذا كان المستخدم مسجل بالفعل
-    auth.onAuthStateChanged((user) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
-        // إذا كان المستخدم مسجل بالفعل، نوجهه مباشرة
         proceedToDashboard(user);
       }
     });
