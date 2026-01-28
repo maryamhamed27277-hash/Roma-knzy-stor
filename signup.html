@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>إنشاء حساب | Roma&Knzy Stor</title>
   <link rel="icon" type="image/png" href="1.png">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
   
   <!-- تحسين الظهور في بحث جوجل (SEO) -->
   <meta name="description" content="موقع روما و كنزي Roma & Knzy Stor يقدم خدمات شحن و شراء متابعين انستجرام بأرخص الأسعار وبجودة عالية. أفضل موقع لزيادة متابعين إنستجرام بسرعة واحترافية.">
@@ -13,13 +12,6 @@
   <meta name="author" content="Roma & Knzy Team">
   <meta name="robots" content="index, follow">
 
-  <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
-  <meta property="og:title" content="Roma&knzy stor | شحن متابعين انستجرام بأرخص الأسعار">
-  <meta property="og:description" content="أفضل موقع لشحن وشراء متابعين إنستجرام بأرخص الأسعار - Roma & Knzy Stor.">
-  <meta property="og:url" content="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ar_AR">
-  <link rel="canonical" href="https://maryamhamed27277-hash.github.io/Roma-knzy-stor/">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   
@@ -38,7 +30,6 @@
       justify-content: center;
       align-items: center;
       color: white;
-      font-family: 'Tajawal', sans-serif;
       padding: 20px;
     }
 
@@ -66,7 +57,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
     }
 
     .logo img {
@@ -225,17 +215,6 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-
-    @media (max-width: 480px) {
-      .card {
-        padding: 30px 20px;
-        margin: 10px;
-      }
-      
-      h2 {
-        font-size: 1.5rem;
-      }
-    }
   </style>
 </head>
 <body>
@@ -269,41 +248,52 @@
     <p>عندك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <!-- Firebase v9+ Modular -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { 
+      getAuth, 
+      createUserWithEmailAndPassword, 
+      updateProfile,
+      signInWithEmailAndPassword 
+    } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    import { 
+      getFirestore, 
+      doc, 
+      setDoc, 
+      serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-  <script>
-    // Firebase Configuration - تأكد من أن الإعدادات صحيحة
+    // Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
       authDomain: "romalshop.firebaseapp.com",
+      databaseURL: "https://romalshop-default-rtdb.europe-west1.firebasedatabase.app",
       projectId: "romalshop",
       storageBucket: "romalshop.firebasestorage.app",
       messagingSenderId: "830369715807",
-      appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
+      appId: "1:830369715807:web:ad0f4b6315876cf4b46dea",
+      measurementId: "G-KFLWM1T8DD"
     };
 
     // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
     let avatarFile = null;
 
     // معاينة صورة البروفايل
-    function previewAvatar(event) {
+    window.previewAvatar = function(event) {
       const file = event.target.files[0];
       const preview = document.getElementById('avatarPreview');
       
       if (file) {
-        // التحقق من نوع الملف
         if (!file.type.match('image.*')) {
           showError('الرجاء اختيار ملف صورة فقط');
           return;
         }
         
-        // التحقق من حجم الملف (5MB كحد أقصى)
         if (file.size > 5 * 1024 * 1024) {
           showError('حجم الصورة كبير جداً (الحد الأقصى 5MB)');
           return;
@@ -324,7 +314,7 @@
         };
         reader.readAsDataURL(file);
       }
-    }
+    };
 
     // تحويل الصورة إلى Base64
     function convertImageToBase64(file) {
@@ -411,48 +401,41 @@
     }
 
     // إنشاء حساب جديد
-    async function signup() {
+    window.signup = async function() {
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
       
-      // إخفاء الرسائل السابقة
       document.getElementById('errorMessage').style.display = 'none';
       document.getElementById('successMessage').style.display = 'none';
 
-      // التحقق من الحقول
       if (!name || !email || !password || !confirmPassword) {
         showError("⛔ يرجى ملء جميع الحقول");
         return;
       }
 
-      // التحقق من صحة البريد الإلكتروني
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         showError("⛔ البريد الإلكتروني غير صالح");
         return;
       }
 
-      // التحقق من تطابق كلمات المرور
       if (password !== confirmPassword) {
         showError("⛔ كلمات المرور غير متطابقة");
         return;
       }
 
-      // التحقق من قوة كلمة المرور
       if (password.length < 6) {
         showError("⛔ كلمة المرور يجب أن تكون 6 أحرف على الأقل");
         return;
       }
 
       try {
-        // إظهار حالة التحميل
         showLoading(true);
 
         let photoURL = 'default-avatar.png';
         
-        // إذا تم تحميل صورة، نحولها إلى Base64
         if (avatarFile) {
           if (avatarFile.size > 2 * 1024 * 1024) {
             photoURL = await compressImage(avatarFile, 800, 0.7);
@@ -461,18 +444,18 @@
           }
         }
 
-        // 1. إنشاء المستخدم في Authentication
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        // 1. إنشاء المستخدم
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         
-        // 2. تحديث معلومات الملف الشخصي
-        await user.updateProfile({
+        // 2. تحديث الملف الشخصي
+        await updateProfile(user, {
           displayName: name,
           photoURL: photoURL
         });
 
-        // 3. إنشاء مستند المستخدم في Firestore
-        await db.collection('users').doc(user.uid).set({
+        // 3. إنشاء مستند في Firestore
+        await setDoc(doc(db, "users", user.uid), {
           uid: user.uid,
           email: email,
           displayName: name,
@@ -482,23 +465,20 @@
           completedOrders: 0,
           pendingOrders: 0,
           rejectedOrders: 0,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp()
         });
 
         // 4. تسجيل الدخول تلقائياً
-        await auth.signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(auth, email, password);
         
-        // 5. عرض رسالة النجاح والتوجيه
         showSuccess("✅ تم إنشاء الحساب بنجاح! يتم توجيهك إلى لوحة التحكم...");
         
-        // تخزين بيانات الجلسة
         localStorage.setItem("loggedIn", "true");
         localStorage.setItem("userId", user.uid);
         localStorage.setItem("userName", name);
         localStorage.setItem("userEmail", email);
         
-        // الانتظار قليلاً ثم التوجيه
         setTimeout(() => {
           window.location.href = "ro.html";
         }, 2000);
@@ -529,12 +509,12 @@
         showError(message);
         showLoading(false);
       }
-    }
+    };
 
     // السماح بإرسال النموذج بالضغط على Enter
     document.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
-        signup();
+        window.signup();
       }
     });
   </script>
