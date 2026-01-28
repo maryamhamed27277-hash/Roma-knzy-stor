@@ -620,148 +620,6 @@
             display: none;
         }
 
-        /* تحسينات للاستجابة */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-            
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
-            
-            .nav-link {
-                padding: 10px 15px;
-                font-size: 13px;
-            }
-            
-            .service-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .service-tab {
-                width: 80%;
-                text-align: center;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .package-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-                padding: 0 15px;
-            }
-
-            .contact-bar {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-item {
-                padding: 15px;
-            }
-            
-            .payment-page {
-                padding: 25px;
-                margin: 30px auto;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .package-amount {
-                font-size: 2.5rem;
-            }
-            
-            .package-price {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-                padding: 0 10px;
-            }
-            
-            .payment-page {
-                padding: 20px;
-                margin: 20px auto;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 16px;
-            }
-        }
-
-        /* هامبرغر مينو للشاشات الصغيرة */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            nav {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(26, 26, 46, 0.95);
-                padding: 20px;
-                border-radius: 0 0 15px 15px;
-                gap: 10px;
-            }
-            
-            nav.show {
-                display: flex;
-            }
-        }
-        
-        /* أحجام مختلفة لمعاينة الصور */
-        .preview-small {
-            max-width: 150px;
-            max-height: 150px;
-        }
-        
-        .preview-medium {
-            max-width: 250px;
-            max-height: 250px;
-        }
-        
-        .preview-large {
-            max-width: 100%;
-            max-height: 300px;
-        }
-
         /* أنماط جديدة للبروفايل والإحصائيات */
         .profile-header {
             text-align: center;
@@ -905,6 +763,157 @@
             object-fit: cover;
             margin: 0 auto 20px;
             border: 3px solid var(--primary);
+            cursor: pointer;
+        }
+
+        /* تحسينات للاستجابة */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .nav-link {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+            
+            .service-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .service-tab {
+                width: 80%;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                padding: 0 15px;
+            }
+
+            .contact-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                padding: 15px;
+            }
+            
+            .payment-page {
+                padding: 25px;
+                margin: 30px auto;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .package-amount {
+                font-size: 2.5rem;
+            }
+            
+            .package-price {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                padding: 0 10px;
+            }
+            
+            .payment-page {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* هامبرغر مينو للشاشات الصغيرة */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 46, 0.95);
+                padding: 20px;
+                border-radius: 0 0 15px 15px;
+                gap: 10px;
+            }
+            
+            nav.show {
+                display: flex;
+            }
+        }
+        
+        /* أحجام مختلفة لمعاينة الصور */
+        .preview-small {
+            max-width: 150px;
+            max-height: 150px;
+        }
+        
+        .preview-medium {
+            max-width: 250px;
+            max-height: 250px;
+        }
+        
+        .preview-large {
+            max-width: 100%;
+            max-height: 300px;
         }
     </style>
 </head>
@@ -1541,699 +1550,718 @@
         </div>
     </div>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <!-- Firebase v9+ Modular -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+      import { 
+        getAuth, 
+        onAuthStateChanged, 
+        signOut,
+        updateProfile 
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+      import { 
+        getFirestore, 
+        doc, 
+        getDoc, 
+        setDoc, 
+        updateDoc,
+        collection, 
+        addDoc, 
+        query, 
+        where, 
+        orderBy, 
+        getDocs,
+        serverTimestamp 
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
-            authDomain: "romalshop.firebaseapp.com",
-            projectId: "romalshop",
-            storageBucket: "romalshop.firebasestorage.app",
-            messagingSenderId: "830369715807",
-            appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
-        };
+      // Firebase Configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
+        authDomain: "romalshop.firebaseapp.com",
+        databaseURL: "https://romalshop-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "romalshop",
+        storageBucket: "romalshop.firebasestorage.app",
+        messagingSenderId: "830369715807",
+        appId: "1:830369715807:web:ad0f4b6315876cf4b46dea",
+        measurementId: "G-KFLWM1T8DD"
+      };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
 
-        let selectedPackage = { amount: 100, price: 10, service: 'instagram', type: 'متابعين' };
-        let currentUser = null;
-        let currentUserId = null;
-        let currentFilter = 'all';
+      let selectedPackage = { amount: 100, price: 10, service: 'instagram', type: 'متابعين' };
+      let currentUser = null;
+      let currentUserId = null;
+      let currentFilter = 'all';
 
-        // تهيئة المستخدم عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', async function() {
-            console.log('Roma&knzy stor Started Successfully!');
+      // تهيئة النظام عند تحميل الصفحة
+      document.addEventListener('DOMContentLoaded', async function() {
+        console.log('Roma&knzy stor Started Successfully!');
+        
+        // التحقق من حالة المصادقة
+        onAuthStateChanged(auth, async (user) => {
+          if (user) {
+            currentUser = user;
+            currentUserId = user.uid;
+            console.log('User authenticated:', user.email);
             
-            // التحقق من تسجيل الدخول
-            auth.onAuthStateChanged(async (user) => {
-                if (user) {
-                    currentUser = user;
-                    currentUserId = user.uid;
-                    await loadUserProfile();
-                    await loadUserStats();
-                } else {
-                    window.location.href = "login.html";
-                }
-            });
+            // تحميل بيانات المستخدم
+            await loadUserProfile();
+            await loadUserStats();
+          } else {
+            console.log('User not authenticated, redirecting to login');
+            window.location.href = "login.html";
+          }
         });
+      });
 
-        // تحميل بيانات الملف الشخصي
-        async function loadUserProfile() {
-            try {
-                const userDoc = await db.collection('users').doc(currentUserId).get();
-                
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    document.getElementById('profileName').textContent = userData.displayName || userData.email;
-                    document.getElementById('profileEmail').textContent = userData.email;
-                    
-                    // تحديث حقول التعديل
-                    document.getElementById('editName').value = userData.displayName || '';
-                    document.getElementById('editEmail').value = userData.email || '';
-                    document.getElementById('editPhone').value = userData.phone || '';
-                    
-                    // تحديث الصورة إذا كانت موجودة
-                    if (userData.photoURL) {
-                        document.getElementById('profileAvatar').src = userData.photoURL;
-                        document.getElementById('avatarPreview').src = userData.photoURL;
-                    }
-                } else {
-                    // إنشاء ملف تعريف جديد إذا لم يكن موجوداً
-                    const newUserData = {
-                        email: currentUser.email,
-                        displayName: currentUser.displayName || '',
-                        photoURL: currentUser.photoURL || 'default-avatar.png',
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                        totalOrders: 0,
-                        completedOrders: 0,
-                        pendingOrders: 0,
-                        rejectedOrders: 0
-                    };
-                    
-                    await db.collection('users').doc(currentUserId).set(newUserData);
-                    
-                    // تحديث العرض
-                    document.getElementById('profileName').textContent = newUserData.displayName || newUserData.email;
-                    document.getElementById('profileEmail').textContent = newUserData.email;
-                    document.getElementById('editName').value = newUserData.displayName || '';
-                    document.getElementById('editEmail').value = newUserData.email || '';
-                }
-            } catch (error) {
-                console.error('Error loading user profile:', error);
-                alert('حدث خطأ في تحميل الملف الشخصي');
-            }
-        }
-
-        // تحميل إحصائيات المستخدم
-        async function loadUserStats() {
-            try {
-                const userDoc = await db.collection('users').doc(currentUserId).get();
-                
-                if (userDoc.exists) {
-                    const userData = userDoc.data();
-                    
-                    // تحديث الإحصائيات
-                    document.getElementById('totalOrders').textContent = userData.totalOrders || 0;
-                    document.getElementById('completedOrders').textContent = userData.completedOrders || 0;
-                    document.getElementById('pendingOrders').textContent = userData.pendingOrders || 0;
-                    document.getElementById('rejectedOrders').textContent = userData.rejectedOrders || 0;
-                }
-                
-                // تحديث الطلبات إذا كانت صفحة الطلبات مفتوحة
-                if (document.getElementById('ordersPage').classList.contains('active')) {
-                    loadOrders();
-                }
-            } catch (error) {
-                console.error('Error loading user stats:', error);
-            }
-        }
-
-        // تحديث إحصائيات المستخدم
-        async function updateUserStats() {
-            try {
-                // حساب الإحصائيات من قاعدة البيانات
-                const ordersQuery = await db.collection('orders')
-                    .where('userId', '==', currentUserId)
-                    .get();
-                
-                let total = 0;
-                let completed = 0;
-                let pending = 0;
-                let rejected = 0;
-                
-                ordersQuery.forEach(doc => {
-                    total++;
-                    const status = doc.data().status;
-                    if (status === 'تم الإرسال' || status === 'مكتمل') {
-                        completed++;
-                    } else if (status === 'مرفوض') {
-                        rejected++;
-                    } else {
-                        pending++;
-                    }
-                });
-                
-                // تحديث بيانات المستخدم
-                await db.collection('users').doc(currentUserId).update({
-                    totalOrders: total,
-                    completedOrders: completed,
-                    pendingOrders: pending,
-                    rejectedOrders: rejected,
-                    lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                
-                // تحديث العرض
-                loadUserStats();
-                
-            } catch (error) {
-                console.error('Error updating user stats:', error);
-            }
-        }
-
-        // فتح نافذة تعديل الملف الشخصي
-        function openEditProfile() {
-            document.getElementById('editProfileModal').style.display = 'flex';
-        }
-
-        // إغلاق نافذة تعديل الملف الشخصي
-        function closeEditProfile() {
-            document.getElementById('editProfileModal').style.display = 'none';
-        }
-
-        // معاينة صورة البروفايل
-        function previewAvatar(event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('avatarPreview');
+      // تحميل بيانات الملف الشخصي
+      async function loadUserProfile() {
+        try {
+          const userDocRef = doc(db, "users", currentUserId);
+          const userDoc = await getDoc(userDocRef);
+          
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
             
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // حفظ التغييرات في الملف الشخصي
-        async function saveProfile() {
-            try {
-                const name = document.getElementById('editName').value;
-                const phone = document.getElementById('editPhone').value;
-                const avatarFile = document.getElementById('avatarInput').files[0];
-                
-                let photoURL = document.getElementById('profileAvatar').src;
-                
-                // إذا تم تحميل صورة جديدة
-                if (avatarFile) {
-                    photoURL = await convertImageToBase64(avatarFile);
-                }
-                
-                // تحديث بيانات المستخدم في Firebase
-                await db.collection('users').doc(currentUserId).update({
-                    displayName: name,
-                    phone: phone,
-                    photoURL: photoURL,
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                
-                // تحديث العرض
-                document.getElementById('profileName').textContent = name || currentUser.email;
-                document.getElementById('profileAvatar').src = photoURL;
-                
-                // إغلاق النافذة
-                closeEditProfile();
-                
-                alert('تم حفظ التغييرات بنجاح ✅');
-                
-            } catch (error) {
-                console.error('Error saving profile:', error);
-                alert('حدث خطأ أثناء حفظ التغييرات');
-            }
-        }
-
-        // دالة لمعاينة صورة الإيصال
-        function previewReceipt(event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('receiptPreview');
+            // تحديث المعلومات في واجهة المستخدم
+            document.getElementById('profileName').textContent = userData.displayName || userData.email;
+            document.getElementById('profileEmail').textContent = userData.email;
             
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                    preview.classList.add('preview-medium');
-                };
-                reader.readAsDataURL(file);
+            // تحديث حقول التعديل
+            document.getElementById('editName').value = userData.displayName || '';
+            document.getElementById('editEmail').value = userData.email || '';
+            document.getElementById('editPhone').value = userData.phone || '';
+            
+            // تحديث الصورة إذا كانت موجودة
+            if (userData.photoURL && userData.photoURL !== 'default-avatar.png') {
+              document.getElementById('profileAvatar').src = userData.photoURL;
+              document.getElementById('avatarPreview').src = userData.photoURL;
+            }
+            
+            console.log('User profile loaded successfully');
+          } else {
+            console.log('No user document found, creating new one');
+            
+            // إنشاء مستند جديد للمستخدم
+            const newUserData = {
+              uid: currentUser.uid,
+              email: currentUser.email,
+              displayName: currentUser.displayName || currentUser.email.split('@')[0],
+              photoURL: currentUser.photoURL || 'default-avatar.png',
+              phone: '',
+              totalOrders: 0,
+              completedOrders: 0,
+              pendingOrders: 0,
+              rejectedOrders: 0,
+              createdAt: serverTimestamp(),
+              updatedAt: serverTimestamp()
+            };
+            
+            await setDoc(doc(db, "users", currentUserId), newUserData);
+            
+            // تحديث العرض
+            document.getElementById('profileName').textContent = newUserData.displayName;
+            document.getElementById('profileEmail').textContent = newUserData.email;
+            document.getElementById('editName').value = newUserData.displayName || '';
+            document.getElementById('editEmail').value = newUserData.email || '';
+          }
+        } catch (error) {
+          console.error('Error loading user profile:', error);
+          alert('حدث خطأ في تحميل الملف الشخصي. يرجى تحديث الصفحة.');
+        }
+      }
+
+      // تحميل إحصائيات المستخدم
+      async function loadUserStats() {
+        try {
+          // حساب الإحصائيات من الطلبات
+          const ordersQuery = query(
+            collection(db, "orders"),
+            where("userId", "==", currentUserId)
+          );
+          
+          const ordersSnapshot = await getDocs(ordersQuery);
+          
+          let total = 0;
+          let completed = 0;
+          let pending = 0;
+          let rejected = 0;
+          
+          ordersSnapshot.forEach(doc => {
+            total++;
+            const orderData = doc.data();
+            const status = orderData.status;
+            
+            if (status === 'تم الإرسال' || status === 'مكتمل') {
+              completed++;
+            } else if (status === 'مرفوض') {
+              rejected++;
             } else {
-                preview.style.display = 'none';
+              pending++;
             }
+          });
+          
+          // تحديث واجهة المستخدم
+          document.getElementById('totalOrders').textContent = total;
+          document.getElementById('completedOrders').textContent = completed;
+          document.getElementById('pendingOrders').textContent = pending;
+          document.getElementById('rejectedOrders').textContent = rejected;
+          
+          // تحديث بيانات المستخدم في Firestore
+          const userDocRef = doc(db, "users", currentUserId);
+          await updateDoc(userDocRef, {
+            totalOrders: total,
+            completedOrders: completed,
+            pendingOrders: pending,
+            rejectedOrders: rejected,
+            updatedAt: serverTimestamp()
+          });
+          
+        } catch (error) {
+          console.error('Error loading user stats:', error);
         }
+      }
 
-        // دالة محسنة لتحويل الصور إلى Base64
-        function convertImageToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                
-                reader.onload = function(event) {
-                    try {
-                        const base64String = event.target.result;
-                        if (base64String && base64String.startsWith('data:image')) {
-                            resolve(base64String);
-                        } else {
-                            const img = new Image();
-                            img.onload = function() {
-                                const canvas = document.createElement('canvas');
-                                canvas.width = img.width;
-                                canvas.height = img.height;
-                                const ctx = canvas.getContext('2d');
-                                ctx.drawImage(img, 0, 0);
-                                const fixedBase64 = canvas.toDataURL('image/jpeg', 0.8);
-                                resolve(fixedBase64);
-                            };
-                            img.onerror = reject;
-                            img.src = URL.createObjectURL(file);
-                        }
-                    } catch (error) {
-                        reject(error);
-                    }
-                };
-                
-                reader.onerror = function(error) {
-                    try {
-                        const blobUrl = URL.createObjectURL(file);
-                        const img = new Image();
-                        img.onload = function() {
-                            const canvas = document.createElement('canvas');
-                            canvas.width = img.width;
-                            canvas.height = img.height;
-                            const ctx = canvas.getContext('2d');
-                            ctx.drawImage(img, 0, 0);
-                            const base64 = canvas.toDataURL('image/jpeg', 0.8);
-                            URL.revokeObjectURL(blobUrl);
-                            resolve(base64);
-                        };
-                        img.onerror = reject;
-                        img.src = blobUrl;
-                    } catch (blobError) {
-                        reject(blobError);
-                    }
-                };
-                
-                reader.readAsDataURL(file);
-            });
-        }
+      // تحويل الصورة إلى Base64
+      function convertImageToBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            resolve(e.target.result);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
 
-        // دالة لضغط الصورة قبل التحويل
-        function compressImage(file, maxWidth = 800, quality = 0.7) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    
-                    let width = img.width;
-                    let height = img.height;
-                    
-                    if (width > maxWidth) {
-                        height = (height * maxWidth) / width;
-                        width = maxWidth;
-                    }
-                    
-                    canvas.width = width;
-                    canvas.height = height;
-                    
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, width, height);
-                    
-                    canvas.toBlob(function(blob) {
-                        const reader = new FileReader();
-                        reader.onload = function() {
-                            resolve(reader.result);
-                        };
-                        reader.onerror = reject;
-                        reader.readAsDataURL(blob);
-                    }, 'image/jpeg', quality);
-                };
-                img.onerror = reject;
-                img.src = URL.createObjectURL(file);
-            });
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
+      // ضغط الصورة
+      function compressImage(file, maxWidth = 800, quality = 0.7) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
             
-            // إغلاق القائمة في الشاشات الصغيرة
-            document.querySelectorAll('nav').forEach(menu => {
-                menu.classList.remove('show');
-            });
+            let width = img.width;
+            let height = img.height;
             
-            if (pageId === 'ordersPage') {
-                loadOrders();
-            } else if (pageId === 'profilePage') {
-                loadUserStats();
+            if (width > maxWidth) {
+              height = (height * maxWidth) / width;
+              width = maxWidth;
             }
-        }
-
-        function toggleMenu() {
-            const currentPage = document.querySelector('.page.active').id;
-            const navId = currentPage === 'homePage' ? 'mainNav' : 
-                         currentPage === 'profilePage' ? 'profileNav' :
-                         currentPage === 'ordersPage' ? 'ordersNav' : 'paymentNav';
-            const navMenu = document.getElementById(navId);
-            navMenu.classList.toggle('show');
-        }
-
-        function showService(service) {
-            // تحديث أزرار التبويب
-            document.querySelectorAll('.service-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
             
-            if (service === 'followers') {
-                document.querySelector('.service-tab:first-child').classList.add('active');
-                document.getElementById('followersService').style.display = 'block';
-                document.getElementById('likesService').style.display = 'none';
+            canvas.width = width;
+            canvas.height = height;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            canvas.toBlob(function(blob) {
+              const reader = new FileReader();
+              reader.onload = function() {
+                resolve(reader.result);
+              };
+              reader.onerror = reject;
+              reader.readAsDataURL(blob);
+            }, 'image/jpeg', quality);
+          };
+          img.onerror = reject;
+          img.src = URL.createObjectURL(file);
+        });
+      }
+
+      // دالة لمعاينة صورة الإيصال
+      window.previewReceipt = function(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('receiptPreview');
+        
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            preview.classList.add('preview-medium');
+          };
+          reader.readAsDataURL(file);
+        } else {
+          preview.style.display = 'none';
+        }
+      };
+
+      // معاينة صورة البروفايل في نافذة التعديل
+      window.previewAvatar = function(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('avatarPreview');
+        
+        if (file) {
+          if (!file.type.match('image.*')) {
+            alert('الرجاء اختيار ملف صورة فقط');
+            return;
+          }
+          
+          if (file.size > 5 * 1024 * 1024) {
+            alert('حجم الصورة كبير جداً (الحد الأقصى 5MB)');
+            return;
+          }
+          
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            if (preview.querySelector('img')) {
+              preview.querySelector('img').src = e.target.result;
             } else {
-                document.querySelector('.service-tab:last-child').classList.add('active');
-                document.getElementById('followersService').style.display = 'none';
-                document.getElementById('likesService').style.display = 'block';
+              const img = document.createElement('img');
+              img.src = e.target.result;
+              img.style.width = '100%';
+              img.style.height = '100%';
+              img.style.borderRadius = '50%';
+              img.style.objectFit = 'cover';
+              preview.innerHTML = '';
+              preview.appendChild(img);
             }
+          };
+          reader.readAsDataURL(file);
         }
+      };
 
-        function selectPackage(amount, price, service, type) {
-            selectedPackage = { amount, price, service, type };
-            
-            let serviceText = 'إنستجرام';
-            let typeText = type === 'متابعين' ? 'متابع' : 'لايك';
-            
-            document.getElementById('selectedPackageInfo').textContent = 
-                `باقة ${amount} ${typeText} ${serviceText} - ${price} جنيه`;
-            
-            // تحديث الحقول حسب نوع الخدمة
-            const usernameGroup = document.getElementById('usernameGroup');
-            const postLinkGroup = document.getElementById('postLinkGroup');
-            
-            if (type === 'متابعين') {
-                usernameGroup.style.display = 'block';
-                postLinkGroup.style.display = 'none';
-                document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
-                document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
-            } else {
-                usernameGroup.style.display = 'none';
-                postLinkGroup.style.display = 'block';
-                document.getElementById('postLinkLabel').textContent = 'رابط المنشور في إنستجرام';
-                document.getElementById('postLink').placeholder = 'https://www.instagram.com/p/xxxxxxxxxx/';
-            }
-            
-            showPage('paymentPage');
+      // عرض وإخفاء الصفحات
+      window.showPage = function(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+          page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+        
+        // إغلاق القائمة في الشاشات الصغيرة
+        document.querySelectorAll('nav').forEach(menu => {
+          menu.classList.remove('show');
+        });
+        
+        if (pageId === 'ordersPage') {
+          loadOrders();
+        } else if (pageId === 'profilePage') {
+          loadUserStats();
         }
+      };
 
-        async function submitOrder() {
-            if (!currentUser) {
-                alert('يرجى تسجيل الدخول أولاً');
-                return;
-            }
-            
-            let userInput;
-            const phone = document.getElementById('phone').value;
-            const receiptFile = document.getElementById('receipt').files[0];
-            
-            if (selectedPackage.type === 'متابعين') {
-                userInput = document.getElementById('username').value;
-                if (!userInput) {
-                    alert('يرجى إدخال اسم المستخدم في إنستجرام');
-                    return;
-                }
-            } else {
-                userInput = document.getElementById('postLink').value;
-                if (!userInput) {
-                    alert('يرجى إدخال رابط المنشور في إنستجرام');
-                    return;
-                }
-            }
-            
-            if (!phone || !receiptFile) {
-                alert('يرجى ملء جميع الحقول وإرفاق صورة الإيصال');
-                return;
-            }
-            
-            try {
-                // إظهار رسالة التحميل
-                const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الطلب...';
-                submitButton.disabled = true;
-                
-                // تحويل الصورة إلى Base64 مع ضغط
-                let receiptBase64;
-                
-                if (receiptFile.size > 2000000) {
-                    receiptBase64 = await compressImage(receiptFile, 1024, 0.6);
-                } else if (receiptFile.size > 500000) {
-                    receiptBase64 = await compressImage(receiptFile, 1200, 0.7);
-                } else {
-                    receiptBase64 = await convertImageToBase64(receiptFile);
-                }
-                
-                // إنشاء كائن الطلب
-                const newOrder = {
-                    userId: currentUserId,
-                    userEmail: currentUser.email,
-                    userName: currentUser.displayName || '',
-                    package: selectedPackage,
-                    userInput: userInput,
-                    phone: phone,
-                    receiptImage: receiptBase64,
-                    status: 'قيد المراجعة',
-                    date: new Date().toLocaleDateString('ar-EG'),
-                    time: new Date().toLocaleTimeString('ar-EG'),
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                    orderId: generateOrderId()
-                };
-                
-                // إرسال الطلب إلى Firebase
-                const orderRef = await db.collection('orders').add(newOrder);
-                
-                // استعادة الزر لحالته الأصلية
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-                
-                // تحديث إحصائيات المستخدم
-                await updateUserStats();
-                
-                // رسالة نجاح
-                alert(`✅ تم تقديم طلبك بنجاح!\nرقم الطلب: ${newOrder.orderId}\nسيتم مراجعة طلبك قريباً.`);
-                
-                // إعادة تعيين النموذج
-                resetPaymentForm();
-                
-                // العودة إلى صفحة الطلبات
-                showPage('ordersPage');
-                
-            } catch (error) {
-                console.error('Error submitting order:', error);
-                
-                // استعادة الزر لحالته الأصلية
-                const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
-                submitButton.innerHTML = 'تأكيد الطلب';
-                submitButton.disabled = false;
-                
-                let errorMessage = '❌ حدث خطأ أثناء إرسال الطلب.\n\n';
-                errorMessage += 'نصائح لحل المشكلة:\n';
-                errorMessage += '1. تأكد من اتصال الإنترنت\n';
-                errorMessage += '2. جرب استخدام صورة مختلفة\n';
-                errorMessage += '3. تأكد من أن حجم الصورة لا يتجاوز 5MB\n';
-                errorMessage += '4. أعد تحميل الصفحة وحاول مرة أخرى\n';
-                errorMessage += '5. إذا استمرت المشكلة، اتصل بالدعم الفني';
-                
-                alert(errorMessage);
-            }
+      // تبديل القائمة في الشاشات الصغيرة
+      window.toggleMenu = function() {
+        const currentPage = document.querySelector('.page.active').id;
+        const navId = currentPage === 'homePage' ? 'mainNav' : 
+                     currentPage === 'profilePage' ? 'profileNav' :
+                     currentPage === 'ordersPage' ? 'ordersNav' : 'paymentNav';
+        const navMenu = document.getElementById(navId);
+        navMenu.classList.toggle('show');
+      };
+
+      // تبديل بين الخدمات
+      window.showService = function(service) {
+        document.querySelectorAll('.service-tab').forEach(tab => {
+          tab.classList.remove('active');
+        });
+        
+        if (service === 'followers') {
+          document.querySelector('.service-tab:first-child').classList.add('active');
+          document.getElementById('followersService').style.display = 'block';
+          document.getElementById('likesService').style.display = 'none';
+        } else {
+          document.querySelector('.service-tab:last-child').classList.add('active');
+          document.getElementById('followersService').style.display = 'none';
+          document.getElementById('likesService').style.display = 'block';
         }
+      };
 
-        // دالة لإنشاء رقم طلب فريد
-        function generateOrderId() {
-            const timestamp = Date.now().toString().slice(-6);
-            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-            return `ROM${timestamp}${random}`;
-        }
-
-        function resetPaymentForm() {
-            document.getElementById('username').value = '';
-            document.getElementById('postLink').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('receipt').value = '';
-            document.getElementById('receiptPreview').style.display = 'none';
-        }
-
-        // تصفية الطلبات
-        function filterOrders(filter) {
-            currentFilter = filter;
-            
-            // تحديث أزرار التبويب
-            document.querySelectorAll('.order-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            const tabs = document.querySelectorAll('.order-tab');
-            switch(filter) {
-                case 'all': tabs[0].classList.add('active'); break;
-                case 'pending': tabs[1].classList.add('active'); break;
-                case 'completed': tabs[2].classList.add('active'); break;
-                case 'rejected': tabs[3].classList.add('active'); break;
-            }
-            
-            loadOrders();
-        }
-
-        async function loadOrders() {
-            const ordersList = document.getElementById('ordersList');
-            ordersList.innerHTML = '<p style="text-align: center;"><i class="fas fa-spinner fa-spin"></i> جاري تحميل الطلبات...</p>';
-            
-            try {
-                let query = db.collection('orders')
-                    .where('userId', '==', currentUserId)
-                    .orderBy('timestamp', 'desc');
-                
-                const snapshot = await query.get();
-                
-                if (snapshot.empty) {
-                    ordersList.innerHTML = `
-                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                            <i class="fas fa-shopping-cart" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
-                            <h3>لا توجد طلبات حالياً</h3>
-                            <p style="opacity: 0.7;">بمجرد إرسال طلبك، سيظهر هنا</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                let ordersHTML = '';
-                let filteredCount = 0;
-                
-                snapshot.forEach(doc => {
-                    const order = doc.data();
-                    
-                    // تطبيق الفلتر
-                    let showOrder = true;
-                    if (currentFilter === 'pending' && order.status !== 'قيد المراجعة') {
-                        showOrder = false;
-                    } else if (currentFilter === 'completed' && 
-                              order.status !== 'تم الإرسال' && 
-                              order.status !== 'مكتمل') {
-                        showOrder = false;
-                    } else if (currentFilter === 'rejected' && order.status !== 'مرفوض') {
-                        showOrder = false;
-                    }
-                    
-                    if (!showOrder) return;
-                    
-                    filteredCount++;
-                    
-                    // تحديد لون الحالة
-                    let statusClass = 'status-pending';
-                    if (order.status === 'تم الإرسال' || order.status === 'مكتمل') {
-                        statusClass = 'status-completed';
-                    } else if (order.status === 'مرفوض') {
-                        statusClass = 'status-rejected';
-                    }
-                    
-                    const serviceText = 'إنستجرام';
-                    const typeText = order.package.type === 'متابعين' ? 'متابع' : 'لايك';
-                    
-                    // إنشاء زر لعرض صورة الإيصال
-                    const receiptButton = order.receiptImage ? 
-                        `<button class="btn" style="padding: 8px 15px; font-size: 14px; margin-top: 10px;" onclick="showReceipt('${order.receiptImage}', '${order.orderId}')">
-                            <i class="fas fa-image"></i> عرض الإيصال
-                        </button>` : 
-                        '<span style="color: var(--warning);">لا يوجد إيصال</span>';
-                    
-                    ordersHTML += `
-                        <div class="order-item">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <div>
-                                    <strong>طلب #${order.orderId || doc.id.slice(-6)}</strong>
-                                    <p style="margin-top: 5px; opacity: 0.8;">${order.package.amount} ${typeText} ${serviceText} - ${order.package.price} جنيه</p>
-                                </div>
-                                <span class="${statusClass}">${order.status}</span>
-                            </div>
-                            <p><strong>${order.package.type === 'متابعين' ? 'اسم المستخدم:' : 'رابط المنشور:'}</strong> ${order.userInput}</p>
-                            <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
-                            <p><strong>تاريخ الطلب:</strong> ${order.date} ${order.time || ''}</p>
-                            <p><strong>صورة الإيصال:</strong><br>${receiptButton}</p>
-                        </div>
-                    `;
-                });
-                
-                if (filteredCount === 0) {
-                    ordersList.innerHTML = `
-                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                            <i class="fas fa-search" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
-                            <h3>لا توجد طلبات تطابق الفلتر</h3>
-                        </div>
-                    `;
-                } else {
-                    ordersList.innerHTML = ordersHTML;
-                }
-                
-            } catch (error) {
-                console.error('Error loading orders:', error);
-                ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
-            }
-        }
-
-        // دالة لعرض صورة الإيصال في نافذة منبثقة
-        function showReceipt(base64Image, orderId) {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.9);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-                backdrop-filter: blur(10px);
-            `;
-            
-            modal.innerHTML = `
-                <div style="position: relative; max-width: 90%; max-height: 90%;">
-                    <button onclick="this.parentElement.parentElement.remove()" 
-                            style="position: absolute; top: -40px; right: -10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">
-                        ✕
-                    </button>
-                    <img src="${base64Image}" 
-                         alt="إيصال طلب ${orderId}" 
-                         style="max-width: 100%; max-height: 80vh; border-radius: 10px; border: 2px solid var(--accent);">
-                    <p style="text-align: center; margin-top: 10px; color: white;">إيصال طلب ${orderId}</p>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    document.body.removeChild(modal);
-                }
-            });
-        }
-
-        // دالة تحميل التطبيق
-        function downloadApp() {
-            const appDownloadUrl = 'app-release%20(3).apk';
-            
-            const link = document.createElement('a');
-            link.href = appDownloadUrl;
-            link.download = 'RomaKnzyStor.apk';
-            link.style.display = 'none';
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            alert('بدأ تحميل تطبيق Roma&Knzy Stor... شكراً لثقتك بنا!');
+      // اختيار الباقة
+      window.selectPackage = function(amount, price, service, type) {
+        selectedPackage = { amount, price, service, type };
+        
+        let serviceText = 'إنستجرام';
+        let typeText = type === 'متابعين' ? 'متابع' : 'لايك';
+        
+        document.getElementById('selectedPackageInfo').textContent = 
+          `باقة ${amount} ${typeText} ${serviceText} - ${price} جنيه`;
+        
+        // تحديث الحقول حسب نوع الخدمة
+        const usernameGroup = document.getElementById('usernameGroup');
+        const postLinkGroup = document.getElementById('postLinkGroup');
+        
+        if (type === 'متابعين') {
+          usernameGroup.style.display = 'block';
+          postLinkGroup.style.display = 'none';
+          document.getElementById('usernameLabel').textContent = 'اسم المستخدم في إنستجرام';
+          document.getElementById('username').placeholder = 'اسم المستخدم بدون @';
+        } else {
+          usernameGroup.style.display = 'none';
+          postLinkGroup.style.display = 'block';
+          document.getElementById('postLinkLabel').textContent = 'رابط المنشور في إنستجرام';
+          document.getElementById('postLink').placeholder = 'https://www.instagram.com/p/xxxxxxxxxx/';
         }
         
-        // تسجيل الخروج
-        function logout() {
-            auth.signOut().then(() => {
-                localStorage.removeItem("loggedIn");
-                window.location.href = "login.html";
-            }).catch((error) => {
-                console.error('Error signing out:', error);
-            });
+        showPage('paymentPage');
+      };
+
+      // إرسال الطلب
+      window.submitOrder = async function() {
+        if (!currentUser) {
+          alert('يرجى تسجيل الدخول أولاً');
+          window.location.href = "login.html";
+          return;
         }
+        
+        let userInput;
+        const phone = document.getElementById('phone').value.trim();
+        const receiptFile = document.getElementById('receipt').files[0];
+        
+        if (selectedPackage.type === 'متابعين') {
+          userInput = document.getElementById('username').value.trim();
+          if (!userInput) {
+            alert('يرجى إدخال اسم المستخدم في إنستجرام');
+            return;
+          }
+        } else {
+          userInput = document.getElementById('postLink').value.trim();
+          if (!userInput) {
+            alert('يرجى إدخال رابط المنشور في إنستجرام');
+            return;
+          }
+        }
+        
+        if (!phone || !receiptFile) {
+          alert('يرجى ملء جميع الحقول وإرفاق صورة الإيصال');
+          return;
+        }
+        
+        try {
+          // إظهار رسالة التحميل
+          const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
+          const originalText = submitButton.innerHTML;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الطلب...';
+          submitButton.disabled = true;
+          
+          // تحويل الصورة إلى Base64 مع ضغط
+          let receiptBase64;
+          
+          if (receiptFile.size > 2000000) {
+            receiptBase64 = await compressImage(receiptFile, 1024, 0.6);
+          } else if (receiptFile.size > 500000) {
+            receiptBase64 = await compressImage(receiptFile, 1200, 0.7);
+          } else {
+            receiptBase64 = await convertImageToBase64(receiptFile);
+          }
+          
+          // إنشاء رقم طلب فريد
+          const orderId = generateOrderId();
+          
+          // إنشاء كائن الطلب
+          const newOrder = {
+            orderId: orderId,
+            userId: currentUserId,
+            userEmail: currentUser.email,
+            userName: currentUser.displayName || currentUser.email,
+            package: selectedPackage,
+            userInput: userInput,
+            phone: phone,
+            receiptImage: receiptBase64,
+            status: 'قيد المراجعة',
+            date: new Date().toLocaleDateString('ar-EG'),
+            time: new Date().toLocaleTimeString('ar-EG'),
+            timestamp: serverTimestamp()
+          };
+          
+          // إرسال الطلب إلى Firestore
+          await addDoc(collection(db, "orders"), newOrder);
+          
+          // استعادة الزر لحالته الأصلية
+          submitButton.innerHTML = originalText;
+          submitButton.disabled = false;
+          
+          // تحديث إحصائيات المستخدم
+          await loadUserStats();
+          
+          // رسالة نجاح
+          alert(`✅ تم تقديم طلبك بنجاح!\nرقم الطلب: ${orderId}\nسيتم مراجعة طلبك قريباً.`);
+          
+          // إعادة تعيين النموذج
+          resetPaymentForm();
+          
+          // العودة إلى صفحة الطلبات
+          showPage('ordersPage');
+          
+        } catch (error) {
+          console.error('Error submitting order:', error);
+          
+          // استعادة الزر لحالته الأصلية
+          const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
+          submitButton.innerHTML = 'تأكيد الطلب';
+          submitButton.disabled = false;
+          
+          let errorMessage = '❌ حدث خطأ أثناء إرسال الطلب.\n\n';
+          errorMessage += 'نصائح لحل المشكلة:\n';
+          errorMessage += '1. تأكد من اتصال الإنترنت\n';
+          errorMessage += '2. جرب استخدام صورة مختلفة\n';
+          errorMessage += '3. تأكد من أن حجم الصورة لا يتجاوز 5MB\n';
+          errorMessage += '4. أعد تحميل الصفحة وحاول مرة أخرى\n';
+          errorMessage += '5. إذا استمرت المشكلة، اتصل بالدعم الفني';
+          
+          alert(errorMessage);
+        }
+      };
+
+      // إنشاء رقم طلب فريد
+      function generateOrderId() {
+        const timestamp = Date.now().toString().slice(-6);
+        const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+        return `ROM${timestamp}${random}`;
+      }
+
+      // إعادة تعيين نموذج الدفع
+      function resetPaymentForm() {
+        document.getElementById('username').value = '';
+        document.getElementById('postLink').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('receipt').value = '';
+        document.getElementById('receiptPreview').style.display = 'none';
+      }
+
+      // تصفية الطلبات
+      window.filterOrders = function(filter) {
+        currentFilter = filter;
+        
+        document.querySelectorAll('.order-tab').forEach(tab => {
+          tab.classList.remove('active');
+        });
+        
+        const tabs = document.querySelectorAll('.order-tab');
+        switch(filter) {
+          case 'all': tabs[0].classList.add('active'); break;
+          case 'pending': tabs[1].classList.add('active'); break;
+          case 'completed': tabs[2].classList.add('active'); break;
+          case 'rejected': tabs[3].classList.add('active'); break;
+        }
+        
+        loadOrders();
+      };
+
+      // تحميل الطلبات
+      async function loadOrders() {
+        const ordersList = document.getElementById('ordersList');
+        ordersList.innerHTML = '<p style="text-align: center;"><i class="fas fa-spinner fa-spin"></i> جاري تحميل الطلبات...</p>';
+        
+        try {
+          const ordersQuery = query(
+            collection(db, "orders"),
+            where("userId", "==", currentUserId),
+            orderBy("timestamp", "desc")
+          );
+          
+          const ordersSnapshot = await getDocs(ordersQuery);
+          
+          if (ordersSnapshot.empty) {
+            ordersList.innerHTML = `
+              <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                <i class="fas fa-shopping-cart" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
+                <h3>لا توجد طلبات حالياً</h3>
+                <p style="opacity: 0.7;">بمجرد إرسال طلبك، سيظهر هنا</p>
+              </div>
+            `;
+            return;
+          }
+          
+          let ordersHTML = '';
+          let filteredCount = 0;
+          
+          ordersSnapshot.forEach(doc => {
+            const order = doc.data();
+            
+            // تطبيق الفلتر
+            let showOrder = true;
+            if (currentFilter === 'pending' && order.status !== 'قيد المراجعة') {
+              showOrder = false;
+            } else if (currentFilter === 'completed' && 
+                      order.status !== 'تم الإرسال' && 
+                      order.status !== 'مكتمل') {
+              showOrder = false;
+            } else if (currentFilter === 'rejected' && order.status !== 'مرفوض') {
+              showOrder = false;
+            }
+            
+            if (!showOrder) return;
+            
+            filteredCount++;
+            
+            let statusClass = 'status-pending';
+            if (order.status === 'تم الإرسال' || order.status === 'مكتمل') {
+              statusClass = 'status-completed';
+            } else if (order.status === 'مرفوض') {
+              statusClass = 'status-rejected';
+            }
+            
+            const serviceText = 'إنستجرام';
+            const typeText = order.package.type === 'متابعين' ? 'متابع' : 'لايك';
+            
+            const receiptButton = order.receiptImage ? 
+              `<button class="btn" style="padding: 8px 15px; font-size: 14px; margin-top: 10px;" onclick="showReceipt('${order.receiptImage.replace(/'/g, "\\'")}', '${order.orderId}')">
+                <i class="fas fa-image"></i> عرض الإيصال
+              </button>` : 
+              '<span style="color: var(--warning);">لا يوجد إيصال</span>';
+            
+            ordersHTML += `
+              <div class="order-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                  <div>
+                    <strong>طلب #${order.orderId || doc.id.slice(-6)}</strong>
+                    <p style="margin-top: 5px; opacity: 0.8;">${order.package.amount} ${typeText} ${serviceText} - ${order.package.price} جنيه</p>
+                  </div>
+                  <span class="${statusClass}">${order.status}</span>
+                </div>
+                <p><strong>${order.package.type === 'متابعين' ? 'اسم المستخدم:' : 'رابط المنشور:'}</strong> ${order.userInput}</p>
+                <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
+                <p><strong>تاريخ الطلب:</strong> ${order.date} ${order.time || ''}</p>
+                <p><strong>صورة الإيصال:</strong><br>${receiptButton}</p>
+              </div>
+            `;
+          });
+          
+          if (filteredCount === 0) {
+            ordersList.innerHTML = `
+              <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                <i class="fas fa-search" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
+                <h3>لا توجد طلبات تطابق الفلتر</h3>
+              </div>
+            `;
+          } else {
+            ordersList.innerHTML = ordersHTML;
+          }
+          
+        } catch (error) {
+          console.error('Error loading orders:', error);
+          ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
+        }
+      }
+
+      // عرض صورة الإيصال
+      window.showReceipt = function(base64Image, orderId) {
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.9);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          backdrop-filter: blur(10px);
+        `;
+        
+        modal.innerHTML = `
+          <div style="position: relative; max-width: 90%; max-height: 90%;">
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="position: absolute; top: -40px; right: -10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">
+              ✕
+            </button>
+            <img src="${base64Image}" 
+                 alt="إيصال طلب ${orderId}" 
+                 style="max-width: 100%; max-height: 80vh; border-radius: 10px; border: 2px solid var(--accent);">
+            <p style="text-align: center; margin-top: 10px; color: white;">إيصال طلب ${orderId}</p>
+          </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            document.body.removeChild(modal);
+          }
+        });
+      };
+
+      // فتح نافذة تعديل الملف الشخصي
+      window.openEditProfile = function() {
+        document.getElementById('editProfileModal').style.display = 'flex';
+      };
+
+      // إغلاق نافذة تعديل الملف الشخصي
+      window.closeEditProfile = function() {
+        document.getElementById('editProfileModal').style.display = 'none';
+      };
+
+      // حفظ التغييرات في الملف الشخصي
+      window.saveProfile = async function() {
+        try {
+          const name = document.getElementById('editName').value.trim();
+          const phone = document.getElementById('editPhone').value.trim();
+          const avatarFile = document.getElementById('avatarInput').files[0];
+          
+          let photoURL = document.getElementById('profileAvatar').src;
+          
+          if (avatarFile) {
+            if (avatarFile.size > 2 * 1024 * 1024) {
+              photoURL = await compressImage(avatarFile, 800, 0.7);
+            } else {
+              photoURL = await convertImageToBase64(avatarFile);
+            }
+          }
+          
+          // تحديث في Firebase Authentication
+          await updateProfile(currentUser, {
+            displayName: name,
+            photoURL: photoURL
+          });
+          
+          // تحديث في Firestore
+          const userDocRef = doc(db, "users", currentUserId);
+          await updateDoc(userDocRef, {
+            displayName: name,
+            phone: phone,
+            photoURL: photoURL,
+            updatedAt: serverTimestamp()
+          });
+          
+          // تحديث العرض مباشرة
+          document.getElementById('profileName').textContent = name || currentUser.email;
+          document.getElementById('profileAvatar').src = photoURL;
+          
+          closeEditProfile();
+          alert('✅ تم حفظ التغييرات بنجاح');
+          
+        } catch (error) {
+          console.error('Error saving profile:', error);
+          alert('❌ حدث خطأ أثناء حفظ التغييرات');
+        }
+      };
+
+      // تحميل التطبيق
+      window.downloadApp = function() {
+        const appDownloadUrl = 'app-release%20(3).apk';
+        
+        const link = document.createElement('a');
+        link.href = appDownloadUrl;
+        link.download = 'RomaKnzyStor.apk';
+        link.style.display = 'none';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        alert('بدأ تحميل تطبيق Roma&Knzy Stor... شكراً لثقتك بنا!');
+      };
+      
+      // تسجيل الخروج
+      window.logout = async function() {
+        if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+          try {
+            await signOut(auth);
+            localStorage.clear();
+            window.location.href = "login.html";
+          } catch (error) {
+            console.error('Error signing out:', error);
+            alert('حدث خطأ أثناء تسجيل الخروج');
+          }
+        }
+      };
     </script>
 </body>
 </html>
