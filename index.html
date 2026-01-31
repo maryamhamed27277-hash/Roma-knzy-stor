@@ -48,8 +48,6 @@
             --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
             --likes-color: #405DE6;
             --likes-gradient: linear-gradient(135deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-            --voda-color: #E60000;
-            --voda-gradient: linear-gradient(135deg, #E60000, #FF3333);
         }
 
         body {
@@ -274,12 +272,6 @@
             box-shadow: 0 5px 15px rgba(64, 93, 230, 0.4);
         }
 
-        .btn.vodafone {
-            background: var(--voda-gradient);
-            color: white;
-            box-shadow: 0 5px 15px rgba(230, 0, 0, 0.4);
-        }
-
         .btn::before {
             content: '';
             position: absolute;
@@ -302,10 +294,6 @@
 
         .btn.likes:hover {
             box-shadow: 0 10px 25px rgba(64, 93, 230, 0.6);
-        }
-
-        .btn.vodafone:hover {
-            box-shadow: 0 10px 25px rgba(230, 0, 0, 0.6);
         }
 
         .features {
@@ -614,65 +602,6 @@
             display: none;
         }
 
-        /* قسم الدفع عبر فودافون كاش */
-        .payment-method-section {
-            background: rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-
-        .phone-number-display {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .phone-number-display i {
-            font-size: 30px;
-            color: var(--accent);
-        }
-
-        .phone-number {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent);
-            direction: ltr;
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .vodafone-button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .direct-payment-info {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 15px;
-            border-radius: 12px;
-            border-right: 4px solid var(--voda-color);
-            margin-bottom: 15px;
-        }
-
-        .direct-payment-info p {
-            margin: 10px 0;
-            font-size: 0.95rem;
-        }
-
-        .info-icon {
-            color: var(--accent);
-            margin-left: 8px;
-        }
-
         /* تحسينات للاستجابة */
         @media (max-width: 768px) {
             header {
@@ -731,20 +660,6 @@
                 padding: 25px;
                 margin: 30px auto;
             }
-            
-            .phone-number-display {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-            
-            .phone-number {
-                font-size: 1.5rem;
-            }
-            
-            .vodafone-button-container {
-                flex-direction: column;
-            }
         }
 
         @media (max-width: 480px) {
@@ -777,10 +692,6 @@
             .btn {
                 padding: 12px 25px;
                 font-size: 16px;
-            }
-            
-            .phone-number {
-                font-size: 1.3rem;
             }
         }
 
@@ -831,31 +742,6 @@
         .preview-large {
             max-width: 100%;
             max-height: 300px;
-        }
-        
-        /* أنماط إضافية لزر نسخ الرقم */
-        .copy-btn {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-        }
-        
-        .copy-btn:hover {
-            background: rgba(255,255,255,0.15);
-        }
-        
-        .copy-btn.success {
-            background: rgba(0, 201, 167, 0.2);
-            border-color: var(--success);
-            color: var(--success);
         }
     </style>
 </head>
@@ -1306,31 +1192,16 @@
                     <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 100 متابع - 10 جنيه</p>
                 </div>
 
-                <!-- قسم الدفع عبر فودافون كاش -->
-                <div class="payment-method-section">
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
                     <h3>طريقة الدفع</h3>
-                    <div class="direct-payment-info">
-                        <p><i class="fas fa-info-circle info-icon"></i> <strong>دفع مباشر وسهل:</strong> يمكنك الدفع مباشرة عبر تطبيق فودافون كاش</p>
-                        <p><i class="fas fa-mobile-alt info-icon"></i> <strong>رقم فودافون كاش:</strong></p>
+                    <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
+                        <i class="fas fa-mobile-alt" style="font-size: 30px; color: var(--accent);"></i>
+                        <div>
+                            <p style="margin-bottom: 5px;">الدفع عبر فودافون كاش</p>
+                            <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">01031090116</p>
+                        </div>
                     </div>
-                    
-                    <div class="phone-number-display">
-                        <i class="fas fa-mobile-alt"></i>
-                        <div class="phone-number" id="vodafoneNumber">01031090116</div>
-                        <button class="copy-btn" onclick="copyPhoneNumber()">
-                            <i class="far fa-copy"></i> نسخ
-                        </button>
-                    </div>
-
-                    <div class="vodafone-button-container">
-                        <button class="btn vodafone" onclick="openVodafoneCash()">
-                            <i class="fas fa-bolt"></i> افتح فودافون كاش للدفع
-                        </button>
-                        
-                        <p style="text-align: center; opacity: 0.8; font-size: 0.9rem; margin-top: 10px;">
-                            سيتم فتح تطبيق فودافون كاش تلقائياً للدفع للرقم أعلاه
-                        </p>
-                    </div>
+                    <p style="opacity: 0.8; font-size: 0.9rem;">يرجى إرسال المبلغ إلى الرقم أعلاه ثم إرفاق صورة إيصال الدفع</p>
                 </div>
 
                 <div class="form-group" id="usernameGroup">
@@ -1360,10 +1231,6 @@
                 </div>
 
                 <button class="btn" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
-                
-                <p style="text-align: center; margin-top: 20px; opacity: 0.7; font-size: 0.9rem;">
-                    <i class="fas fa-exclamation-circle"></i> بعد إتمام الدفع عبر فودافون كاش، يرجى إرفاق صورة الإيصال
-                </p>
             </div>
         </div>
     </div>
@@ -1503,136 +1370,6 @@
             });
         }
 
-        // دالة لفتح فودافون كاش
-        function openVodafoneCash() {
-            const phoneNumber = document.getElementById('vodafoneNumber').textContent;
-            
-            // رابط مباشر لفتح فودافون كاش للدفع للرقم
-            const vodafoneUrl = `vodafonecash://payment?phone=${phoneNumber}`;
-            
-            // محاولة فتح تطبيق فودافون كاش
-            window.location.href = vodafoneUrl;
-            
-            // إذا لم يفتح التطبيق، توجيه المستخدم لتنزيله
-            setTimeout(function() {
-                if (document.hasFocus()) {
-                    const confirmDownload = confirm('يبدو أن تطبيق فودافون كاش غير مثبت على جهازك. هل ترغب في تنزيله؟');
-                    if (confirmDownload) {
-                        // روابط تنزيل فودافون كاش
-                        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-                        const isAndroid = /Android/.test(navigator.userAgent);
-                        
-                        if (isIOS) {
-                            window.open('https://apps.apple.com/eg/app/vodafone-cash/id1218851851', '_blank');
-                        } else if (isAndroid) {
-                            window.open('https://play.google.com/store/apps/details?id=com.vodafone.cash', '_blank');
-                        } else {
-                            window.open('https://www.vodafone.com.eg/vodafonecash', '_blank');
-                        }
-                    }
-                }
-            }, 1000);
-            
-            // إظهار رسالة للمستخدم
-            alert('جاري فتح تطبيق فودافون كاش...\n\nيرجى إدخال المبلغ: ' + selectedPackage.price + ' جنيه\nثم إرفاق صورة الإيصال في الخطوة التالية');
-        }
-
-        // دالة لنسخ رقم الهاتف
-        function copyPhoneNumber() {
-            const phoneNumber = document.getElementById('vodafoneNumber').textContent;
-            const copyButton = event.target.closest('.copy-btn');
-            
-            navigator.clipboard.writeText(phoneNumber).then(function() {
-                // تغيير مظهر الزر للإشارة إلى النجاح
-                copyButton.innerHTML = '<i class="fas fa-check"></i> تم النسخ';
-                copyButton.classList.add('success');
-                
-                // عرض رسالة نجاح
-                showNotification('تم نسخ رقم فودافون كاش إلى الحافظة', 'success');
-                
-                // إعادة الزر إلى حالته الأصلية بعد 2 ثانية
-                setTimeout(function() {
-                    copyButton.innerHTML = '<i class="far fa-copy"></i> نسخ';
-                    copyButton.classList.remove('success');
-                }, 2000);
-            }).catch(function(err) {
-                console.error('فشل في نسخ النص: ', err);
-                showNotification('فشل في نسخ الرقم، يرجى المحاولة يدوياً', 'error');
-            });
-        }
-
-        // دالة لعرض الإشعارات
-        function showNotification(message, type = 'info') {
-            // إزالة أي إشعارات سابقة
-            const existingNotification = document.querySelector('.notification');
-            if (existingNotification) {
-                existingNotification.remove();
-            }
-            
-            // إنشاء عنصر الإشعار
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? 'rgba(0, 201, 167, 0.9)' : 'rgba(255, 128, 102, 0.9)'};
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                z-index: 9999;
-                animation: slideIn 0.3s ease;
-                max-width: 300px;
-            `;
-            
-            notification.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // إزالة الإشعار بعد 3 ثوانٍ
-            setTimeout(function() {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(function() {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
-        }
-
-        // إضافة أنيميشن للإشعارات
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideOut {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -1755,8 +1492,7 @@
                     date: new Date().toLocaleDateString('ar-EG'),
                     time: new Date().toLocaleTimeString('ar-EG'),
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                    orderId: generateOrderId(),
-                    vodafoneNumber: '01031090116'
+                    orderId: generateOrderId()
                 };
                 
                 // إرسال الطلب إلى Firebase
@@ -1767,7 +1503,7 @@
                 submitButton.disabled = false;
                 
                 // رسالة نجاح
-                showNotification(`✅ تم تقديم طلبك بنجاح! رقم الطلب: ${newOrder.orderId}`, 'success');
+                alert(`✅ تم تقديم طلبك بنجاح!\nرقم الطلب: ${newOrder.orderId}\nسيتم مراجعة طلبك قريباً.`);
                 
                 // إعادة تعيين النموذج
                 resetPaymentForm();
@@ -1784,7 +1520,15 @@
                 submitButton.disabled = false;
                 
                 // رسالة خطأ واضحة
-                showNotification('❌ حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى', 'error');
+                let errorMessage = '❌ حدث خطأ أثناء إرسال الطلب.\n\n';
+                errorMessage += 'نصائح لحل المشكلة:\n';
+                errorMessage += '1. تأكد من اتصال الإنترنت\n';
+                errorMessage += '2. جرب استخدام صورة مختلفة\n';
+                errorMessage += '3. تأكد من أن حجم الصورة لا يتجاوز 5MB\n';
+                errorMessage += '4. أعد تحميل الصفحة وحاول مرة أخرى\n';
+                errorMessage += '5. إذا استمرت المشكلة، اتصل بالدعم الفني';
+                
+                alert(errorMessage);
             }
         }
 
@@ -1847,7 +1591,6 @@
                             </div>
                             <p><strong>${order.package.type === 'متابعين' ? 'اسم المستخدم:' : 'رابط المنشور:'}</strong> ${order.userInput}</p>
                             <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
-                            <p><strong>رقم فودافون كاش:</strong> ${order.vodafoneNumber || '01031090116'}</p>
                             <p><strong>تاريخ الطلب:</strong> ${order.date} ${order.time || ''}</p>
                             <p><strong>صورة الإيصال:</strong><br>${receiptButton}</p>
                         </div>
@@ -1914,7 +1657,7 @@
             link.click();
             document.body.removeChild(link);
             
-            showNotification('بدأ تحميل تطبيق Roma&Knzy Stor... شكراً لثقتك بنا!', 'success');
+            alert('بدأ تحميل تطبيق Roma&Knzy Stor... شكراً لثقتك بنا!');
         }
 
         // Auto-load orders when page loads
