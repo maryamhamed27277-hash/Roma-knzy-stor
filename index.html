@@ -743,6 +743,121 @@
             max-width: 100%;
             max-height: 300px;
         }
+
+        /* قسم طرق الدفع الجديد */
+        .payment-methods {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .payment-methods h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .payment-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .payment-icon:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .payment-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .payment-icon span {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--light);
+            text-align: center;
+        }
+
+        .selected-payment {
+            border-color: var(--success) !important;
+            background: rgba(0, 201, 167, 0.1) !important;
+            transform: translateY(-5px);
+        }
+
+        .payment-info {
+            background: rgba(0, 201, 167, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 1px solid rgba(0, 201, 167, 0.3);
+        }
+
+        .payment-info.active {
+            display: block;
+        }
+
+        .payment-info p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .copy-btn {
+            background: rgba(0, 201, 167, 0.2);
+            border: 1px solid rgba(0, 201, 167, 0.5);
+            color: var(--success);
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 5px;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 201, 167, 0.3);
+        }
+
+        .payment-link {
+            color: var(--accent);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .payment-link:hover {
+            text-decoration: underline;
+        }
+
+        /* السعر بالدولار */
+        .dollar-price {
+            font-size: 1rem;
+            color: var(--warning);
+            margin-top: 5px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -1190,26 +1305,71 @@
                 <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
                     <h3>بيانات الباقة المختارة</h3>
                     <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 100 متابع - 10 جنيه</p>
+                    <!-- عرض السعر بالدولار -->
+                    <p id="dollarPriceInfo" class="dollar-price" style="display: none;"></p>
                 </div>
 
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>طريقة الدفع</h3>
-                    <div style="display: flex; align-items: center; gap: 15px; margin: 15px 0;">
-                        <i class="fas fa-mobile-alt" style="font-size: 30px; color: var(--accent);"></i>
-                        <div>
-                            <p style="margin-bottom: 5px;">الدفع عبر فودافون كاش</p>
-                            <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent);">01031090116</p>
+                <!-- قسم طرق الدفع الجديد -->
+                <div class="payment-methods">
+                    <h3>اختر طريقة الدفع</h3>
+                    <div class="payment-icons">
+                        <a href="https://vf.eg/vfcash?id=mt&qrId=ckswYS" target="_blank" class="payment-icon" onclick="selectPaymentMethod('vodafone', event)">
+                            <img src="2.png" alt="فودافون كاش" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2504/2504839.png'">
+                            <span>فودافون كاش</span>
+                        </a>
+                        <a href="https://ipn.eg/S/mohamedzidan20071224/instapay/488Fxk" target="_blank" class="payment-icon" onclick="selectPaymentMethod('instapay', event)">
+                            <img src="3.png" alt="انستا باي" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2504/2504839.png'">
+                            <span>انستا باي</span>
+                        </a>
+                        <div class="payment-icon" onclick="selectPaymentMethod('redotpay')" id="redotpayIcon">
+                            <img src="4.png" alt="RedotPay" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2504/2504839.png'">
+                            <span>RedotPay</span>
                         </div>
                     </div>
-                    <p style="opacity: 0.8; font-size: 0.9rem;">يرجى إرسال المبلغ إلى الرقم أعلاه ثم إرفاق صورة إيصال الدفع</p>
+                    
+                    <!-- معلومات فودافون كاش -->
+                    <div class="payment-info" id="vodafoneInfo" style="display: none;">
+                        <h4>💳 فودافون كاش</h4>
+                        <p>تم فتح نافذة فودافون كاش للدفع. إذا لم تفتح تلقائياً:</p>
+                        <p><a href="https://vf.eg/vfcash?id=mt&qrId=ckswYS" class="payment-link" target="_blank">https://vf.eg/vfcash?id=mt&qrId=ckswYS</a></p>
+                        <button class="copy-btn" onclick="copyToClipboard('https://vf.eg/vfcash?id=mt&qrId=ckswYS')">
+                            <i class="fas fa-copy"></i> نسخ الرابط
+                        </button>
+                    </div>
+                    
+                    <!-- معلومات انستا باي -->
+                    <div class="payment-info" id="instapayInfo" style="display: none;">
+                        <h4>🏦 انستا باي</h4>
+                        <p>تم فتح نافذة انستا باي للدفع. إذا لم تفتح تلقائياً:</p>
+                        <p><a href="https://ipn.eg/S/mohamedzidan20071224/instapay/488Fxk" class="payment-link" target="_blank">https://ipn.eg/S/mohamedzidan20071224/instapay/488Fxk</a></p>
+                        <p>مستفيد: mohamedzidan20071224@instapay</p>
+                        <button class="copy-btn" onclick="copyToClipboard('https://ipn.eg/S/mohamedzidan20071224/instapay/488Fxk')">
+                            <i class="fas fa-copy"></i> نسخ الرابط
+                        </button>
+                    </div>
+                    
+                    <!-- معلومات RedotPay -->
+                    <div class="payment-info" id="redotpayInfo" style="display: none;">
+                        <h4>🔴 RedotPay</h4>
+                        <p>الرجاء إرسال المبلغ بالدولار إلى الرقم التالي:</p>
+                        <p style="font-size: 1.3rem; font-weight: bold; color: var(--accent);">ID: 1705046508</p>
+                        <p id="redotpayAmount" style="font-size: 1.2rem; color: var(--warning); font-weight: bold;">المبلغ: $0.00</p>
+                        <p>قم بنسخ الرقم أعلاه وإرسال المبلغ عبر تطبيق RedotPay</p>
+                        <button class="copy-btn" onclick="copyToClipboard('1705046508')">
+                            <i class="fas fa-copy"></i> نسخ ID
+                        </button>
+                        <button class="copy-btn" style="margin-right: 10px;" onclick="copyToClipboard(document.getElementById('redotpayAmount').innerText)">
+                            <i class="fas fa-copy"></i> نسخ المبلغ
+                        </button>
+                    </div>
                 </div>
 
-                <div class="form-group" id="usernameGroup">
+                <div id="usernameGroup" class="form-group">
                     <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="usernameLabel">اسم المستخدم في إنستجرام</label>
                     <input type="text" id="username" class="form-control" placeholder="اسم المستخدم بدون @">
                 </div>
 
-                <div class="form-group" id="postLinkGroup" style="display: none;">
+                <div id="postLinkGroup" class="form-group" style="display: none;">
                     <label style="display: block; margin-bottom: 8px; font-weight: bold;" id="postLinkLabel">رابط المنشور في إنستجرام</label>
                     <input type="url" id="postLink" class="form-control" placeholder="https://www.instagram.com/p/xxxxxxxxxx/">
                 </div>
@@ -1255,6 +1415,115 @@
         const db = firebase.firestore();
 
         let selectedPackage = { amount: 100, price: 10, service: 'instagram', type: 'متابعين' };
+        let selectedPaymentMethod = null;
+        let currentExchangeRate = 48; // سعر الدولار الافتراضي (يمكن تحديثه من API)
+
+        // دالة لجلب سعر الدولار الحقيقي
+        async function fetchDollarRate() {
+            try {
+                // محاولة جلب سعر الدولار من مصدر موثوق
+                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+                if (response.ok) {
+                    const data = await response.json();
+                    // جلب سعر الدولار مقابل الجنيه المصري
+                    currentExchangeRate = data.rates.EGP || 48;
+                    console.log('سعر الدولار الحالي:', currentExchangeRate);
+                }
+            } catch (error) {
+                console.log('تعذر جلب سعر الدولار، استخدام السعر الافتراضي:', currentExchangeRate);
+                // في حالة الفشل، استخدام سعر افتراضي
+                currentExchangeRate = 48;
+            }
+        }
+
+        // جلب سعر الدولار عند تحميل الصفحة
+        fetchDollarRate();
+
+        // دالة لحساب السعر بالدولار
+        function calculateDollarPrice(egyptianPounds) {
+            return (egyptianPounds / currentExchangeRate).toFixed(2);
+        }
+
+        // دالة لاختيار طريقة الدفع
+        function selectPaymentMethod(method, event = null) {
+            // منع السلوك الافتراضي للروابط (سيفتح الرابط في علامة تبويب جديدة فقط)
+            if (event && method !== 'redotpay') {
+                setTimeout(() => {
+                    // إظهار رسالة للمستخدم
+                    showPaymentInfo(method);
+                }, 100);
+            }
+            
+            // إزالة التحديد من جميع الأيقونات
+            document.querySelectorAll('.payment-icon').forEach(icon => {
+                icon.classList.remove('selected-payment');
+            });
+            
+            // إخفاء جميع معلومات الدفع
+            document.querySelectorAll('.payment-info').forEach(info => {
+                info.style.display = 'none';
+            });
+            
+            // تحديد الطريقة المختارة
+            selectedPaymentMethod = method;
+            
+            // إضافة التحديد للأيقونة المختارة
+            const iconId = `${method}Icon`;
+            const iconElement = document.getElementById(iconId) || 
+                              document.querySelector(`[onclick*="${method}"]`);
+            if (iconElement) {
+                iconElement.classList.add('selected-payment');
+            }
+            
+            // إذا كانت RedotPay، حساب السعر بالدولار
+            if (method === 'redotpay') {
+                showPaymentInfo(method);
+                updateRedotPayDollarPrice();
+            }
+        }
+
+        // دالة لإظهار معلومات الدفع
+        function showPaymentInfo(method) {
+            document.querySelectorAll('.payment-info').forEach(info => {
+                info.style.display = 'none';
+            });
+            const infoElement = document.getElementById(`${method}Info`);
+            if (infoElement) {
+                infoElement.style.display = 'block';
+            }
+        }
+
+        // دالة لتحديث سعر RedotPay بالدولار
+        function updateRedotPayDollarPrice() {
+            const dollarAmount = calculateDollarPrice(selectedPackage.price);
+            const dollarPriceElement = document.getElementById('redotpayAmount');
+            const dollarPriceInfo = document.getElementById('dollarPriceInfo');
+            
+            if (dollarPriceElement) {
+                dollarPriceElement.textContent = `المبلغ: $${dollarAmount}`;
+            }
+            
+            if (dollarPriceInfo) {
+                dollarPriceInfo.textContent = `السعر بالدولار: $${dollarAmount} (سعر الصرف: 1$ = ${currentExchangeRate} جنيه)`;
+                dollarPriceInfo.style.display = 'block';
+            }
+        }
+
+        // دالة لنسخ النص إلى الحافظة
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('تم نسخ النص إلى الحافظة ✓');
+            }).catch(err => {
+                console.error('Error copying text: ', err);
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('تم نسخ النص إلى الحافظة ✓');
+            });
+        }
 
         // دالة لمعاينة صورة الإيصال
         function previewReceipt(event) {
@@ -1281,14 +1550,10 @@
                 
                 reader.onload = function(event) {
                     try {
-                        // الحصول على Base64 من النتيجة
                         const base64String = event.target.result;
-                        
-                        // التحقق من صحة Base64
                         if (base64String && base64String.startsWith('data:image')) {
                             resolve(base64String);
                         } else {
-                            // محاولة إصلاح الترميز
                             const img = new Image();
                             img.onload = function() {
                                 const canvas = document.createElement('canvas');
@@ -1308,7 +1573,6 @@
                 };
                 
                 reader.onerror = function(error) {
-                    // محاولة بديلة باستخدام Blob
                     try {
                         const blobUrl = URL.createObjectURL(file);
                         const img = new Image();
@@ -1340,7 +1604,6 @@
                 img.onload = function() {
                     const canvas = document.createElement('canvas');
                     
-                    // حساب الأبعاد الجديدة
                     let width = img.width;
                     let height = img.height;
                     
@@ -1355,7 +1618,6 @@
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0, width, height);
                     
-                    // تحويل إلى Base64 مع جودة محددة
                     canvas.toBlob(function(blob) {
                         const reader = new FileReader();
                         reader.onload = function() {
@@ -1376,7 +1638,6 @@
             });
             document.getElementById(pageId).classList.add('active');
             
-            // إغلاق القائمة في الشاشات الصغيرة
             document.querySelectorAll('nav').forEach(menu => {
                 menu.classList.remove('show');
             });
@@ -1395,7 +1656,6 @@
         }
 
         function showService(service) {
-            // تحديث أزرار التبويب
             document.querySelectorAll('.service-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
@@ -1420,7 +1680,9 @@
             document.getElementById('selectedPackageInfo').textContent = 
                 `باقة ${amount} ${typeText} ${serviceText} - ${price} جنيه`;
             
-            // تحديث الحقول حسب نوع الخدمة
+            // إخفاء سعر الدولار مؤقتاً
+            document.getElementById('dollarPriceInfo').style.display = 'none';
+            
             const usernameGroup = document.getElementById('usernameGroup');
             const postLinkGroup = document.getElementById('postLinkGroup');
             
@@ -1436,10 +1698,25 @@
                 document.getElementById('postLink').placeholder = 'https://www.instagram.com/p/xxxxxxxxxx/';
             }
             
+            // إعادة تعيين طريقة الدفع عند اختيار باقة جديدة
+            selectedPaymentMethod = null;
+            document.querySelectorAll('.payment-icon').forEach(icon => {
+                icon.classList.remove('selected-payment');
+            });
+            document.querySelectorAll('.payment-info').forEach(info => {
+                info.style.display = 'none';
+            });
+            
             showPage('paymentPage');
         }
 
         async function submitOrder() {
+            // التحقق من اختيار طريقة الدفع
+            if (!selectedPaymentMethod) {
+                alert('يرجى اختيار طريقة الدفع أولاً');
+                return;
+            }
+            
             let userInput;
             const phone = document.getElementById('phone').value;
             const receiptFile = document.getElementById('receipt').files[0];
@@ -1464,30 +1741,36 @@
             }
             
             try {
-                // إظهار رسالة التحميل
                 const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
                 const originalText = submitButton.innerHTML;
                 submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الطلب...';
                 submitButton.disabled = true;
                 
-                // تحويل الصورة إلى Base64 مع ضغط
                 let receiptBase64;
                 
-                // اختيار طريقة التحويل بناءً على حجم الملف
-                if (receiptFile.size > 2000000) { // أكبر من 2MB
+                if (receiptFile.size > 2000000) {
                     receiptBase64 = await compressImage(receiptFile, 1024, 0.6);
-                } else if (receiptFile.size > 500000) { // أكبر من 500KB
+                } else if (receiptFile.size > 500000) {
                     receiptBase64 = await compressImage(receiptFile, 1200, 0.7);
                 } else {
                     receiptBase64 = await convertImageToBase64(receiptFile);
                 }
                 
-                // إنشاء كائن الطلب
+                // حساب سعر الدولار إذا كانت RedotPay
+                let dollarPrice = null;
+                if (selectedPaymentMethod === 'redotpay') {
+                    dollarPrice = calculateDollarPrice(selectedPackage.price);
+                }
+                
+                // إنشاء كائن الطلب مع إضافة طريقة الدفع
                 const newOrder = {
                     package: selectedPackage,
                     userInput: userInput,
                     phone: phone,
                     receiptImage: receiptBase64,
+                    paymentMethod: selectedPaymentMethod,
+                    dollarPrice: dollarPrice,
+                    exchangeRate: selectedPaymentMethod === 'redotpay' ? currentExchangeRate : null,
                     status: 'قيد المراجعة',
                     date: new Date().toLocaleDateString('ar-EG'),
                     time: new Date().toLocaleTimeString('ar-EG'),
@@ -1495,31 +1778,24 @@
                     orderId: generateOrderId()
                 };
                 
-                // إرسال الطلب إلى Firebase
                 const orderRef = await db.collection('orders').add(newOrder);
                 
-                // استعادة الزر لحالته الأصلية
                 submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 
-                // رسالة نجاح
                 alert(`✅ تم تقديم طلبك بنجاح!\nرقم الطلب: ${newOrder.orderId}\nسيتم مراجعة طلبك قريباً.`);
                 
-                // إعادة تعيين النموذج
                 resetPaymentForm();
                 
-                // العودة إلى صفحة الطلبات
                 showPage('ordersPage');
                 
             } catch (error) {
                 console.error('Error submitting order:', error);
                 
-                // استعادة الزر لحالته الأصلية
                 const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
                 submitButton.innerHTML = 'تأكيد الطلب';
                 submitButton.disabled = false;
                 
-                // رسالة خطأ واضحة
                 let errorMessage = '❌ حدث خطأ أثناء إرسال الطلب.\n\n';
                 errorMessage += 'نصائح لحل المشكلة:\n';
                 errorMessage += '1. تأكد من اتصال الإنترنت\n';
@@ -1532,7 +1808,6 @@
             }
         }
 
-        // دالة لإنشاء رقم طلب فريد
         function generateOrderId() {
             const timestamp = Date.now().toString().slice(-6);
             const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
@@ -1545,6 +1820,14 @@
             document.getElementById('phone').value = '';
             document.getElementById('receipt').value = '';
             document.getElementById('receiptPreview').style.display = 'none';
+            document.getElementById('dollarPriceInfo').style.display = 'none';
+            selectedPaymentMethod = null;
+            document.querySelectorAll('.payment-icon').forEach(icon => {
+                icon.classList.remove('selected-payment');
+            });
+            document.querySelectorAll('.payment-info').forEach(info => {
+                info.style.display = 'none';
+            });
         }
 
         async function loadOrders() {
@@ -1573,7 +1856,22 @@
                     const serviceText = 'إنستجرام';
                     const typeText = order.package.type === 'متابعين' ? 'متابع' : 'لايك';
                     
-                    // إنشاء زر لعرض صورة الإيصال
+                    // عرض طريقة الدفع
+                    let paymentMethodText = '';
+                    if (order.paymentMethod) {
+                        const paymentMethods = {
+                            'vodafone': 'فودافون كاش',
+                            'instapay': 'انستا باي',
+                            'redotpay': 'RedotPay'
+                        };
+                        paymentMethodText = `<p><strong>طريقة الدفع:</strong> ${paymentMethods[order.paymentMethod] || order.paymentMethod}</p>`;
+                        
+                        // إذا كانت RedotPay، عرض السعر بالدولار
+                        if (order.paymentMethod === 'redotpay' && order.dollarPrice) {
+                            paymentMethodText += `<p><strong>السعر بالدولار:</strong> $${order.dollarPrice} (سعر الصرف: 1$ = ${order.exchangeRate || 48} جنيه)</p>`;
+                        }
+                    }
+                    
                     const receiptButton = order.receiptImage ? 
                         `<button class="btn" style="padding: 8px 15px; font-size: 14px; margin-top: 10px;" onclick="showReceipt('${order.receiptImage}', '${order.orderId}')">
                             <i class="fas fa-image"></i> عرض الإيصال
@@ -1591,6 +1889,7 @@
                             </div>
                             <p><strong>${order.package.type === 'متابعين' ? 'اسم المستخدم:' : 'رابط المنشور:'}</strong> ${order.userInput}</p>
                             <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
+                            ${paymentMethodText}
                             <p><strong>تاريخ الطلب:</strong> ${order.date} ${order.time || ''}</p>
                             <p><strong>صورة الإيصال:</strong><br>${receiptButton}</p>
                         </div>
@@ -1604,7 +1903,6 @@
             }
         }
 
-        // دالة لعرض صورة الإيصال في نافذة منبثقة
         function showReceipt(base64Image, orderId) {
             const modal = document.createElement('div');
             modal.style.cssText = `
@@ -1636,7 +1934,6 @@
             
             document.body.appendChild(modal);
             
-            // إغلاق النافذة عند النقر خارج الصورة
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     document.body.removeChild(modal);
@@ -1644,7 +1941,6 @@
             });
         }
 
-        // دالة تحميل التطبيق
         function downloadApp() {
             const appDownloadUrl = 'app-release%20(3).apk';
             
@@ -1660,18 +1956,14 @@
             alert('بدأ تحميل تطبيق Roma&Knzy Stor... شكراً لثقتك بنا!');
         }
 
-        // Auto-load orders when page loads
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Roma&knzy stor Started Successfully!');
-            // لا تحميل الطلبات تلقائياً عند فتح الصفحة الرئيسية
         });
 
-        // التحقق من تسجيل الدخول
         if (!localStorage.getItem("loggedIn")) {
             window.location.href = "login.html";
         }
         
-        // تسجيل الخروج
         function logout() {
             localStorage.removeItem("loggedIn");
             window.location.href = "login.html";
